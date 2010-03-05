@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* OBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* OBAppDelegate.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		D003735E1139E22300053FCB /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = D003735D1139E22300053FCB /* OBGradientView.m */; };
+		D003736F1139E35F00053FCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D003736E1139E35F00053FCB /* main.m */; };
+		D00373731139E37100053FCB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00373711139E37100053FCB /* MainWindow.xib */; };
+		D003744D1139EBC600053FCB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D003744C1139EBC600053FCB /* LICENSE */; };
+		D00374661139EDC100053FCB /* cabs.db in Resources */ = {isa = PBXBuildFile; fileRef = D00374651139EDC100053FCB /* cabs.db */; };
+		D00374761139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt in Resources */ = {isa = PBXBuildFile; fileRef = D003746C1139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt */; };
+		D00374771139EE7300053FCB /* CONTRIBUTORS.txt in Resources */ = {isa = PBXBuildFile; fileRef = D003746D1139EE7300053FCB /* CONTRIBUTORS.txt */; };
+		D00374781139EE7300053FCB /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003746F1139EE7300053FCB /* FMDatabase.m */; };
+		D00374791139EE7300053FCB /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374711139EE7300053FCB /* FMDatabaseAdditions.m */; };
+		D003747B1139EE7300053FCB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374741139EE7300053FCB /* FMResultSet.m */; };
+		D003747C1139EE7300053FCB /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D00374751139EE7300053FCB /* LICENSE.txt */; };
+		D00374981139EE7C00053FCB /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748C1139EE7C00053FCB /* NSDateAdditions.m */; };
+		D00374991139EE7C00053FCB /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748D1139EE7C00053FCB /* OTClient.m */; };
+		D003749A1139EE7C00053FCB /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */; };
+		D003749B1139EE7C00053FCB /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748F1139EE7C00053FCB /* OTRDirections.m */; };
+		D003749C1139EE7C00053FCB /* OTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374901139EE7C00053FCB /* OTRequest.m */; };
+		D003749D1139EE7C00053FCB /* OTRPatterns.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374911139EE7C00053FCB /* OTRPatterns.m */; };
+		D003749E1139EE7C00053FCB /* OTRPredictions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374921139EE7C00053FCB /* OTRPredictions.m */; };
+		D003749F1139EE7C00053FCB /* OTRRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374931139EE7C00053FCB /* OTRRoutes.m */; };
+		D00374A01139EE7C00053FCB /* OTRServiceBulletins.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374941139EE7C00053FCB /* OTRServiceBulletins.m */; };
+		D00374A11139EE7C00053FCB /* OTRStops.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374951139EE7C00053FCB /* OTRStops.m */; };
+		D00374A21139EE7C00053FCB /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374961139EE7C00053FCB /* OTRTime.m */; };
+		D00374A31139EE7C00053FCB /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374971139EE7C00053FCB /* OTRVehicles.m */; };
+		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
+		D0143867113DBDFE00047246 /* OBBulletinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143866113DBDFE00047246 /* OBBulletinsViewController.m */; };
+		D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */; };
+		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
+		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
+		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* OBAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* OBAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* OSU Bus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OSU Bus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D003735C1139E22300053FCB /* OBGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGradientView.h; sourceTree = "<group>"; };
+		D003735D1139E22300053FCB /* OBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGradientView.m; sourceTree = "<group>"; };
+		D003736E1139E35F00053FCB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Other Sources/main.m"; sourceTree = "<group>"; };
+		D00373711139E37100053FCB /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
+		D003740F1139E48E00053FCB /* OSU_Bus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OSU_Bus-Info.plist"; sourceTree = "<group>"; };
+		D00374101139E48E00053FCB /* OSU_Bus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSU_Bus_Prefix.pch; sourceTree = "<group>"; };
+		D003744C1139EBC600053FCB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		D00374651139EDC100053FCB /* cabs.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = cabs.db; path = Resources/cabs.db; sourceTree = "<group>"; };
+		D003746C1139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
+		D003746D1139EE7300053FCB /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
+		D003746E1139EE7300053FCB /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		D003746F1139EE7300053FCB /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		D00374701139EE7300053FCB /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		D00374711139EE7300053FCB /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		D00374731139EE7300053FCB /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		D00374741139EE7300053FCB /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		D00374751139EE7300053FCB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		D003747F1139EE7C00053FCB /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
+		D00374801139EE7C00053FCB /* OTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTClient.h; sourceTree = "<group>"; };
+		D00374811139EE7C00053FCB /* OTClientUpdateDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTClientUpdateDatabase.h; sourceTree = "<group>"; };
+		D00374821139EE7C00053FCB /* OTRDirections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRDirections.h; sourceTree = "<group>"; };
+		D00374831139EE7C00053FCB /* OTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRequest.h; sourceTree = "<group>"; };
+		D00374841139EE7C00053FCB /* OTRPatterns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRPatterns.h; sourceTree = "<group>"; };
+		D00374851139EE7C00053FCB /* OTRPredictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRPredictions.h; sourceTree = "<group>"; };
+		D00374861139EE7C00053FCB /* OTRRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRRoutes.h; sourceTree = "<group>"; };
+		D00374871139EE7C00053FCB /* OTRServiceBulletins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRServiceBulletins.h; sourceTree = "<group>"; };
+		D00374881139EE7C00053FCB /* OTRStops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRStops.h; sourceTree = "<group>"; };
+		D00374891139EE7C00053FCB /* OTRTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRTime.h; sourceTree = "<group>"; };
+		D003748A1139EE7C00053FCB /* OTRVehicles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRVehicles.h; sourceTree = "<group>"; };
+		D003748C1139EE7C00053FCB /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		D003748D1139EE7C00053FCB /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
+		D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientUpdateDatabase.m; sourceTree = "<group>"; };
+		D003748F1139EE7C00053FCB /* OTRDirections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRDirections.m; sourceTree = "<group>"; };
+		D00374901139EE7C00053FCB /* OTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRequest.m; sourceTree = "<group>"; };
+		D00374911139EE7C00053FCB /* OTRPatterns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRPatterns.m; sourceTree = "<group>"; };
+		D00374921139EE7C00053FCB /* OTRPredictions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRPredictions.m; sourceTree = "<group>"; };
+		D00374931139EE7C00053FCB /* OTRRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRRoutes.m; sourceTree = "<group>"; };
+		D00374941139EE7C00053FCB /* OTRServiceBulletins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRServiceBulletins.m; sourceTree = "<group>"; };
+		D00374951139EE7C00053FCB /* OTRStops.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRStops.m; sourceTree = "<group>"; };
+		D00374961139EE7C00053FCB /* OTRTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRTime.m; sourceTree = "<group>"; };
+		D00374971139EE7C00053FCB /* OTRVehicles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRVehicles.m; sourceTree = "<group>"; };
+		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D0143866113DBDFE00047246 /* OBBulletinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinsViewController.m; sourceTree = "<group>"; };
+		D014386A113DBE0B00047246 /* OBBulletinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinsViewController.h; sourceTree = "<group>"; };
+		D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinsViewController.xib; path = Resources/OBBulletinsViewController.xib; sourceTree = "<group>"; };
+		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
+		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
+		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
+		D0B0319E113A060A00678161 /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
+		D0B031A2113A069E00678161 /* OBTopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBTopViewController.xib; path = Resources/OBTopViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D0B03199113A052400678161 /* OBTopViewController.h */,
+				D0B0319E113A060A00678161 /* OBTopViewController.m */,
+				D003735C1139E22300053FCB /* OBGradientView.h */,
+				D003735D1139E22300053FCB /* OBGradientView.m */,
+				1D3623240D0F684500981E51 /* OBAppDelegate.h */,
+				1D3623250D0F684500981E51 /* OBAppDelegate.m */,
+				D014386A113DBE0B00047246 /* OBBulletinsViewController.h */,
+				D0143866113DBDFE00047246 /* OBBulletinsViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* OSU Bus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				D003744C1139EBC600053FCB /* LICENSE */,
+				D003747D1139EE7C00053FCB /* libosutrip */,
+				D003746B1139EE7300053FCB /* fmdb */,
+				D003740F1139E48E00053FCB /* OSU_Bus-Info.plist */,
+				D00374101139E48E00053FCB /* OSU_Bus_Prefix.pch */,
+				D07D27AE113DB3D000E6BDE0 /* Categories */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D003736E1139E35F00053FCB /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
+				D00374651139EDC100053FCB /* cabs.db */,
+				D00373711139E37100053FCB /* MainWindow.xib */,
+				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D00374A61139EF0400053FCB /* libsqlite3.dylib */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D003746B1139EE7300053FCB /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				D003746C1139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt */,
+				D003746D1139EE7300053FCB /* CONTRIBUTORS.txt */,
+				D003746E1139EE7300053FCB /* FMDatabase.h */,
+				D003746F1139EE7300053FCB /* FMDatabase.m */,
+				D00374701139EE7300053FCB /* FMDatabaseAdditions.h */,
+				D00374711139EE7300053FCB /* FMDatabaseAdditions.m */,
+				D00374731139EE7300053FCB /* FMResultSet.h */,
+				D00374741139EE7300053FCB /* FMResultSet.m */,
+				D00374751139EE7300053FCB /* LICENSE.txt */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		D003747D1139EE7C00053FCB /* libosutrip */ = {
+			isa = PBXGroup;
+			children = (
+				D003747E1139EE7C00053FCB /* include */,
+				D003748B1139EE7C00053FCB /* src */,
+			);
+			path = libosutrip;
+			sourceTree = "<group>";
+		};
+		D003747E1139EE7C00053FCB /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D003747F1139EE7C00053FCB /* NSDateAdditions.h */,
+				D00374801139EE7C00053FCB /* OTClient.h */,
+				D00374811139EE7C00053FCB /* OTClientUpdateDatabase.h */,
+				D00374821139EE7C00053FCB /* OTRDirections.h */,
+				D00374831139EE7C00053FCB /* OTRequest.h */,
+				D00374841139EE7C00053FCB /* OTRPatterns.h */,
+				D00374851139EE7C00053FCB /* OTRPredictions.h */,
+				D00374861139EE7C00053FCB /* OTRRoutes.h */,
+				D00374871139EE7C00053FCB /* OTRServiceBulletins.h */,
+				D00374881139EE7C00053FCB /* OTRStops.h */,
+				D00374891139EE7C00053FCB /* OTRTime.h */,
+				D003748A1139EE7C00053FCB /* OTRVehicles.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D003748B1139EE7C00053FCB /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D003748C1139EE7C00053FCB /* NSDateAdditions.m */,
+				D003748D1139EE7C00053FCB /* OTClient.m */,
+				D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */,
+				D003748F1139EE7C00053FCB /* OTRDirections.m */,
+				D00374901139EE7C00053FCB /* OTRequest.m */,
+				D00374911139EE7C00053FCB /* OTRPatterns.m */,
+				D00374921139EE7C00053FCB /* OTRPredictions.m */,
+				D00374931139EE7C00053FCB /* OTRRoutes.m */,
+				D00374941139EE7C00053FCB /* OTRServiceBulletins.m */,
+				D00374951139EE7C00053FCB /* OTRStops.m */,
+				D00374961139EE7C00053FCB /* OTRTime.m */,
+				D00374971139EE7C00053FCB /* OTRVehicles.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D07D27AE113DB3D000E6BDE0 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */,
+				D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* OSU Bus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "OSU Bus" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "OSU Bus";
+			productName = "OSU Bus";
+			productReference = 1D6058910D05DD3D006BFB54 /* OSU Bus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OSU Bus" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* OSU Bus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00373731139E37100053FCB /* MainWindow.xib in Resources */,
+				D003744D1139EBC600053FCB /* LICENSE in Resources */,
+				D00374661139EDC100053FCB /* cabs.db in Resources */,
+				D00374761139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt in Resources */,
+				D00374771139EE7300053FCB /* CONTRIBUTORS.txt in Resources */,
+				D003747C1139EE7300053FCB /* LICENSE.txt in Resources */,
+				D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */,
+				D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D3623260D0F684500981E51 /* OBAppDelegate.m in Sources */,
+				D003735E1139E22300053FCB /* OBGradientView.m in Sources */,
+				D003736F1139E35F00053FCB /* main.m in Sources */,
+				D00374781139EE7300053FCB /* FMDatabase.m in Sources */,
+				D00374791139EE7300053FCB /* FMDatabaseAdditions.m in Sources */,
+				D003747B1139EE7300053FCB /* FMResultSet.m in Sources */,
+				D00374981139EE7C00053FCB /* NSDateAdditions.m in Sources */,
+				D00374991139EE7C00053FCB /* OTClient.m in Sources */,
+				D003749A1139EE7C00053FCB /* OTClientUpdateDatabase.m in Sources */,
+				D003749B1139EE7C00053FCB /* OTRDirections.m in Sources */,
+				D003749C1139EE7C00053FCB /* OTRequest.m in Sources */,
+				D003749D1139EE7C00053FCB /* OTRPatterns.m in Sources */,
+				D003749E1139EE7C00053FCB /* OTRPredictions.m in Sources */,
+				D003749F1139EE7C00053FCB /* OTRRoutes.m in Sources */,
+				D00374A01139EE7C00053FCB /* OTRServiceBulletins.m in Sources */,
+				D00374A11139EE7C00053FCB /* OTRStops.m in Sources */,
+				D00374A21139EE7C00053FCB /* OTRTime.m in Sources */,
+				D00374A31139EE7C00053FCB /* OTRVehicles.m in Sources */,
+				D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */,
+				D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */,
+				D0143867113DBDFE00047246 /* OBBulletinsViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OSU_Bus_Prefix.pch;
+				INFOPLIST_FILE = "OSU_Bus-Info.plist";
+				PRODUCT_NAME = "OSU Bus";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = OSU_Bus_Prefix.pch;
+				INFOPLIST_FILE = "OSU_Bus-Info.plist";
+				PRODUCT_NAME = "OSU Bus";
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "OSU Bus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OSU Bus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
