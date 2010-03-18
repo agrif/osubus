@@ -16,6 +16,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import <Foundation/Foundation.h>
+#import "FMDatabase.h"
 
 #define OTC_BASEURL @"http://trip.osu.edu/bustime/api/v1/"
 #define OTC_CUSTOMURL @"http://gamma-level.com/osubus/"
@@ -26,10 +27,12 @@
 {
 	NSString* APIKey;
 	NSString* databasePath;
+	
+	// this is NOT auto-memmanaged, do it yerself!
+	FMDatabase* db;
 }
 
-@property (nonatomic, retain) NSString* APIKey;
-@property (nonatomic, retain) NSString* databasePath;
+@property (nonatomic, copy) NSString* APIKey;
 
 @end
 
@@ -41,6 +44,8 @@
 
 @interface OTClient (OTClientDatabase)
 
+- (void) setDatabasePath: (NSString*) newDatabasePath;
+- (NSString*) databasePath;
 - (void) updateDatabase;
 
 @end

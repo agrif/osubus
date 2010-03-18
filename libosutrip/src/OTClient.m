@@ -9,6 +9,5 @@
 @implementation OTClient
 
 @synthesize APIKey;
-@synthesize databasePath;
 
 @end

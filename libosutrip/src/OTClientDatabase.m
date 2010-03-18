@@ -10,21 +10,41 @@
 
 @implementation OTClient (OTClientDatabase)
 
+- (void) setDatabasePath: (NSString*) newDatabasePath
+{
+	if (newDatabasePath == nil)
+	{
+		if (databasePath)
+			[databasePath release];
+		databasePath = nil;
+		if (db)
+			[db close];
+		db = nil;
+		return;
+	}
+	
+	FMDatabase* newdb = [FMDatabase databaseWithPath: newDatabasePath];
+	if (![newdb open])
+	{
+		NSLog(@"Could not open db.");
+		return;
+	}
+	
+	databasePath = [newDatabasePath copy];
+	db = newdb;
+}
+
+- (NSString*) databasePath
+{
+	return databasePath;
+}
+
 // haha! this is to update the local cache of route data!
 
 - (void) updateDatabase;
-{
-	FMDatabase* db = [FMDatabase databaseWithPath: [OTClient sharedClient].databasePath];
-	if (![db open])
-	{
-		NSLog(@"Could not open db.");
-		exit(1); // hack
-	}
-	
+{	
 	initializeDB(db);
 	addRoutes(db);
-	
-	[db close];
 }
 
 @end
