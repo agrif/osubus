@@ -31,8 +31,21 @@
 @property (nonatomic, retain) NSString* APIKey;
 @property (nonatomic, retain) NSString* databasePath;
 
+@end
+
+@interface OTClient (OTClientSingleton)
+
 + (OTClient*) sharedClient;
+
+@end
+
+@interface OTClient (OTClientDatabase)
+
 - (void) updateDatabase;
+
+@end
+
+@interface OTClient(OTClientRequests)
 
 // these are NOT autoreleased, they're yours to take care of
 - (OTRequest*) requestTimeWithDelegate: (id<OTRequestDelegate>) delegate;

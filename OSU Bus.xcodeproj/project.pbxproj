@@ -23,7 +23,6 @@
 		D003747B1139EE7300053FCB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374741139EE7300053FCB /* FMResultSet.m */; };
 		D003747C1139EE7300053FCB /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D00374751139EE7300053FCB /* LICENSE.txt */; };
 		D00374981139EE7C00053FCB /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748C1139EE7C00053FCB /* NSDateAdditions.m */; };
-		D00374991139EE7C00053FCB /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748D1139EE7C00053FCB /* OTClient.m */; };
 		D003749A1139EE7C00053FCB /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */; };
 		D003749B1139EE7C00053FCB /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748F1139EE7C00053FCB /* OTRDirections.m */; };
 		D003749C1139EE7C00053FCB /* OTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374901139EE7C00053FCB /* OTRequest.m */; };
@@ -37,6 +36,10 @@
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D0143867113DBDFE00047246 /* OBBulletinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143866113DBDFE00047246 /* OBBulletinsViewController.m */; };
 		D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */; };
+		D0143D971152E44500C376CC /* OTClientRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D951152E44500C376CC /* OTClientRequests.m */; };
+		D0143D981152E44500C376CC /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D961152E44500C376CC /* OTClientSingleton.m */; };
+		D0143D9A1152E4CE00C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
+		D0143DAE1152E5D200C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
 		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
@@ -81,7 +84,6 @@
 		D00374891139EE7C00053FCB /* OTRTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRTime.h; sourceTree = "<group>"; };
 		D003748A1139EE7C00053FCB /* OTRVehicles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRVehicles.h; sourceTree = "<group>"; };
 		D003748C1139EE7C00053FCB /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
-		D003748D1139EE7C00053FCB /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
 		D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientUpdateDatabase.m; sourceTree = "<group>"; };
 		D003748F1139EE7C00053FCB /* OTRDirections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRDirections.m; sourceTree = "<group>"; };
 		D00374901139EE7C00053FCB /* OTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRequest.m; sourceTree = "<group>"; };
@@ -96,6 +98,10 @@
 		D0143866113DBDFE00047246 /* OBBulletinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinsViewController.m; sourceTree = "<group>"; };
 		D014386A113DBE0B00047246 /* OBBulletinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinsViewController.h; sourceTree = "<group>"; };
 		D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinsViewController.xib; path = Resources/OBBulletinsViewController.xib; sourceTree = "<group>"; };
+		D0143D951152E44500C376CC /* OTClientRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientRequests.m; sourceTree = "<group>"; };
+		D0143D961152E44500C376CC /* OTClientSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientSingleton.m; sourceTree = "<group>"; };
+		D0143D991152E4CE00C376CC /* OTClientDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientDatabase.m; sourceTree = "<group>"; };
+		D0143DAD1152E5D200C376CC /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
 		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
 		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
 		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
@@ -240,8 +246,11 @@
 		D003748B1139EE7C00053FCB /* src */ = {
 			isa = PBXGroup;
 			children = (
+				D0143DAD1152E5D200C376CC /* OTClient.m */,
+				D0143D951152E44500C376CC /* OTClientRequests.m */,
+				D0143D961152E44500C376CC /* OTClientSingleton.m */,
+				D0143D991152E4CE00C376CC /* OTClientDatabase.m */,
 				D003748C1139EE7C00053FCB /* NSDateAdditions.m */,
-				D003748D1139EE7C00053FCB /* OTClient.m */,
 				D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */,
 				D003748F1139EE7C00053FCB /* OTRDirections.m */,
 				D00374901139EE7C00053FCB /* OTRequest.m */,
@@ -334,7 +343,6 @@
 				D00374791139EE7300053FCB /* FMDatabaseAdditions.m in Sources */,
 				D003747B1139EE7300053FCB /* FMResultSet.m in Sources */,
 				D00374981139EE7C00053FCB /* NSDateAdditions.m in Sources */,
-				D00374991139EE7C00053FCB /* OTClient.m in Sources */,
 				D003749A1139EE7C00053FCB /* OTClientUpdateDatabase.m in Sources */,
 				D003749B1139EE7C00053FCB /* OTRDirections.m in Sources */,
 				D003749C1139EE7C00053FCB /* OTRequest.m in Sources */,
@@ -348,6 +356,10 @@
 				D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */,
 				D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */,
 				D0143867113DBDFE00047246 /* OBBulletinsViewController.m in Sources */,
+				D0143D971152E44500C376CC /* OTClientRequests.m in Sources */,
+				D0143D981152E44500C376CC /* OTClientSingleton.m in Sources */,
+				D0143D9A1152E4CE00C376CC /* OTClientDatabase.m in Sources */,
+				D0143DAE1152E5D200C376CC /* OTClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
