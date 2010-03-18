@@ -14,14 +14,10 @@
 		D003735E1139E22300053FCB /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = D003735D1139E22300053FCB /* OBGradientView.m */; };
 		D003736F1139E35F00053FCB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D003736E1139E35F00053FCB /* main.m */; };
 		D00373731139E37100053FCB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00373711139E37100053FCB /* MainWindow.xib */; };
-		D003744D1139EBC600053FCB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = D003744C1139EBC600053FCB /* LICENSE */; };
 		D00374661139EDC100053FCB /* cabs.db in Resources */ = {isa = PBXBuildFile; fileRef = D00374651139EDC100053FCB /* cabs.db */; };
-		D00374761139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt in Resources */ = {isa = PBXBuildFile; fileRef = D003746C1139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt */; };
-		D00374771139EE7300053FCB /* CONTRIBUTORS.txt in Resources */ = {isa = PBXBuildFile; fileRef = D003746D1139EE7300053FCB /* CONTRIBUTORS.txt */; };
 		D00374781139EE7300053FCB /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003746F1139EE7300053FCB /* FMDatabase.m */; };
 		D00374791139EE7300053FCB /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374711139EE7300053FCB /* FMDatabaseAdditions.m */; };
 		D003747B1139EE7300053FCB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374741139EE7300053FCB /* FMResultSet.m */; };
-		D003747C1139EE7300053FCB /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = D00374751139EE7300053FCB /* LICENSE.txt */; };
 		D00374981139EE7C00053FCB /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748C1139EE7C00053FCB /* NSDateAdditions.m */; };
 		D003749A1139EE7C00053FCB /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */; };
 		D003749B1139EE7C00053FCB /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748F1139EE7C00053FCB /* OTRDirections.m */; };
@@ -58,8 +54,6 @@
 		D003735D1139E22300053FCB /* OBGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGradientView.m; sourceTree = "<group>"; };
 		D003736E1139E35F00053FCB /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "Other Sources/main.m"; sourceTree = "<group>"; };
 		D00373711139E37100053FCB /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		D003740F1139E48E00053FCB /* OSU_Bus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OSU_Bus-Info.plist"; sourceTree = "<group>"; };
-		D00374101139E48E00053FCB /* OSU_Bus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSU_Bus_Prefix.pch; sourceTree = "<group>"; };
 		D003744C1139EBC600053FCB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D00374651139EDC100053FCB /* cabs.db */ = {isa = PBXFileReference; lastKnownFileType = file; name = cabs.db; path = Resources/cabs.db; sourceTree = "<group>"; };
 		D003746C1139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
@@ -102,6 +96,8 @@
 		D0143D961152E44500C376CC /* OTClientSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientSingleton.m; sourceTree = "<group>"; };
 		D0143D991152E4CE00C376CC /* OTClientDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientDatabase.m; sourceTree = "<group>"; };
 		D0143DAD1152E5D200C376CC /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
+		D0143E9F1152EF6200C376CC /* OSU_Bus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSU_Bus_Prefix.pch; path = "Other Sources/OSU_Bus_Prefix.pch"; sourceTree = "<group>"; };
+		D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OSU_Bus-Info.plist"; path = "Resources/OSU_Bus-Info.plist"; sourceTree = "<group>"; };
 		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
 		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
 		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
@@ -155,8 +151,6 @@
 				D003744C1139EBC600053FCB /* LICENSE */,
 				D003747D1139EE7C00053FCB /* libosutrip */,
 				D003746B1139EE7300053FCB /* fmdb */,
-				D003740F1139E48E00053FCB /* OSU_Bus-Info.plist */,
-				D00374101139E48E00053FCB /* OSU_Bus_Prefix.pch */,
 				D07D27AE113DB3D000E6BDE0 /* Categories */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -170,6 +164,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D0143E9F1152EF6200C376CC /* OSU_Bus_Prefix.pch */,
 				D003736E1139E35F00053FCB /* main.m */,
 			);
 			name = "Other Sources";
@@ -178,6 +173,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
 				D0DC57261152C7D700D67308 /* Default.png */,
 				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
 				D00374651139EDC100053FCB /* cabs.db */,
@@ -317,11 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D00373731139E37100053FCB /* MainWindow.xib in Resources */,
-				D003744D1139EBC600053FCB /* LICENSE in Resources */,
 				D00374661139EDC100053FCB /* cabs.db in Resources */,
-				D00374761139EE7300053FCB /* CHANGES_AND_TODO_LIST.txt in Resources */,
-				D00374771139EE7300053FCB /* CONTRIBUTORS.txt in Resources */,
-				D003747C1139EE7300053FCB /* LICENSE.txt in Resources */,
 				D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */,
 				D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */,
 				D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */,
@@ -374,8 +366,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OSU_Bus_Prefix.pch;
-				INFOPLIST_FILE = "OSU_Bus-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
+				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
 				PRODUCT_NAME = "OSU Bus";
 			};
 			name = Debug;
@@ -386,8 +378,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = OSU_Bus_Prefix.pch;
-				INFOPLIST_FILE = "OSU_Bus-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
+				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
 				PRODUCT_NAME = "OSU Bus";
 			};
 			name = Release;
