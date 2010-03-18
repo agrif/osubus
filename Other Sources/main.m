@@ -22,7 +22,10 @@
 int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
+	[[OTClient sharedClient] setDatabasePath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"]];
+	
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
     return retVal;
