@@ -112,7 +112,7 @@
 	}
 }
 
-- (void) parser: (NSXMLParser*) parser didStartElement: (NSString*) elementName namespaceURI: (NSString*) namespaceURI qualifiedName: (NSString*) qName attributes: (NSString*) attributeDict
+- (void) parser: (NSXMLParser*) parser didStartElement: (NSString*) elementName namespaceURI: (NSString*) namespaceURI qualifiedName: (NSString*) qName attributes: (NSDictionary*) attributeDict
 {
 	if (foundResponse)
 	{
