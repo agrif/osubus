@@ -40,6 +40,7 @@
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
 		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
+		D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,7 @@
 		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
 		D0B0319E113A060A00678161 /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
 		D0B031A2113A069E00678161 /* OBTopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBTopViewController.xib; path = Resources/OBTopViewController.xib; sourceTree = "<group>"; };
+		D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBAboutViewController.xib; path = Resources/OBAboutViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				D00374651139EDC100053FCB /* cabs.db */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
 				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
+				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				D003747C1139EE7300053FCB /* LICENSE.txt in Resources */,
 				D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */,
 				D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */,
+				D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,6 +40,17 @@
 	[bulletinsViewController loadBulletins: self];
 }
 
+- (void) didReceiveMemoryWarning
+{
+	[super didReceiveMemoryWarning];
+	
+	if (aboutViewController != nil)
+	{
+		[aboutViewController release];
+		aboutViewController = nil;
+	}
+}
+
 - (void) startBulletinDisplay
 {
 	bulletinsLoaded = YES;
@@ -199,6 +210,12 @@
 
 - (IBAction) showAboutView: (id) sender
 {
+	if (aboutViewController == nil)
+	{
+		NSLog(@"Creating OBAboutViewController");
+		[[NSBundle mainBundle] loadNibNamed: @"OBAboutViewController" owner: self options: nil];
+	}
+	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];
 }
 

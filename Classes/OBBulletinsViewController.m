@@ -12,6 +12,12 @@
 
 @synthesize bulletins;
 
+- (void) viewDidLoad
+{
+	[super viewDidLoad];
+	NSLog(@"OBBulletinsViewController loaded");
+}
+
 - (void) loadBulletins: (OBTopViewController*) caller
 {
 	topViewController = caller;
