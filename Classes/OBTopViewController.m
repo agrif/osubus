@@ -10,6 +10,7 @@
 #import "OTClient.h"
 
 #import "OBBulletinsViewController.h"
+#import "OBRoutesViewController.h"
 
 @implementation OBTopViewController
 
@@ -61,13 +62,12 @@
 
 - (void) updateBulletinCell: (NSTimer*) timer
 {
+	BOOL animated = YES;
 	if (!(self.navigationController.topViewController == self && self.navigationController.modalViewController == nil))
-		return;
+		animated = NO;
 	
 	UILabel* bulletinLabel = (UILabel*)[bulletinCell viewWithTag: 1];
 	UILabel* bulletinTitleLabel = (UILabel*)[bulletinCell viewWithTag: 2];
-	
-	BOOL animated = YES;
 	
 	if ([[bulletinsViewController bulletins] count] == 0)
 	{
@@ -201,6 +201,10 @@
 	if ([indexPath section] == OBTS_BULLETINS && bulletinsLoaded)
 	{
 		[self.navigationController pushViewController: bulletinsViewController animated: YES];
+	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_ROUTES) {
+		OBRoutesViewController* routes = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewController" bundle: nil];
+		[self.navigationController pushViewController: routes animated: YES];
+		[routes release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
