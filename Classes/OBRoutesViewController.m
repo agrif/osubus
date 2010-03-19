@@ -12,18 +12,7 @@
 {
 	[super viewDidLoad];
 	
-	//[aboutViewController setModalTransitionStyle: UIModalTransitionStyleFlipHorizontal];
-	
-	[self.navigationItem setTitle: @""];
-	[self.navigationItem setBackBarButtonItem: backButton];
-	[self.navigationItem setRightBarButtonItem: aboutButton];
-	
-	[(UILabel*)[bulletinCell viewWithTag: 1] setText: @""];
-	[(UILabel*)[bulletinCell viewWithTag: 2] setText: @"Loading..."];
-	
-	bulletinID = -1;
-	bulletinsLoaded = NO;
-	[bulletinsViewController loadBulletins: self];
+	[self.navigationItem setTitle: @"Routes"];
 }
 
 #pragma mark Table View Data Source
@@ -46,10 +35,8 @@
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {
 	return nil;
-}
-
-- (UITableViewCell*) tableView: (UITableView*) tableView navigationCellForIndex: (NSInteger) index
-{
+	
+	
 	NSString* cellIdentifier = @"UITableViewCell";
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
 	if (cell == nil)
@@ -58,24 +45,9 @@
 	}
 	
 	[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
+	[[cell textLabel] setText: @"Test"];
 	
-	switch (index)
-	{
-		case OBTO_STOPS:
-			[[cell textLabel] setText: @"Stops"];
-			break;
-		case OBTO_ROUTES:
-			[[cell textLabel] setText: @"Routes"];
-			break;
-		case OBTO_NEARME:
-			[[cell textLabel] setText: @"Near Me"];
-			break;
-		case OBTO_MAP:
-			[[cell textLabel] setText: @"Bus Map"];
-			break;
-	};
-	
-	return cell;	
+	return cell;
 }
 
 #pragma mark Table View Delegate
