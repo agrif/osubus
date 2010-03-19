@@ -39,6 +39,22 @@
 	return databasePath;
 }
 
+- (NSArray*) routes
+{
+	NSMutableArray* ret = [[NSMutableArray alloc] init];
+	FMResultSet* rs = [db executeQuery: @"SELECT routes.rt, route_colors.color, pretty_names.pretty FROM routes, route_colors, pretty_names WHERE routes.rt == route_colors.rt AND routes.rtnm == pretty_names.rowid ORDER BY routes.rt ASC"];
+	
+	while ([rs next])
+	{
+		NSDictionary* add = [[NSDictionary alloc] initWithObjectsAndKeys: [rs stringForColumn: @"rt"], @"short", [rs stringForColumn: @"pretty"], @"long", [rs stringForColumn: @"color"], @"color", nil]; 
+		[ret addObject: add];
+		[add release];
+	}
+	[rs close];
+	
+	return ret;
+}
+
 // haha! this is to update the local cache of route data!
 
 - (void) updateDatabase;
