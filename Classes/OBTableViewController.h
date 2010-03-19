@@ -13,4 +13,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableViewCell* newCell;
 
+- (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier;
+- (UITableViewCell*) routesCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
+
 @end

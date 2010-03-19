@@ -6,7 +6,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBRoutesViewController : UITableViewController
+#import "OBTableViewController.h"
+
+@interface OBRoutesViewController : OBTableViewController
 {
 	NSArray* routes;
 }

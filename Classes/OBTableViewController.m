@@ -10,4 +10,34 @@
 
 @synthesize newCell;
 
+- (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier
+{
+	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+	if (cell)
+	{
+		return cell;
+	}
+	
+	[[NSBundle mainBundle] loadNibNamed: cellIdentifier owner: self options: nil];
+	cell = newCell;
+	[self setNewCell: nil];
+	
+	return cell;
+}
+
+- (UITableViewCell*) routesCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+{
+	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBRoutesCell"];
+	
+	UILabel* label;
+	
+	label = (UILabel*)[cell viewWithTag: 1];
+	[label setText: [data objectForKey: @"long"]];
+	
+	label = (UILabel*)[cell viewWithTag: 2];
+	[label setText: [data objectForKey: @"short"]];
+	
+	return cell;
+}
+
 @end

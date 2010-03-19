@@ -45,17 +45,7 @@
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {	
-	NSString* cellIdentifier = @"UITableViewCell";
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
-	if (cell == nil)
-	{
-		cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: cellIdentifier] autorelease];
-	}
-	
-	[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
-	[[cell textLabel] setText: [[routes objectAtIndex: [indexPath row]] objectForKey: @"long"]];
-	
-	return cell;
+	return [self routesCellForTable: tableView withData: [routes objectAtIndex: [indexPath row]]];
 }
 
 #pragma mark Table View Delegate

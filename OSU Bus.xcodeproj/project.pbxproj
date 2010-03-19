@@ -61,6 +61,7 @@
 		D08FB32E11530BEB00CC73CF /* OBRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB32D11530BEB00CC73CF /* OBRoutesViewController.m */; };
 		D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */; };
 		D08FB3BD115317DD00CC73CF /* OBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB3BC115317DD00CC73CF /* OBTableViewController.m */; };
+		D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */; };
 		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
 		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
 		D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */; };
@@ -130,6 +131,7 @@
 		D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBRoutesViewController.xib; path = Resources/OBRoutesViewController.xib; sourceTree = "<group>"; };
 		D08FB3BB115317DD00CC73CF /* OBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableViewController.h; sourceTree = "<group>"; };
 		D08FB3BC115317DD00CC73CF /* OBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableViewController.m; sourceTree = "<group>"; };
+		D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBRoutesCell.xib; path = Resources/OBRoutesCell.xib; sourceTree = "<group>"; };
 		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
 		D0B0319E113A060A00678161 /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
 		D0B031A2113A069E00678161 /* OBTopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBTopViewController.xib; path = Resources/OBTopViewController.xib; sourceTree = "<group>"; };
@@ -217,11 +219,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D00374651139EDC100053FCB /* cabs.db */,
 				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
 				D0DC57261152C7D700D67308 /* Default.png */,
-				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
-				D00374651139EDC100053FCB /* cabs.db */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
+				D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */,
+				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
 				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
 				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
 				D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */,
@@ -380,6 +383,7 @@
 				D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */,
 				D0DC57271152C7D700D67308 /* Default.png in Resources */,
 				D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */,
+				D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
