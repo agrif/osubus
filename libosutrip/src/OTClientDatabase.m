@@ -42,13 +42,15 @@
 - (NSArray*) routes
 {
 	NSMutableArray* ret = [[NSMutableArray alloc] init];
-	FMResultSet* rs = [db executeQuery: @"SELECT routes.rt, route_colors.color, pretty_names.pretty FROM routes, route_colors, pretty_names WHERE routes.rt == route_colors.rt AND routes.rtnm == pretty_names.rowid ORDER BY routes.rt ASC"];
+	FMResultSet* rs = [db executeQuery: @"SELECT routes.rowid, routes.rt, route_colors.color, pretty_names.pretty FROM routes, route_colors, pretty_names WHERE routes.rt == route_colors.rt AND routes.rtnm == pretty_names.rowid ORDER BY routes.rt ASC"];
 	
 	while ([rs next])
 	{
-		NSDictionary* add = [[NSDictionary alloc] initWithObjectsAndKeys: [rs stringForColumn: @"rt"], @"short", [rs stringForColumn: @"pretty"], @"long", [rs stringForColumn: @"color"], @"color", nil]; 
+		NSNumber* rid = [[NSNumber alloc] initWithInt: [rs intForColumn: @"rowid"]];
+		NSDictionary* add = [[NSDictionary alloc] initWithObjectsAndKeys: [rs stringForColumn: @"rt"], @"short", [rs stringForColumn: @"pretty"], @"long", [rs stringForColumn: @"color"], @"color", rid, @"id", nil]; 
 		[ret addObject: add];
 		[add release];
+		[rid release];
 	}
 	[rs close];
 	
