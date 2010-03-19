@@ -6,6 +6,8 @@
 
 #import "OBTableViewController.h"
 
+#import "NSString+HexColor.h"
+
 @implementation OBTableViewController
 
 @synthesize newCell;
@@ -36,6 +38,7 @@
 	
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: [data objectForKey: @"short"]];
+	[label setTextColor: [[data objectForKey: @"color"] colorFromHex]];
 	
 	return cell;
 }

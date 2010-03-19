@@ -62,6 +62,7 @@
 		D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */; };
 		D08FB3BD115317DD00CC73CF /* OBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB3BC115317DD00CC73CF /* OBTableViewController.m */; };
 		D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */; };
+		D08FB3F811531CE800CC73CF /* NSString+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB3F711531CE800CC73CF /* NSString+HexColor.m */; };
 		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
 		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
 		D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */; };
@@ -132,6 +133,8 @@
 		D08FB3BB115317DD00CC73CF /* OBTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTableViewController.h; sourceTree = "<group>"; };
 		D08FB3BC115317DD00CC73CF /* OBTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTableViewController.m; sourceTree = "<group>"; };
 		D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBRoutesCell.xib; path = Resources/OBRoutesCell.xib; sourceTree = "<group>"; };
+		D08FB3F611531CE800CC73CF /* NSString+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+HexColor.h"; path = "Categories/NSString+HexColor.h"; sourceTree = "<group>"; };
+		D08FB3F711531CE800CC73CF /* NSString+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+HexColor.m"; path = "Categories/NSString+HexColor.m"; sourceTree = "<group>"; };
 		D0B03199113A052400678161 /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
 		D0B0319E113A060A00678161 /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
 		D0B031A2113A069E00678161 /* OBTopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBTopViewController.xib; path = Resources/OBTopViewController.xib; sourceTree = "<group>"; };
@@ -312,6 +315,8 @@
 		D07D27AE113DB3D000E6BDE0 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D08FB3F611531CE800CC73CF /* NSString+HexColor.h */,
+				D08FB3F711531CE800CC73CF /* NSString+HexColor.m */,
 				D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */,
 				D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */,
 			);
@@ -420,6 +425,7 @@
 				D0143DAE1152E5D200C376CC /* OTClient.m in Sources */,
 				D08FB32E11530BEB00CC73CF /* OBRoutesViewController.m in Sources */,
 				D08FB3BD115317DD00CC73CF /* OBTableViewController.m in Sources */,
+				D08FB3F811531CE800CC73CF /* NSString+HexColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
