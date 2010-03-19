@@ -6,13 +6,24 @@
 
 #import "OBRoutesViewController.h"
 
+#import "OTClient.h"
+
 @implementation OBRoutesViewController
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	
+	routes = [[OTClient sharedClient] routes];
+	NSLog(@"Loaded OBRoutesViewController");
+	
 	[self.navigationItem setTitle: @"Routes"];
+}
+
+- (void) viewDidUnload
+{
+	[super viewDidUnload];
+	[routes release];
 }
 
 #pragma mark Table View Data Source
@@ -24,7 +35,7 @@
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	return 0;
+	return [routes count];
 }
 
 - (NSString*) tableView: (UITableView*) tableView titleForHeaderInSection: (NSInteger) section
@@ -33,10 +44,7 @@
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
-{
-	return nil;
-	
-	
+{	
 	NSString* cellIdentifier = @"UITableViewCell";
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];
 	if (cell == nil)
@@ -45,7 +53,7 @@
 	}
 	
 	[cell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
-	[[cell textLabel] setText: @"Test"];
+	[[cell textLabel] setText: [[routes objectAtIndex: [indexPath row]] objectForKey: @"long"]];
 	
 	return cell;
 }

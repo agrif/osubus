@@ -8,9 +8,7 @@
 
 @interface OBRoutesViewController : UITableViewController
 {
-	//
+	NSArray* routes;
 }
-
-//
 
 @end
