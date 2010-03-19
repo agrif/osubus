@@ -56,7 +56,7 @@
 {
 	bulletinsLoaded = YES;
 	[bulletinCell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
-	[NSTimer scheduledTimerWithTimeInterval: 5.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
+	[NSTimer scheduledTimerWithTimeInterval: 3.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
 	[self updateBulletinCell: nil];
 }
 
