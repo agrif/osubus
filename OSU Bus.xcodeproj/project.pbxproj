@@ -37,6 +37,26 @@
 		D0143D9A1152E4CE00C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
 		D0143DAE1152E5D200C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
 		D0143ECE1152F26000C376CC /* tripdb.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143ECC1152F24E00C376CC /* tripdb.m */; };
+		D0143F0A1152F67800C376CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		D0143F581152F67B00C376CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
+		D0143F591152F6A800C376CC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003746F1139EE7300053FCB /* FMDatabase.m */; };
+		D0143F5A1152F6A800C376CC /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374711139EE7300053FCB /* FMDatabaseAdditions.m */; };
+		D0143F5B1152F6A800C376CC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374741139EE7300053FCB /* FMResultSet.m */; };
+		D0143F611152F6C300C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
+		D0143F621152F6C300C376CC /* OTClientRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D951152E44500C376CC /* OTClientRequests.m */; };
+		D0143F631152F6C300C376CC /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D961152E44500C376CC /* OTClientSingleton.m */; };
+		D0143F641152F6C300C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
+		D0143F651152F6C300C376CC /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */; };
+		D0143F661152F6C300C376CC /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748C1139EE7C00053FCB /* NSDateAdditions.m */; };
+		D0143F671152F6C300C376CC /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748F1139EE7C00053FCB /* OTRDirections.m */; };
+		D0143F681152F6C300C376CC /* OTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374901139EE7C00053FCB /* OTRequest.m */; };
+		D0143F691152F6C300C376CC /* OTRPatterns.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374911139EE7C00053FCB /* OTRPatterns.m */; };
+		D0143F6A1152F6C300C376CC /* OTRPredictions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374921139EE7C00053FCB /* OTRPredictions.m */; };
+		D0143F6B1152F6C300C376CC /* OTRRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374931139EE7C00053FCB /* OTRRoutes.m */; };
+		D0143F6C1152F6C300C376CC /* OTRServiceBulletins.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374941139EE7C00053FCB /* OTRServiceBulletins.m */; };
+		D0143F6D1152F6C300C376CC /* OTRStops.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374951139EE7C00053FCB /* OTRStops.m */; };
+		D0143F6E1152F6C300C376CC /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374961139EE7C00053FCB /* OTRTime.m */; };
+		D0143F6F1152F6C300C376CC /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374971139EE7C00053FCB /* OTRVehicles.m */; };
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D0B0319F113A060A00678161 /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B0319E113A060A00678161 /* OBTopViewController.m */; };
 		D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0B031A2113A069E00678161 /* OBTopViewController.xib */; };
@@ -125,6 +145,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0143F581152F67B00C376CC /* libsqlite3.dylib in Frameworks */,
+				D0143F0A1152F67800C376CC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +407,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0143F611152F6C300C376CC /* OTClient.m in Sources */,
+				D0143F621152F6C300C376CC /* OTClientRequests.m in Sources */,
+				D0143F631152F6C300C376CC /* OTClientSingleton.m in Sources */,
+				D0143F641152F6C300C376CC /* OTClientDatabase.m in Sources */,
+				D0143F651152F6C300C376CC /* OTClientUpdateDatabase.m in Sources */,
+				D0143F661152F6C300C376CC /* NSDateAdditions.m in Sources */,
+				D0143F671152F6C300C376CC /* OTRDirections.m in Sources */,
+				D0143F681152F6C300C376CC /* OTRequest.m in Sources */,
+				D0143F691152F6C300C376CC /* OTRPatterns.m in Sources */,
+				D0143F6A1152F6C300C376CC /* OTRPredictions.m in Sources */,
+				D0143F6B1152F6C300C376CC /* OTRRoutes.m in Sources */,
+				D0143F6C1152F6C300C376CC /* OTRServiceBulletins.m in Sources */,
+				D0143F6D1152F6C300C376CC /* OTRStops.m in Sources */,
+				D0143F6E1152F6C300C376CC /* OTRTime.m in Sources */,
+				D0143F6F1152F6C300C376CC /* OTRVehicles.m in Sources */,
+				D0143F591152F6A800C376CC /* FMDatabase.m in Sources */,
+				D0143F5A1152F6A800C376CC /* FMDatabaseAdditions.m in Sources */,
+				D0143F5B1152F6A800C376CC /* FMResultSet.m in Sources */,
 				D0143ECE1152F26000C376CC /* tripdb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
