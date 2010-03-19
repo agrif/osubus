@@ -13,7 +13,7 @@
 #include <time.h>
 
 // called after each request to the server
-#define REQ_DELAY sleep(1.0)
+#define REQ_DELAY //sleep(1.0)
 // called after every item processed
 #define REQ_BREAK 
 
@@ -32,9 +32,10 @@ void initializeDB(FMDatabase* db)
 	}
 	
 	// hack for now, remove later
-	[db executeUpdate: @"DROP TABLE IF EXISTS pretty_names"];
+	//[db executeUpdate: @"DROP TABLE IF EXISTS pretty_names"];
 
 	[db executeUpdate: @"CREATE TABLE IF NOT EXISTS pretty_names (original text, pretty text)"];
+	[db executeUpdate: @"CREATE TABLE IF NOT EXISTS route_colors (rt text, color text)"];
 
 	for (NSString* name in tables)
 	{
@@ -42,6 +43,26 @@ void initializeDB(FMDatabase* db)
 	}
 
 	[db commit];
+}
+
+
+NSNumber* addRouteColor(FMDatabase* db, NSString* rt)
+{
+	FMResultSet* rs = [db executeQuery: @"SELECT rowid FROM route_colors WHERE rt == ?", rt];
+	if ([rs next])
+	{
+		int ret = [rs intForColumn: @"rowid"];
+		[rs close];
+		return [NSNumber numberWithInt: ret];
+	}
+	[rs close];
+	
+	if ([db executeUpdate: @"INSERT INTO route_colors (rt, color) VALUES (?, ?)", rt, @"#000000"])
+	{
+		return [NSNumber numberWithInt: [db lastInsertRowId]];
+	}
+	
+	return nil;
 }
 
 NSNumber* addPrettyName(FMDatabase* db, NSString* original)
@@ -152,6 +173,7 @@ void addRoutes(FMDatabase* db)
 		NSLog(@"Adding route: %@", [route objectForKey: @"rtnm"]);
 		if ([db executeUpdate: @"INSERT INTO routes (rt, rtnm) VALUES (?, ?)", [route objectForKey: @"rt"], addPrettyName(db, [route objectForKey: @"rtnm"])])
 		{
+			addRouteColor(db, [route objectForKey: @"rt"]);
 			addDirections(db, [db lastInsertRowId], [route objectForKey: @"rt"]);
 		} else {
 			NSLog(@"Error adding route...");
