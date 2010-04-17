@@ -45,7 +45,7 @@
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {	
-	return [self routesCellForTable: tableView withData: [stops objectAtIndex: [indexPath row]]];
+	return [self stopsCellForTable: tableView withData: [stops objectAtIndex: [indexPath row]]];
 }
 
 #pragma mark Table View Delegate

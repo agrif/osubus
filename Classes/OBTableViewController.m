@@ -29,6 +29,8 @@
 
 - (UITableViewCell*) routesCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
 {
+	// tag 1 - name label
+	// tag 2 - short name label, with route color
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBRoutesCell"];
 	
 	UILabel* label;
@@ -39,6 +41,18 @@
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: [data objectForKey: @"short"]];
 	[label setTextColor: [[data objectForKey: @"color"] colorFromHex]];
+	
+	return cell;
+}
+
+- (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+{
+	// tag 1 - name label
+	// tag 2 - subtitle label (for route names)
+	// tag 3 - first color bar
+	// tag 4 - second color bar
+	// tag 5 - third color bar
+	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
 	return cell;
 }

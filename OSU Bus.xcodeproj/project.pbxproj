@@ -69,6 +69,7 @@
 		D0DC57271152C7D700D67308 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DC57261152C7D700D67308 /* Default.png */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
+		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +146,7 @@
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
+		D0F84019117A71E700C58427 /* OBStopsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsCell.xib; path = Resources/OBStopsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 				D0DC57261152C7D700D67308 /* Default.png */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
 				D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */,
+				D0F84019117A71E700C58427 /* OBStopsCell.xib */,
 				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
 				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
 				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
@@ -398,6 +401,7 @@
 				D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */,
 				D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */,
 				D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */,
+				D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
