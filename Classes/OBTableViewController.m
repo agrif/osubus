@@ -52,6 +52,7 @@
 	// tag 3 - first color bar
 	// tag 4 - second color bar
 	// tag 5 - third color bar
+	NSLog(@"cell %@", data);
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
 	UILabel* label;

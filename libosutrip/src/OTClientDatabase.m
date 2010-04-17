@@ -62,6 +62,8 @@
 	NSMutableArray* ret = [[NSMutableArray alloc] init];
 	FMResultSet* rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
 	
+	NSArray* routedata = [self routes];
+	
 	while ([rs next])
 	{
 		NSDictionary* add = [[NSMutableDictionary alloc] init];
@@ -72,13 +74,25 @@
 		
 		[add setValue: [rs stringForColumn: @"pretty"] forKey: @"name"];
 		
-		unsigned int routes = [rs intForColumn: @"rowid"];
-		// do routes stuff
+		NSMutableArray* routeadd = [[NSMutableArray alloc] init];
+		unsigned int routes = [rs intForColumn: @"routes"];
+		for (unsigned i = 0; i < [routedata count]; i++)
+		{
+			if ((1 << [[[routedata objectAtIndex: i] objectForKey: @"id"] integerValue]) & routes)
+			{
+				[routeadd addObject: [routedata objectAtIndex: i]];
+			}
+		}
+		
+		[add setValue: routeadd forKey: @"routes"];
+		[routeadd release];
 		
 		[ret addObject: add];
 		[add release];
 	}
 	[rs close];
+	
+	[routedata release];
 	
 	return ret;
 }
