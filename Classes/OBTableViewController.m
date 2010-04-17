@@ -54,6 +54,11 @@
 	// tag 5 - third color bar
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
+	UILabel* label;
+	
+	label = (UILabel*)[cell viewWithTag: 1];
+	[label setText: [data objectForKey: @"name"]];
+	
 	return cell;
 }
 
