@@ -14,7 +14,7 @@
 {
 	[super viewDidLoad];
 	
-	stops = [[OTClient sharedClient] routes];
+	stops = [[OTClient sharedClient] stops];
 	NSLog(@"Loaded OBStopsViewController");
 	
 	[self.navigationItem setTitle: @"Stops"];
