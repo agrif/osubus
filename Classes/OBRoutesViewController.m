@@ -8,6 +8,8 @@
 
 #import "OTClient.h"
 
+#import "OBStopsViewController.h"
+
 @implementation OBRoutesViewController
 
 - (void) viewDidLoad
@@ -58,6 +60,10 @@
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
 	// navigation logic
+	
+	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
+	[self.navigationController pushViewController: stops animated: YES];
+	[stops release];
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }

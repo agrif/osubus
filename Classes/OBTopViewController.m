@@ -11,6 +11,7 @@
 
 #import "OBBulletinsViewController.h"
 #import "OBRoutesViewController.h"
+#import "OBStopsViewController.h"
 
 @implementation OBTopViewController
 
@@ -205,6 +206,10 @@
 		OBRoutesViewController* routes = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewController" bundle: nil];
 		[self.navigationController pushViewController: routes animated: YES];
 		[routes release];
+	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_STOPS) {
+		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
+		[self.navigationController pushViewController: stops animated: YES];
+		[stops release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];

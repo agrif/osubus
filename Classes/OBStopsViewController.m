@@ -17,7 +17,7 @@
 	stops = [[OTClient sharedClient] routes];
 	NSLog(@"Loaded OBStopsViewController");
 	
-	[self.navigationItem setTitle: @"Routes"];
+	[self.navigationItem setTitle: @"Stops"];
 }
 
 - (void) viewDidUnload
