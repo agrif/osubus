@@ -47,6 +47,7 @@
 - (void) setDatabasePath: (NSString*) newDatabasePath;
 - (NSString*) databasePath;
 - (NSArray*) routes;
+- (NSArray*) stops;
 - (void) updateDatabase;
 
 @end
