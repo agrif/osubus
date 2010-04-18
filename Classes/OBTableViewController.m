@@ -60,6 +60,33 @@
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"name"]];
 	
+	NSMutableString* subtitle = [[NSMutableString alloc] init];
+	unsigned int tag = 3;
+	for (NSDictionary* route in [data objectForKey: @"routes"])
+	{
+		if (tag <= 5)
+		{
+			[[cell viewWithTag: tag] setHidden: NO];
+			[[cell viewWithTag: tag] setBackgroundColor: [[route objectForKey: @"color"] colorFromHex]];
+		}
+		
+		if (tag != 3)
+		{
+			[subtitle appendString: @"  "];
+		}
+		[subtitle appendString: [route objectForKey: @"short"]];
+		
+		tag++;
+	}
+	for (; tag <= 5; tag++)
+	{
+		[[cell viewWithTag: tag] setHidden: YES];
+	}
+	
+	label = (UILabel*)[cell viewWithTag: 2];
+	[label setText: subtitle];
+	[subtitle release];
+	
 	return cell;
 }
 
