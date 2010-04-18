@@ -62,7 +62,7 @@
 	// navigation logic
 	
 	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
-	[stops setRoute: [[routes objectAtIndex: [indexPath row]] objectForKey: @"id"]];
+	[stops setRoute: [routes objectAtIndex: [indexPath row]]];
 	[self.navigationController pushViewController: stops animated: YES];
 	[stops release];
 	

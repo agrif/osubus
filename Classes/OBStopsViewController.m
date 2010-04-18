@@ -20,20 +20,32 @@
 		stops = [[OTClient sharedClient] stops];
 	NSLog(@"Loaded OBStopsViewController");
 	
-	[self.navigationItem setTitle: @"Stops"];
+	if (route)
+	{
+		[self.navigationItem setTitle: [route objectForKey: @"long"]];
+		UIBarButtonItem* back = [[UIBarButtonItem alloc] initWithTitle: [route objectForKey: @"short"] style: UIBarButtonItemStylePlain target: nil action: nil];
+		[self.navigationItem setBackBarButtonItem: back];
+		[back release];
+	} else {
+		[self.navigationItem setTitle: @"Stops"];
+	}
 }
 
 - (void) viewDidUnload
 {
 	[super viewDidUnload];
+	if (route != nil)
+		[route release];
 	[stops release];
 }
 
-- (void) setRoute: (NSNumber*) routeid
+- (void) setRoute: (NSDictionary*) routein
 {
-	if (stops != nil)
-		[stops release];
-	stops = [[OTClient sharedClient] stopsWithRoute: routeid];
+	if (stops == nil)
+	{
+		stops = [[OTClient sharedClient] stopsWithRoute: [routein objectForKey: @"id"]];
+		route = [routein retain];
+	}
 }
 
 #pragma mark Table View Data Source

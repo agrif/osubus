@@ -11,8 +11,9 @@
 @interface OBStopsViewController : OBTableViewController
 {
 	NSArray* stops;
+	NSDictionary* route;
 }
 
-- (void) setRoute: (NSNumber*) routeid;
+- (void) setRoute: (NSDictionary*) routein;
 
 @end
