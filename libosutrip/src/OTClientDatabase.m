@@ -72,7 +72,7 @@
 	{
 		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
 	} else {
-		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.routes & (1 >> ?) ORDER BY pretty_names.pretty ASC", routeid];
+		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.routes & (1 << ?) ORDER BY pretty_names.pretty ASC", routeid];
 	}
 	
 	NSArray* routedata = [self routes];
