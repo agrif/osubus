@@ -27,7 +27,7 @@ enum OBTopSections
 
 @interface OBTopViewController : UITableViewController
 {
-	UIViewController* aboutViewController;
+	UITabBarController* aboutViewController;
 	UITableViewCell* bulletinCell;
 	UITableViewCell* emptyFavoritesCell;
 	
