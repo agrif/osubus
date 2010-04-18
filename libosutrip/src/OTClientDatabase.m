@@ -57,10 +57,23 @@
 	return ret;
 }
 
+
 - (NSArray*) stops
 {
+	return [self stopsWithRoute: nil];
+}
+
+- (NSArray*) stopsWithRoute: (NSNumber*) routeid
+{
 	NSMutableArray* ret = [[NSMutableArray alloc] init];
-	FMResultSet* rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
+	FMResultSet* rs;
+	
+	if (routeid == nil)
+	{
+		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
+	} else {
+		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.routes & (1 >> ?) ORDER BY pretty_names.pretty ASC", routeid];
+	}
 	
 	NSArray* routedata = [self routes];
 	
@@ -76,11 +89,16 @@
 		
 		NSMutableArray* routeadd = [[NSMutableArray alloc] init];
 		unsigned int routes = [rs intForColumn: @"routes"];
-		for (unsigned i = 0; i < [routedata count]; i++)
+		for (NSDictionary* routeobj in routedata)
 		{
-			if ((1 << [[[routedata objectAtIndex: i] objectForKey: @"id"] integerValue]) & routes)
+			if ((1 << [[routeobj objectForKey: @"id"] integerValue]) & routes)
 			{
-				[routeadd addObject: [routedata objectAtIndex: i]];
+				if ([routeobj objectForKey: @"id"] == routeid)
+				{
+					[routeadd insertObject: routeobj atIndex: 0];
+				} else {
+					[routeadd addObject: routeobj];
+				}
 			}
 		}
 		

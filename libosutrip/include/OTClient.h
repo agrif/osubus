@@ -48,6 +48,7 @@
 - (NSString*) databasePath;
 - (NSArray*) routes;
 - (NSArray*) stops;
+- (NSArray*) stopsWithRoute: (NSNumber*) routeid;
 - (void) updateDatabase;
 
 @end
