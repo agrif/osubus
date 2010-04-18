@@ -47,7 +47,11 @@
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
 	NSLog(@"success: %@", result);
-	predictions = [result retain];
+	predictions = [[result objectForKey: @"prd"] retain];
+	NSRange range;
+	range.location = 0;
+	range.length = [predictions count];
+	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationBottom];
 }
 
 - (void) request: (OTRequest*) request hasError: (NSError*) error

@@ -96,10 +96,19 @@
 
 - (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
 {
+	// data comes directly as an element from requestPredictions...
 	// tag 1 - route name label
 	// tag 2 - prediction time label
 	// tag 3 - destination label
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBPredictionsCell"];
+	
+	UILabel* label;
+	
+	label = (UILabel*)[cell viewWithTag: 1];
+	[label setText: [data objectForKey: @"rt"]];
+	
+	label = (UILabel*)[cell viewWithTag: 3];
+	[label setText: [data objectForKey: @"des"]];
 	
 	return cell;
 }
