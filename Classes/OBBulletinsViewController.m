@@ -23,7 +23,8 @@
 	topViewController = caller;
 	requestedCustom = NO;
 	self.bulletins = [NSMutableArray array];
-	[[OTClient sharedClient] requestServiceBulletinsWithDelegate: self forRoutes: @"NE"];
+	// FIXME : hardcoded routes, ugh
+	[[OTClient sharedClient] requestServiceBulletinsWithDelegate: self forRoutes: @"BV,CLN,CLS,ER,MC,NE"];
 }
 
 - (void) dealloc
@@ -35,12 +36,14 @@
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
+	//NSLog(@"bulletins: %@", result);
 	for (NSInteger i = 0; i < [[result objectForKey: @"sb"] count]; ++i)
 	{
 		if ([[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"srvc"] != nil)
 		{
-			// not a global bulletin, ignore
-			continue;
+			// we used to ignore... in the future, look for a better way to include all
+			// bulletins, even non-globals like these
+			//continue;
 		}
 		NSString* title = [[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"sbj"];
 		NSString* body = [[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"dtl"];
