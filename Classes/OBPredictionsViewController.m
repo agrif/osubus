@@ -46,11 +46,10 @@
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	//NSLog(@"success: %@", result);
 	predictions = [[result objectForKey: @"prd"] retain];
 	NSRange range;
 	range.location = 0;
-	range.length = [predictions count];
+	range.length = 1;
 	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationBottom];
 	[request release];
 }
@@ -90,7 +89,7 @@
 
 - (NSIndexPath*) tableView: (UITableView*) tableView willSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	return indexPath;
+	return nil;
 }
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
