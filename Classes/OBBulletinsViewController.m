@@ -15,6 +15,7 @@
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
+	[self.navigationItem setTitle: @"News"];
 	NSLog(@"OBBulletinsViewController loaded");
 }
 
