@@ -112,7 +112,7 @@
 	[label setText: [NSString stringWithFormat: @"%i minutes", (int)time]];
 	
 	label = (UILabel*)[cell viewWithTag: 3];
-	[label setText: [data objectForKey: @"des"]];
+	[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
 	
 	return cell;
 }

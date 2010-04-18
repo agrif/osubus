@@ -14,6 +14,8 @@
 {
 	[super viewDidLoad];
 	
+	routes = [[OTClient sharedClient] routes];
+	
 	if (stop != nil)
 	{
 		NSLog(@"Loaded OBPredictionsViewController");
@@ -34,6 +36,8 @@
 		[predictions release];
 	if (stop != nil)
 		[stop release];
+	if (routes != nil)
+		[routes release];
 }
 
 - (void) setStop: (NSDictionary*) stopin
@@ -47,6 +51,19 @@
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
 	predictions = [[result objectForKey: @"prd"] retain];
+	
+	for (NSMutableDictionary* prediction in predictions)
+	{
+		for (NSDictionary* route in routes)
+		{
+			if ([[route objectForKey: @"short"] isEqual: [prediction objectForKey: @"rt"]])
+			{
+				[prediction setObject: [route objectForKey: @"long"] forKey: @"rt"];
+				break;
+			}
+		}
+	}
+	
 	NSRange range;
 	range.location = 0;
 	range.length = 1;

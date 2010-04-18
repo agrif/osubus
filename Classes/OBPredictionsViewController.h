@@ -14,6 +14,7 @@
 {
 	NSDictionary* stop;
 	NSArray* predictions;
+	NSArray* routes;
 }
 
 - (void) setStop: (NSDictionary*) stopin;
