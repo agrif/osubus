@@ -13,4 +13,6 @@
 	NSArray* stops;
 }
 
+- (void) setRoute: (NSNumber*) routeid;
+
 @end

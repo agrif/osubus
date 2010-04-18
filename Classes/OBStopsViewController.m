@@ -14,7 +14,8 @@
 {
 	[super viewDidLoad];
 	
-	stops = [[OTClient sharedClient] stops];
+	if (stops == nil)
+		stops = [[OTClient sharedClient] stops];
 	NSLog(@"Loaded OBStopsViewController");
 	
 	[self.navigationItem setTitle: @"Stops"];
@@ -24,6 +25,12 @@
 {
 	[super viewDidUnload];
 	[stops release];
+}
+
+- (void) setRoute: (NSNumber*) routeid
+{
+	if (stops == nil)
+		stops = [[OTClient sharedClient] stopsWithRoute: routeid];
 }
 
 #pragma mark Table View Data Source
