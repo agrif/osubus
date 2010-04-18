@@ -4,36 +4,26 @@
 // This file is licensed under the GNU GPL v2. See
 // the file "main.m" for details.
 
-#import "OBStopsViewController.h"
+#import "OBPredictionsViewController.h"
 
 #import "OTClient.h"
 
-#import "OBPredictionsViewController.h"
-
-@implementation OBStopsViewController
+@implementation OBPredictionsViewController
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	
-	if (stops == nil)
-		stops = [[OTClient sharedClient] stops];
-	NSLog(@"Loaded OBStopsViewController");
+	routes = [[OTClient sharedClient] routes];
+	NSLog(@"Loaded OBPredictionsViewController");
 	
-	[self.navigationItem setTitle: @"Stops"];
+	[self.navigationItem setTitle: @"Routes"];
 }
 
 - (void) viewDidUnload
 {
 	[super viewDidUnload];
-	[stops release];
-}
-
-- (void) setRoute: (NSNumber*) routeid
-{
-	if (stops != nil)
-		[stops release];
-	stops = [[OTClient sharedClient] stopsWithRoute: routeid];
+	[routes release];
 }
 
 #pragma mark Table View Data Source
@@ -45,7 +35,7 @@
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	return [stops count];
+	return [routes count];
 }
 
 - (NSString*) tableView: (UITableView*) tableView titleForHeaderInSection: (NSInteger) section
@@ -55,7 +45,7 @@
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {	
-	return [self stopsCellForTable: tableView withData: [stops objectAtIndex: [indexPath row]]];
+	return [self routesCellForTable: tableView withData: [routes objectAtIndex: [indexPath row]]];
 }
 
 #pragma mark Table View Delegate
@@ -68,10 +58,6 @@
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
 	// navigation logic
-	
-	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
-	[self.navigationController pushViewController: predictions animated: YES];
-	[predictions release];
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }

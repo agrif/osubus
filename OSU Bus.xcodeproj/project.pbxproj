@@ -70,6 +70,8 @@
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
+		D0F84116117AC10F00C58427 /* OBPredictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */; };
+		D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,6 +149,9 @@
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
 		D0F84019117A71E700C58427 /* OBStopsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsCell.xib; path = Resources/OBStopsCell.xib; sourceTree = "<group>"; };
+		D0F84114117AC10F00C58427 /* OBPredictionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPredictionsViewController.h; sourceTree = "<group>"; };
+		D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPredictionsViewController.m; sourceTree = "<group>"; };
+		D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBPredictionsViewController.xib; path = Resources/OBPredictionsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +189,8 @@
 				D08FB32D11530BEB00CC73CF /* OBRoutesViewController.m */,
 				D0F83FDC117A618300C58427 /* OBStopsViewController.h */,
 				D0F83FDD117A618300C58427 /* OBStopsViewController.m */,
+				D0F84114117AC10F00C58427 /* OBPredictionsViewController.h */,
+				D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */,
 				D003735C1139E22300053FCB /* OBGradientView.h */,
 				D003735D1139E22300053FCB /* OBGradientView.m */,
 				1D3623240D0F684500981E51 /* OBAppDelegate.h */,
@@ -242,6 +249,7 @@
 				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
 				D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */,
 				D0F83FDF117A620600C58427 /* OBStopsViewController.xib */,
+				D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -402,6 +410,7 @@
 				D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */,
 				D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */,
 				D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */,
+				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +449,7 @@
 				D08FB3BD115317DD00CC73CF /* OBTableViewController.m in Sources */,
 				D08FB3F811531CE800CC73CF /* NSString+HexColor.m in Sources */,
 				D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */,
+				D0F84116117AC10F00C58427 /* OBPredictionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
