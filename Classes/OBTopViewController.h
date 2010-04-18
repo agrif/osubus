@@ -13,8 +13,8 @@ enum OBTopOptions
 	OBTO_STOPS,
 	OBTO_ROUTES,
 	OBTO_NEARME,
-	OBTO_MAP,
-	OBTO_COUNT
+	OBTO_COUNT,
+	OBTO_MAP, // Maybe later...
 };
 
 enum OBTopSections
