@@ -20,10 +20,23 @@
 		return cell;
 	}
 	
+	if ([cellIdentifier isEqual: @"UITableViewCell"])
+	{
+		return [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: cellIdentifier] autorelease];
+	}
+	
 	[[NSBundle mainBundle] loadNibNamed: cellIdentifier owner: self options: nil];
 	cell = newCell;
 	[self setNewCell: nil];
 	
+	return cell;
+}
+
+
+- (UITableViewCell*) cellForTable: (UITableView*) tableView withText: (NSString*) text
+{
+	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"UITableViewCell"];
+	[cell.textLabel setText: text];
 	return cell;
 }
 
