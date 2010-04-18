@@ -10,11 +10,25 @@
 
 #import "OBTableViewController.h"
 
+enum OBPredictionsSections
+{
+	OBPS_PREDICTIONS,
+	OBPS_ACTIONS,
+	OBPS_COUNT
+};
+
+enum OBPredictionsActions
+{
+	OBPA_DIRECTIONS,
+	OBPA_COUNT
+};
+
 @interface OBPredictionsViewController : OBTableViewController <OTRequestDelegate>
 {
 	NSDictionary* stop;
 	NSArray* predictions;
 	NSArray* routes;
+	NSString* error_cell_text;
 }
 
 - (void) setStop: (NSDictionary*) stopin;

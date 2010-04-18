@@ -38,6 +38,8 @@
 		[stop release];
 	if (routes != nil)
 		[routes release];
+	if (error_cell_text != nil)
+		[error_cell_text release];
 }
 
 - (void) setStop: (NSDictionary*) stopin
@@ -67,39 +69,80 @@
 	NSRange range;
 	range.location = 0;
 	range.length = 1;
-	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationBottom];
+	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
 	[request release];
 }
 
 - (void) request: (OTRequest*) request hasError: (NSError*) error
 {
 	NSLog(@"error: %@", error);
+	// FIXME - a better error message system!
+	//error_cell_text = [[error localizedDescription] copy];
+	error_cell_text = [[NSString alloc] initWithString: @"no data available"];
+	NSRange range;
+	range.location = 0;
+	range.length = 1;
+	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	[request release];
 }
 
 #pragma mark Table View Data Source
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView;
 {
-	return 1;
+	return OBPS_COUNT;
 }
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	if (predictions == nil)
-		return 0;
-	return [predictions count];
+	switch (section)
+	{
+		case OBPS_PREDICTIONS:
+			if (predictions == nil)
+				return 1;
+			return [predictions count];
+		case OBPS_ACTIONS:
+			return OBPA_COUNT;
+	};
+	
+	return 0;
 }
 
 - (NSString*) tableView: (UITableView*) tableView titleForHeaderInSection: (NSInteger) section
 {
+	switch (section)
+	{
+		case OBPS_PREDICTIONS:
+			return @"Predictions";
+		case OBPS_ACTIONS:
+			return @"Actions";
+	};
+	
 	return nil;
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {
-	if (predictions == nil)
-		return nil;
-	return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
+	switch ([indexPath section])
+	{
+		case OBPS_PREDICTIONS:
+			if (predictions == nil)
+			{
+				if (error_cell_text)
+					return [self cellForTable: tableView withText: error_cell_text];
+				return [self cellForTable: tableView withText: @"Loading..."];
+			}
+			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
+		case OBPS_ACTIONS:
+			switch ([indexPath row])
+			{
+				case OBPA_DIRECTIONS:
+					return [self cellForTable: tableView withText: @"Directions"];
+			};
+			return nil;
+	};
+	
+	return nil;
 }
 
 #pragma mark Table View Delegate
