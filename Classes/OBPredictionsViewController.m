@@ -14,16 +14,27 @@
 {
 	[super viewDidLoad];
 	
-	routes = [[OTClient sharedClient] routes];
-	NSLog(@"Loaded OBPredictionsViewController");
-	
-	[self.navigationItem setTitle: @"Predictions"];
+	if (stop != nil)
+	{
+		NSLog(@"Loaded OBPredictionsViewController");
+		
+		[self.navigationItem setTitle: [stop objectForKey: @"name"]];
+	} else {
+		// do something else, mainly, fail spectacularly!
+	}
 }
 
 - (void) viewDidUnload
 {
 	[super viewDidUnload];
-	[routes release];
+	if (stop != nil)
+		[stop release];
+}
+
+- (void) setStop: (NSDictionary*) stopin
+{
+	if (stop == nil)
+		stop = [stopin retain];
 }
 
 #pragma mark Table View Data Source
@@ -35,7 +46,7 @@
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	return [routes count];
+	return [stop count];
 }
 
 - (NSString*) tableView: (UITableView*) tableView titleForHeaderInSection: (NSInteger) section
@@ -45,7 +56,7 @@
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {	
-	return [self predictionsCellForTable: tableView withData: [routes objectAtIndex: [indexPath row]]];
+	return [self predictionsCellForTable: tableView withData: nil];
 }
 
 #pragma mark Table View Delegate

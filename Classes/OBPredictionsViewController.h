@@ -10,7 +10,9 @@
 
 @interface OBPredictionsViewController : OBTableViewController
 {
-	NSArray* routes;
+	NSDictionary* stop;
 }
+
+- (void) setStop: (NSDictionary*) stopin;
 
 @end

@@ -82,6 +82,7 @@
 	// navigation logic
 	
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
+	[predictions setStop: [stops objectAtIndex: [indexPath row]]];
 	[self.navigationController pushViewController: predictions animated: YES];
 	[predictions release];
 	
