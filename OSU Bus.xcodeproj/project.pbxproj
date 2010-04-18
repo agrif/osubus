@@ -72,6 +72,7 @@
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
 		D0F84116117AC10F00C58427 /* OBPredictionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */; };
 		D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */; };
+		D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84148117AC50900C58427 /* OBPredictionsCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,7 @@
 		D0F84114117AC10F00C58427 /* OBPredictionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPredictionsViewController.h; sourceTree = "<group>"; };
 		D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPredictionsViewController.m; sourceTree = "<group>"; };
 		D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBPredictionsViewController.xib; path = Resources/OBPredictionsViewController.xib; sourceTree = "<group>"; };
+		D0F84148117AC50900C58427 /* OBPredictionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBPredictionsCell.xib; path = Resources/OBPredictionsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 				D00373711139E37100053FCB /* MainWindow.xib */,
 				D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */,
 				D0F84019117A71E700C58427 /* OBStopsCell.xib */,
+				D0F84148117AC50900C58427 /* OBPredictionsCell.xib */,
 				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
 				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
 				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
@@ -411,6 +414,7 @@
 				D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */,
 				D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */,
 				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
+				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,5 +16,6 @@
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier;
 - (UITableViewCell*) routesCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
 - (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
+- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
 
 @end

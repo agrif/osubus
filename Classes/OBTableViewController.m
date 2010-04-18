@@ -94,4 +94,14 @@
 	return cell;
 }
 
+- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+{
+	// tag 1 - route name label
+	// tag 2 - prediction time label
+	// tag 3 - destination label
+	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBPredictionsCell"];
+	
+	return cell;
+}
+
 @end
