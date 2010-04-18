@@ -22,11 +22,16 @@
 	} else {
 		// do something else, mainly, fail spectacularly!
 	}
+	
+	predictions = nil;
+	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
 }
 
 - (void) viewDidUnload
 {
 	[super viewDidUnload];
+	if (predictions != nil)
+		[predictions release];
 	if (stop != nil)
 		[stop release];
 }
@@ -35,6 +40,19 @@
 {
 	if (stop == nil)
 		stop = [stopin retain];
+}
+
+#pragma mark Request Delegates
+
+- (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
+{
+	NSLog(@"success: %@", result);
+	predictions = [result retain];
+}
+
+- (void) request: (OTRequest*) request hasError: (NSError*) error
+{
+	NSLog(@"error: %@", error);
 }
 
 #pragma mark Table View Data Source
@@ -46,7 +64,9 @@
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
-	return [stop count];
+	if (predictions == nil)
+		return 0;
+	return [predictions count];
 }
 
 - (NSString*) tableView: (UITableView*) tableView titleForHeaderInSection: (NSInteger) section
@@ -55,8 +75,10 @@
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
-{	
-	return [self predictionsCellForTable: tableView withData: nil];
+{
+	if (predictions == nil)
+		return nil;
+	return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
 }
 
 #pragma mark Table View Delegate

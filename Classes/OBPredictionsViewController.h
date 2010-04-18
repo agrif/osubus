@@ -6,11 +6,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "OTRequest.h"
+
 #import "OBTableViewController.h"
 
-@interface OBPredictionsViewController : OBTableViewController
+@interface OBPredictionsViewController : OBTableViewController <OTRequestDelegate>
 {
 	NSDictionary* stop;
+	NSArray* predictions;
 }
 
 - (void) setStop: (NSDictionary*) stopin;
