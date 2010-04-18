@@ -8,7 +8,7 @@
 // Prefix header for all source files of the 'OSU Bus' target in the 'OSU Bus' project
 //
 
-#define OSU_BUS_VERSION "1.0"
+#define OSU_BUS_VERSION "0.0dev"
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
