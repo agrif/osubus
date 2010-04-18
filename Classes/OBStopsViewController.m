@@ -29,8 +29,9 @@
 
 - (void) setRoute: (NSNumber*) routeid
 {
-	if (stops == nil)
-		stops = [[OTClient sharedClient] stopsWithRoute: routeid];
+	if (stops != nil)
+		[stops release];
+	stops = [[OTClient sharedClient] stopsWithRoute: routeid];
 }
 
 #pragma mark Table View Data Source
