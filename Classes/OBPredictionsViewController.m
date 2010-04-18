@@ -52,6 +52,7 @@
 	range.location = 0;
 	range.length = [predictions count];
 	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationBottom];
+	[request release];
 }
 
 - (void) request: (OTRequest*) request hasError: (NSError*) error
