@@ -17,7 +17,7 @@
 	routes = [[OTClient sharedClient] routes];
 	NSLog(@"Loaded OBPredictionsViewController");
 	
-	[self.navigationItem setTitle: @"Routes"];
+	[self.navigationItem setTitle: @"Predictions"];
 }
 
 - (void) viewDidUnload
