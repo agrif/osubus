@@ -46,7 +46,7 @@
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	NSLog(@"success: %@", result);
+	//NSLog(@"success: %@", result);
 	predictions = [[result objectForKey: @"prd"] retain];
 	NSRange range;
 	range.location = 0;

@@ -27,7 +27,9 @@
 	}
 
 	// hack
-	[nicedate appendString: @" -0500"];
+	// OH GOD WHAT A HACK I'M CHANGING THIS NOW UGH
+	// FIXME : I didn't actually change it... *sad face*
+	[nicedate appendString: @" -0400"];
 	
 	return [NSDate dateWithString: nicedate];
 }

@@ -107,6 +107,10 @@
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"rt"]];
 	
+	NSTimeInterval time = [(NSDate*)[data objectForKey: @"prdtm"] timeIntervalSinceNow] / 60;
+	label = (UILabel*)[cell viewWithTag: 2];
+	[label setText: [NSString stringWithFormat: @"%i minutes", (int)time]];
+	
 	label = (UILabel*)[cell viewWithTag: 3];
 	[label setText: [data objectForKey: @"des"]];
 	
