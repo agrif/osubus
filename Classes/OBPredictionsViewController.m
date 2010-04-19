@@ -27,6 +27,7 @@
 	
 	predictions = nil;
 	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
 }
 
 - (void) viewDidUnload
@@ -71,6 +72,7 @@
 	range.length = 1;
 	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
 	[request release];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 - (void) request: (OTRequest*) request hasError: (NSError*) error
@@ -78,12 +80,13 @@
 	NSLog(@"error: %@", error);
 	// FIXME - a better error message system!
 	//error_cell_text = [[error localizedDescription] copy];
-	error_cell_text = [[NSString alloc] initWithString: @"no data available"];
+	error_cell_text = [[NSString alloc] initWithString: @"No upcoming arrivals."];
 	NSRange range;
 	range.location = 0;
 	range.length = 1;
 	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
 	[request release];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 #pragma mark Table View Data Source
@@ -113,7 +116,7 @@
 	switch (section)
 	{
 		case OBPS_PREDICTIONS:
-			return @"Predictions";
+			return @"Next Arrivals";
 		case OBPS_ACTIONS:
 			return @"Actions";
 	};

@@ -40,6 +40,7 @@
 	bulletinID = -1;
 	bulletinsLoaded = NO;
 	[bulletinsViewController loadBulletins: self];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
 }
 
 - (void) didReceiveMemoryWarning
@@ -59,6 +60,7 @@
 	[bulletinCell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
 	[NSTimer scheduledTimerWithTimeInterval: 3.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
 	[self updateBulletinCell: nil];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 - (void) updateBulletinCell: (NSTimer*) timer
