@@ -26,8 +26,9 @@
 	}
 	
 	predictions = nil;
-	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+	error_cell_text = nil;
+	[self updateTimes: nil];
+	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
 
 - (void) viewDidUnload
@@ -49,11 +50,22 @@
 		stop = [stopin retain];
 }
 
+- (void) updateTimes: (NSTimer*) timer
+{
+	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+}
+
 #pragma mark Request Delegates
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
+	if (predictions)
+		[predictions release];
 	predictions = [[result objectForKey: @"prd"] retain];
+	if (error_cell_text)
+		[error_cell_text release];
+	error_cell_text = nil;
 	
 	for (NSMutableDictionary* prediction in predictions)
 	{
@@ -78,6 +90,11 @@
 - (void) request: (OTRequest*) request hasError: (NSError*) error
 {
 	NSLog(@"error: %@", error);
+	if (error_cell_text)
+		[error_cell_text release];
+	if (predictions)
+		[predictions release];
+	predictions = nil;
 	// FIXME - a better error message system!
 	//error_cell_text = [[error localizedDescription] copy];
 	error_cell_text = [[NSString alloc] initWithString: @"No upcoming arrivals."];

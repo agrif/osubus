@@ -32,5 +32,6 @@ enum OBPredictionsActions
 }
 
 - (void) setStop: (NSDictionary*) stopin;
+- (void) updateTimes: (NSTimer*) timer;
 
 @end
