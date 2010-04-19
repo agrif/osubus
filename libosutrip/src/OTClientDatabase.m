@@ -8,6 +8,37 @@
 
 #import "OTClientUpdateDatabase.h"
 
+NSDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* routeid)
+{
+	NSDictionary* add = [[NSMutableDictionary alloc] init];
+	
+	NSNumber* sid = [[NSNumber alloc] initWithInt: [rs intForColumn: @"stpid"]];
+	[add setValue: sid forKey:	@"id"];
+	[sid release];
+	
+	[add setValue: [rs stringForColumn: @"pretty"] forKey: @"name"];
+	
+	NSMutableArray* routeadd = [[NSMutableArray alloc] init];
+	unsigned int routes = [rs intForColumn: @"routes"];
+	for (NSDictionary* routeobj in routedata)
+	{
+		if ((1 << [[routeobj objectForKey: @"id"] integerValue]) & routes)
+		{
+			if ([routeobj objectForKey: @"id"] == routeid)
+			{
+				[routeadd insertObject: routeobj atIndex: 0];
+			} else {
+				[routeadd addObject: routeobj];
+			}
+		}
+	}
+	
+	[add setValue: routeadd forKey: @"routes"];
+	[routeadd release];
+	
+	return add;
+}
+
 @implementation OTClient (OTClientDatabase)
 
 - (void) setDatabasePath: (NSString*) newDatabasePath
@@ -57,6 +88,25 @@
 	return ret;
 }
 
+- (NSDictionary*) stop: (NSNumber*) stopid
+{
+	NSDictionary* ret = nil;
+	FMResultSet* rs;
+	
+	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.stpid == ? ORDER BY pretty_names.pretty ASC", stopid];
+	
+	NSArray* routedata = [self routes];
+	
+	while ([rs next] && ret == nil)
+	{
+		ret = createStopDict(rs, routedata, nil);
+	}
+	[rs close];
+	
+	[routedata release];
+	
+	return ret;
+}
 
 - (NSArray*) stops
 {
@@ -79,31 +129,7 @@
 	
 	while ([rs next])
 	{
-		NSDictionary* add = [[NSMutableDictionary alloc] init];
-		
-		NSNumber* sid = [[NSNumber alloc] initWithInt: [rs intForColumn: @"stpid"]];
-		[add setValue: sid forKey:	@"id"];
-		[sid release];
-		
-		[add setValue: [rs stringForColumn: @"pretty"] forKey: @"name"];
-		
-		NSMutableArray* routeadd = [[NSMutableArray alloc] init];
-		unsigned int routes = [rs intForColumn: @"routes"];
-		for (NSDictionary* routeobj in routedata)
-		{
-			if ((1 << [[routeobj objectForKey: @"id"] integerValue]) & routes)
-			{
-				if ([routeobj objectForKey: @"id"] == routeid)
-				{
-					[routeadd insertObject: routeobj atIndex: 0];
-				} else {
-					[routeadd addObject: routeobj];
-				}
-			}
-		}
-		
-		[add setValue: routeadd forKey: @"routes"];
-		[routeadd release];
+		NSDictionary* add = createStopDict(rs, routedata, routeid);
 		
 		[ret addObject: add];
 		[add release];

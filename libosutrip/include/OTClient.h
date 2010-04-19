@@ -49,6 +49,7 @@
 - (NSArray*) routes;
 - (NSArray*) stops;
 - (NSArray*) stopsWithRoute: (NSNumber*) routeid;
+- (NSDictionary*) stop: (NSNumber*) stopid;
 - (void) updateDatabase;
 
 @end
