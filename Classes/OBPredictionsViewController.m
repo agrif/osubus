@@ -33,11 +33,6 @@
 	} else {
 		// do something else, mainly, fail spectacularly!
 	}
-	
-	predictions = nil;
-	error_cell_text = nil;
-	[self updateTimes: nil];
-	[NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
 
 - (void) viewDidUnload
@@ -55,6 +50,19 @@
 		[addButton release];
 }
 
+- (void) viewDidAppear: (BOOL) animated
+{
+	predictions = nil;
+	error_cell_text = nil;
+	[self updateTimes: nil];
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];	
+}
+
+- (void) viewDidDisappear: (BOOL) animated
+{
+	[refreshTimer invalidate];
+}
+
 - (void) setStop: (NSDictionary*) stopin
 {
 	if (stop == nil)
@@ -63,6 +71,8 @@
 
 - (void) updateTimes: (NSTimer*) timer
 {
+	if (stop == nil)
+		return;
 	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
 }

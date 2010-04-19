@@ -30,6 +30,7 @@ enum OBPredictionsActions
 	NSArray* routes;
 	NSString* error_cell_text;
 	UIBarButtonItem* addButton;
+	NSTimer* refreshTimer;
 }
 
 - (void) setStop: (NSDictionary*) stopin;
