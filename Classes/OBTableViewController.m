@@ -122,7 +122,14 @@
 	
 	NSTimeInterval time = [(NSDate*)[data objectForKey: @"prdtm"] timeIntervalSinceNow] / 60;
 	label = (UILabel*)[cell viewWithTag: 2];
-	[label setText: [NSString stringWithFormat: @"%i minutes", (int)time]];
+	if (time < 1.0)
+	{
+		[label setText: @"now"];
+	} else if ((int)time == 1) {
+		[label setText: @"1 minute"];
+	} else {
+		[label setText: [NSString stringWithFormat: @"%i minutes", (int)time]];
+	}
 	
 	label = (UILabel*)[cell viewWithTag: 3];
 	[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
