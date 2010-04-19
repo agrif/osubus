@@ -23,15 +23,18 @@ enum OBPredictionsActions
 	OBPA_COUNT
 };
 
-@interface OBPredictionsViewController : OBTableViewController <OTRequestDelegate>
+@interface OBPredictionsViewController : OBTableViewController <OTRequestDelegate, UIActionSheetDelegate>
 {
 	NSDictionary* stop;
 	NSArray* predictions;
 	NSArray* routes;
 	NSString* error_cell_text;
+	UIBarButtonItem* addButton;
 }
 
 - (void) setStop: (NSDictionary*) stopin;
 - (void) updateTimes: (NSTimer*) timer;
+- (void) addFavorite: (id) button;
+- (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex;
 
 @end

@@ -16,9 +16,18 @@
 	
 	routes = [[OTClient sharedClient] routes];
 	
+	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(addFavorite:)];
+	
 	if (stop != nil)
 	{
 		NSLog(@"Loaded OBPredictionsViewController");
+		
+		if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
+		{
+			// already a fav, don't add button
+		} else {
+			[self.navigationItem setRightBarButtonItem: addButton];
+		}
 		
 		[self.navigationItem setTitle: [stop objectForKey: @"name"]];
 	} else {
@@ -42,6 +51,8 @@
 		[routes release];
 	if (error_cell_text != nil)
 		[error_cell_text release];
+	if (addButton != nil)
+		[addButton release];
 }
 
 - (void) setStop: (NSDictionary*) stopin
@@ -54,6 +65,26 @@
 {
 	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+}
+
+- (void) addFavorite: (id) button
+{
+	UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle: @"Add this route to favorites?" delegate: self cancelButtonTitle: nil destructiveButtonTitle: nil otherButtonTitles: @"Yes", @"No", nil];
+	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+	actionSheet.cancelButtonIndex = 1;
+	[actionSheet showInView: self.view];
+	[actionSheet release];
+}
+
+- (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex
+{
+	if (buttonIndex == 0)
+	{
+		// user clicked YES, add to favorites
+		[self.navigationItem setRightBarButtonItem: nil animated: YES];
+		[[[NSUserDefaults standardUserDefaults] objectForKey: @"favorites"] addObject: [stop objectForKey: @"id"]];
+		[[NSUserDefaults standardUserDefaults] synchronize];
+	}
 }
 
 #pragma mark Request Delegates
