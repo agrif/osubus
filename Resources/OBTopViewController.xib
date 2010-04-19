@@ -211,6 +211,14 @@ ZWFzeSBhY2Nlc3MhA</string>
 				<string key="IBUINibName">OBBulletinsViewController</string>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 			</object>
+			<object class="IBUIBarButtonItem" id="505651934">
+				<int key="IBUIStyle">1</int>
+				<int key="IBUISystemItemIdentifier">2</int>
+			</object>
+			<object class="IBUIBarButtonItem" id="251121460">
+				<int key="IBUIStyle">2</int>
+				<int key="IBUISystemItemIdentifier">0</int>
+			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
@@ -286,6 +294,38 @@ ZWFzeSBhY2Nlc3MhA</string>
 						<reference key="destination" ref="479350972"/>
 					</object>
 					<int key="connectionID">105</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">beginEdit:</string>
+						<reference key="source" ref="505651934"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">110</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">editButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="505651934"/>
+					</object>
+					<int key="connectionID">111</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">endEdit:</string>
+						<reference key="source" ref="251121460"/>
+						<reference key="destination" ref="841351856"/>
+					</object>
+					<int key="connectionID">113</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">doneButton</string>
+						<reference key="source" ref="841351856"/>
+						<reference key="destination" ref="251121460"/>
+					</object>
+					<int key="connectionID">114</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -377,6 +417,18 @@ ZWFzeSBhY2Nlc3MhA</string>
 						<reference key="parent" ref="900639675"/>
 						<string key="objectName">Back Button</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">109</int>
+						<reference key="object" ref="505651934"/>
+						<reference key="parent" ref="900639675"/>
+						<string key="objectName">Edit Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">112</int>
+						<reference key="object" ref="251121460"/>
+						<reference key="parent" ref="900639675"/>
+						<string key="objectName">Done Button</string>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -391,6 +443,8 @@ ZWFzeSBhY2Nlc3MhA</string>
 					<string>102.IBEditorWindowLastContentRect</string>
 					<string>102.IBPluginDependency</string>
 					<string>104.IBPluginDependency</string>
+					<string>109.IBPluginDependency</string>
+					<string>112.IBPluginDependency</string>
 					<string>12.IBPluginDependency</string>
 					<string>13.IBPluginDependency</string>
 					<string>14.IBPluginDependency</string>
@@ -410,6 +464,8 @@ ZWFzeSBhY2Nlc3MhA</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>OBBulletinsViewController</string>
 					<string>{{21, 492}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -444,7 +500,7 @@ ZWFzeSBhY2Nlc3MhA</string>
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">108</int>
+			<int key="maxID">114</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -466,17 +522,33 @@ ZWFzeSBhY2Nlc3MhA</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
-					<string key="className">OBTopViewController</string>
+					<string key="className">OBTableViewController</string>
 					<string key="superclassName">UITableViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">newCell</string>
+						<string key="NS.object.0">UITableViewCell</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/OBTableViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">OBTopViewController</string>
+					<string key="superclassName">OBTableViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>beginEdit:</string>
 							<string>dismissAboutView:</string>
+							<string>endEdit:</string>
 							<string>showAboutView:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -490,6 +562,8 @@ ZWFzeSBhY2Nlc3MhA</string>
 							<string>backButton</string>
 							<string>bulletinCell</string>
 							<string>bulletinsViewController</string>
+							<string>doneButton</string>
+							<string>editButton</string>
 							<string>emptyFavoritesCell</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -499,6 +573,8 @@ ZWFzeSBhY2Nlc3MhA</string>
 							<string>UIBarButtonItem</string>
 							<string>UITableViewCell</string>
 							<string>OBBulletinsViewController</string>
+							<string>UIBarButtonItem</string>
+							<string>UIBarButtonItem</string>
 							<string>UITableViewCell</string>
 						</object>
 					</object>

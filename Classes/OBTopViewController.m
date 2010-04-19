@@ -20,6 +20,8 @@
 @synthesize emptyFavoritesCell;
 
 @synthesize aboutButton;
+@synthesize editButton;
+@synthesize doneButton;
 @synthesize backButton;
 
 @synthesize bulletinsViewController;
@@ -32,7 +34,6 @@
 	
 	[self.navigationItem setTitle: @""];
 	[self.navigationItem setBackBarButtonItem: backButton];
-	[self.navigationItem setRightBarButtonItem: aboutButton];
 	
 	[(UILabel*)[bulletinCell viewWithTag: 1] setText: @""];
 	[(UILabel*)[bulletinCell viewWithTag: 2] setText: @"Loading..."];
@@ -41,6 +42,16 @@
 	bulletinsLoaded = NO;
 	[bulletinsViewController loadBulletins: self];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+	
+	editMode = NO;
+}
+
+- (void) viewDidUnload
+{
+	if (aboutViewController != nil)
+		[aboutViewController release];
+	if (favorites != nil)
+		[favorites release];
 }
 
 - (void) didReceiveMemoryWarning
@@ -61,6 +72,14 @@
 	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
 	//NSLog(@"favorites: %@", favorites);
 	[self.tableView reloadData];
+	
+	[self.navigationItem setRightBarButtonItem: aboutButton];
+	if ([favorites count] != 0)
+	{
+		[self.navigationItem setLeftBarButtonItem: editButton];
+	} else {
+		[self.navigationItem setLeftBarButtonItem: nil];
+	}
 }
 
 - (void) startBulletinDisplay
@@ -230,6 +249,68 @@
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
+# pragma mark Editing
+
+- (BOOL) tableView: (UITableView*) tableView canEditRowAtIndexPath: (NSIndexPath*) indexPath
+{
+	if ([indexPath section] != OBTS_FAVORITES)
+	{
+		return NO;
+	}
+	
+	return ([favorites count] != 0);
+}
+
+- (void) tableView: (UITableView*) tableView commitEditingStyle: (UITableViewCellEditingStyle) editingStyle forRowAtIndexPath: (NSIndexPath*) indexPath
+{
+	if ([indexPath section] != OBTS_FAVORITES || [favorites count] == 0)
+		return;
+	
+	[favorites removeObjectAtIndex: [indexPath row]];
+	if ([favorites count] == 0)
+	{
+		[tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation: UITableViewRowAnimationRight];
+	} else {
+		[tableView deleteRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation: UITableViewRowAnimationRight];
+	}
+	
+	[self saveFavorites];
+}
+
+- (BOOL) tableView: (UITableView*) tableView canMoveRowAtIndexPath: (NSIndexPath*) indexPath
+{
+	if ([indexPath section] != OBTS_FAVORITES)
+	{
+		return NO;
+	}
+	
+	return ([favorites count] != 0);
+}
+
+- (NSIndexPath*) tableView: (UITableView*) tableView targetIndexPathForMoveFromRowAtIndexPath: (NSIndexPath*) source toProposedIndexPath: (NSIndexPath*) destination
+{
+	if ([destination section] != OBTS_FAVORITES)
+	{
+		return [NSIndexPath indexPathForRow: 0 inSection: 2];
+	}
+	
+	return destination;
+}
+
+- (void) tableView: (UITableView*) tableView moveRowAtIndexPath: (NSIndexPath*) source toIndexPath: (NSIndexPath*) destination
+{
+	NSInteger stopid = [[favorites objectAtIndex: [source row]] integerValue];
+	[favorites removeObjectAtIndex: [source row]];
+	[favorites insertObject: [NSNumber numberWithInt: stopid] atIndex: [destination row]];
+	[self saveFavorites];
+}
+
+- (void) saveFavorites
+{
+	[[NSUserDefaults standardUserDefaults] setObject: favorites forKey: @"favorites"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 # pragma mark Interface Builder Actions
 
 - (IBAction) showAboutView: (id) sender
@@ -250,6 +331,37 @@
 - (IBAction) dismissAboutView: (id) sender
 {
 	[self.navigationController dismissModalViewControllerAnimated: YES];
+}
+
+- (IBAction) beginEdit: (id) sender
+{
+	if (editMode == YES)
+		return;
+	
+	[self.navigationItem setRightBarButtonItem: doneButton animated: YES];
+	[self.navigationItem setLeftBarButtonItem: nil animated: YES];
+	
+	// cancel swipe-edit, but cause whole-edit
+	[self.tableView setEditing: NO animated: NO];
+	[self.tableView setEditing: YES animated: YES];
+	
+	editMode = YES;
+}
+
+- (IBAction) endEdit: (id) sender
+{
+	if (editMode == NO)
+		return;
+	
+	[self.navigationItem setRightBarButtonItem: aboutButton animated: YES];
+	if ([favorites count] != 0)
+		[self.navigationItem setLeftBarButtonItem: editButton animated: YES];
+	
+	[self.tableView setEditing: NO animated: YES];
+	
+	[self saveFavorites];
+	
+	editMode = NO;
 }
 
 @end

@@ -34,12 +34,15 @@ enum OBTopSections
 	UITableViewCell* emptyFavoritesCell;
 	
 	UIBarButtonItem* aboutButton;
+	UIBarButtonItem* editButton;
+	UIBarButtonItem* doneButton;
 	UIBarButtonItem* backButton;
 	
 	NSInteger bulletinID;
 	BOOL bulletinsLoaded;
 	
 	NSMutableArray* favorites;
+	BOOL editMode;
 	
 	OBBulletinsViewController* bulletinsViewController;
 }
@@ -49,6 +52,8 @@ enum OBTopSections
 @property (nonatomic, retain) IBOutlet UITableViewCell* emptyFavoritesCell;
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* aboutButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* editButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* doneButton;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* backButton;
 
 @property (nonatomic, retain) IBOutlet OBBulletinsViewController* bulletinsViewController;
@@ -57,8 +62,12 @@ enum OBTopSections
 
 - (void) startBulletinDisplay;
 - (void) updateBulletinCell: (NSTimer*) timer;
+- (void) saveFavorites;
 
 - (IBAction) showAboutView: (id) sender;
 - (IBAction) dismissAboutView: (id) sender;
+
+- (IBAction) beginEdit: (id) sender;
+- (IBAction) endEdit: (id) sender;
 
 @end
