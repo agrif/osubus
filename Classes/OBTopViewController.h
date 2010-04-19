@@ -42,6 +42,7 @@ enum OBTopSections
 	BOOL bulletinsLoaded;
 	
 	NSMutableArray* favorites;
+	NSMutableArray* favoritesData;
 	BOOL editMode;
 	
 	OBBulletinsViewController* bulletinsViewController;

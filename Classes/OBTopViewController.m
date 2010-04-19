@@ -12,6 +12,7 @@
 #import "OBBulletinsViewController.h"
 #import "OBRoutesViewController.h"
 #import "OBStopsViewController.h"
+#import "OBPredictionsViewController.h"
 
 @implementation OBTopViewController
 
@@ -52,6 +53,8 @@
 		[aboutViewController release];
 	if (favorites != nil)
 		[favorites release];
+	if (favoritesData != nil)
+		[favoritesData release];
 }
 
 - (void) didReceiveMemoryWarning
@@ -69,8 +72,19 @@
 {
 	if (favorites)
 		[favorites release];
+	if (favoritesData)
+		[favoritesData release];
+	
 	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
-	//NSLog(@"favorites: %@", favorites);
+	favoritesData = [[NSMutableArray alloc] init];
+	
+	for (NSNumber* fav in favorites)
+	{
+		[favoritesData addObject: [[OTClient sharedClient] stop: fav]];
+	}
+	
+	//NSLog(@"favdata: %@", favoritesData);
+	
 	[self.tableView reloadData];
 	
 	[self.navigationItem setRightBarButtonItem: aboutButton];
@@ -173,7 +187,7 @@
 		case OBTS_FAVORITES:
 			if ([favorites count] == 0)
 				return emptyFavoritesCell;
-			return [self cellForTable: tableView withText: [NSString stringWithFormat: @"FAVORITE: %@", [favorites objectAtIndex: [indexPath row]]]];
+			return [self stopsCellForTable: tableView withData: [favoritesData objectAtIndex: [indexPath row]]];
 	};
 	
 	return nil;
@@ -244,6 +258,11 @@
 		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
+	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
+		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
+		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];
+		[self.navigationController pushViewController: predictions animated: YES];
+		[predictions release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
@@ -267,6 +286,7 @@
 		return;
 	
 	[favorites removeObjectAtIndex: [indexPath row]];
+	[favoritesData removeObjectAtIndex: [indexPath row]];
 	if ([favorites count] == 0)
 	{
 		[tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation: UITableViewRowAnimationRight];
@@ -302,6 +322,11 @@
 	NSNumber* stopid = [favorites objectAtIndex: [source row]];
 	[favorites removeObjectAtIndex: [source row]];
 	[favorites insertObject: stopid atIndex: [destination row]];
+	
+	NSDictionary* data = [favoritesData objectAtIndex: [source row]];
+	[favoritesData removeObjectAtIndex: [source row]];
+	[favoritesData insertObject: data atIndex: [destination row]];
+	
 	[self saveFavorites];
 }
 
