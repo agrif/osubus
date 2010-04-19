@@ -6,6 +6,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "OBTableViewController.h"
+
 @class OBBulletinsViewController;
 
 enum OBTopOptions
@@ -25,7 +27,7 @@ enum OBTopSections
 	OBTS_COUNT
 };
 
-@interface OBTopViewController : UITableViewController
+@interface OBTopViewController : OBTableViewController
 {
 	UITabBarController* aboutViewController;
 	UITableViewCell* bulletinCell;
@@ -36,6 +38,8 @@ enum OBTopSections
 	
 	NSInteger bulletinID;
 	BOOL bulletinsLoaded;
+	
+	NSArray* favorites;
 	
 	OBBulletinsViewController* bulletinsViewController;
 }

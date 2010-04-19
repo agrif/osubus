@@ -54,6 +54,15 @@
 	}
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+	if (favorites)
+		[favorites release];
+	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] copy];
+	//NSLog(@"favorites: %@", favorites);
+	[self.tableView reloadData];
+}
+
 - (void) startBulletinDisplay
 {
 	bulletinsLoaded = YES;
@@ -111,6 +120,8 @@
 		case OBTS_NAVIGATION:
 			return OBTO_COUNT;
 		case OBTS_FAVORITES:
+			if ([favorites count] > 0)
+				return [favorites count];
 			return 1;
 	};
 	
@@ -141,7 +152,9 @@
 		case OBTS_NAVIGATION:
 			return [self tableView: tableView navigationCellForIndex: [indexPath row]];
 		case OBTS_FAVORITES:
-			return emptyFavoritesCell;
+			if ([favorites count] == 0)
+				return emptyFavoritesCell;
+			return [self cellForTable: tableView withText: [NSString stringWithFormat: @"FAVORITE: %@", [favorites objectAtIndex: [indexPath row]]]];
 	};
 	
 	return nil;
