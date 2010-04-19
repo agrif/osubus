@@ -82,7 +82,8 @@
 	{
 		// user clicked YES, add to favorites
 		[self.navigationItem setRightBarButtonItem: nil animated: YES];
-		[[[NSUserDefaults standardUserDefaults] objectForKey: @"favorites"] addObject: [stop objectForKey: @"id"]];
+		[[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] addObject: [stop objectForKey: @"id"]];
+		[[NSUserDefaults standardUserDefaults] setValue: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] forKey: @"favorites"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
@@ -98,6 +99,8 @@
 		[error_cell_text release];
 	error_cell_text = nil;
 	
+	//NSLog(@"predictions: %@", predictions);
+	
 	for (NSMutableDictionary* prediction in predictions)
 	{
 		for (NSDictionary* route in routes)
@@ -108,6 +111,13 @@
 				break;
 			}
 		}
+	}
+	
+	if ([predictions count] == 0)
+	{
+		error_cell_text = [[NSString alloc] initWithString: @"No upcoming arrivals."];
+		[predictions release];
+		predictions = nil;
 	}
 	
 	NSRange range;
@@ -128,7 +138,7 @@
 	predictions = nil;
 	// FIXME - a better error message system!
 	//error_cell_text = [[error localizedDescription] copy];
-	error_cell_text = [[NSString alloc] initWithString: @"No upcoming arrivals."];
+	error_cell_text = [[NSString alloc] initWithString: @"No service scheduled."];
 	NSRange range;
 	range.location = 0;
 	range.length = 1;
