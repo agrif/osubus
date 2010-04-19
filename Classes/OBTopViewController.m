@@ -58,7 +58,7 @@
 {
 	if (favorites)
 		[favorites release];
-	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] copy];
+	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
 	//NSLog(@"favorites: %@", favorites);
 	[self.tableView reloadData];
 }

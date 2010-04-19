@@ -39,7 +39,7 @@ enum OBTopSections
 	NSInteger bulletinID;
 	BOOL bulletinsLoaded;
 	
-	NSArray* favorites;
+	NSMutableArray* favorites;
 	
 	OBBulletinsViewController* bulletinsViewController;
 }

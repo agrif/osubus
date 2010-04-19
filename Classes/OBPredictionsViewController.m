@@ -92,9 +92,12 @@
 	{
 		// user clicked YES, add to favorites
 		[self.navigationItem setRightBarButtonItem: nil animated: YES];
-		[[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] addObject: [stop objectForKey: @"id"]];
-		[[NSUserDefaults standardUserDefaults] setValue: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] forKey: @"favorites"];
+		
+		NSMutableArray* defaults = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
+		[defaults addObject: [stop objectForKey: @"id"]];
+		[[NSUserDefaults standardUserDefaults] setValue: defaults forKey: @"favorites"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
+		[defaults release];
 	}
 }
 
