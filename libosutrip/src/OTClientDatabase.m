@@ -39,6 +39,11 @@ NSDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* rout
 	return add;
 }
 
+void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
+{
+	sqlite3_result_double(context, 0.0);
+}
+
 @implementation OTClient (OTClientDatabase)
 
 - (void) setDatabasePath: (NSString*) newDatabasePath
@@ -63,6 +68,8 @@ NSDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* rout
 	
 	databasePath = [newDatabasePath copy];
 	db = newdb;
+	
+	sqlite3_create_function([db sqliteHandle], "distance", 4, SQLITE_ANY, NULL, &lat_lon_distance, NULL, NULL);
 }
 
 - (NSString*) databasePath
