@@ -225,7 +225,7 @@
 	if ([indexPath section] == OBTS_BULLETINS && !bulletinsLoaded)
 		return nil;
 	if ([indexPath section] == OBTS_FAVORITES)
-		return nil;
+		return [favorites count] == 0 ? nil : indexPath;
 	return indexPath;
 }
 
@@ -299,9 +299,9 @@
 
 - (void) tableView: (UITableView*) tableView moveRowAtIndexPath: (NSIndexPath*) source toIndexPath: (NSIndexPath*) destination
 {
-	NSInteger stopid = [[favorites objectAtIndex: [source row]] integerValue];
+	NSNumber* stopid = [favorites objectAtIndex: [source row]];
 	[favorites removeObjectAtIndex: [source row]];
-	[favorites insertObject: [NSNumber numberWithInt: stopid] atIndex: [destination row]];
+	[favorites insertObject: stopid atIndex: [destination row]];
 	[self saveFavorites];
 }
 
