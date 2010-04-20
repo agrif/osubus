@@ -360,6 +360,19 @@
 
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
 {
+	// if we're not on top...
+	if ([self.navigationController topViewController] != self)
+	{
+		return;
+	}
+	
+	// FIXME - more elegant GPS getting
+	// throw away bad locations
+	if ([newLocation horizontalAccuracy] > 100)
+		return;
+	
+	NSLog(@"accuracy: %f", [newLocation horizontalAccuracy]);
+	
 	[manager stopUpdatingLocation];
 	[hud hide: YES];
 	
