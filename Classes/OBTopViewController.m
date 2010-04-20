@@ -13,6 +13,7 @@
 #import "OBRoutesViewController.h"
 #import "OBStopsViewController.h"
 #import "OBPredictionsViewController.h"
+#import "MBProgressHUD.h"
 
 @implementation OBTopViewController
 
@@ -46,6 +47,8 @@
 	
 	locManager = [[CLLocationManager alloc] init];
 	[locManager setDelegate: self];
+	hud = [[MBProgressHUD alloc] initWithView: self.navigationController.view];
+	[self.navigationController.view addSubview: hud];
 	
 	editMode = NO;
 }
@@ -60,6 +63,8 @@
 		[favoritesData release];
 	if (locManager != nil)
 		[locManager release];
+	if (hud != nil)
+		[hud release];
 }
 
 - (void) didReceiveMemoryWarning
@@ -265,6 +270,8 @@
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
 		[locManager startUpdatingLocation];
+		hud.labelText = @"Getting Position...";
+		[hud show: YES];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];
@@ -354,6 +361,7 @@
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
 {
 	[manager stopUpdatingLocation];
+	[hud hide: YES];
 	
 	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
 	// 40.002789 -83.016751 corner of tuttle garage
@@ -365,6 +373,7 @@
 - (void) locationManager: (CLLocationManager*) manager didFailWithError: (NSError*) error
 {
 	[manager stopUpdatingLocation];
+	[hud hide: YES];
 	// ack
 }
 

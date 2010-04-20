@@ -10,6 +10,7 @@
 #import "OBTableViewController.h"
 
 @class OBBulletinsViewController;
+@class MBProgressHUD;
 
 enum OBTopOptions
 {
@@ -47,6 +48,7 @@ enum OBTopSections
 	BOOL editMode;
 	
 	CLLocationManager* locManager;
+	MBProgressHUD* hud;
 	
 	OBBulletinsViewController* bulletinsViewController;
 }
