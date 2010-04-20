@@ -44,6 +44,9 @@
 	[bulletinsViewController loadBulletins: self];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
 	
+	locManager = [[CLLocationManager alloc] init];
+	[locManager setDelegate: self];
+	
 	editMode = NO;
 }
 
@@ -55,6 +58,8 @@
 		[favorites release];
 	if (favoritesData != nil)
 		[favoritesData release];
+	if (locManager != nil)
+		[locManager release];
 }
 
 - (void) didReceiveMemoryWarning
@@ -259,11 +264,7 @@
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
-		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
-		// 40.002789 -83.016751 corner of tuttle garage
-		[stops setLatitude: 40.002789 longitude: -83.016751];
-		[self.navigationController pushViewController: stops animated: YES];
-		[stops release];
+		[locManager startUpdatingLocation];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];
@@ -346,6 +347,25 @@
 {
 	[[NSUserDefaults standardUserDefaults] setObject: favorites forKey: @"favorites"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+# pragma mark GPS fun
+
+- (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
+{
+	[manager stopUpdatingLocation];
+	
+	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
+	// 40.002789 -83.016751 corner of tuttle garage
+	[stops setLatitude: [newLocation coordinate].latitude longitude: [newLocation coordinate].longitude];
+	[self.navigationController pushViewController: stops animated: YES];
+	[stops release];
+}
+
+- (void) locationManager: (CLLocationManager*) manager didFailWithError: (NSError*) error
+{
+	[manager stopUpdatingLocation];
+	// ack
 }
 
 # pragma mark Interface Builder Actions

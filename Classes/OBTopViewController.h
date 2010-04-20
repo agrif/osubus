@@ -5,6 +5,7 @@
 // the file "main.m" for details.
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "OBTableViewController.h"
 
@@ -27,7 +28,7 @@ enum OBTopSections
 	OBTS_COUNT
 };
 
-@interface OBTopViewController : OBTableViewController
+@interface OBTopViewController : OBTableViewController <CLLocationManagerDelegate>
 {
 	UITabBarController* aboutViewController;
 	UITableViewCell* bulletinCell;
@@ -44,6 +45,8 @@ enum OBTopSections
 	NSMutableArray* favorites;
 	NSMutableArray* favoritesData;
 	BOOL editMode;
+	
+	CLLocationManager* locManager;
 	
 	OBBulletinsViewController* bulletinsViewController;
 }
