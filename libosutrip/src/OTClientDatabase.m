@@ -56,10 +56,10 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	
 	// of course these are in degrees (2pi rad / 360 degrees)
 	// so make them radians
-	lat1 *= 2 * M_PI / 180.0;
-	lon1 *= 2 * M_PI / 180.0;
-	lat2 *= 2 * M_PI / 180.0;
-	lon2 *= 2 * M_PI / 180.0;
+	lat1 *= M_PI / 180.0;
+	lon1 *= M_PI / 180.0;
+	lat2 *= M_PI / 180.0;
+	lon2 *= M_PI / 180.0;
 	
 	double dlat = lat2 - lat1;
 	double dlon = lon2 - lon1;
