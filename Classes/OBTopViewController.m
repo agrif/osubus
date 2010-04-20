@@ -75,7 +75,7 @@
 	if (favoritesData)
 		[favoritesData release];
 	
-	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
+	favorites = [[NSMutableArray alloc] initWithArray: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"]];
 	favoritesData = [[NSMutableArray alloc] init];
 	
 	for (NSNumber* fav in favorites)
@@ -83,7 +83,7 @@
 		[favoritesData addObject: [[OTClient sharedClient] stop: fav]];
 	}
 	
-	//NSLog(@"favdata: %@", favoritesData);
+	//NSLog(@"favdata: %@", favorites);
 	
 	[self.tableView reloadData];
 	
