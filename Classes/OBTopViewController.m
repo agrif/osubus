@@ -301,6 +301,12 @@
 	}
 	
 	[self saveFavorites];
+	
+	// handle this for slide-to-delete
+	if ([favorites count] == 0)
+	{
+		[self.navigationItem setLeftBarButtonItem: nil animated: YES];
+	}
 }
 
 - (BOOL) tableView: (UITableView*) tableView canMoveRowAtIndexPath: (NSIndexPath*) indexPath
