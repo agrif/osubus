@@ -50,6 +50,7 @@
 - (NSArray*) stops;
 - (NSArray*) stopsWithRoute: (NSNumber*) routeid;
 - (NSDictionary*) stop: (NSNumber*) stopid;
+- (NSArray*) stopsNearLatitude: (double) lat longitude: (double) lon limit: (unsigned int) limit;
 - (void) updateDatabase;
 
 @end

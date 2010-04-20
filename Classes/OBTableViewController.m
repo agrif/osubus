@@ -101,7 +101,14 @@
 	}
 	
 	label = (UILabel*)[cell viewWithTag: 2];
-	[label setText: subtitle];
+	
+	if ([[data allKeys] containsObject: @"dist"])
+	{
+		[label setText: [NSString stringWithFormat: @"%@ (%@ meters)", subtitle, [data objectForKey: @"dist"]]];
+	} else {
+		[label setText: subtitle];
+	}
+	
 	[subtitle release];
 	
 	return cell;

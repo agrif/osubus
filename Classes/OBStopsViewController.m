@@ -48,6 +48,15 @@
 	}
 }
 
+- (void) setLatitude: (double) lat longitude: (double) lon
+{
+	if (stops == nil)
+	{
+		stops = [[OTClient sharedClient] stopsNearLatitude: lat longitude: lon limit: 10];
+		//NSLog(@"stops: %@", stops);
+	}
+}
+
 #pragma mark Table View Data Source
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView;

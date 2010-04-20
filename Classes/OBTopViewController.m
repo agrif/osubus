@@ -258,6 +258,11 @@
 		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
+	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
+		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
+		[stops setLatitude: 0.0 longitude: 0.0];
+		[self.navigationController pushViewController: stops animated: YES];
+		[stops release];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];

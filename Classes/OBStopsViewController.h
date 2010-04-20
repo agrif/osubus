@@ -15,5 +15,6 @@
 }
 
 - (void) setRoute: (NSDictionary*) routein;
+- (void) setLatitude: (double) lat longitude: (double) lon;
 
 @end

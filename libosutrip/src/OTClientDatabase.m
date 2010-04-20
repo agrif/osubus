@@ -8,9 +8,9 @@
 
 #import "OTClientUpdateDatabase.h"
 
-NSDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* routeid)
+NSMutableDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* routeid)
 {
-	NSDictionary* add = [[NSMutableDictionary alloc] init];
+	NSMutableDictionary* add = [[NSMutableDictionary alloc] init];
 	
 	NSNumber* sid = [[NSNumber alloc] initWithInt: [rs intForColumn: @"stpid"]];
 	[add setValue: sid forKey:	@"id"];
@@ -41,7 +41,26 @@ NSDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumber* rout
 
 void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 {
-	sqlite3_result_double(context, 0.0);
+	if (argc != 4)
+	{
+		sqlite3_result_double(context, 0.0);
+		return;
+	}
+	
+	double lat1 = sqlite3_value_double(argv[0]);
+	double lon1 = sqlite3_value_double(argv[1]);
+	double lat2 = sqlite3_value_double(argv[2]);
+	double lon2 = sqlite3_value_double(argv[3]);
+	
+	// of course these are in degrees (2pi rad / 360 degrees)
+	// so make them radians
+	lat1 *= 2 * M_PI / 180.0;
+	lon1 *= 2 * M_PI / 180.0;
+	lat2 *= 2 * M_PI / 180.0;
+	lon2 *= 2 * M_PI / 180.0;
+	
+	// fake
+	sqlite3_result_double(context, lat1 + lon1 + lat2 + lon2);
 }
 
 @implementation OTClient (OTClientDatabase)
@@ -107,6 +126,30 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	while ([rs next] && ret == nil)
 	{
 		ret = createStopDict(rs, routedata, nil);
+	}
+	[rs close];
+	
+	[routedata release];
+	
+	return ret;
+}
+
+- (NSArray*) stopsNearLatitude: (double) lat longitude: (double) lon limit: (unsigned int) limit
+{
+	NSMutableArray* ret = [[NSMutableArray alloc] init];
+	FMResultSet* rs;
+	
+	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, distance(?, ?, stops.lat, stops.lon) AS dist FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY dist ASC LIMIT ?", [NSNumber numberWithDouble: lat], [NSNumber numberWithDouble: lon], [NSNumber numberWithInteger: limit]];
+	
+	NSArray* routedata = [self routes];
+	
+	while ([rs next])
+	{
+		NSMutableDictionary* add = createStopDict(rs, routedata, nil);
+		[add setObject: [NSNumber numberWithDouble: [rs doubleForColumn: @"dist"]] forKey: @"dist"];
+		
+		[ret addObject: add];
+		[add release];
 	}
 	[rs close];
 	
