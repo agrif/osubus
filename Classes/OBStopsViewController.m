@@ -52,7 +52,7 @@
 {
 	if (stops == nil)
 	{
-		stops = [[OTClient sharedClient] stopsNearLatitude: lat longitude: lon limit: 10];
+		stops = [[OTClient sharedClient] stopsNearLatitude: lat longitude: lon limit: 30];
 		//NSLog(@"stops: %@", stops);
 	}
 }

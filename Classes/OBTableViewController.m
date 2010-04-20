@@ -104,7 +104,8 @@
 	
 	if ([[data allKeys] containsObject: @"dist"])
 	{
-		[label setText: [NSString stringWithFormat: @"%@ (%@ meters)", subtitle, [data objectForKey: @"dist"]]];
+		double dist = [[data objectForKey: @"dist"] doubleValue];
+		[label setText: [NSString stringWithFormat: @"%@ (%.0f meters)", subtitle, dist]];
 	} else {
 		[label setText: subtitle];
 	}

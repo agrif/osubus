@@ -260,7 +260,8 @@
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
 		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
-		[stops setLatitude: 0.0 longitude: 0.0];
+		// 40.002789 -83.016751 corner of tuttle garage
+		[stops setLatitude: 40.002789 longitude: -83.016751];
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {

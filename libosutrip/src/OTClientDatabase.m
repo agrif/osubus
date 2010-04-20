@@ -39,6 +39,8 @@ NSMutableDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumbe
 	return add;
 }
 
+#define EARTH_RADIUS 6371000 /* in meters */
+
 void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 {
 	if (argc != 4)
@@ -59,8 +61,15 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	lat2 *= 2 * M_PI / 180.0;
 	lon2 *= 2 * M_PI / 180.0;
 	
-	// fake
-	sqlite3_result_double(context, lat1 + lon1 + lat2 + lon2);
+	double dlat = lat2 - lat1;
+	double dlon = lon2 - lon1;
+	
+	// a = sin²(Δlat/2) + cos(lat1).cos(lat2).sin²(Δlong/2)
+	// c = 2.atan2(√a, √(1−a))
+	// d = R.c
+	
+	double a = pow(sin(dlat/2.0), 2) + cos(lat1)*cos(lat2)*pow(sin(dlon/2.0), 2);
+	sqlite3_result_double(context, EARTH_RADIUS * 2 * atan2(pow(a, 0.5), pow(1.0 - a, 0.5)));
 }
 
 @implementation OTClient (OTClientDatabase)
