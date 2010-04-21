@@ -68,7 +68,7 @@
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
 		D0B5DD39117E56AA00D15F53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B5DD38117E56AA00D15F53 /* MBProgressHUD.m */; };
 		D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */; };
-		D0DC57271152C7D700D67308 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0DC57261152C7D700D67308 /* Default.png */; };
+		D0C398E3117FBEFA00D9B4FD /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C398E2117FBEFA00D9B4FD /* Default.png */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
@@ -150,7 +150,7 @@
 		D0B5DD37117E56AA00D15F53 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		D0B5DD38117E56AA00D15F53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBAboutViewController.xib; path = Resources/OBAboutViewController.xib; sourceTree = "<group>"; };
-		D0DC57261152C7D700D67308 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
+		D0C398E2117FBEFA00D9B4FD /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
@@ -249,7 +249,6 @@
 			children = (
 				D00374651139EDC100053FCB /* cabs.db */,
 				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
-				D0DC57261152C7D700D67308 /* Default.png */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
 				D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */,
 				D0F84019117A71E700C58427 /* OBStopsCell.xib */,
@@ -260,6 +259,7 @@
 				D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */,
 				D0F83FDF117A620600C58427 /* OBStopsViewController.xib */,
 				D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */,
+				D0C398E2117FBEFA00D9B4FD /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -425,13 +425,13 @@
 				D0B031A3113A069E00678161 /* OBTopViewController.xib in Resources */,
 				D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */,
 				D0BE2C0B1152BF9B00692D68 /* OBAboutViewController.xib in Resources */,
-				D0DC57271152C7D700D67308 /* Default.png in Resources */,
 				D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */,
 				D08FB3C2115318EF00CC73CF /* OBRoutesCell.xib in Resources */,
 				D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */,
 				D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */,
 				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
 				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
+				D0C398E3117FBEFA00D9B4FD /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

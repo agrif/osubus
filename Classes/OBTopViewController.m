@@ -54,7 +54,7 @@
 	[hud setBackgroundColor: [UIColor colorWithWhite: 0.0 alpha: 0.5]];
 	[hud setOpacity: 0.0];
 	[hud show: NO];
-	[[hud indicator] setHidden: YES];
+	[(UIActivityIndicatorView*)[hud indicator] setHidden: YES];
 	
 	editMode = NO;
 }
@@ -86,8 +86,17 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	// handle hud-hiding for first launch
-	[hud hide: YES];
+	BOOL firstRun = NO;
+	
+	if (favorites == nil)
+	{
+		firstRun = YES;
+		
+		// handle hud-hiding for first launch
+		[hud hide: YES];
+		
+		[self.tableView reloadData];
+	}
 	
 	if (favorites)
 		[favorites release];
@@ -104,14 +113,22 @@
 	
 	//NSLog(@"favdata: %@", favorites);
 	
-	[self.tableView reloadData];
+	if (firstRun)
+	{
+		NSRange range;
+		range.location = OBTS_FAVORITES;
+		range.length = 1;
+		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	} else {
+		[self.tableView reloadData];
+	}
 	
-	[self.navigationItem setRightBarButtonItem: aboutButton];
+	[self.navigationItem setRightBarButtonItem: aboutButton animated: firstRun];
 	if ([favorites count] != 0)
 	{
-		[self.navigationItem setLeftBarButtonItem: editButton];
+		[self.navigationItem setLeftBarButtonItem: editButton animated: firstRun];
 	} else {
-		[self.navigationItem setLeftBarButtonItem: nil];
+		[self.navigationItem setLeftBarButtonItem: nil animated: firstRun];
 	}
 }
 
@@ -172,6 +189,8 @@
 		case OBTS_NAVIGATION:
 			return OBTO_COUNT;
 		case OBTS_FAVORITES:
+			if (favorites == nil)
+				return 0;
 			if ([favorites count] > 0)
 				return [favorites count];
 			return 1;
@@ -204,6 +223,8 @@
 		case OBTS_NAVIGATION:
 			return [self tableView: tableView navigationCellForIndex: [indexPath row]];
 		case OBTS_FAVORITES:
+			if (favorites == nil)
+				return nil;
 			if ([favorites count] == 0)
 				return emptyFavoritesCell;
 			return [self stopsCellForTable: tableView withData: [favoritesData objectAtIndex: [indexPath row]]];
@@ -281,7 +302,7 @@
 		[locManager startUpdatingLocation];
 		hud.labelText = @"Getting Position...";
 		[hud setOpacity: 0.9];
-		[[hud indicator] setHidden: NO];
+		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
 		[hud show: YES];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
