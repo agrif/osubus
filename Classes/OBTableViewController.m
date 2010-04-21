@@ -58,16 +58,17 @@
 	return cell;
 }
 
-#define STOPS_COLOR_FIRST_TAG 3
-#define STOPS_COLOR_LAST_TAG 5
+#define STOPS_COLOR_FIRST_TAG 4
+#define STOPS_COLOR_LAST_TAG 6
 
 - (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
 {
 	// tag 1 - name label
 	// tag 2 - subtitle label (for route names)
-	// tag 3 - first color bar
-	// tag 4 - second color bar
-	// tag 5 - third color bar
+	// tag 3 - distance label
+	// tag 4 - first color bar
+	// tag 5 - second color bar
+	// tag 6 - third color bar
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
 	UILabel* label;
@@ -101,13 +102,17 @@
 	}
 	
 	label = (UILabel*)[cell viewWithTag: 2];
+	[label setText: subtitle];
+	
+	label = (UILabel*)[cell viewWithTag: 3];
 	
 	if ([[data allKeys] containsObject: @"dist"])
 	{
 		double dist = [[data objectForKey: @"dist"] doubleValue];
-		[label setText: [NSString stringWithFormat: @"%@ (%.0f meters)", subtitle, dist]];
+		[label setText: [NSString stringWithFormat: @"%.0f meters", dist]];
+		[label setHidden: NO];
 	} else {
-		[label setText: subtitle];
+		[label setHidden: YES];
 	}
 	
 	[subtitle release];
