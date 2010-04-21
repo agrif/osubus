@@ -121,6 +121,7 @@
 	// tag 1 - route name label
 	// tag 2 - prediction time label
 	// tag 3 - destination label
+	// tag 4 - color bar
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBPredictionsCell"];
 	
 	UILabel* label;
@@ -141,6 +142,9 @@
 	
 	label = (UILabel*)[cell viewWithTag: 3];
 	[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
+	
+	UIView* colorbar = [cell viewWithTag: 4];
+	[colorbar setBackgroundColor: [[data objectForKey: @"color"] colorFromHex]];
 	
 	return cell;
 }

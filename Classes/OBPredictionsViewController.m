@@ -121,6 +121,7 @@
 			if ([[route objectForKey: @"short"] isEqual: [prediction objectForKey: @"rt"]])
 			{
 				[prediction setObject: [route objectForKey: @"long"] forKey: @"rt"];
+				[prediction setObject: [route objectForKey: @"color"] forKey: @"color"];
 				break;
 			}
 		}
