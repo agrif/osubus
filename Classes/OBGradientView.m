@@ -46,10 +46,17 @@
 
 - (void) setBackgroundColor: (UIColor*) color
 {
+	if (CGColorGetAlpha([color CGColor]) == 0.0)
+	{
+		// skip this, it lies!
+		return;
+	}
+	
 	[super setBackgroundColor: color];
 	CGColorRelease(bgColor);
 	bgColor = [color CGColor];
 	CGColorRetain(bgColor);
+	//NSLog(@"bgcolor: %@", color);
 }
 
 - (void) drawRect: (CGRect) rect
