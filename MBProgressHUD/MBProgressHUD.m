@@ -74,7 +74,8 @@
 
     mode = newMode;
 
-    [self performSelectorOnMainThread:@selector(updateIndicators) withObject:nil waitUntilDone:NO];
+    //[self performSelectorOnMainThread:@selector(updateIndicators) withObject:nil waitUntilDone:NO];
+	[self updateIndicators];
     [self performSelectorOnMainThread:@selector(setNeedsLayout) withObject:nil waitUntilDone:NO];
     [self performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
 }
