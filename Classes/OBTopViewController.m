@@ -47,8 +47,14 @@
 	
 	locManager = [[CLLocationManager alloc] init];
 	[locManager setDelegate: self];
+	
+	// setup HUD, show with no text for startup
 	hud = [[MBProgressHUD alloc] initWithView: self.navigationController.view];
 	[self.navigationController.view addSubview: hud];
+	[hud setBackgroundColor: [UIColor colorWithWhite: 0.0 alpha: 0.5]];
+	[hud setOpacity: 0.0];
+	[hud show: NO];
+	[[hud indicator] setHidden: YES];
 	
 	editMode = NO;
 }
@@ -80,6 +86,9 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
+	// handle hud-hiding for first launch
+	[hud hide: YES];
+	
 	if (favorites)
 		[favorites release];
 	if (favoritesData)
@@ -271,6 +280,8 @@
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
 		[locManager startUpdatingLocation];
 		hud.labelText = @"Getting Position...";
+		[hud setOpacity: 0.9];
+		[[hud indicator] setHidden: NO];
 		[hud show: YES];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
