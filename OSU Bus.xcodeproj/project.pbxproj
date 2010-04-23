@@ -30,6 +30,7 @@
 		D00374A21139EE7C00053FCB /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374961139EE7C00053FCB /* OTRTime.m */; };
 		D00374A31139EE7C00053FCB /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374971139EE7C00053FCB /* OTRVehicles.m */; };
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
+		D00C2D1111823EAB0093578A /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = D00C2D1011823EAB0093578A /* Entitlements.plist */; };
 		D0143867113DBDFE00047246 /* OBBulletinsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143866113DBDFE00047246 /* OBBulletinsViewController.m */; };
 		D014386E113DBEDB00047246 /* OBBulletinsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */; };
 		D0143D971152E44500C376CC /* OTClientRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D951152E44500C376CC /* OTClientRequests.m */; };
@@ -123,6 +124,7 @@
 		D00374961139EE7C00053FCB /* OTRTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRTime.m; sourceTree = "<group>"; };
 		D00374971139EE7C00053FCB /* OTRVehicles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRVehicles.m; sourceTree = "<group>"; };
 		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D00C2D1011823EAB0093578A /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		D0143866113DBDFE00047246 /* OBBulletinsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinsViewController.m; sourceTree = "<group>"; };
 		D014386A113DBE0B00047246 /* OBBulletinsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinsViewController.h; sourceTree = "<group>"; };
 		D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinsViewController.xib; path = Resources/OBBulletinsViewController.xib; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				D00C2D1011823EAB0093578A /* Entitlements.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
 				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
 				D0C398E3117FBEFA00D9B4FD /* Default.png in Resources */,
+				D00C2D1111823EAB0093578A /* Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +560,58 @@
 			};
 			name = Release;
 		};
+		D00C2D0411823E640093578A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.0;
+			};
+			name = Distribution;
+		};
+		D00C2D0511823E640093578A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
+				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
+				PRODUCT_NAME = "OSU Bus";
+			};
+			name = Distribution;
+		};
+		D00C2D0611823E640093578A /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = tripdb;
+				SDKROOT = macosx10.5;
+				ZERO_LINK = NO;
+			};
+			name = Distribution;
+		};
 		D0143EC91152F1BE00C376CC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -614,6 +670,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				D00C2D0511823E640093578A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -623,6 +680,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				D00C2D0411823E640093578A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -632,6 +690,7 @@
 			buildConfigurations = (
 				D0143EC91152F1BE00C376CC /* Debug */,
 				D0143ECA1152F1BE00C376CC /* Release */,
+				D00C2D0611823E640093578A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
