@@ -433,7 +433,9 @@
 		
 		// note that tag 1 is the "version info" label on the front page
 		UILabel* info = (UILabel*)[[[[aboutViewController viewControllers] objectAtIndex: 0] view] viewWithTag: 1];
-		[info setText: [NSString stringWithFormat: @"Version: %s | Database: %s", OSU_BUS_VERSION, "TODO db ver"]];
+		NSString* db_ver = [[OTClient sharedClient] databaseVersion];
+		[info setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
+		//[db_ver release];
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];

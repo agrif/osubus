@@ -200,6 +200,21 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	return ret;
 }
 
+- (NSString*) databaseVersion
+{
+	// in this case, version means generation date, not db interface version (OT_DB_VERSION)
+	FMResultSet* rs = [db executeQuery: @"SELECT value FROM meta WHERE name == ?", @"date"];
+	while ([rs next])
+	{
+		NSString* ret = [rs stringForColumn: @"value"];
+		[rs close];
+		return ret;
+	}
+	
+	[rs close];
+	return nil;
+}
+
 // haha! this is to update the local cache of route data!
 
 - (void) updateDatabase;
