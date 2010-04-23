@@ -212,7 +212,7 @@
 			switch ([indexPath row])
 			{
 				case OBPA_DIRECTIONS:
-					return [self cellForTable: tableView withText: @"Directions"];
+					return [self cellForTable: tableView withText: @"Show on Map"];
 			};
 			return nil;
 	};
@@ -224,12 +224,22 @@
 
 - (NSIndexPath*) tableView: (UITableView*) tableView willSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
+	if ([indexPath section] == OBPS_ACTIONS)
+		return indexPath;
 	return nil;
 }
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	// navigation logic
+	if ([indexPath section] == OBPS_ACTIONS && [indexPath row] == OBPA_DIRECTIONS)
+	{
+		// in a perfect world, we would
+		// open (walking) directions from *here* to the stop
+		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], [[stop objectForKey: @"name"] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+		NSLog(@"opening URL: %@", url);
+		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+		[url release];
+	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }

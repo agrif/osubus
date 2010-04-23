@@ -16,6 +16,14 @@ NSMutableDictionary* createStopDict(FMResultSet* rs, NSArray* routedata, NSNumbe
 	[add setValue: sid forKey:	@"id"];
 	[sid release];
 	
+	sid = [[NSNumber alloc] initWithDouble: [rs doubleForColumn: @"lat"]];
+	[add setValue: sid forKey:	@"lat"];
+	[sid release];
+	
+	sid = [[NSNumber alloc] initWithDouble: [rs doubleForColumn: @"lon"]];
+	[add setValue: sid forKey:	@"lon"];
+	[sid release];
+	
 	[add setValue: [rs stringForColumn: @"pretty"] forKey: @"name"];
 	
 	NSMutableArray* routeadd = [[NSMutableArray alloc] init];
@@ -128,7 +136,7 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	NSDictionary* ret = nil;
 	FMResultSet* rs;
 	
-	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.stpid == ? ORDER BY pretty_names.pretty ASC", stopid];
+	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, stops.lat, stops.lon FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.stpid == ? ORDER BY pretty_names.pretty ASC", stopid];
 	
 	NSArray* routedata = [self routes];
 	
@@ -148,7 +156,7 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	NSMutableArray* ret = [[NSMutableArray alloc] init];
 	FMResultSet* rs;
 	
-	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, distance(?, ?, stops.lat, stops.lon) AS dist FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY dist ASC LIMIT ?", [NSNumber numberWithDouble: lat], [NSNumber numberWithDouble: lon], [NSNumber numberWithInteger: limit]];
+	rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, stops.lat, stops.lon, distance(?, ?, stops.lat, stops.lon) AS dist FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY dist ASC LIMIT ?", [NSNumber numberWithDouble: lat], [NSNumber numberWithDouble: lon], [NSNumber numberWithInteger: limit]];
 	
 	NSArray* routedata = [self routes];
 	
@@ -179,9 +187,9 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	
 	if (routeid == nil)
 	{
-		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
+		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, stops.lat, stops.lon FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm ORDER BY pretty_names.pretty ASC"];
 	} else {
-		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.routes & (1 << ?) ORDER BY pretty_names.pretty ASC", routeid];
+		rs = [db executeQuery: @"SELECT pretty_names.pretty, stops.routes, stops.stpid, stops.lat, stops.lon  FROM stops, pretty_names WHERE pretty_names.rowid == stops.stpnm AND stops.routes & (1 << ?) ORDER BY pretty_names.pretty ASC", routeid];
 	}
 	
 	NSArray* routedata = [self routes];
