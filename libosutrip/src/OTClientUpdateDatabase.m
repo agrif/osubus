@@ -23,6 +23,7 @@ void initializeDB(FMDatabase* db)
 	[tables setObject: @"(rt text, rtnm int)" forKey: @"routes"];
 	[tables setObject: @"(route int, dir text, name int)" forKey: @"directions"];
 	[tables setObject: @"(stpid int PRIMARY KEY, routes int, direction int, stpnm int, lat double, lon double)" forKey: @"stops"];
+	[tables setObject: @"(name text, value text)" forKey: @"meta"];
 
 	[db beginTransaction];
 	
@@ -41,6 +42,15 @@ void initializeDB(FMDatabase* db)
 	{
 		[db executeUpdate: [NSString stringWithFormat: @"CREATE TABLE  %@ %@", name, [tables objectForKey: name]]];
 	}
+	
+	[db executeUpdate: @"INSERT INTO meta (name, value) VALUES (?, ?)", @"version", [NSString stringWithCString: OT_DB_VERSION]];
+	NSDate* today = [NSDate date];
+	NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat: @"MM/dd/yyyy"];
+	NSString* dateString = [dateFormat stringFromDate: today];
+	[dateFormat release];
+	[db executeUpdate: @"INSERT INTO meta (name, value) VALUES (?, ?)", @"date", dateString];
+	[dateString release];
 
 	[db commit];
 }

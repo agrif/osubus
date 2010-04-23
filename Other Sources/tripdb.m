@@ -33,6 +33,9 @@ int main(int argc, char** argv)
 	
 	[[OTClient  sharedClient] updateDatabase];
 	
-    [pool drain];
+	// unfortunately segfaults, but since this will only ever run on my computer...
+	// I'll do the bad, velociraptor-inducing thing: memory leak!
+	// so FIXME - find the double-release!
+    //[pool drain];
     return 0;
 }

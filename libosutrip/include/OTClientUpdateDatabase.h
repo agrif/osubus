@@ -10,6 +10,8 @@
 
 #import "FMDatabase.h"
 
+#define OT_DB_VERSION "1"
+
 void initializeDB(FMDatabase* db);
 NSNumber* addPrettyName(FMDatabase* db, NSString* original);
 NSNumber* addRouteColor(FMDatabase* db, NSString* rt);

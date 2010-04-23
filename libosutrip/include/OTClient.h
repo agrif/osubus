@@ -19,8 +19,9 @@
 #import "FMDatabase.h"
 
 #define OTC_BASEURL @"http://trip.osu.edu/bustime/api/v1/"
-#define OTC_CUSTOMURL @"http://gamma-level.com/osubus/"
+#define OTC_CUSTOMURL @"http://osubus.gamma-level.com/api/v1/"
 
+#import "OTClientUpdateDatabase.h"
 #import "OTRequest.h"
 
 @interface OTClient : NSObject
