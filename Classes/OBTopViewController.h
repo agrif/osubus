@@ -50,6 +50,8 @@ enum OBTopSections
 	CLLocationManager* locManager;
 	MBProgressHUD* hud;
 	
+	NSMutableData* receivedData;
+	
 	OBBulletinsViewController* bulletinsViewController;
 }
 

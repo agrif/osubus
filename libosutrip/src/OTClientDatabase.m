@@ -86,16 +86,16 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 {
 	if (newDatabasePath == nil)
 	{
+		if (db)
+			[db release];
+		db = nil;
 		if (databasePath)
 			[databasePath release];
 		databasePath = nil;
-		if (db)
-			[db close];
-		db = nil;
 		return;
 	}
 	
-	FMDatabase* newdb = [FMDatabase databaseWithPath: newDatabasePath];
+	FMDatabase* newdb = [[FMDatabase alloc] initWithPath: newDatabasePath];
 	if (![newdb open])
 	{
 		NSLog(@"Could not open db.");
@@ -106,6 +106,20 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	db = newdb;
 	
 	sqlite3_create_function([db sqliteHandle], "distance", 4, SQLITE_ANY, NULL, &lat_lon_distance, NULL, NULL);
+}
+
+- (void) writeNewDatabase: (NSData*) data
+{
+	NSString* dbpath = [databasePath copy];
+	//NSLog(@"old db: %i", [db goodConnection]);
+	[self setDatabasePath: nil];
+	//NSLog(@"old db now: is it nil? %i", db == nil);
+	//NSLog(@"writing new db to path: %@", dbpath);
+	[data writeToFile: dbpath atomically: NO];
+	[self setDatabasePath: dbpath];
+	//NSLog(@"new db: %i", [db goodConnection]);
+	//NSLog(@"new db now: is it nil? %i", db == nil);
+	[dbpath release];
 }
 
 - (NSString*) databasePath
@@ -211,7 +225,9 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 - (NSString*) databaseVersion
 {
 	// in this case, version means generation date, not db interface version (OT_DB_VERSION)
+	//NSLog(@"db is nil? %i", db == nil);
 	FMResultSet* rs = [db executeQuery: @"SELECT value FROM meta WHERE name == ?", @"date"];
+	//NSLog(@"rs is nil? %i", rs == nil);
 	while ([rs next])
 	{
 		NSString* ret = [rs stringForColumn: @"value"];

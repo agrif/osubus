@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	
 	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath: pathToDB];
 	
-	// if it doesn't exist, copy the db out of the bundle
+	// if it doesn't exist, copy the db out of the bundle so we can write to it
 	if (!fileExists)
 	{
 		[[NSFileManager defaultManager] copyItemAtPath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"] toPath: pathToDB error: NULL];

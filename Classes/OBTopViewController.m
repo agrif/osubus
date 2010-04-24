@@ -159,8 +159,75 @@
 	if (buttonIndex == 0)
 	{
 		// user clicked YES, update database!
+		NSURLRequest* theRequest = [NSURLRequest requestWithURL: [NSURL URLWithString: [bulletinsViewController updateURL]] 
+												 cachePolicy: NSURLRequestReloadIgnoringLocalAndRemoteCacheData
+												 timeoutInterval: 30.0];
 		
-		//
+		NSURLConnection* theConnection = [[NSURLConnection alloc] initWithRequest: theRequest delegate: self];
+		if (theConnection)
+		{
+			receivedData = [[NSMutableData alloc] init];
+			[hud setLabelText: @"Downloading database..."];
+			[hud setOpacity: 0.9];
+			[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
+			[hud show: YES];
+		} else {
+			UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Download Failed" message: @"The database download failed. Please try again later." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+			[alert show];
+			[alert release];
+		}
+	}
+}
+
+// for db update download
+- (void) connection: (NSURLConnection*) connection didReceiveResponse: (NSURLResponse*) response
+{
+	if ([(NSHTTPURLResponse*)response statusCode] != 200)
+	{
+		[self connection: connection didFailWithError: nil];
+		return;
+	}
+	
+	if (receivedData)
+		[receivedData setLength: 0];
+}
+
+// for db download
+- (void) connection: (NSURLConnection*) connection didReceiveData: (NSData*) data
+{
+	if (receivedData)
+		[receivedData appendData: data];
+}
+
+// for db download
+- (void) connection: (NSURLConnection*) connection didFailWithError: (NSError*) error
+{
+	[connection release];
+	[receivedData release];
+	receivedData = nil;
+	[hud hide: YES];
+	
+	UIAlertView* alert = [[UIAlertView alloc] initWithTitle: @"Download Failed" message: @"The database download failed. Please try again later." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+	[alert show];
+	[alert release];
+	
+    //NSLog(@"Connection failed! Error - %@ %@",
+    //      [error localizedDescription],
+    //      [[error userInfo] objectForKey: NSErrorFailingURLStringKey]);	
+}
+
+// for db download
+- (void) connectionDidFinishLoading: (NSURLConnection*) connection
+{
+	if (receivedData)
+	{
+		//NSLog(@"data: %@", receivedData);
+		[[OTClient sharedClient] writeNewDatabase: receivedData];
+		[hud hide: YES];
+		
+		[connection release];
+		[receivedData release];
+		receivedData = nil;
 	}
 }
 

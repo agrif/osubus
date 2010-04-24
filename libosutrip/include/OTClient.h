@@ -46,6 +46,7 @@
 @interface OTClient (OTClientDatabase)
 
 - (void) setDatabasePath: (NSString*) newDatabasePath;
+- (void) writeNewDatabase: (NSData*) data;
 - (NSString*) databasePath;
 - (NSArray*) routes;
 - (NSArray*) stops;
