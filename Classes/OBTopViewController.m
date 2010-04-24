@@ -139,6 +139,29 @@
 	[NSTimer scheduledTimerWithTimeInterval: 3.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
 	[self updateBulletinCell: nil];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+	
+	// check to see if DB needs updating...
+	if ([bulletinsViewController updateURL])
+	{
+		// we DO! ACK!
+		
+		UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle: @"A new route database is available. Would you like to update now? It will only take a few seconds!" delegate: self cancelButtonTitle: nil destructiveButtonTitle: nil otherButtonTitles: @"Yes", @"No", nil];
+		actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+		actionSheet.cancelButtonIndex = 1;
+		[actionSheet showInView: self.view];
+		[actionSheet release];
+	}
+}
+
+// action sheet for db update question
+- (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex
+{
+	if (buttonIndex == 0)
+	{
+		// user clicked YES, update database!
+		
+		//
+	}
 }
 
 - (void) updateBulletinCell: (NSTimer*) timer

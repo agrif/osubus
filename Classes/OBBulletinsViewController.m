@@ -12,6 +12,7 @@
 @implementation OBBulletinsViewController
 
 @synthesize bulletins;
+@synthesize updateURL;
 
 - (void) viewDidLoad
 {
@@ -33,6 +34,8 @@
 {
 	if (bulletins)
 		self.bulletins = nil;
+	if (updateURL)
+		self.updateURL = nil;
 	[super dealloc];
 }
 
@@ -50,7 +53,13 @@
 		NSString* title = [[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"sbj"];
 		NSString* body = [[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"dtl"];
 		
-		[bulletins addObject: [NSDictionary dictionaryWithObjectsAndKeys: title, @"title", body, @"body", requestedCustom ? @"gamma" : @"osu", @"source", nil]];
+		// special value meaning UPDATE THE FREAKING DATABASE (WHOO!)
+		if ([title isEqual: @"!!!DBUPDATE"])
+		{
+			self.updateURL = body;
+		} else {
+			[bulletins addObject: [NSDictionary dictionaryWithObjectsAndKeys: title, @"title", body, @"body", requestedCustom ? @"gamma" : @"osu", @"source", nil]];
+		}
 	}
 	
 	if (requestedCustom == NO)

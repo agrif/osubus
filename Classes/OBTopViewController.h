@@ -29,7 +29,7 @@ enum OBTopSections
 	OBTS_COUNT
 };
 
-@interface OBTopViewController : OBTableViewController <CLLocationManagerDelegate>
+@interface OBTopViewController : OBTableViewController <CLLocationManagerDelegate, UIActionSheetDelegate>
 {
 	UITabBarController* aboutViewController;
 	UITableViewCell* bulletinCell;

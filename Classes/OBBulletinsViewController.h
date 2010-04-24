@@ -16,9 +16,11 @@
 	BOOL requestedCustom;
 	NSMutableArray* bulletins;
 	NSInteger endOfOfficialBulletins;
+	NSString* updateURL;
 }
 
 @property (nonatomic, retain) NSMutableArray* bulletins;
+@property (nonatomic, copy) NSString* updateURL;
 
 - (void) loadBulletins: (OBTopViewController*) caller;
 
