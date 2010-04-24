@@ -23,8 +23,19 @@ int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString* pathToDB = [[paths objectAtIndex:0] stringByAppendingPathComponent: @"cabs.db"];
+	
+	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath: pathToDB];
+	
+	// if it doesn't exist, copy the db out of the bundle
+	if (!fileExists)
+	{
+		[[NSFileManager defaultManager] copyItemAtPath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"] toPath: pathToDB error: NULL];
+	}
+	
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
-	[[OTClient sharedClient] setDatabasePath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"]];
+	[[OTClient sharedClient] setDatabasePath: pathToDB];
 	
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
