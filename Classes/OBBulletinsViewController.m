@@ -7,6 +7,7 @@
 #import "OBBulletinsViewController.h"
 
 #import "OBTopViewController.h"
+#import "OBBulletinViewController.h"
 
 @implementation OBBulletinsViewController
 
@@ -125,6 +126,21 @@
 	[[cell textLabel] setText: [[bulletins objectAtIndex: index] objectForKey: @"title"]];
 	
 	return cell;		
+}
+
+- (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+{
+	NSInteger index = [indexPath row];
+	if ([indexPath section] == 1)
+		index += endOfOfficialBulletins;
+	
+	// title, body, source
+	OBBulletinViewController* bulletin = [[OBBulletinViewController alloc] initWithNibName: @"OBBulletinViewController" bundle: nil];
+	[bulletin setBulletin: [bulletins objectAtIndex: index]];
+	[self.navigationController pushViewController: bulletin animated: YES];
+	[bulletin release];
+	
+	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
 @end

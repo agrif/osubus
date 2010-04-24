@@ -58,6 +58,8 @@
 		D0143F6E1152F6C300C376CC /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374961139EE7C00053FCB /* OTRTime.m */; };
 		D0143F6F1152F6C300C376CC /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374971139EE7C00053FCB /* OTRVehicles.m */; };
 		D021240311826CC000FF637B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D021240211826CC000FF637B /* Default.png */; };
+		D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D021241111826D3000FF637B /* OBBulletinViewController.m */; };
+		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D08FB32E11530BEB00CC73CF /* OBRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB32D11530BEB00CC73CF /* OBRoutesViewController.m */; };
 		D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */; };
@@ -135,6 +137,9 @@
 		D0143ECC1152F24E00C376CC /* tripdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tripdb.m; path = "Other Sources/tripdb.m"; sourceTree = "<group>"; };
 		D021240211826CC000FF637B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		D021240411826CCD00FF637B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Other Sources/Entitlements.plist"; sourceTree = "<group>"; };
+		D021241011826D3000FF637B /* OBBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinViewController.h; sourceTree = "<group>"; };
+		D021241111826D3000FF637B /* OBBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinViewController.m; sourceTree = "<group>"; };
+		D021241611826E9500FF637B /* OBBulletinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinViewController.xib; path = Resources/OBBulletinViewController.xib; sourceTree = "<group>"; };
 		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
 		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
 		D08FB32C11530BEB00CC73CF /* OBRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRoutesViewController.h; sourceTree = "<group>"; };
@@ -206,6 +211,8 @@
 				1D3623250D0F684500981E51 /* OBAppDelegate.m */,
 				D014386A113DBE0B00047246 /* OBBulletinsViewController.h */,
 				D0143866113DBDFE00047246 /* OBBulletinsViewController.m */,
+				D021241011826D3000FF637B /* OBBulletinViewController.h */,
+				D021241111826D3000FF637B /* OBBulletinViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -258,6 +265,7 @@
 				D0F84148117AC50900C58427 /* OBPredictionsCell.xib */,
 				D0B031A2113A069E00678161 /* OBTopViewController.xib */,
 				D014386D113DBEDB00047246 /* OBBulletinsViewController.xib */,
+				D021241611826E9500FF637B /* OBBulletinViewController.xib */,
 				D0BE2C0A1152BF9B00692D68 /* OBAboutViewController.xib */,
 				D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */,
 				D0F83FDF117A620600C58427 /* OBStopsViewController.xib */,
@@ -434,6 +442,7 @@
 				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
 				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
 				D021240311826CC000FF637B /* Default.png in Resources */,
+				D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +483,7 @@
 				D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */,
 				D0F84116117AC10F00C58427 /* OBPredictionsViewController.m in Sources */,
 				D0B5DD39117E56AA00D15F53 /* MBProgressHUD.m in Sources */,
+				D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

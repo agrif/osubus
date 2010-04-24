@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="10"/>
 			<integer value="9"/>
+			<integer value="10"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -383,16 +383,6 @@ ZWFzeSBhY2Nlc3MhA</string>
 						<string key="objectName">Bulletin Cell</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="969432118"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="932444149"/>
-							<reference ref="5526956"/>
-						</object>
-						<reference key="parent" ref="672784422"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">10</int>
 						<reference key="object" ref="960417479"/>
 						<object class="NSMutableArray" key="children">
@@ -406,16 +396,6 @@ ZWFzeSBhY2Nlc3MhA</string>
 						<int key="objectID">12</int>
 						<reference key="object" ref="965394851"/>
 						<reference key="parent" ref="960417479"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="932444149"/>
-						<reference key="parent" ref="969432118"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">14</int>
-						<reference key="object" ref="5526956"/>
-						<reference key="parent" ref="969432118"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">32</int>
@@ -445,6 +425,26 @@ ZWFzeSBhY2Nlc3MhA</string>
 						<reference key="object" ref="251121460"/>
 						<reference key="parent" ref="900639675"/>
 						<string key="objectName">Done Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">9</int>
+						<reference key="object" ref="969432118"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="932444149"/>
+							<reference ref="5526956"/>
+						</object>
+						<reference key="parent" ref="672784422"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">13</int>
+						<reference key="object" ref="932444149"/>
+						<reference key="parent" ref="969432118"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">14</int>
+						<reference key="object" ref="5526956"/>
+						<reference key="parent" ref="969432118"/>
 					</object>
 				</object>
 			</object>
@@ -477,7 +477,7 @@ ZWFzeSBhY2Nlc3MhA</string>
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>OBTopViewController</string>
 					<string>UIResponder</string>
-					<string>{{110, 522}, {320, 44}}</string>
+					<string>{{22, 522}, {320, 44}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>OBBulletinsViewController</string>
 					<string>{{21, 492}, {320, 480}}</string>
