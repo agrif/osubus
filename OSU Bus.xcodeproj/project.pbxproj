@@ -597,7 +597,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_ENTITLEMENTS = "Other Sources/Entitlements.plist";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
