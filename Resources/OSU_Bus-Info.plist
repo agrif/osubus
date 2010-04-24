@@ -11,7 +11,7 @@
 	<key>SBUsesNetwork</key>
 	<true/>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>Icon.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.gamma-level.osubus</string>
 	<key>CFBundleInfoDictionaryVersion</key>
