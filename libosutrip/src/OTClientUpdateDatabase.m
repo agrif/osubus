@@ -6,6 +6,9 @@
 
 // helper functions for [OTClient updateDatabase: ...]
 
+// IMPORTANT : remember, change any part of this in an interface-breaking way,
+// you must change OT_DB_VERSION by one!!! (in OTClientUpdateDatabase.h)
+
 #import "OTClient.h"
 #import "OTClientUpdateDatabase.h"
 

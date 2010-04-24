@@ -1,0 +1,22 @@
+Make sure to do all of this, each release! You could screw up, seriously!
+
+1. Make sure OT_DB_VERSION and OSU_BUS_VERSION is set appropriately.
+   (and make sure Info.plist agrees with OSU_BUS_VERSION!)
+
+2. Make sure databases are properly regenerated.
+
+   a. For each active, supported OT_DB_VERSION, run a compiled version of
+      'tripdb' on an old database from that version. This will update it.
+   
+   b. Open the database, and edit any new entries is 'pretty_names' table.
+      That is, look for entries where both names are ALL CAPS!
+   
+   c. Upload all these new databases (with different names!) to
+      'updates/incoming/'.
+   
+   d. Inside 'updates/', run 'proccess.py'.
+
+### SUBMIT APP TO APP STORE / BUILD AD-HOC VERSION / WHATEVER ###
+### (wait until approval, upload, whatever till you go on...) ###
+
+3. Make sure to update "updates/version" appropriately on the server!

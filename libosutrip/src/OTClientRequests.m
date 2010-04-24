@@ -122,6 +122,15 @@
 	
 	NSString* APIKeyEsc = [APIKey stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 	[argstrings addObject: [NSString stringWithFormat: @"key=%@", APIKeyEsc, nil]];
+	
+	if ([base isEqual: OTC_CUSTOMURL])
+	{
+		[argstrings addObject: [NSString stringWithFormat: @"dbversion=%s", OT_DB_VERSION]];
+		[argstrings addObject: [NSString stringWithFormat: @"dbdate=%@", [self databaseVersion]]];
+#ifdef OSU_BUS_VERSION
+		[argstrings addObject: [NSString stringWithFormat: @"version=%s", OSU_BUS_VERSION]];
+#endif
+	}
 
 	NSString* url = [NSString stringWithFormat: @"%@%@?%@", base, name, [argstrings componentsJoinedByString: @"&"], nil];
 	
