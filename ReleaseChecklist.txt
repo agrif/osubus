@@ -5,8 +5,9 @@ Make sure to do all of this, each release! You could screw up, seriously!
 
 2. Make sure databases are properly regenerated.
 
-   a. For each active, supported OT_DB_VERSION, run a compiled version of
-      'tripdb' on an old database from that version. This will update it.
+   a. For each active, supported OT_DB_VERSION, (or just this version),
+      run a compiled version of 'tripdb' on an old database from that version.
+      This will update it.
    
    b. Open the database, and edit any new entries is 'pretty_names' table.
       That is, look for entries where both names are ALL CAPS!
@@ -15,6 +16,8 @@ Make sure to do all of this, each release! You could screw up, seriously!
       'updates/incoming/'.
    
    d. Inside 'updates/', run 'proccess.py'.
+
+3. Tag and commit the current git repository. Useful for later branching!
 
 ### SUBMIT APP TO APP STORE / BUILD AD-HOC VERSION / WHATEVER ###
 ### (wait until approval, upload, whatever till you go on...) ###
