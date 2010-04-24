@@ -60,6 +60,8 @@
 		D021240311826CC000FF637B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D021240211826CC000FF637B /* Default.png */; };
 		D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D021241111826D3000FF637B /* OBBulletinViewController.m */; };
 		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
+		D021246C11827F7F00FF637B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D021246A11827F7F00FF637B /* icon.png */; };
+		D021246D11827F7F00FF637B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D021246B11827F7F00FF637B /* iTunesArtwork */; };
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D08FB32E11530BEB00CC73CF /* OBRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB32D11530BEB00CC73CF /* OBRoutesViewController.m */; };
 		D08FB33011530D1C00CC73CF /* OBRoutesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */; };
@@ -140,6 +142,8 @@
 		D021241011826D3000FF637B /* OBBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinViewController.h; sourceTree = "<group>"; };
 		D021241111826D3000FF637B /* OBBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinViewController.m; sourceTree = "<group>"; };
 		D021241611826E9500FF637B /* OBBulletinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinViewController.xib; path = Resources/OBBulletinViewController.xib; sourceTree = "<group>"; };
+		D021246A11827F7F00FF637B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icon.png; sourceTree = "<group>"; };
+		D021246B11827F7F00FF637B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
 		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
 		D08FB32C11530BEB00CC73CF /* OBRoutesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBRoutesViewController.h; sourceTree = "<group>"; };
@@ -256,6 +260,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D021246A11827F7F00FF637B /* icon.png */,
+				D021246B11827F7F00FF637B /* iTunesArtwork */,
 				D021240211826CC000FF637B /* Default.png */,
 				D00374651139EDC100053FCB /* cabs.db */,
 				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
@@ -443,6 +449,8 @@
 				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
 				D021240311826CC000FF637B /* Default.png in Resources */,
 				D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */,
+				D021246C11827F7F00FF637B /* icon.png in Resources */,
+				D021246D11827F7F00FF637B /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +555,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -560,6 +569,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -573,6 +583,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
