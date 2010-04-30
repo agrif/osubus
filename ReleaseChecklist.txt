@@ -19,8 +19,8 @@ Make sure to do all of this, each release! You could screw up, seriously!
 
 3. Tag and commit the current git repository. Useful for later branching!
    ( commit: `git commit [-a]`
-     tag:    `git tag -a v0.0.0`
-     push:   `git push --tags`   )
+     tag:    `git tag -a v0.0.0 -m "tagging version 0.0.0"`
+     push:   `git push && git push --tags` [may take a while] )
 
 ### SUBMIT APP TO APP STORE / BUILD AD-HOC VERSION / WHATEVER ###
 ### (wait until approval, upload, whatever till you go on...) ###
