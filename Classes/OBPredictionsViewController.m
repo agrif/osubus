@@ -205,7 +205,9 @@
 			{
 				if (error_cell_text)
 					return [self cellForTable: tableView withText: error_cell_text];
-				return [self cellForTable: tableView withText: @"Loading..."];
+				UITableViewCell* ret = [self cellForTable: tableView withText: @"Loading..."];
+				[ret setAccessoryType: UITableViewCellAccessoryNone];
+				return ret;
 			}
 			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
 		case OBPS_ACTIONS:
