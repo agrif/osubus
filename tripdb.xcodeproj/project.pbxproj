@@ -1,0 +1,348 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		D0412FCF129BF86A00158793 /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC0129BF86A00158793 /* OTClient.m */; };
+		D0412FD0129BF86A00158793 /* OTClientRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC1129BF86A00158793 /* OTClientRequests.m */; };
+		D0412FD1129BF86A00158793 /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC2129BF86A00158793 /* OTClientSingleton.m */; };
+		D0412FD2129BF86A00158793 /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC3129BF86A00158793 /* OTClientDatabase.m */; };
+		D0412FD3129BF86A00158793 /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC4129BF86A00158793 /* OTClientUpdateDatabase.m */; };
+		D0412FD4129BF86A00158793 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC5129BF86A00158793 /* NSDateAdditions.m */; };
+		D0412FD5129BF86A00158793 /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC6129BF86A00158793 /* OTRDirections.m */; };
+		D0412FD6129BF86A00158793 /* OTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC7129BF86A00158793 /* OTRequest.m */; };
+		D0412FD7129BF86A00158793 /* OTRPatterns.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC8129BF86A00158793 /* OTRPatterns.m */; };
+		D0412FD8129BF86A00158793 /* OTRPredictions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FC9129BF86A00158793 /* OTRPredictions.m */; };
+		D0412FD9129BF86A00158793 /* OTRRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FCA129BF86A00158793 /* OTRRoutes.m */; };
+		D0412FDA129BF86A00158793 /* OTRServiceBulletins.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FCB129BF86A00158793 /* OTRServiceBulletins.m */; };
+		D0412FDB129BF86A00158793 /* OTRStops.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FCC129BF86A00158793 /* OTRStops.m */; };
+		D0412FDC129BF86A00158793 /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FCD129BF86A00158793 /* OTRTime.m */; };
+		D0412FDD129BF86A00158793 /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FCE129BF86A00158793 /* OTRVehicles.m */; };
+		D0412FE8129BF88A00158793 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FE2129BF88A00158793 /* FMDatabase.m */; };
+		D0412FE9129BF88A00158793 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FE4129BF88A00158793 /* FMDatabaseAdditions.m */; };
+		D0412FEA129BF88A00158793 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FE6129BF88A00158793 /* FMResultSet.m */; };
+		D0412FEC129BF89000158793 /* tripdb.m in Sources */ = {isa = PBXBuildFile; fileRef = D0412FEB129BF89000158793 /* tripdb.m */; };
+		D0412FF6129BF90F00158793 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0412FF5129BF90F00158793 /* libsqlite3.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8DD76F9E0486AA7600D96B5E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8DD76FA10486AA7600D96B5E /* tripdb */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = tripdb; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0412FB3129BF86A00158793 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
+		D0412FB4129BF86A00158793 /* OTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTClient.h; sourceTree = "<group>"; };
+		D0412FB5129BF86A00158793 /* OTClientUpdateDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTClientUpdateDatabase.h; sourceTree = "<group>"; };
+		D0412FB6129BF86A00158793 /* OTRDirections.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRDirections.h; sourceTree = "<group>"; };
+		D0412FB7129BF86A00158793 /* OTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRequest.h; sourceTree = "<group>"; };
+		D0412FB8129BF86A00158793 /* OTRPatterns.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRPatterns.h; sourceTree = "<group>"; };
+		D0412FB9129BF86A00158793 /* OTRPredictions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRPredictions.h; sourceTree = "<group>"; };
+		D0412FBA129BF86A00158793 /* OTRRoutes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRRoutes.h; sourceTree = "<group>"; };
+		D0412FBB129BF86A00158793 /* OTRServiceBulletins.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRServiceBulletins.h; sourceTree = "<group>"; };
+		D0412FBC129BF86A00158793 /* OTRStops.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRStops.h; sourceTree = "<group>"; };
+		D0412FBD129BF86A00158793 /* OTRTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRTime.h; sourceTree = "<group>"; };
+		D0412FBE129BF86A00158793 /* OTRVehicles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTRVehicles.h; sourceTree = "<group>"; };
+		D0412FC0129BF86A00158793 /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
+		D0412FC1129BF86A00158793 /* OTClientRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientRequests.m; sourceTree = "<group>"; };
+		D0412FC2129BF86A00158793 /* OTClientSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientSingleton.m; sourceTree = "<group>"; };
+		D0412FC3129BF86A00158793 /* OTClientDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientDatabase.m; sourceTree = "<group>"; };
+		D0412FC4129BF86A00158793 /* OTClientUpdateDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClientUpdateDatabase.m; sourceTree = "<group>"; };
+		D0412FC5129BF86A00158793 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		D0412FC6129BF86A00158793 /* OTRDirections.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRDirections.m; sourceTree = "<group>"; };
+		D0412FC7129BF86A00158793 /* OTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRequest.m; sourceTree = "<group>"; };
+		D0412FC8129BF86A00158793 /* OTRPatterns.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRPatterns.m; sourceTree = "<group>"; };
+		D0412FC9129BF86A00158793 /* OTRPredictions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRPredictions.m; sourceTree = "<group>"; };
+		D0412FCA129BF86A00158793 /* OTRRoutes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRRoutes.m; sourceTree = "<group>"; };
+		D0412FCB129BF86A00158793 /* OTRServiceBulletins.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRServiceBulletins.m; sourceTree = "<group>"; };
+		D0412FCC129BF86A00158793 /* OTRStops.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRStops.m; sourceTree = "<group>"; };
+		D0412FCD129BF86A00158793 /* OTRTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRTime.m; sourceTree = "<group>"; };
+		D0412FCE129BF86A00158793 /* OTRVehicles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTRVehicles.m; sourceTree = "<group>"; };
+		D0412FDF129BF88A00158793 /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
+		D0412FE0129BF88A00158793 /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
+		D0412FE1129BF88A00158793 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		D0412FE2129BF88A00158793 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		D0412FE3129BF88A00158793 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		D0412FE4129BF88A00158793 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		D0412FE5129BF88A00158793 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		D0412FE6129BF88A00158793 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		D0412FE7129BF88A00158793 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		D0412FEB129BF89000158793 /* tripdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tripdb.m; path = "Other Sources/tripdb.m"; sourceTree = "<group>"; };
+		D0412FF5129BF90F00158793 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DD76F9B0486AA7600D96B5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+				D0412FF6129BF90F00158793 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		08FB7794FE84155DC02AAC07 /* tripdb */ = {
+			isa = PBXGroup;
+			children = (
+				D0412FEB129BF89000158793 /* tripdb.m */,
+				D0412FDE129BF88A00158793 /* fmdb */,
+				D0412FB1129BF86A00158793 /* libosutrip */,
+				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
+				1AB674ADFE9D54B511CA2CBB /* Products */,
+				D0412FF5129BF90F00158793 /* libsqlite3.dylib */,
+			);
+			name = tripdb;
+			sourceTree = "<group>";
+		};
+		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		1AB674ADFE9D54B511CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DD76FA10486AA7600D96B5E /* tripdb */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D0412FB1129BF86A00158793 /* libosutrip */ = {
+			isa = PBXGroup;
+			children = (
+				D0412FB2129BF86A00158793 /* include */,
+				D0412FBF129BF86A00158793 /* src */,
+			);
+			path = libosutrip;
+			sourceTree = "<group>";
+		};
+		D0412FB2129BF86A00158793 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D0412FB3129BF86A00158793 /* NSDateAdditions.h */,
+				D0412FB4129BF86A00158793 /* OTClient.h */,
+				D0412FB5129BF86A00158793 /* OTClientUpdateDatabase.h */,
+				D0412FB6129BF86A00158793 /* OTRDirections.h */,
+				D0412FB7129BF86A00158793 /* OTRequest.h */,
+				D0412FB8129BF86A00158793 /* OTRPatterns.h */,
+				D0412FB9129BF86A00158793 /* OTRPredictions.h */,
+				D0412FBA129BF86A00158793 /* OTRRoutes.h */,
+				D0412FBB129BF86A00158793 /* OTRServiceBulletins.h */,
+				D0412FBC129BF86A00158793 /* OTRStops.h */,
+				D0412FBD129BF86A00158793 /* OTRTime.h */,
+				D0412FBE129BF86A00158793 /* OTRVehicles.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		D0412FBF129BF86A00158793 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D0412FC0129BF86A00158793 /* OTClient.m */,
+				D0412FC1129BF86A00158793 /* OTClientRequests.m */,
+				D0412FC2129BF86A00158793 /* OTClientSingleton.m */,
+				D0412FC3129BF86A00158793 /* OTClientDatabase.m */,
+				D0412FC4129BF86A00158793 /* OTClientUpdateDatabase.m */,
+				D0412FC5129BF86A00158793 /* NSDateAdditions.m */,
+				D0412FC6129BF86A00158793 /* OTRDirections.m */,
+				D0412FC7129BF86A00158793 /* OTRequest.m */,
+				D0412FC8129BF86A00158793 /* OTRPatterns.m */,
+				D0412FC9129BF86A00158793 /* OTRPredictions.m */,
+				D0412FCA129BF86A00158793 /* OTRRoutes.m */,
+				D0412FCB129BF86A00158793 /* OTRServiceBulletins.m */,
+				D0412FCC129BF86A00158793 /* OTRStops.m */,
+				D0412FCD129BF86A00158793 /* OTRTime.m */,
+				D0412FCE129BF86A00158793 /* OTRVehicles.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D0412FDE129BF88A00158793 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				D0412FDF129BF88A00158793 /* CHANGES_AND_TODO_LIST.txt */,
+				D0412FE0129BF88A00158793 /* CONTRIBUTORS.txt */,
+				D0412FE1129BF88A00158793 /* FMDatabase.h */,
+				D0412FE2129BF88A00158793 /* FMDatabase.m */,
+				D0412FE3129BF88A00158793 /* FMDatabaseAdditions.h */,
+				D0412FE4129BF88A00158793 /* FMDatabaseAdditions.m */,
+				D0412FE5129BF88A00158793 /* FMResultSet.h */,
+				D0412FE6129BF88A00158793 /* FMResultSet.m */,
+				D0412FE7129BF88A00158793 /* LICENSE.txt */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DD76F960486AA7600D96B5E /* tripdb */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "tripdb" */;
+			buildPhases = (
+				8DD76F990486AA7600D96B5E /* Sources */,
+				8DD76F9B0486AA7600D96B5E /* Frameworks */,
+				8DD76F9E0486AA7600D96B5E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tripdb;
+			productInstallPath = "$(HOME)/bin";
+			productName = tripdb;
+			productReference = 8DD76FA10486AA7600D96B5E /* tripdb */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		08FB7793FE84155DC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "tripdb" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 08FB7794FE84155DC02AAC07 /* tripdb */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DD76F960486AA7600D96B5E /* tripdb */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DD76F990486AA7600D96B5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0412FCF129BF86A00158793 /* OTClient.m in Sources */,
+				D0412FD0129BF86A00158793 /* OTClientRequests.m in Sources */,
+				D0412FD1129BF86A00158793 /* OTClientSingleton.m in Sources */,
+				D0412FD2129BF86A00158793 /* OTClientDatabase.m in Sources */,
+				D0412FD3129BF86A00158793 /* OTClientUpdateDatabase.m in Sources */,
+				D0412FD4129BF86A00158793 /* NSDateAdditions.m in Sources */,
+				D0412FD5129BF86A00158793 /* OTRDirections.m in Sources */,
+				D0412FD6129BF86A00158793 /* OTRequest.m in Sources */,
+				D0412FD7129BF86A00158793 /* OTRPatterns.m in Sources */,
+				D0412FD8129BF86A00158793 /* OTRPredictions.m in Sources */,
+				D0412FD9129BF86A00158793 /* OTRRoutes.m in Sources */,
+				D0412FDA129BF86A00158793 /* OTRServiceBulletins.m in Sources */,
+				D0412FDB129BF86A00158793 /* OTRStops.m in Sources */,
+				D0412FDC129BF86A00158793 /* OTRTime.m in Sources */,
+				D0412FDD129BF86A00158793 /* OTRVehicles.m in Sources */,
+				D0412FE8129BF88A00158793 /* FMDatabase.m in Sources */,
+				D0412FE9129BF88A00158793 /* FMDatabaseAdditions.m in Sources */,
+				D0412FEA129BF88A00158793 /* FMResultSet.m in Sources */,
+				D0412FEC129BF89000158793 /* tripdb.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB927508733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = tripdb;
+			};
+			name = Debug;
+		};
+		1DEB927608733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				INSTALL_PATH = /usr/local/bin;
+				PRODUCT_NAME = tripdb;
+			};
+			name = Release;
+		};
+		1DEB927908733DD40010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		1DEB927A08733DD40010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB927408733DD40010E9CD /* Build configuration list for PBXNativeTarget "tripdb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927508733DD40010E9CD /* Debug */,
+				1DEB927608733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB927808733DD40010E9CD /* Build configuration list for PBXProject "tripdb" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB927908733DD40010E9CD /* Debug */,
+				1DEB927A08733DD40010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 08FB7793FE84155DC02AAC07 /* Project object */;
+}

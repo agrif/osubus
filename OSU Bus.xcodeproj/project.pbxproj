@@ -36,27 +36,6 @@
 		D0143D981152E44500C376CC /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D961152E44500C376CC /* OTClientSingleton.m */; };
 		D0143D9A1152E4CE00C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
 		D0143DAE1152E5D200C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
-		D0143ECE1152F26000C376CC /* tripdb.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143ECC1152F24E00C376CC /* tripdb.m */; };
-		D0143F0A1152F67800C376CC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		D0143F581152F67B00C376CC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
-		D0143F591152F6A800C376CC /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003746F1139EE7300053FCB /* FMDatabase.m */; };
-		D0143F5A1152F6A800C376CC /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374711139EE7300053FCB /* FMDatabaseAdditions.m */; };
-		D0143F5B1152F6A800C376CC /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374741139EE7300053FCB /* FMResultSet.m */; };
-		D0143F611152F6C300C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
-		D0143F621152F6C300C376CC /* OTClientRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D951152E44500C376CC /* OTClientRequests.m */; };
-		D0143F631152F6C300C376CC /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D961152E44500C376CC /* OTClientSingleton.m */; };
-		D0143F641152F6C300C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
-		D0143F651152F6C300C376CC /* OTClientUpdateDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748E1139EE7C00053FCB /* OTClientUpdateDatabase.m */; };
-		D0143F661152F6C300C376CC /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748C1139EE7C00053FCB /* NSDateAdditions.m */; };
-		D0143F671152F6C300C376CC /* OTRDirections.m in Sources */ = {isa = PBXBuildFile; fileRef = D003748F1139EE7C00053FCB /* OTRDirections.m */; };
-		D0143F681152F6C300C376CC /* OTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374901139EE7C00053FCB /* OTRequest.m */; };
-		D0143F691152F6C300C376CC /* OTRPatterns.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374911139EE7C00053FCB /* OTRPatterns.m */; };
-		D0143F6A1152F6C300C376CC /* OTRPredictions.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374921139EE7C00053FCB /* OTRPredictions.m */; };
-		D0143F6B1152F6C300C376CC /* OTRRoutes.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374931139EE7C00053FCB /* OTRRoutes.m */; };
-		D0143F6C1152F6C300C376CC /* OTRServiceBulletins.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374941139EE7C00053FCB /* OTRServiceBulletins.m */; };
-		D0143F6D1152F6C300C376CC /* OTRStops.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374951139EE7C00053FCB /* OTRStops.m */; };
-		D0143F6E1152F6C300C376CC /* OTRTime.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374961139EE7C00053FCB /* OTRTime.m */; };
-		D0143F6F1152F6C300C376CC /* OTRVehicles.m in Sources */ = {isa = PBXBuildFile; fileRef = D00374971139EE7C00053FCB /* OTRVehicles.m */; };
 		D021240311826CC000FF637B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D021240211826CC000FF637B /* Default.png */; };
 		D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D021241111826D3000FF637B /* OBBulletinViewController.m */; };
 		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
@@ -136,7 +115,6 @@
 		D0143DAD1152E5D200C376CC /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
 		D0143E9F1152EF6200C376CC /* OSU_Bus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSU_Bus_Prefix.pch; path = "Other Sources/OSU_Bus_Prefix.pch"; sourceTree = "<group>"; };
 		D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OSU_Bus-Info.plist"; path = "Resources/OSU_Bus-Info.plist"; sourceTree = "<group>"; };
-		D0143ECC1152F24E00C376CC /* tripdb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = tripdb.m; path = "Other Sources/tripdb.m"; sourceTree = "<group>"; };
 		D021240211826CC000FF637B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		D021240411826CCD00FF637B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Other Sources/Entitlements.plist"; sourceTree = "<group>"; };
 		D021241011826D3000FF637B /* OBBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinViewController.h; sourceTree = "<group>"; };
@@ -181,15 +159,6 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */,
 				D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0143EC71152F1BE00C376CC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0143F581152F67B00C376CC /* libsqlite3.dylib in Frameworks */,
-				D0143F0A1152F67800C376CC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,7 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				D021240411826CCD00FF637B /* Entitlements.plist */,
-				D0143ECC1152F24E00C376CC /* tripdb.m */,
 				D0143E9F1152EF6200C376CC /* OSU_Bus_Prefix.pch */,
 				D003736E1139E35F00053FCB /* main.m */,
 			);
@@ -398,21 +366,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* OSU Bus.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D0143EC81152F1BE00C376CC /* tripdb */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D0143ECB1152F1EF00C376CC /* Build configuration list for PBXNativeTarget "tripdb" */;
-			buildPhases = (
-				D0143EC61152F1BE00C376CC /* Sources */,
-				D0143EC71152F1BE00C376CC /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = tripdb;
-			productName = tripdb;
-			productType = "com.apple.product-type.tool";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -420,13 +373,19 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "OSU Bus" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* OSU Bus */,
-				D0143EC81152F1BE00C376CC /* tripdb */,
 			);
 		};
 /* End PBXProject section */
@@ -495,32 +454,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D0143EC61152F1BE00C376CC /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D0143F611152F6C300C376CC /* OTClient.m in Sources */,
-				D0143F621152F6C300C376CC /* OTClientRequests.m in Sources */,
-				D0143F631152F6C300C376CC /* OTClientSingleton.m in Sources */,
-				D0143F641152F6C300C376CC /* OTClientDatabase.m in Sources */,
-				D0143F651152F6C300C376CC /* OTClientUpdateDatabase.m in Sources */,
-				D0143F661152F6C300C376CC /* NSDateAdditions.m in Sources */,
-				D0143F671152F6C300C376CC /* OTRDirections.m in Sources */,
-				D0143F681152F6C300C376CC /* OTRequest.m in Sources */,
-				D0143F691152F6C300C376CC /* OTRPatterns.m in Sources */,
-				D0143F6A1152F6C300C376CC /* OTRPredictions.m in Sources */,
-				D0143F6B1152F6C300C376CC /* OTRRoutes.m in Sources */,
-				D0143F6C1152F6C300C376CC /* OTRServiceBulletins.m in Sources */,
-				D0143F6D1152F6C300C376CC /* OTRStops.m in Sources */,
-				D0143F6E1152F6C300C376CC /* OTRTime.m in Sources */,
-				D0143F6F1152F6C300C376CC /* OTRVehicles.m in Sources */,
-				D0143F591152F6A800C376CC /* FMDatabase.m in Sources */,
-				D0143F5A1152F6A800C376CC /* FMDatabaseAdditions.m in Sources */,
-				D0143F5B1152F6A800C376CC /* FMResultSet.m in Sources */,
-				D0143ECE1152F26000C376CC /* tripdb.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -535,6 +468,7 @@
 				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
 				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
 				PRODUCT_NAME = "OSU Bus";
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = Debug;
 		};
@@ -547,49 +481,53 @@
 				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
 				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
 				PRODUCT_NAME = "OSU Bus";
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
 		D00C2D0411823E640093578A /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CURRENT_PROJECT_VERSION = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = macosx10.5;
 			};
 			name = Distribution;
 		};
@@ -603,83 +541,9 @@
 				GCC_PREFIX_HEADER = "Other Sources/OSU_Bus_Prefix.pch";
 				INFOPLIST_FILE = "Resources/OSU_Bus-Info.plist";
 				PRODUCT_NAME = "OSU Bus";
+				SDKROOT = iphonesimulator4.1;
 			};
 			name = Distribution;
-		};
-		D00C2D0611823E640093578A /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = tripdb;
-				SDKROOT = macosx10.5;
-				ZERO_LINK = NO;
-			};
-			name = Distribution;
-		};
-		D0143EC91152F1BE00C376CC /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = tripdb;
-				SDKROOT = macosx10.5;
-			};
-			name = Debug;
-		};
-		D0143ECA1152F1BE00C376CC /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
-				INSTALL_PATH = /usr/local/bin;
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					AppKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = tripdb;
-				SDKROOT = macosx10.5;
-				ZERO_LINK = NO;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -700,16 +564,6 @@
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
 				D00C2D0411823E640093578A /* Distribution */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D0143ECB1152F1EF00C376CC /* Build configuration list for PBXNativeTarget "tripdb" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D0143EC91152F1BE00C376CC /* Debug */,
-				D0143ECA1152F1BE00C376CC /* Release */,
-				D00C2D0611823E640093578A /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
