@@ -23,6 +23,13 @@ int main(int argc, char* argv[])
 {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
+	// set the local application time zone
+	// this all only makes sense in OSU's time zone
+	NSTimeZone* tz = [[NSTimeZone alloc] initWithName: @"US/Eastern"];
+	[NSTimeZone setDefaultTimeZone: tz];
+	[tz release];
+	
+	// handle the database setup
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString* pathToDB = [[paths objectAtIndex:0] stringByAppendingPathComponent: @"cabs.db"];
 	

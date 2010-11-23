@@ -26,11 +26,8 @@
 		[nicedate appendString: @":00"];
 	}
 
-	// hack
-	// OH GOD WHAT A HACK I'M CHANGING THIS NOW UGH
-	// FIXME : I didn't actually change it... *sad face*
-	// THIS is NUMBER ONE on my list of fixes now.... ARRRRGGH
-	[nicedate appendString: @" -0500"];
+	// FIXME use NSDateFormatter
+	[nicedate appendFormat: @" %+03i00", [[NSTimeZone defaultTimeZone] secondsFromGMT] / (60 * 60)];
 	
 	return [NSDate dateWithString: nicedate];
 }
