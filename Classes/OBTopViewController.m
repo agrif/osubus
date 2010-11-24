@@ -407,6 +407,7 @@
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
+		gpsStartDate = [[NSDate alloc] init];
 		[locManager startUpdatingLocation];
 		hud.labelText = @"Getting Position...";
 		[hud setOpacity: 0.9];
@@ -503,17 +504,23 @@
 	// if we're not on top...
 	if ([self.navigationController topViewController] != self)
 	{
+		[manager stopUpdatingLocation];
+		[gpsStartDate release];
+		[hud hide: YES];
 		return;
 	}
 	
-	// FIXME - more elegant GPS getting
-	// throw away bad locations
-	if ([newLocation horizontalAccuracy] > 100)
-		return;
+	// throw away bad locations, if we're under 10 seconds
+	if ([gpsStartDate timeIntervalSinceNow] > -10)
+	{
+		if ([newLocation horizontalAccuracy] > 100)
+			return;
+	}
 	
 	NSLog(@"accuracy: %f", [newLocation horizontalAccuracy]);
 	
 	[manager stopUpdatingLocation];
+	[gpsStartDate release];
 	[hud hide: YES];
 	
 	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
@@ -527,6 +534,7 @@
 {
 	[manager stopUpdatingLocation];
 	[hud hide: YES];
+	[gpsStartDate release];
 	// ack
 }
 

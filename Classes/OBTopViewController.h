@@ -48,6 +48,7 @@ enum OBTopSections
 	BOOL editMode;
 	
 	CLLocationManager* locManager;
+	NSDate* gpsStartDate;
 	MBProgressHUD* hud;
 	
 	NSMutableData* receivedData;
