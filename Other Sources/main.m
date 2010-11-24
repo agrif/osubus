@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
 	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath: pathToDB];
 	
 	// if it doesn't exist, copy the db out of the bundle so we can write to it
+	// FIXME don't overwrite, or do, based on relative database age
 	if (!fileExists)
 	{
 		[[NSFileManager defaultManager] copyItemAtPath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"] toPath: pathToDB error: NULL];
