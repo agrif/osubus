@@ -525,7 +525,9 @@
 		UILabel* info = (UILabel*)[[[[aboutViewController viewControllers] objectAtIndex: 0] view] viewWithTag: 1];
 		NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 		[info setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
-		//[db_ver release];
+		
+		// tag 2 is the licenses text area
+		// FIXME load the text from Licenses.txt asynchronously
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];
