@@ -12,6 +12,12 @@
 
 @synthesize newCell;
 
+// globally allow table views to autorotate
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+{
+	return YES;
+}
+
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier
 {
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: cellIdentifier];

@@ -7,10 +7,11 @@
 #import <UIKit/UIKit.h>
 
 #import "OTClient.h"
+#import "OBTableViewController.h"
 
 @class OBTopViewController;
 
-@interface OBBulletinsViewController : UITableViewController <OTRequestDelegate>
+@interface OBBulletinsViewController : OBTableViewController <OTRequestDelegate>
 {
 	OBTopViewController* topViewController;
 	BOOL requestedCustom;

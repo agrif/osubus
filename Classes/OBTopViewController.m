@@ -84,6 +84,11 @@
 	}
 }
 
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+{
+	return YES;
+}
+
 - (void) viewWillAppear: (BOOL) animated
 {
 	BOOL firstRun = NO;
@@ -563,6 +568,8 @@
 		{
 			[license setText: [NSString stringWithContentsOfFile: txtpath]];
 		}
+		
+		// FIXME autorotating about view
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];

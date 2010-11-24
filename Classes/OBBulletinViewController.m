@@ -36,6 +36,11 @@
 	[super viewDidUnload];
 }
 
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
+{
+	return YES;
+}
+
 - (void) setBulletin: (NSDictionary*) data
 {
 	if (bulletin == nil)

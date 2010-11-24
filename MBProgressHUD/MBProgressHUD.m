@@ -6,6 +6,8 @@
 
 #import "MBProgressHUD.h"
 
+// FIXME make it work with autorotation
+
 @interface MBProgressHUD ()
 
 - (void)hideUsingAnimation:(BOOL)animated;
