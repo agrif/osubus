@@ -106,10 +106,28 @@
 	favorites = [[NSMutableArray alloc] initWithArray: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"]];
 	favoritesData = [[NSMutableArray alloc] init];
 	
+	NSMutableArray* outdatedFavs = [[NSMutableArray alloc] init];
+	
 	for (NSNumber* fav in favorites)
 	{
+		NSDictionary* stop = [[OTClient sharedClient] stop: fav];
+		if (stop == nil)
+		{
+			// this is an old stop that has been removed from the DB
+			[outdatedFavs addObject: fav];
+			continue;
+		}
+		
 		[favoritesData addObject: [[OTClient sharedClient] stop: fav]];
 	}
+	
+	for (NSDictionary* fav in outdatedFavs)
+	{
+		[favorites removeObject: fav];
+	}
+	
+	[outdatedFavs release];
+	[self saveFavorites];
 	
 	//NSLog(@"favdata: %@", favorites);
 	
