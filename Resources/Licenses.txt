@@ -6,8 +6,8 @@ OSU Bus also uses FMDB, an sqlite3 wrapper for Objective C written by Gus Muelle
 
 ---
 
-				    GNU GENERAL PUBLIC LICENSE
-						       Version 2, June 1991
+ GNU GENERAL PUBLIC LICENSE
+	Version 2, June 1991
 
  Copyright (C) 1989, 1991
     Free Software Foundation, Inc.,

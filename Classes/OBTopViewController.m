@@ -556,8 +556,13 @@
 		NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 		[info setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
 		
-		// tag 2 is the licenses text area
-		// FIXME load the text from Licenses.txt asynchronously
+		// tag 2 is the licenses text area on third page
+		UITextView* license = (UITextView*)[[[[aboutViewController viewControllers] objectAtIndex: 2] view] viewWithTag: 2];
+		NSString* txtpath = [[NSBundle mainBundle] pathForResource: @"Licenses" ofType: @"txt"];
+		if (txtpath)
+		{
+			[license setText: [NSString stringWithContentsOfFile: txtpath]];
+		}
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];
