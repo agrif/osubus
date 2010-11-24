@@ -535,7 +535,11 @@
 	[manager stopUpdatingLocation];
 	[hud hide: YES];
 	[gpsStartDate release];
-	// ack
+	
+	NSLog(@"GPS Error: %@", [error localizedDescription]);
+	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+	[alertView show];
+	[alertView release];
 }
 
 # pragma mark Interface Builder Actions
