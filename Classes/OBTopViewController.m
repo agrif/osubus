@@ -413,6 +413,7 @@
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
 		gpsStartDate = [[NSDate alloc] init];
+		[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: GPS_MAX_WAIT];
 		[locManager startUpdatingLocation];
 		hud.labelText = @"Getting Position...";
 		[hud setOpacity: 0.9];
@@ -504,28 +505,38 @@
 
 # pragma mark GPS fun
 
+- (void) locationTimeout
+{
+	// force an update
+	[gpsStartDate release];
+	gpsStartDate = nil;
+	[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
+}
+
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
 {
 	// if we're not on top...
 	if ([self.navigationController topViewController] != self)
 	{
 		[manager stopUpdatingLocation];
-		[gpsStartDate release];
+		if (gpsStartDate)
+			[gpsStartDate release];
 		[hud hide: YES];
 		return;
 	}
 	
 	// throw away bad locations, if we're under 10 seconds
-	if ([gpsStartDate timeIntervalSinceNow] > -10)
+	if (gpsStartDate != nil && [gpsStartDate timeIntervalSinceNow] > -GPS_MAX_WAIT)
 	{
-		if ([newLocation horizontalAccuracy] > 100)
+		if ([newLocation horizontalAccuracy] > GPS_ACCURACY)
 			return;
 	}
 	
 	NSLog(@"accuracy: %f", [newLocation horizontalAccuracy]);
 	
 	[manager stopUpdatingLocation];
-	[gpsStartDate release];
+	if (gpsStartDate)
+		[gpsStartDate release];
 	[hud hide: YES];
 	
 	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
@@ -539,7 +550,8 @@
 {
 	[manager stopUpdatingLocation];
 	[hud hide: YES];
-	[gpsStartDate release];
+	if (gpsStartDate)
+		[gpsStartDate release];
 	
 	NSLog(@"GPS Error: %@", [error localizedDescription]);
 	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
