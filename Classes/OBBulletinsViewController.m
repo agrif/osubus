@@ -26,8 +26,24 @@
 	topViewController = caller;
 	requestedCustom = NO;
 	self.bulletins = [NSMutableArray array];
-	// FIXME : hardcoded routes, ugh
-	[[OTClient sharedClient] requestServiceBulletinsWithDelegate: self forRoutes: @"BV,CLN,CLS,ER,MC,NE"];
+	
+	NSArray* routes = [[OTClient sharedClient] routes];
+	NSMutableString* rtstring = [[NSMutableString alloc] init];
+	BOOL first = YES;
+	for (NSDictionary* route in routes)
+	{
+		if (first)
+		{
+			first = NO;
+			[rtstring appendString: [route objectForKey: @"short"]];
+		} else {
+			[rtstring appendFormat: @",%@", [route objectForKey: @"short"]];
+		}
+	}
+	//NSLog(@"routestring: %@", rtstring);
+	
+	[[OTClient sharedClient] requestServiceBulletinsWithDelegate: self forRoutes: rtstring];
+	[rtstring release];
 }
 
 - (void) dealloc
@@ -46,6 +62,7 @@
 	{
 		if ([[[result objectForKey: @"sb"] objectAtIndex: i] objectForKey: @"srvc"] != nil)
 		{
+			// FIXME non-global service bulletins
 			// we used to ignore... in the future, look for a better way to include all
 			// bulletins, even non-globals like these
 			//continue;
@@ -67,7 +84,7 @@
 		endOfOfficialBulletins = [bulletins count];
 		
 		requestedCustom = YES;
-		[[OTClient sharedClient] requestCustomServiceBulletinsWithDelegate: self forRoutes: @"NE"];
+		[[OTClient sharedClient] requestCustomServiceBulletinsWithDelegate: self forRoutes: @""];
 	} else {
 		// we've got customs
 		[topViewController startBulletinDisplay];
