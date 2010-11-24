@@ -237,6 +237,7 @@
 	{
 		// in a perfect world, we would
 		// open (walking) directions from *here* to the stop
+		// FIXME *properly* escape name so results show up right
 		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], [[stop objectForKey: @"name"] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
 		NSLog(@"opening URL: %@", url);
 		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
