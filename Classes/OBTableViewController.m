@@ -109,8 +109,25 @@
 	
 	if ([[data allKeys] containsObject: @"dist"])
 	{
+		BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+		
 		double dist = [[data objectForKey: @"dist"] doubleValue];
-		[label setText: [NSString stringWithFormat: @"%.0f meters", dist]];
+		
+		if (isMetric)
+		{
+			int meters = dist;
+			[label setText: [NSString stringWithFormat: @"%i %s", meters, meters == 1 ? "meter" : "meters"]];
+		} else {
+			double miles = (dist * 0.621371192) / 1000;
+			int feet = miles * 5280;
+			
+			if (miles > 0.4)
+			{
+				[label setText: [NSString stringWithFormat: @"%.01f miles", miles]];
+			} else {
+				[label setText: [NSString stringWithFormat: @"%i %s", feet, feet == 1 ? "foot" : "feet"]];
+			}
+		}
 		[label setHidden: NO];
 	} else {
 		[label setHidden: YES];
