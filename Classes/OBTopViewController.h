@@ -14,6 +14,7 @@
 
 @class OBBulletinsViewController;
 @class MBProgressHUD;
+@class OBAboutViewController;
 
 enum OBTopOptions
 {
@@ -34,7 +35,7 @@ enum OBTopSections
 
 @interface OBTopViewController : OBTableViewController <CLLocationManagerDelegate, UIActionSheetDelegate>
 {
-	UITabBarController* aboutViewController;
+	OBAboutViewController* aboutViewController;
 	UITableViewCell* bulletinCell;
 	UITableViewCell* emptyFavoritesCell;
 	
@@ -59,7 +60,7 @@ enum OBTopSections
 	OBBulletinsViewController* bulletinsViewController;
 }
 
-@property (nonatomic, retain) IBOutlet UIViewController* aboutViewController;
+@property (nonatomic, retain) IBOutlet OBAboutViewController* aboutViewController;
 @property (nonatomic, retain) IBOutlet UITableViewCell* bulletinCell;
 @property (nonatomic, retain) IBOutlet UITableViewCell* emptyFavoritesCell;
 
@@ -79,7 +80,6 @@ enum OBTopSections
 - (void) locationTimeout;
 
 - (IBAction) showAboutView: (id) sender;
-- (IBAction) dismissAboutView: (id) sender;
 
 - (IBAction) beginEdit: (id) sender;
 - (IBAction) endEdit: (id) sender;

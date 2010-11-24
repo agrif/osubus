@@ -10,6 +10,7 @@
 #import "OTClient.h"
 
 #import "OBBulletinsViewController.h"
+#import "OBAboutViewController.h"
 #import "OBRoutesViewController.h"
 #import "OBStopsViewController.h"
 #import "OBPredictionsViewController.h"
@@ -565,31 +566,10 @@
 {
 	if (aboutViewController == nil)
 	{
-		NSLog(@"Creating OBAboutViewController");
-		[[NSBundle mainBundle] loadNibNamed: @"OBAboutViewController" owner: self options: nil];
-		
-		// note that tag 1 is the "version info" label on the front page
-		UILabel* info = (UILabel*)[[[[aboutViewController viewControllers] objectAtIndex: 0] view] viewWithTag: 1];
-		NSString* db_ver = [[OTClient sharedClient] databaseVersion];
-		[info setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
-		
-		// tag 2 is the licenses text area on third page
-		UITextView* license = (UITextView*)[[[[aboutViewController viewControllers] objectAtIndex: 2] view] viewWithTag: 2];
-		NSString* txtpath = [[NSBundle mainBundle] pathForResource: @"Licenses" ofType: @"txt"];
-		if (txtpath)
-		{
-			[license setText: [NSString stringWithContentsOfFile: txtpath]];
-		}
-		
-		// FIXME autorotating about view
+		aboutViewController = [[OBAboutViewController alloc] initWithNibName: @"OBAboutViewController" bundle: nil];
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];
-}
-
-- (IBAction) dismissAboutView: (id) sender
-{
-	[self.navigationController dismissModalViewControllerAnimated: YES];
 }
 
 - (IBAction) beginEdit: (id) sender
