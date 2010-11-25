@@ -21,4 +21,9 @@
 
 - (IBAction) hideAboutView: (id) button;
 
+- (IBAction) showWebsite;
+- (IBAction) showEmail;
+- (IBAction) showSource;
+- (IBAction) showDonate;
+
 @end

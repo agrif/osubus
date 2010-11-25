@@ -19,8 +19,6 @@
 	
 	self.view = tabBarController.view;
 	
-	// FIXME also make the buttons work
-	
 	NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 	[versionLabel setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
 	
@@ -44,6 +42,26 @@
 - (IBAction) hideAboutView: (id) button
 {
 	[self.parentViewController dismissModalViewControllerAnimated: YES];
+}
+
+- (IBAction) showWebsite
+{
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"http://osubus.gamma-level.com/"]];
+}
+
+- (IBAction) showEmail
+{
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"mailto:?to=aargri@gmail.com&subject=[OSU+Bus]+"]];
+}
+
+- (IBAction) showSource
+{
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"https://github.com/agrif/osubus/"]];
+}
+
+- (IBAction) showDonate
+{
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"http://gamma-level.com/donate"]];
 }
 
 @end
