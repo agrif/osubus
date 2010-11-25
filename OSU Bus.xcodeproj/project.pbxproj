@@ -53,7 +53,7 @@
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
 		D0B5DD39117E56AA00D15F53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B5DD38117E56AA00D15F53 /* MBProgressHUD.m */; };
 		D0BE044C129DB4E000047F35 /* OBAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE044B129DB4E000047F35 /* OBAboutViewController.m */; };
-		D0BE0459129DB68C00047F35 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE0458129DB68C00047F35 /* OBAboutViewController.xib */; };
+		D0BE04ED129E0E3800047F35 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
@@ -143,7 +143,7 @@
 		D0B5DD38117E56AA00D15F53 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		D0BE044A129DB4E000047F35 /* OBAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAboutViewController.h; sourceTree = "<group>"; };
 		D0BE044B129DB4E000047F35 /* OBAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAboutViewController.m; sourceTree = "<group>"; };
-		D0BE0458129DB68C00047F35 /* OBAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBAboutViewController.xib; path = ../daemophone/Resources/OBAboutViewController.xib; sourceTree = SOURCE_ROOT; };
+		D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBAboutViewController.xib; path = Resources/OBAboutViewController.xib; sourceTree = "<group>"; };
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 				D08FB32F11530D1C00CC73CF /* OBRoutesViewController.xib */,
 				D0F83FDF117A620600C58427 /* OBStopsViewController.xib */,
 				D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */,
-				D0BE0458129DB68C00047F35 /* OBAboutViewController.xib */,
+				D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -417,7 +417,7 @@
 				D021246D11827F7F00FF637B /* iTunesArtwork in Resources */,
 				D0212481118281EA00FF637B /* Icon.png in Resources */,
 				D077C890129CB76A0078E0D7 /* Licenses.txt in Resources */,
-				D0BE0459129DB68C00047F35 /* OBAboutViewController.xib in Resources */,
+				D0BE04ED129E0E3800047F35 /* OBAboutViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
