@@ -279,10 +279,10 @@
 	
 	NSString* source = [[[bulletinsViewController bulletins] objectAtIndex: bulletinID] objectForKey: @"source"];
 	
-	if ([source isEqual: @"osu"])
+	if ([source isEqual: @"official"])
 	{
 		[bulletinTitleLabel setText: @"Service Bulletin" animated: animated];
-	} else if ([source isEqual: @"gamma"]) {
+	} else if ([source isEqual: @"custom"]) {
 		[bulletinTitleLabel setText: @"Application News" animated: animated];
 	}
 }

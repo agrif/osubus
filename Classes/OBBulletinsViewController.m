@@ -75,7 +75,7 @@
 		{
 			self.updateURL = body;
 		} else {
-			[bulletins addObject: [NSDictionary dictionaryWithObjectsAndKeys: title, @"title", body, @"body", requestedCustom ? @"gamma" : @"osu", @"source", nil]];
+			[bulletins addObject: [NSDictionary dictionaryWithObjectsAndKeys: title, @"title", body, @"body", requestedCustom ? @"custom" : @"official", @"source", nil]];
 		}
 	}
 	
