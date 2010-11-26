@@ -6,8 +6,6 @@
 
 #import "MBProgressHUD.h"
 
-// FIXME make it work with autorotation
-
 @interface MBProgressHUD ()
 
 - (void)hideUsingAnimation:(BOOL)animated;
@@ -185,7 +183,8 @@
 		self.graceTime = 0.0;
 		self.minShowTime = 0.0;
 
-		self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		self.contentMode = UIViewContentModeRedraw;
 		
         // Transparent background
         self.opaque = NO;
