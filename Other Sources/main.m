@@ -31,19 +31,43 @@ int main(int argc, char* argv[])
 	
 	// handle the database setup
 	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString* pathToDB = [[paths objectAtIndex:0] stringByAppendingPathComponent: @"cabs.db"];
+	NSString* rwDB = [[paths objectAtIndex:0] stringByAppendingPathComponent: @"cabs.db"];
+	NSString* bundleDB = [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"];
 	
-	BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath: pathToDB];
+	BOOL rwDBExists = [[NSFileManager defaultManager] fileExistsAtPath: rwDB];
 	
-	// if it doesn't exist, copy the db out of the bundle so we can write to it
-	// FIXME don't overwrite, or do, based on relative database age
-	if (!fileExists)
+	BOOL dbNeedsCopying = NO;
+	NSFileManager* fm = [NSFileManager defaultManager];
+	
+	if (rwDBExists)
 	{
-		[[NSFileManager defaultManager] copyItemAtPath: [[NSBundle mainBundle] pathForResource: @"cabs" ofType: @"db"] toPath: pathToDB error: NULL];
+		// check to see if the bundle copy is newer than the RW copy
+		// if it is, set dbNeedsCopying to YES
+		
+		NSDate* rwDate = [[fm attributesOfItemAtPath: rwDB error: NULL] fileModificationDate];
+		NSDate* bundleDate = [[fm attributesOfItemAtPath: bundleDB error: NULL] fileModificationDate];
+		
+		//NSLog(@"rwDate: %@ bundleDate: %@", rwDate, bundleDate);
+		
+		if ([bundleDate timeIntervalSinceDate: rwDate] > 0)
+			dbNeedsCopying = YES;
+	} else {
+		// RW copy does not exist, we need to copy it
+		dbNeedsCopying = YES;
+	}
+	
+	if (dbNeedsCopying)
+	{
+		NSLog(@"copying over database");
+		// remove old path, if it exists
+		// this is to prevent a bug where the mod times aren't copied over
+		if (rwDBExists)
+			[fm removeItemAtPath: rwDB error: NULL];
+		[fm copyItemAtPath: bundleDB toPath: rwDB error: NULL];
 	}
 	
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
-	[[OTClient sharedClient] setDatabasePath: pathToDB];
+	[[OTClient sharedClient] setDatabasePath: rwDB];
 	
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
