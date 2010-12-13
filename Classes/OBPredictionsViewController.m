@@ -244,7 +244,9 @@
 		// open (walking) directions from *here* to the stop
 		
 		// first, url-escape the name so we can have it show up on the map
-		NSString* encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[stop objectForKey: @"name"], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+		NSString* encodedName = [[stop objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"(" withString: @"["];
+		encodedName = [encodedName stringByReplacingOccurrencesOfString: @")" withString: @"]"];
+		encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 		
 		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName];
 		NSLog(@"opening URL: %@", url);
