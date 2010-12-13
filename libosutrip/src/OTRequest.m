@@ -131,6 +131,7 @@
 			if ([elementName isEqual: @"error"])
 			{
 				foundError = YES;
+				foundFirstErrorCode = NO;
 				return;
 			}
 			
@@ -201,7 +202,31 @@
 	}
 	
 	if (foundText)
-		[foundText appendString: string];
+	{
+		if (foundError)
+		{
+			// strip out extra whitespace for errors
+			NSCharacterSet* whitespaces = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+			NSPredicate* noEmptyStrings = [NSPredicate predicateWithFormat: @"SELF != ''"];
+			
+			NSArray* parts = [string componentsSeparatedByCharactersInSet: whitespaces];
+			parts = [parts filteredArrayUsingPredicate: noEmptyStrings];
+			string = [parts componentsJoinedByString: @" "];
+		}
+		
+		if ([string length] > 0)
+		{
+			// we need to skip the first part of an error -- it's a useless number!
+			if (foundError && !foundFirstErrorCode)
+			{
+				foundFirstErrorCode = YES;
+			} else {
+				if (foundError && [foundText length] > 0)
+					[foundText appendString: @" "];
+				[foundText appendString: string];
+			}
+		}
+	}
 }
 
 - (void) parser: (NSXMLParser*) parser parseErrorOccurred: (NSError*) parseError
@@ -224,7 +249,7 @@
 - (void) sendInvalidResponseError
 {
 	// error on unexpected formed response
-	NSString* errstr = @"Invalid response format.";
+	NSString* errstr = @"Invalid Response from Server";
 	NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys: errstr, NSLocalizedDescriptionKey, nil];
 	NSError* errorl = [NSError errorWithDomain: OTRequestErrorDomain code: OTRequestInvalidResponseError userInfo: info];
 

@@ -24,6 +24,7 @@
 {
 	BOOL foundResponse;
 	BOOL foundError;
+	BOOL foundFirstErrorCode;
 	NSMutableString* foundText;
 	NSThread* thread;
 	NSThread* callingThread;

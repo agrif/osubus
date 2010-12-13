@@ -150,9 +150,10 @@
 	if (predictions)
 		[predictions release];
 	predictions = nil;
-	// FIXME - a better error message system!
-	//error_cell_text = [[error localizedDescription] copy];
-	error_cell_text = [[NSString alloc] initWithString: @"No service scheduled."];
+	
+	// take the error and stick it on the screen
+	error_cell_text = [[error localizedDescription] copy];
+	
 	NSRange range;
 	range.location = 0;
 	range.length = 1;
@@ -204,7 +205,11 @@
 			if (predictions == nil)
 			{
 				if (error_cell_text)
-					return [self cellForTable: tableView withText: error_cell_text];
+				{
+					UITableViewCell* cell = [self cellForTable: tableView withText: error_cell_text];
+					[cell setAccessoryType: UITableViewCellAccessoryNone];
+					return cell;
+				}
 				UITableViewCell* ret = [self cellForTable: tableView withText: @"Loading..."];
 				[ret setAccessoryType: UITableViewCellAccessoryNone];
 				return ret;
