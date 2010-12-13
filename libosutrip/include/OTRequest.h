@@ -20,7 +20,7 @@
 
 @end
 
-@interface OTRequest : NSObject
+@interface OTRequest : NSObject <NSXMLParserDelegate>
 {
 	BOOL foundResponse;
 	BOOL foundError;

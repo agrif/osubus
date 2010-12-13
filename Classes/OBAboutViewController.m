@@ -23,7 +23,7 @@
 	[versionLabel setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
 	
 	NSString* txtpath = [[NSBundle mainBundle] pathForResource: @"Licenses" ofType: @"txt"];
-	[licenseTextView setText: [NSString stringWithContentsOfFile: txtpath]];
+	[licenseTextView setText: [NSString stringWithContentsOfFile: txtpath encoding: NSUTF8StringEncoding error: nil]];
 	
 	NSLog(@"OBAboutViewController loaded");
 }

@@ -46,7 +46,7 @@ void initializeDB(FMDatabase* db)
 		[db executeUpdate: [NSString stringWithFormat: @"CREATE TABLE  %@ %@", name, [tables objectForKey: name]]];
 	}
 	
-	[db executeUpdate: @"INSERT INTO meta (name, value) VALUES (?, ?)", @"version", [NSString stringWithCString: OT_DB_VERSION]];
+	[db executeUpdate: @"INSERT INTO meta (name, value) VALUES (?, ?)", @"version", [NSString stringWithCString: OT_DB_VERSION encoding: NSUTF8StringEncoding]];
 	NSDate* today = [NSDate date];
 	NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat: @"MM/dd/yyyy"];

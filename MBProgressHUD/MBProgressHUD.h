@@ -138,6 +138,9 @@ typedef enum {
  */
 - (id)initWithView:(UIView *)view;
 
+// hack -- to manually control indicator elsewhere
+@property (retain) UIView *indicator;
+
 /** 
  * MBProgressHUD operation mode. Switches between indeterminate (MBProgressHUDModeIndeterminate) and determinate
  * progress (MBProgressHUDModeDeterminate). The default is MBProgressHUDModeIndeterminate.

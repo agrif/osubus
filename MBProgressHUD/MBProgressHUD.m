@@ -23,8 +23,6 @@
 - (void)handleGraceTimer:(NSTimer *)theTimer;
 - (void)handleMinShowTimer:(NSTimer *)theTimer;
 
-@property (retain) UIView *indicator;
-
 @property (assign) float width;
 @property (assign) float height;
 
