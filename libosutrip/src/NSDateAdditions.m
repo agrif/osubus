@@ -10,26 +10,21 @@
 
 + (NSDate*) dateWithTRIPString: (NSString*) text
 {
-	if (!([text length] == 14 || [text length] == 17))
-		return nil;
+	NSDateFormatter* dateFormat = [[NSDateFormatter alloc] init];
 	
-	NSMutableString* nicedate = [NSMutableString string];
-	[nicedate appendString: [text substringWithRange: NSMakeRange(0, 4)]];
-	[nicedate appendString: @"-"];
-	[nicedate appendString: [text substringWithRange: NSMakeRange(4, 2)]];
-	[nicedate appendString: @"-"];
-	[nicedate appendString: [text substringWithRange: NSMakeRange(6, 2)]];
-	[nicedate appendString: [text substringFromIndex: 8]];
-	if ([text length] == 14)
+	[dateFormat setDateFormat: @"yyyyMMdd HH:mm"];
+	NSDate* date = [dateFormat dateFromString: text];
+	if (date)
 	{
-		// we're missing the seconds (vehicle tmstmp)
-		[nicedate appendString: @":00"];
+		[dateFormat release];
+		return date;
 	}
-
-	// FIXME use NSDateFormatter
-	[nicedate appendFormat: @" %+03i00", [[NSTimeZone defaultTimeZone] secondsFromGMT] / (60 * 60)];
 	
-	return [NSDate dateWithString: nicedate];
+	// we failed, try again (last try)
+	[dateFormat setDateFormat: @"yyyyMMdd HH:mm:ss"];
+	date = [dateFormat dateFromString: text];
+	[dateFormat release];
+	return date;
 }
 
 @end
