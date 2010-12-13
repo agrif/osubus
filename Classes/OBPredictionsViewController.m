@@ -242,11 +242,16 @@
 	{
 		// in a perfect world, we would
 		// open (walking) directions from *here* to the stop
-		// FIXME *properly* escape name so results show up right
-		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], [[stop objectForKey: @"name"] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+		
+		// first, url-escape the name so we can have it show up on the map
+		NSString* encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[stop objectForKey: @"name"], NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+		
+		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName];
 		NSLog(@"opening URL: %@", url);
 		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+		
 		[url release];
+		[encodedName release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
