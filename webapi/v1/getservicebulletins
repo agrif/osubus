@@ -32,7 +32,7 @@ for fname in files:
 	f = open(os.path.join('news', fname), 'r')
 	priority = int(f.readline().strip())
 	title = f.readline().strip()
-	body = f.read()
+	body = cgi.escape(f.read())
 	addBulletin(priority, title, body)
 	f.close()
 
@@ -64,7 +64,7 @@ if form.has_key("version"):
 		f.close()
 	else:
 		title = f.readline().strip()
-		body = f.read()
+		body = cgi.escape(f.read())
 		addBulletin(3, title, body)
 
 if form.has_key("dbversion") and form.has_key("dbdate"):
