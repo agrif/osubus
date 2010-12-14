@@ -1,6 +1,6 @@
 OSU Bus wants to be free software. I distribute its source under the GNU General Public License, version 2. You can take a look at this source through the "Contact" tab below.
 
-OSU Bus uses data from the OSU Transportation Route Information Program (http://trip.osu.edu/), and that data has its own license. I owe thanks to the people running this program at OSU, their help and encouragement has been invaluable in the process of writing OSU Bus.
+OSU Bus uses data from the OSU Transportation Route Information Program (http://trip.osu.edu/), and that data has its own license. I owe thanks to the people running this program at OSU, for making this data open and available for developers like me.
 
 OSU Bus also uses FMDB, an sqlite3 wrapper for Objective C written by Gus Mueller (http://gusmueller.com/). Dealing with data through FMDB is an order of magnitude easier than dealing with data through sqlite3.
 

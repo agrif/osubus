@@ -46,7 +46,7 @@
 
 - (IBAction) showWebsite
 {
-	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"http://osubus.gamma-level.com/"]];
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"http://gamma-level.com/"]];
 }
 
 - (IBAction) showEmail
