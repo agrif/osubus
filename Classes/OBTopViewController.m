@@ -98,6 +98,11 @@
 	{
 		firstRun = YES;
 		
+		// NOTE uncomment this to keep OSU Bus from going any farther
+		// useful for getting a new Default.png
+		//bulletinsLoaded = YES;
+		//return;
+		
 		// handle hud-hiding for first launch
 		[hud hide: YES];
 		
@@ -158,11 +163,17 @@
 
 - (void) startBulletinDisplay
 {
+	// no matter what, clear that network indicator
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+	
+	// failsafe check...
+	if (bulletinsLoaded)
+		return;
+	
 	bulletinsLoaded = YES;
 	[bulletinCell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
 	[NSTimer scheduledTimerWithTimeInterval: 3.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
 	[self updateBulletinCell: nil];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 	
 	// check to see if DB needs updating...
 	if ([bulletinsViewController updateURL])

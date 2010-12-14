@@ -36,7 +36,6 @@
 		D0143D981152E44500C376CC /* OTClientSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D961152E44500C376CC /* OTClientSingleton.m */; };
 		D0143D9A1152E4CE00C376CC /* OTClientDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143D991152E4CE00C376CC /* OTClientDatabase.m */; };
 		D0143DAE1152E5D200C376CC /* OTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D0143DAD1152E5D200C376CC /* OTClient.m */; };
-		D021240311826CC000FF637B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D021240211826CC000FF637B /* Default.png */; };
 		D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D021241111826D3000FF637B /* OBBulletinViewController.m */; };
 		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
 		D021246D11827F7F00FF637B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D021246B11827F7F00FF637B /* iTunesArtwork */; };
@@ -62,6 +61,7 @@
 		D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147812B75B0700510999 /* licenses@2x.png */; };
 		D0C4148D12B7627D00510999 /* OBGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C4148C12B7627D00510999 /* OBGradientButton.m */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
+		D0C414EA12B771EA00510999 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C414E912B771EA00510999 /* Default.png */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
@@ -125,7 +125,6 @@
 		D0143DAD1152E5D200C376CC /* OTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTClient.m; sourceTree = "<group>"; };
 		D0143E9F1152EF6200C376CC /* OSU_Bus_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSU_Bus_Prefix.pch; path = "Other Sources/OSU_Bus_Prefix.pch"; sourceTree = "<group>"; };
 		D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "OSU_Bus-Info.plist"; path = "Resources/OSU_Bus-Info.plist"; sourceTree = "<group>"; };
-		D021240211826CC000FF637B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		D021240411826CCD00FF637B /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Entitlements.plist; path = "Other Sources/Entitlements.plist"; sourceTree = "<group>"; };
 		D021241011826D3000FF637B /* OBBulletinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBBulletinViewController.h; sourceTree = "<group>"; };
 		D021241111826D3000FF637B /* OBBulletinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBBulletinViewController.m; sourceTree = "<group>"; };
@@ -161,6 +160,7 @@
 		D0C4148B12B7627D00510999 /* OBGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGradientButton.h; sourceTree = "<group>"; };
 		D0C4148C12B7627D00510999 /* OBGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGradientButton.m; sourceTree = "<group>"; };
 		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D0C414E912B771EA00510999 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
@@ -255,6 +255,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0C414E912B771EA00510999 /* Default.png */,
 				D0C4147312B75B0700510999 /* contact.png */,
 				D0C4147412B75B0700510999 /* contact@2x.png */,
 				D0C4147512B75B0700510999 /* info.png */,
@@ -264,7 +265,6 @@
 				D077C88F129CB76A0078E0D7 /* Licenses.txt */,
 				D0212480118281EA00FF637B /* Icon.png */,
 				D021246B11827F7F00FF637B /* iTunesArtwork */,
-				D021240211826CC000FF637B /* Default.png */,
 				D00374651139EDC100053FCB /* cabs.db */,
 				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
@@ -441,7 +441,6 @@
 				D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */,
 				D0F84118117AC12700C58427 /* OBPredictionsViewController.xib in Resources */,
 				D0F84149117AC50900C58427 /* OBPredictionsCell.xib in Resources */,
-				D021240311826CC000FF637B /* Default.png in Resources */,
 				D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */,
 				D021246D11827F7F00FF637B /* iTunesArtwork in Resources */,
 				D0212481118281EA00FF637B /* Icon.png in Resources */,
@@ -453,6 +452,7 @@
 				D0C4147C12B75B0700510999 /* info@2x.png in Resources */,
 				D0C4147D12B75B0700510999 /* licenses.png in Resources */,
 				D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */,
+				D0C414EA12B771EA00510999 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
