@@ -54,6 +54,12 @@
 		D0B5DD39117E56AA00D15F53 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D0B5DD38117E56AA00D15F53 /* MBProgressHUD.m */; };
 		D0BE044C129DB4E000047F35 /* OBAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BE044B129DB4E000047F35 /* OBAboutViewController.m */; };
 		D0BE04ED129E0E3800047F35 /* OBAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */; };
+		D0C4147912B75B0700510999 /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147312B75B0700510999 /* contact.png */; };
+		D0C4147A12B75B0700510999 /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147412B75B0700510999 /* contact@2x.png */; };
+		D0C4147B12B75B0700510999 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147512B75B0700510999 /* info.png */; };
+		D0C4147C12B75B0700510999 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147612B75B0700510999 /* info@2x.png */; };
+		D0C4147D12B75B0700510999 /* licenses.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147712B75B0700510999 /* licenses.png */; };
+		D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147812B75B0700510999 /* licenses@2x.png */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
@@ -144,6 +150,12 @@
 		D0BE044A129DB4E000047F35 /* OBAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBAboutViewController.h; sourceTree = "<group>"; };
 		D0BE044B129DB4E000047F35 /* OBAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBAboutViewController.m; sourceTree = "<group>"; };
 		D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBAboutViewController.xib; path = Resources/OBAboutViewController.xib; sourceTree = "<group>"; };
+		D0C4147312B75B0700510999 /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = contact.png; path = Resources/contact.png; sourceTree = "<group>"; };
+		D0C4147412B75B0700510999 /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "contact@2x.png"; path = "Resources/contact@2x.png"; sourceTree = "<group>"; };
+		D0C4147512B75B0700510999 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = info.png; path = Resources/info.png; sourceTree = "<group>"; };
+		D0C4147612B75B0700510999 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info@2x.png"; path = "Resources/info@2x.png"; sourceTree = "<group>"; };
+		D0C4147712B75B0700510999 /* licenses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = licenses.png; path = Resources/licenses.png; sourceTree = "<group>"; };
+		D0C4147812B75B0700510999 /* licenses@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "licenses@2x.png"; path = "Resources/licenses@2x.png"; sourceTree = "<group>"; };
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
@@ -235,6 +247,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0C4147312B75B0700510999 /* contact.png */,
+				D0C4147412B75B0700510999 /* contact@2x.png */,
+				D0C4147512B75B0700510999 /* info.png */,
+				D0C4147612B75B0700510999 /* info@2x.png */,
+				D0C4147712B75B0700510999 /* licenses.png */,
+				D0C4147812B75B0700510999 /* licenses@2x.png */,
 				D077C88F129CB76A0078E0D7 /* Licenses.txt */,
 				D0212480118281EA00FF637B /* Icon.png */,
 				D021246B11827F7F00FF637B /* iTunesArtwork */,
@@ -420,6 +438,12 @@
 				D0212481118281EA00FF637B /* Icon.png in Resources */,
 				D077C890129CB76A0078E0D7 /* Licenses.txt in Resources */,
 				D0BE04ED129E0E3800047F35 /* OBAboutViewController.xib in Resources */,
+				D0C4147912B75B0700510999 /* contact.png in Resources */,
+				D0C4147A12B75B0700510999 /* contact@2x.png in Resources */,
+				D0C4147B12B75B0700510999 /* info.png in Resources */,
+				D0C4147C12B75B0700510999 /* info@2x.png in Resources */,
+				D0C4147D12B75B0700510999 /* licenses.png in Resources */,
+				D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
