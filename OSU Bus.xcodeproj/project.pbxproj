@@ -60,6 +60,8 @@
 		D0C4147C12B75B0700510999 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147612B75B0700510999 /* info@2x.png */; };
 		D0C4147D12B75B0700510999 /* licenses.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147712B75B0700510999 /* licenses.png */; };
 		D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0C4147812B75B0700510999 /* licenses@2x.png */; };
+		D0C4148D12B7627D00510999 /* OBGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C4148C12B7627D00510999 /* OBGradientButton.m */; };
+		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
 		D0F83FDE117A618300C58427 /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F83FDD117A618300C58427 /* OBStopsViewController.m */; };
 		D0F83FE0117A620600C58427 /* OBStopsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F83FDF117A620600C58427 /* OBStopsViewController.xib */; };
 		D0F8401A117A71E700C58427 /* OBStopsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F84019117A71E700C58427 /* OBStopsCell.xib */; };
@@ -156,6 +158,9 @@
 		D0C4147612B75B0700510999 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info@2x.png"; path = "Resources/info@2x.png"; sourceTree = "<group>"; };
 		D0C4147712B75B0700510999 /* licenses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = licenses.png; path = Resources/licenses.png; sourceTree = "<group>"; };
 		D0C4147812B75B0700510999 /* licenses@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "licenses@2x.png"; path = "Resources/licenses@2x.png"; sourceTree = "<group>"; };
+		D0C4148B12B7627D00510999 /* OBGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBGradientButton.h; sourceTree = "<group>"; };
+		D0C4148C12B7627D00510999 /* OBGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBGradientButton.m; sourceTree = "<group>"; };
+		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D0F83FDC117A618300C58427 /* OBStopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopsViewController.h; sourceTree = "<group>"; };
 		D0F83FDD117A618300C58427 /* OBStopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopsViewController.m; sourceTree = "<group>"; };
 		D0F83FDF117A620600C58427 /* OBStopsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBStopsViewController.xib; path = Resources/OBStopsViewController.xib; sourceTree = "<group>"; };
@@ -176,6 +181,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */,
 				D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */,
+				D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +203,8 @@
 				D0F84115117AC10F00C58427 /* OBPredictionsViewController.m */,
 				D003735C1139E22300053FCB /* OBGradientView.h */,
 				D003735D1139E22300053FCB /* OBGradientView.m */,
+				D0C4148B12B7627D00510999 /* OBGradientButton.h */,
+				D0C4148C12B7627D00510999 /* OBGradientButton.m */,
 				1D3623240D0F684500981E51 /* OBAppDelegate.h */,
 				1D3623250D0F684500981E51 /* OBAppDelegate.m */,
 				D014386A113DBE0B00047246 /* OBBulletinsViewController.h */,
@@ -282,6 +290,7 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				D0C4149712B765A500510999 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -486,6 +495,7 @@
 				D0B5DD39117E56AA00D15F53 /* MBProgressHUD.m in Sources */,
 				D021241211826D3000FF637B /* OBBulletinViewController.m in Sources */,
 				D0BE044C129DB4E000047F35 /* OBAboutViewController.m in Sources */,
+				D0C4148D12B7627D00510999 /* OBGradientButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
