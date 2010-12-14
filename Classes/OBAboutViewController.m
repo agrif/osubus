@@ -13,6 +13,25 @@
 
 @synthesize tabBarController, versionLabel, licenseTextView;
 
+// called from background thread to set the text
+- (void) setLicenseText: (NSString*) text
+{
+	[licenseTextView setText: text];
+}
+
+// done in the background, to load text
+- (void) loadLicenses
+{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	
+	NSString* txtpath = [[NSBundle mainBundle] pathForResource: @"Licenses" ofType: @"txt"];
+	NSString* text = [NSString stringWithContentsOfFile: txtpath encoding: NSUTF8StringEncoding error: nil];
+	
+	[self performSelectorOnMainThread: @selector(setLicenseText:) withObject: text waitUntilDone: YES];
+	
+	[pool release];
+}
+
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
@@ -22,8 +41,7 @@
 	NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 	[versionLabel setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
 	
-	NSString* txtpath = [[NSBundle mainBundle] pathForResource: @"Licenses" ofType: @"txt"];
-	[licenseTextView setText: [NSString stringWithContentsOfFile: txtpath encoding: NSUTF8StringEncoding error: nil]];
+	[self performSelectorInBackground: @selector(loadLicenses) withObject: nil];
 	
 	NSLog(@"OBAboutViewController loaded");
 }
