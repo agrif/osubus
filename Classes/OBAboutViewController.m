@@ -51,7 +51,7 @@
 
 - (IBAction) showEmail
 {
-	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"mailto:?to=aargri@gmail.com&subject=[OSU+Bus]+"]];
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"mailto:?to=griffith.637@osu.edu&subject=[OSU%20Bus]%20"]];
 }
 
 - (IBAction) showSource
