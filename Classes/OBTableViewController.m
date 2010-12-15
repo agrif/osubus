@@ -115,7 +115,8 @@
 	
 	if ([[data allKeys] containsObject: @"dist"])
 	{
-		BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+		BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey: @"metric_preference"];
+		//BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
 		
 		double dist = [[data objectForKey: @"dist"] doubleValue];
 		

@@ -66,6 +66,14 @@ int main(int argc, char* argv[])
 		[fm copyItemAtPath: bundleDB toPath: rwDB error: NULL];
 	}
 	
+	// set up the user defaults
+	NSString* defaultsPath = [[NSBundle mainBundle] pathForResource: @"UserDefaults" ofType: @"plist"];
+	NSDictionary* defaults = [[NSDictionary alloc] initWithContentsOfFile: defaultsPath];
+	[[NSUserDefaults standardUserDefaults] registerDefaults: defaults];
+	[defaults release];
+	[defaultsPath release];
+	
+	// set up the TRIP data client
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
 	[[OTClient sharedClient] setDatabasePath: rwDB];
 	

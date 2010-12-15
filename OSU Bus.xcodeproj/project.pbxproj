@@ -40,6 +40,8 @@
 		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
 		D021246D11827F7F00FF637B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D021246B11827F7F00FF637B /* iTunesArtwork */; };
 		D0212481118281EA00FF637B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D0212480118281EA00FF637B /* Icon.png */; };
+		D03C7BCD12B8715000A90FBA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D03C7BCC12B8715000A90FBA /* Settings.bundle */; };
+		D03C7BE812B8797300A90FBA /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D03C7BE712B8797300A90FBA /* UserDefaults.plist */; };
 		D077C890129CB76A0078E0D7 /* Licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = D077C88F129CB76A0078E0D7 /* Licenses.txt */; };
 		D07D27B5113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m in Sources */ = {isa = PBXBuildFile; fileRef = D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */; };
 		D08FB32E11530BEB00CC73CF /* OBRoutesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D08FB32D11530BEB00CC73CF /* OBRoutesViewController.m */; };
@@ -131,6 +133,8 @@
 		D021241611826E9500FF637B /* OBBulletinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinViewController.xib; path = Resources/OBBulletinViewController.xib; sourceTree = "<group>"; };
 		D021246B11827F7F00FF637B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		D0212480118281EA00FF637B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		D03C7BCC12B8715000A90FBA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		D03C7BE712B8797300A90FBA /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserDefaults.plist; path = Resources/UserDefaults.plist; sourceTree = "<group>"; };
 		D077C88F129CB76A0078E0D7 /* Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Licenses.txt; path = Resources/Licenses.txt; sourceTree = "<group>"; };
 		D07D27B1113DB44C00E6BDE0 /* UILabel+SetTextAnimated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+SetTextAnimated.h"; path = "Categories/UILabel+SetTextAnimated.h"; sourceTree = "<group>"; };
 		D07D27B4113DB46D00E6BDE0 /* UILabel+SetTextAnimated.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+SetTextAnimated.m"; path = "Categories/UILabel+SetTextAnimated.m"; sourceTree = "<group>"; };
@@ -238,6 +242,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				D03C7BCC12B8715000A90FBA /* Settings.bundle */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				D0F83FDF117A620600C58427 /* OBStopsViewController.xib */,
 				D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */,
 				D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */,
+				D03C7BE712B8797300A90FBA /* UserDefaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -453,6 +459,8 @@
 				D0C4147D12B75B0700510999 /* licenses.png in Resources */,
 				D0C4147E12B75B0700510999 /* licenses@2x.png in Resources */,
 				D0C414EA12B771EA00510999 /* Default.png in Resources */,
+				D03C7BCD12B8715000A90FBA /* Settings.bundle in Resources */,
+				D03C7BE812B8797300A90FBA /* UserDefaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
