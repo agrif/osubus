@@ -40,6 +40,9 @@
 		D021241711826E9500FF637B /* OBBulletinViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D021241611826E9500FF637B /* OBBulletinViewController.xib */; };
 		D021246D11827F7F00FF637B /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D021246B11827F7F00FF637B /* iTunesArtwork */; };
 		D0212481118281EA00FF637B /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D0212480118281EA00FF637B /* Icon.png */; };
+		D031F34912B9BC1D00EEDEBE /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = D031F34612B9BC1D00EEDEBE /* Icon-Small.png */; };
+		D031F34A12B9BC1D00EEDEBE /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D031F34712B9BC1D00EEDEBE /* Icon-Small@2x.png */; };
+		D031F34B12B9BC1D00EEDEBE /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D031F34812B9BC1D00EEDEBE /* Icon@2x.png */; };
 		D03C7BCD12B8715000A90FBA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D03C7BCC12B8715000A90FBA /* Settings.bundle */; };
 		D03C7BE812B8797300A90FBA /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D03C7BE712B8797300A90FBA /* UserDefaults.plist */; };
 		D077C890129CB76A0078E0D7 /* Licenses.txt in Resources */ = {isa = PBXBuildFile; fileRef = D077C88F129CB76A0078E0D7 /* Licenses.txt */; };
@@ -133,6 +136,9 @@
 		D021241611826E9500FF637B /* OBBulletinViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = OBBulletinViewController.xib; path = Resources/OBBulletinViewController.xib; sourceTree = "<group>"; };
 		D021246B11827F7F00FF637B /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = Resources/iTunesArtwork; sourceTree = "<group>"; };
 		D0212480118281EA00FF637B /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
+		D031F34612B9BC1D00EEDEBE /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small.png"; path = "Resources/Icon-Small.png"; sourceTree = "<group>"; };
+		D031F34712B9BC1D00EEDEBE /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small@2x.png"; path = "Resources/Icon-Small@2x.png"; sourceTree = "<group>"; };
+		D031F34812B9BC1D00EEDEBE /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "Resources/Icon@2x.png"; sourceTree = "<group>"; };
 		D03C7BCC12B8715000A90FBA /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D03C7BE712B8797300A90FBA /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = UserDefaults.plist; path = Resources/UserDefaults.plist; sourceTree = "<group>"; };
 		D077C88F129CB76A0078E0D7 /* Licenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Licenses.txt; path = Resources/Licenses.txt; sourceTree = "<group>"; };
@@ -260,6 +266,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D021246B11827F7F00FF637B /* iTunesArtwork */,
+				D031F34612B9BC1D00EEDEBE /* Icon-Small.png */,
+				D031F34712B9BC1D00EEDEBE /* Icon-Small@2x.png */,
+				D0212480118281EA00FF637B /* Icon.png */,
+				D031F34812B9BC1D00EEDEBE /* Icon@2x.png */,
 				D0C414E912B771EA00510999 /* Default.png */,
 				D0C4147312B75B0700510999 /* contact.png */,
 				D0C4147412B75B0700510999 /* contact@2x.png */,
@@ -267,11 +278,6 @@
 				D0C4147612B75B0700510999 /* info@2x.png */,
 				D0C4147712B75B0700510999 /* licenses.png */,
 				D0C4147812B75B0700510999 /* licenses@2x.png */,
-				D077C88F129CB76A0078E0D7 /* Licenses.txt */,
-				D0212480118281EA00FF637B /* Icon.png */,
-				D021246B11827F7F00FF637B /* iTunesArtwork */,
-				D00374651139EDC100053FCB /* cabs.db */,
-				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
 				D00373711139E37100053FCB /* MainWindow.xib */,
 				D08FB3C1115318EF00CC73CF /* OBRoutesCell.xib */,
 				D0F84019117A71E700C58427 /* OBStopsCell.xib */,
@@ -284,6 +290,9 @@
 				D0F84117117AC12700C58427 /* OBPredictionsViewController.xib */,
 				D0BE04EC129E0E3800047F35 /* OBAboutViewController.xib */,
 				D03C7BE712B8797300A90FBA /* UserDefaults.plist */,
+				D077C88F129CB76A0078E0D7 /* Licenses.txt */,
+				D00374651139EDC100053FCB /* cabs.db */,
+				D0143EB41152F0C000C376CC /* OSU_Bus-Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -461,6 +470,9 @@
 				D0C414EA12B771EA00510999 /* Default.png in Resources */,
 				D03C7BCD12B8715000A90FBA /* Settings.bundle in Resources */,
 				D03C7BE812B8797300A90FBA /* UserDefaults.plist in Resources */,
+				D031F34912B9BC1D00EEDEBE /* Icon-Small.png in Resources */,
+				D031F34A12B9BC1D00EEDEBE /* Icon-Small@2x.png in Resources */,
+				D031F34B12B9BC1D00EEDEBE /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
