@@ -1,5 +1,6 @@
 # Xcode and MacOSX noise
 .DS_Store
+._*
 *.mode1v3
 *.pbxuser
 build/
