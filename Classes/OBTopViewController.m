@@ -114,7 +114,7 @@
 	if (favoritesData)
 		[favoritesData release];
 	
-	favorites = [[NSMutableArray alloc] initWithArray: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"]];
+	favorites = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
 	favoritesData = [[NSMutableArray alloc] init];
 	
 	NSMutableArray* outdatedFavs = [[NSMutableArray alloc] init];
@@ -132,7 +132,7 @@
 		[favoritesData addObject: [[OTClient sharedClient] stop: fav]];
 	}
 	
-	for (NSDictionary* fav in outdatedFavs)
+	for (NSNumber* fav in outdatedFavs)
 	{
 		[favorites removeObject: fav];
 	}
@@ -499,12 +499,16 @@
 - (void) tableView: (UITableView*) tableView moveRowAtIndexPath: (NSIndexPath*) source toIndexPath: (NSIndexPath*) destination
 {
 	NSNumber* stopid = [favorites objectAtIndex: [source row]];
+	[stopid retain];
 	[favorites removeObjectAtIndex: [source row]];
 	[favorites insertObject: stopid atIndex: [destination row]];
+	[stopid release];
 	
 	NSDictionary* data = [favoritesData objectAtIndex: [source row]];
+	[data retain];
 	[favoritesData removeObjectAtIndex: [source row]];
 	[favoritesData insertObject: data atIndex: [destination row]];
+	[data release];
 	
 	[self saveFavorites];
 }
