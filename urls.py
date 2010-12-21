@@ -16,5 +16,5 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('osubus_extra.views',
-    (r'^screenshots-dynamic$', 'screenshots'),
+    (r'^screenshots$', 'screenshots'),
 )
