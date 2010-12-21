@@ -7,7 +7,7 @@ project_dir = os.path.split(project_dir)[0]
 def project_path(p):
     return os.path.join(project_dir, p)
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
