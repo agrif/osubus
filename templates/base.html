@@ -54,20 +54,15 @@ by Aaron Griffith <br/>
 
 <div class="span-6 noprint prepend-top" id="sidebar">
 
-{% get_flatpages as flatpages %}
-{% if flatpages %}
 <div class="sidebar-header">Pages</div>
 
 <ul id="nav">
+{% get_flatpages as flatpages %}
 {% for page in flatpages %}
-{% if flatpage.url == page.url %}
-	<li>{{ page.title }}</li>
-{% else %}
-	<li><a href="{{ page.url }}">{{ page.title }}</a></li>
-{% endif %}
+	<li>{% navlink request page.url page.title %}</li>
 {% endfor %}
+	<li>{% navlink request "/screenshots-dynamic" "Dynamic Screenshots" %}</li>
 </ul>
-{% endif %}
 
 {% block sidebar %}{% endblock %}
 

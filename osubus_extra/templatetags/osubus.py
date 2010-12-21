@@ -4,6 +4,12 @@ import re
 
 register = template.Library()
 
+@register.simple_tag
+def navlink(request, url, name):
+    if request.path == url:
+        return name
+    return '<a href="%s">%s</a>' % (url, name)
+
 class ExternalLinksNode(template.Node):
     def __init__(self, var_name):
         self.var_name = var_name

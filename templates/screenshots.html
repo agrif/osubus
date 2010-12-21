@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!-- simple gallery setup -->
+<script language="javascript" src="/static/js/gallery.js"></script>
+{% endblock %}
+
+{% block bodytag %}onload="initGallery()"{% endblock %}
+
+{% block title %}Screenshots{% endblock %}
+
+{% block content %}
+
+<h1>Screenshots</h1>
+
+<div id="gallery" style="display: none">
+<div id="gallery-image">&nbsp;</div>
+<div class="noprint"><a href="#" onclick="return galleryPrev()">&lt;&lt; Previous</a> | <a href="#" onclick="return galleryNext()">Next &gt;&gt;</a></div>
+<div id="gallery-title">&nbsp;</div>
+<div id="gallery-text">&nbsp;</div>
+</div>
+
+<ul id="gallery-list">
+{% for shot in screenshots %}
+<li><a href="{{ shot.image.url }}">{{ shot.title }}</a> - {{ shot.description }}</li>
+{% endfor %}
+</ul>
+
+{% endblock content %}
