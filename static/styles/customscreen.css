@@ -1,0 +1,23 @@
+/* custom overrides for osubus.gamma-level.com */
+/* specifically for screen, projectors */
+
+body
+{
+    /* make the text a hair bigger
+       (that is, 14px instead of 12px)
+       note this moves the baseline height to 21px */
+    font-size: 87.5%;
+    
+    background-image: url('/static/images/ui/bg.png');
+    background-repeat: repeat-x;
+    background-position: left top;
+    background-attachment: scroll;
+    background-color: #efefef;
+}
+
+/* hide this for screens */
+.noscreen
+{
+    display: none;
+}
+

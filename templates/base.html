@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+{% load flatpages %}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<!--
+	this page uses Blueprint CSS. See blueprintcss.org for details.
+-->
+<link rel="stylesheet" type="text/css" href="/static/styles/screen.css" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="/static/styles/print.css" media="print"/>
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/static/styles/ie.css" media="screen, projection" /><![endif]-->
+
+<!-- custom overrides for blueprint -->
+<link rel="stylesheet" type="text/css" href="/static/styles/custom.css" media="screen, projection, print" />
+<link rel="stylesheet" type="text/css" href="/static/styles/customscreen.css" media="screen, projection" />
+<link rel="stylesheet" type="text/css" href="/static/styles/customprint.css" media="print" />
+
+<!-- newfangled standardized favicons -->
+<link rel="icon" type="image/png" href="/static/images/ui/icon.png" />
+<link rel="apple-touch-icon-precomposed" type="image/png" href="/static/images/ui/icon-ios.png" />
+
+{% block head %}{% endblock %}
+
+<title>{% block title %}OSU Bus - an iPhone TRIP client{% endblock %}</title>
+</head>
+
+<body {% block bodytag %}{% endblock %}>
+<div class="container">
+<a name="top"></a>
+
+<div class="span-6" id="icon">
+<img src="/static/images/ui/icon-header.png" alt="[icon]" />
+</div>
+
+<div class="span-18 last">
+<div class="span-18 last" id="header">
+<img src="/static/images/ui/header.png" alt="OSU Bus" />
+</div>
+
+<div class="span-18" id="subheader">
+<img class="noprint" id="freesticker" src="/static/images/ui/free.png" alt="Free!" />
+<img class="noprint" src="/static/images/ui/subheader.png" alt="[subheader]" />
+<p class="noscreen">
+an iPhone client for the OSU <br/>
+<strong>Transportation Route Information Program</strong> <br/>
+by Aaron Griffith <br/>
+</p>
+</div>
+</div>
+
+<div class="span-6 noprint prepend-top" id="sidebar">
+
+<div class="sidebar-header">Pages</div>
+
+{% get_flatpages as flatpages %}
+<ul id="nav">
+{% for page in flatpages %}
+{% if flatpage.url == page.url %}
+	<li>{{ page.title }}</li>
+{% else %}
+	<li><a href="{{ page.url }}">{{ page.title }}</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+
+{% block sidebar %}{% endblock %}
+
+<div class="sidebar-header">External Links</div>
+
+<ul id="nav">
+	<li><a href="http://github.com/agrif/osubus">OSU Bus on GitHub</a></li>
+	<li><a href="http://gamma-level.com/">gamma-level.com</a></li>
+	<li><a href="http://trip.osu.edu/">OSU TRIP</a></li>
+</ul>
+
+<div class="centeralign noprint">
+<a href="http://itunes.apple.com/app/osu-bus/id410788785">
+<img src="/static/images/appstore.png" alt="Available on the App Store" /><br/>
+</a>
+</div>
+
+</div>
+
+<div class="span-18 last prepend-top" id="body">
+
+{% block content %}{% endblock %}
+
+</div>
+
+<div class="quiet small centeralign" id="copyright">
+Copyright &copy; 2010 Aaron Griffith<br/>
+
+<div class="noprint">
+<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" src="/static/images/ui/creativecommons.png" /></a>
+<a href="http://validator.w3.org/check?uri=referer"><img alt="Valid XHTML" src="/static/images/ui/xhtml.png" /></a>
+<a href="http://jigsaw.w3.org/css-validator/check/referer"><img alt="Valid CSS" src="/static/images/ui/css.png" /></a>
+<a href="http://no-www.org/"><img alt="Class B no-www" src="/static/images/ui/no-www-b.png" /></a>
+</div>
+
+With the exception of the App Store button and iPhone image, this work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution Non-Commercial Share-Alike 3.0 Unported License</a>.<br/>
+Apple, the Apple logo, and iPhone are trademarks of Apple Inc., registered in the U.S. and other countries. App Store is a service mark of Apple Inc.<br/>
+OSU Bus is not an official product of The Ohio State University; it is student-created.<br/>
+</div>
+
+</div>
+</body>
+</html>
+

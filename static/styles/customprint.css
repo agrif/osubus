@@ -1,0 +1,45 @@
+/* custom overrides for osubus.gamma-level.com */
+/* specifically for printing */
+
+/* hide this for printers */
+.noprint
+{
+	display: none;
+}
+
+/* make the subheader text black again for print */
+#subheader
+{
+    color: black;
+}
+
+/* sidebar should be left-aligned during print */
+#sidebar
+{
+    text-align: left;
+}
+
+/* left-float the icon so it shows up beside header */
+#icon
+{
+    float: left;
+}
+
+/* get rid of space between header and subheader */
+#subheader
+{
+    position: relative;
+    top: -3em;
+    left: 1em;
+}
+
+/* make copyright WAY smaller */
+#copyright
+{
+    font-size: 0.8em;
+}
+
+/* restore image floats */
+p img.left {float:left;margin:1.5em 1.5em 1.5em 0;padding:0;}
+p img.right {float:right;margin:1.5em 0 1.5em 1.5em;}
+

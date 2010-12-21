@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load typogrify %}
+
+{% block head %}
+<!-- simple gallery setup -->
+<script language="javascript" src="/static/js/gallery.js"></script>
+{% endblock %}
+
+{% block bodytag %}onload="initGallery()"{% endblock %}
+
+{% block title %}{{ flatpage.title }}{% endblock %}
+
+{% block content %}
+{{ flatpage.content|typogrify }}
+{% endblock content %}
