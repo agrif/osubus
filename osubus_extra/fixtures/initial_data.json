@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "osubus_extra.externallink", "fields": {"url": "http://github.com/agrif/osubus", "name": "OSU Bus on GitHub"}}, {"pk": 2, "model": "osubus_extra.externallink", "fields": {"url": "http://gamma-level.com/", "name": "gamma-level.com"}}, {"pk": 3, "model": "osubus_extra.externallink", "fields": {"url": "http://trip.osu.edu/", "name": "OSU TRIP"}}]

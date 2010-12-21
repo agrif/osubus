@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 {% load flatpages %}
+{% load osubus %}
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -53,9 +54,10 @@ by Aaron Griffith <br/>
 
 <div class="span-6 noprint prepend-top" id="sidebar">
 
+{% get_flatpages as flatpages %}
+{% if flatpages %}
 <div class="sidebar-header">Pages</div>
 
-{% get_flatpages as flatpages %}
 <ul id="nav">
 {% for page in flatpages %}
 {% if flatpage.url == page.url %}
@@ -65,16 +67,20 @@ by Aaron Griffith <br/>
 {% endif %}
 {% endfor %}
 </ul>
+{% endif %}
 
 {% block sidebar %}{% endblock %}
 
+{% external_links as externs %}
+{% if externs %}
 <div class="sidebar-header">External Links</div>
 
 <ul id="nav">
-	<li><a href="http://github.com/agrif/osubus">OSU Bus on GitHub</a></li>
-	<li><a href="http://gamma-level.com/">gamma-level.com</a></li>
-	<li><a href="http://trip.osu.edu/">OSU TRIP</a></li>
+{% for link in externs %}
+	<li><a href="{{ link.url }}">{{ link.name }}</a></li>
+{% endfor %}
 </ul>
+{% endif %}
 
 <div class="centeralign noprint">
 <a href="http://itunes.apple.com/app/osu-bus/id410788785">
