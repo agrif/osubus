@@ -3,3 +3,6 @@
 database.db
 roots/media/*
 roots/static/*
+
+# ignore the waratahs production config
+settings/waratahs.py
