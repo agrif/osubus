@@ -1,3 +1,5 @@
-# ignore .pyc and database.db
+# ignore .pyc, database.db, and the media roots
 *.pyc
 database.db
+roots/media/*
+roots/static/*
