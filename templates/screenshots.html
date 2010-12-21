@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load typogrify %}
+
 {% block head %}
 <!-- simple gallery setup -->
 <script language="javascript" src="/static/js/gallery.js"></script>
@@ -21,9 +23,11 @@
 </div>
 
 <ul id="gallery-list">
+{% filter typogrify %}
 {% for shot in screenshots %}
 <li><a href="{{ shot.image.url }}">{{ shot.title }}</a> - {{ shot.description }}</li>
 {% endfor %}
+{% endfilter %}
 </ul>
 
 {% endblock content %}
