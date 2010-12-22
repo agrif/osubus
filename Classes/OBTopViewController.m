@@ -524,8 +524,11 @@
 - (void) locationTimeout
 {
 	// force an update
-	[gpsStartDate release];
-	gpsStartDate = nil;
+	if (gpsStartDate)
+	{
+		[gpsStartDate release];
+		gpsStartDate = nil;
+	}
 	[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
 }
 
@@ -536,7 +539,10 @@
 	{
 		[manager stopUpdatingLocation];
 		if (gpsStartDate)
+		{
 			[gpsStartDate release];
+			gpsStartDate = nil;
+		}
 		[hud hide: YES];
 		return;
 	}
@@ -552,7 +558,10 @@
 	
 	[manager stopUpdatingLocation];
 	if (gpsStartDate)
+	{
 		[gpsStartDate release];
+		gpsStartDate = nil;
+	}
 	[hud hide: YES];
 	
 	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
@@ -567,7 +576,10 @@
 	[manager stopUpdatingLocation];
 	[hud hide: YES];
 	if (gpsStartDate)
+	{
 		[gpsStartDate release];
+		gpsStartDate = nil;
+	}
 	
 	NSLog(@"GPS Error: %@", [error localizedDescription]);
 	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
