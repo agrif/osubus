@@ -32,8 +32,8 @@
     [[self layer] setBorderWidth: 1.0f];
 	
 	// some default colors
-	[self setLowColor: [UIColor colorWithRed: 0.5 green: 0.5 blue: 0.5 alpha: 1.0]];
-	[self setHighColor: [UIColor colorWithRed: 0.9 green: 0.9 blue: 0.9 alpha: 1.0]];
+	[self setLowColor: [UIColor colorWithRed: 0.9 green: 0.9 blue: 0.9 alpha: 1.0]];
+	[self setHighColor: [UIColor colorWithRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0]];
 	
 	[super awakeFromNib];
 }
