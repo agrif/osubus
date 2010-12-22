@@ -1,0 +1,28 @@
+This is the Django-based backend behind <osubus.gamma-level.com>. It
+handles the informational front pages, as well as the backend
+application news and database updates. It is provided here so that the
+source of OSU Bus is complete -- this website is part of a functioning
+OSU Bus system. However, there should be very little reason to ever
+run this site yourself.
+
+To the best of my knowledge, this site needs these things to run:
+
+ * Django
+ * Python Markdown
+ * Typogrify
+ * Sqlite3
+
+probably all at the latest version. There may be things I left out,
+too. As mentioned before, this is not really packaged for mass
+consumption :P.
+
+As with the content on the site, this code is licensed under a
+Creative Commons Attribution Non-Commercial Share-Alike 3.0 Unported
+License <http://creativecommons.org/licenses/by-nc-sa/3.0/>. If anyone
+can find useful gems in this morass of code, it's there to be used
+(under the CC license, of course).
+
+(Note that this is *different* than the license for OSU Bus itself:
+OSU Bus is under the GNU GPL v2, while this code is under Creative
+Commons by-nc-sa. I did this so the ENTIRE website (content included)
+is under ONE license, not many.)

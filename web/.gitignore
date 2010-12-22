@@ -1,0 +1,8 @@
+# ignore .pyc, database.db, and the media roots
+*.pyc
+database.db
+roots/media/*
+roots/static/*
+
+# ignore the waratahs production config
+settings/waratahs.py

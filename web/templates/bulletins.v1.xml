@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+{# APIv1 implementation of OSU TRIP getservicebulletins #}
+{% load markup %}
+{% load typogrify %}
+<bustime-response>
+{% for bulletin in bulletins %}
+	<sb>
+		<nm>{{ bulletin.title }}</nm>
+		<sbj>{{ bulletin.title }}</sbj>
+		<dtl>{{ bulletin.body|force_escape }}</dtl>
+		<brf>{{ bulletin.body|force_escape }}</brf>
+		<prty>{{ bulletin.get_priority_display }}</prty>
+	</sb>
+{% endfor %}
+</bustime-response>

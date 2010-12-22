@@ -1,0 +1,142 @@
+/* custom overrides for osubus.gamma-level.com */
+
+/* generic centered */
+.centeralign
+{
+    text-align: center;
+}
+
+/* generic right */
+.rightalign
+{
+    text-align: right;
+}
+
+#header
+{
+    text-align: left;
+	background: none;
+}
+
+#subheader
+{
+    /* height is dictated by background image */
+    height: 75px;
+    /* align text with header image */
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    text-align: left;
+    font-weight: normal;
+    font-size: 13px;
+    color: white;
+}
+
+#subheader strong
+{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#icon
+{
+    text-align: left;
+}
+
+#sidebar
+{
+    text-align: left;
+}
+
+.sidebar-header
+{
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+a:link
+{
+	color: #660000;
+}
+
+a:visited
+{
+	color: #660000;
+}
+
+a:hover
+{
+	color: #330000;
+}
+
+.nav
+{
+	font-weight: bold;
+	font-style: italic;
+}
+
+.nav a:link
+{
+	text-decoration: none;
+}
+
+.nav a:visited
+{
+    text-decoration: none;
+}
+
+.nav a:hover
+{
+	text-decoration: underline;
+}
+
+#freesticker
+{
+    float: right;
+    position: relative;
+    top: -75px;
+}
+
+/* no matter what, copyright, hr clears floats */
+#copyright { clear: both; }
+hr { clear: both; }
+
+#gallery
+{
+    display: none;
+}
+
+/* gallery images have fixed height, width */
+#gallery-image
+{
+    width: 320px;
+    height: 480px;
+    float: left;
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+#gallery-image img
+{
+    border: 2px solid black;
+}
+
+#gallery-text
+{
+    padding: 0.2em;
+    font-style: italic;
+}
+
+#gallery-title
+{
+    padding: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* because it's cool */
+.alt
+{
+	font-style: italic;
+}
+
