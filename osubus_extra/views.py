@@ -1,13 +1,11 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext, TemplateDoesNotExist
 from django.http import Http404
+from django.contrib.sites.models import Site
 from django.contrib.markup.templatetags.markup import markdown
 from typogrify.templatetags.typogrify import typogrify
 from osubus_extra.models import Screenshot, Bulletin, VersionBulletin, CacheDatabase
 import datetime
-
-# FIXME more appropriate root-url discovery
-DATABASE_ROOT_URL = "http://osubus.gamma-level.com"
 
 def screenshots(request):
     all_shots = Screenshot.objects.all()
@@ -68,6 +66,7 @@ def bulletins(request, api_version="v1"):
             print db.date
             if db.date > dbdate:
                 # we have a new database to download
+                DATABASE_ROOT_URL = "http://" + Site.objects.get_current().domain
                 dbbulletin = Bulletin(priority=2, title="!!!DBUPDATE", body=DATABASE_ROOT_URL + db.file.url)
                 all_bulletins.append(dbbulletin)
         except IndexError:
