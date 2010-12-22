@@ -171,7 +171,8 @@
 		return;
 	
 	bulletinsLoaded = YES;
-	[bulletinCell setAccessoryType: UITableViewCellAccessoryDisclosureIndicator];
+	if ([[bulletinsViewController bulletins] count] == 0)
+		[bulletinCell setAccessoryType: UITableViewCellAccessoryNone];
 	[NSTimer scheduledTimerWithTimeInterval: 3.0 target: self selector: @selector(updateBulletinCell:) userInfo: nil repeats: YES];
 	[self updateBulletinCell: nil];
 	
@@ -401,10 +402,18 @@
 
 - (NSIndexPath*) tableView: (UITableView*) tableView willSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	if ([indexPath section] == OBTS_BULLETINS && !bulletinsLoaded)
-		return nil;
+	if ([indexPath section] == OBTS_BULLETINS)
+	{
+		if (!bulletinsLoaded)
+			return nil;
+		if ([[bulletinsViewController bulletins] count] == 0)
+			return nil;
+		return indexPath;
+	}
+	
 	if ([indexPath section] == OBTS_FAVORITES)
 		return [favorites count] == 0 ? nil : indexPath;
+	
 	return indexPath;
 }
 
@@ -414,7 +423,13 @@
 	
 	if ([indexPath section] == OBTS_BULLETINS && bulletinsLoaded)
 	{
-		[self.navigationController pushViewController: bulletinsViewController animated: YES];
+		if ([[bulletinsViewController bulletins] count] == 1)
+		{
+			// skip pushing the bulletins view, go right for the only bulletin
+			[bulletinsViewController pushOntoNavigationController: self.navigationController bulletin: 0];
+		} else {
+			[self.navigationController pushViewController: bulletinsViewController animated: YES];
+		}
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_ROUTES) {
 		OBRoutesViewController* routes = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewController" bundle: nil];
 		[self.navigationController pushViewController: routes animated: YES];

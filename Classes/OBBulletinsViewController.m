@@ -160,13 +160,18 @@
 	if ([indexPath section] == 1)
 		index += endOfOfficialBulletins;
 	
+	[self pushOntoNavigationController: self.navigationController bulletin: index];
+	
+	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
+- (void) pushOntoNavigationController: (UINavigationController*) nav bulletin: (NSInteger) index
+{
 	// title, body, source
 	OBBulletinViewController* bulletin = [[OBBulletinViewController alloc] initWithNibName: @"OBBulletinViewController" bundle: nil];
 	[bulletin setBulletin: [bulletins objectAtIndex: index]];
-	[self.navigationController pushViewController: bulletin animated: YES];
+	[nav pushViewController: bulletin animated: YES];
 	[bulletin release];
-	
-	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }
 
 @end

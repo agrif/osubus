@@ -24,5 +24,6 @@
 @property (nonatomic, copy) NSString* updateURL;
 
 - (void) loadBulletins: (OBTopViewController*) caller;
+- (void) pushOntoNavigationController: (UINavigationController*) nav bulletin: (NSInteger) index;
 
 @end
