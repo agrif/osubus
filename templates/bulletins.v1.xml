@@ -7,8 +7,8 @@
 	<sb>
 		<nm>{{ bulletin.title }}</nm>
 		<sbj>{{ bulletin.title }}</sbj>
-		<dtl>{{ bulletin.body|markdown|typogrify|force_escape }}</dtl>
-		<brf>{{ bulletin.body|markdown|typogrify|force_escape }}</brf>
+		<dtl>{{ bulletin.body|force_escape }}</dtl>
+		<brf>{{ bulletin.body|force_escape }}</brf>
 		<prty>{{ bulletin.get_priority_display }}</prty>
 	</sb>
 {% endfor %}
