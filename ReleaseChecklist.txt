@@ -12,11 +12,9 @@ Make sure to do all of this, each release! You could screw up, seriously!
    b. Open the database, and edit any new entries is 'pretty_names' table.
       That is, look for entries where both names are ALL CAPS!
    
-   c. Upload all these new databases (with different names!) to
-      'updates/incoming/'.
+   c. Upload all these new databases to the Cache Databases section of
+      the OSU Bus website.
    
-   d. Inside 'updates/', run 'proccess.py'.
-
 3. Tag and commit the current git repository. Useful for later branching!
    ( commit: `git commit [-a]`
      tag:    `git tag -a v0.0.0 -m "tagging version 0.0.0"`
@@ -25,4 +23,4 @@ Make sure to do all of this, each release! You could screw up, seriously!
 ### SUBMIT APP TO APP STORE / BUILD AD-HOC VERSION / WHATEVER ###
 ### (wait until approval, upload, whatever till you go on...) ###
 
-3. Make sure to update "updates/version" appropriately on the server!
+3. Make sure to add an appropriate Version Bulletin on the web site!
