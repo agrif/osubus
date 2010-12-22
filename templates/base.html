@@ -7,6 +7,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
+{% block head %}{% endblock %}
+
 <!--
 	this page uses Blueprint CSS. See blueprintcss.org for details.
 -->
@@ -22,8 +24,6 @@
 <!-- newfangled standardized favicons -->
 <link rel="icon" type="image/png" href="/static/images/ui/icon.png" />
 <link rel="apple-touch-icon-precomposed" type="image/png" href="/static/images/ui/icon-ios.png" />
-
-{% block head %}{% endblock %}
 
 <title>OSU Bus - {% block title %}an iPhone TRIP client{% endblock %}</title>
 </head>
@@ -64,7 +64,7 @@ by Aaron Griffith <br/>
 	<li>{% navlink request "/screenshots" "Screenshots" %}</li>
 </ul>
 
-{% block sidebar %}{% endblock %}
+{% block base_sidebar %}{% endblock %}
 
 {% external_links as externs %}
 {% if externs %}
@@ -90,7 +90,7 @@ by Aaron Griffith <br/>
 
 <div class="span-18 last prepend-top" id="body">
 
-{% block content %}{% endblock %}
+{% block base_content %}{% endblock %}
 
 </div>
 

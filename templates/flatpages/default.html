@@ -5,6 +5,6 @@
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 
-{% block content %}
+{% block base_content %}
 {{ flatpage.content|markdown:"extra,toc"|typogrify }}
-{% endblock content %}
+{% endblock base_content %}
