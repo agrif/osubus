@@ -68,23 +68,23 @@ a:hover
 	color: #330000;
 }
 
-#nav
+.nav
 {
 	font-weight: bold;
 	font-style: italic;
 }
 
-#nav a:link
+.nav a:link
 {
 	text-decoration: none;
 }
 
-#nav a:visited
+.nav a:visited
 {
     text-decoration: none;
 }
 
-#nav a:hover
+.nav a:hover
 {
 	text-decoration: underline;
 }

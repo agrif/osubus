@@ -56,7 +56,7 @@ by Aaron Griffith <br/>
 
 <div class="sidebar-header">Pages</div>
 
-<ul id="nav">
+<ul class="nav">
 {% get_flatpages as flatpages %}
 {% for page in flatpages %}
 	<li>{% navlink request page.url page.title %}</li>
@@ -70,17 +70,20 @@ by Aaron Griffith <br/>
 {% if externs %}
 <div class="sidebar-header">External Links</div>
 
-<ul id="nav">
+<ul class="nav">
 {% for link in externs %}
 	<li><a href="{{ link.url }}">{{ link.name }}</a></li>
 {% endfor %}
 </ul>
 {% endif %}
 
-<div class="centeralign noprint">
+<div class="centeralign small quiet noprint">
 <a href="http://itunes.apple.com/app/osu-bus/id410788785">
-<img src="/static/images/appstore.png" alt="Available on the App Store" /><br/>
-</a>
+<img src="/static/images/appstore.png" alt="Available on the App Store" />
+</a><br/>
+
+{% ob_version "Current Version: %s" %}<br/>
+{% ob_database "Current Dabatase: %s" %}<br/>
 </div>
 
 </div>

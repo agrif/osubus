@@ -1,5 +1,5 @@
 from django import template
-from osubus_extra.models import ExternalLink
+from osubus_extra.models import ExternalLink, VersionBulletin, CacheDatabase
 import re
 
 register = template.Library()
@@ -9,6 +9,23 @@ def navlink(request, url, name):
     if request.path == url:
         return name
     return '<a href="%s">%s</a>' % (url, name)
+
+@register.simple_tag
+def ob_version(fmt="%s"):
+    try:
+        obj = VersionBulletin.objects.all()[0]
+    except IndexError:
+        return ""
+    return fmt % (str(obj),)
+
+@register.simple_tag
+def ob_database(fmt="%s"):
+    try:
+        obj = CacheDatabase.objects.all()[0]
+    except IndexError:
+        return ""
+    datestr = "%02i/%02i/%04i" % (obj.date.month, obj.date.day, obj.date.year)
+    return fmt % (datestr,)
 
 class ExternalLinksNode(template.Node):
     def __init__(self, var_name):
