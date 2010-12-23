@@ -449,7 +449,7 @@
 		[hud show: YES];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
 		OBMapViewController* map = [[OBMapViewController alloc] initWithNibName: @"OBMapViewController" bundle: nil];
-		[self.navigationController pushViewController: map animated: nil];
+		[self.navigationController pushViewController: map animated: YES];
 		[map release];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
