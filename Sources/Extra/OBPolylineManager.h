@@ -8,17 +8,43 @@
 // with small differences
 
 #include <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
 #include <MapKit/MapKit.h>
 
-@interface OBPolylineManager : NSObject
+@protocol OBOverlay
+- (MKCoordinateRegion) overlayRegion;
+@end
+
+@interface OBPolyline : UIView <OBOverlay>
 {
 	MKMapView* map;
+	NSArray* points;
+	MKCoordinateRegion overlayRegion;
+	
+	UIColor* polylineColor;
+	CGFloat polylineAlpha;
 }
 
-@property (nonatomic, readonly) MKMapView* map;
+@property (nonatomic, retain) NSArray* points;
+@property (nonatomic, readonly) MKCoordinateRegion overlayRegion;
+@property (nonatomic, retain) UIColor* polylineColor;
+@property (nonatomic, assign) CGFloat polylineAlpha;
 
 - (id) initWithMapView: (MKMapView*) mapView;
+- (id) initWithMapView: (MKMapView*) mapView points: (NSArray*) pts;
 
-- (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation;
+@end
+
+@interface OBPolylineManager : MKAnnotationView <MKAnnotation>
+{
+	MKMapView* map;
+	NSMutableArray* overlays;
+}
+
+@property (nonatomic, readonly) NSArray* overlays;
+
+- (id) initWithMapView: (MKMapView*) mapView;
+- (void) addOverlay: (UIView<OBOverlay>*) overlay;
+- (void) removeOverlay: (UIView<OBOverlay>*) overlay;
 
 @end

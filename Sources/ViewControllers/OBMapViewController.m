@@ -17,6 +17,17 @@
 	[self.navigationItem setTitle: @"Map"];
 	
 	polylines = [[OBPolylineManager alloc] initWithMapView: map];
+	[map addAnnotation: polylines];
+	
+	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
+	
+	route.points = [NSArray arrayWithObjects:
+					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
+					[[[CLLocation alloc] initWithLatitude: 70.0 longitude: 70.0] autorelease],
+					nil];
+	
+	[polylines addOverlay: route];
+	[route release];
 	
 	NSLog(@"OBMapViewController loaded");
 }
@@ -38,9 +49,8 @@
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
 {
-	MKAnnotationView* ret = [polylines mapView: mapView viewForAnnotation: annotation];
-	if (ret)
-		return ret;
+	if (annotation == polylines)
+		return polylines;
 	
 	return nil;
 }
