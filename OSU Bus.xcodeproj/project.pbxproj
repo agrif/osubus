@@ -45,6 +45,9 @@
 		D06293FB12C3856A0081391C /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DB12C3856A0081391C /* OBStopsViewController.m */; };
 		D06293FC12C3856A0081391C /* OBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DD12C3856A0081391C /* OBTableViewController.m */; };
 		D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DF12C3856A0081391C /* OBTopViewController.m */; };
+		D062950812C38C6A0081391C /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D062950712C38C6A0081391C /* OBMapViewController.m */; };
+		D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D062950912C38D3D0081391C /* OBMapViewController.xib */; };
+		D062951A12C38F850081391C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D062951912C38F850081391C /* MapKit.framework */; };
 		D073591112C38042004FC62C /* cabs.db in Resources */ = {isa = PBXBuildFile; fileRef = D07358F212C38042004FC62C /* cabs.db */; };
 		D073591212C38042004FC62C /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D07358F412C38042004FC62C /* contact.png */; };
 		D073591312C38042004FC62C /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D07358F512C38042004FC62C /* contact@2x.png */; };
@@ -151,6 +154,10 @@
 		D06293DE12C3856A0081391C /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
 		D06293DF12C3856A0081391C /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
 		D062940E12C386790081391C /* ReleaseChecklist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseChecklist.txt; sourceTree = "<group>"; };
+		D062950612C38C6A0081391C /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
+		D062950712C38C6A0081391C /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
+		D062950912C38D3D0081391C /* OBMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBMapViewController.xib; sourceTree = "<group>"; };
+		D062951912C38F850081391C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D07358F212C38042004FC62C /* cabs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cabs.db; sourceTree = "<group>"; };
 		D07358F412C38042004FC62C /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
 		D07358F512C38042004FC62C /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
@@ -194,6 +201,7 @@
 				D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */,
 				D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */,
 				D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */,
+				D062951A12C38F850081391C /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +233,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D062951912C38F850081391C /* MapKit.framework */,
 				D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */,
 				D00374A61139EF0400053FCB /* libsqlite3.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -367,6 +376,8 @@
 				D06293DD12C3856A0081391C /* OBTableViewController.m */,
 				D06293DE12C3856A0081391C /* OBTopViewController.h */,
 				D06293DF12C3856A0081391C /* OBTopViewController.m */,
+				D062950612C38C6A0081391C /* OBMapViewController.h */,
+				D062950712C38C6A0081391C /* OBMapViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -414,6 +425,7 @@
 				D073590512C38042004FC62C /* OBStopsCell.xib */,
 				D073590612C38042004FC62C /* OBStopsViewController.xib */,
 				D073590712C38042004FC62C /* OBTopViewController.xib */,
+				D062950912C38D3D0081391C /* OBMapViewController.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -509,6 +521,7 @@
 				D073592B12C38042004FC62C /* iTunesArtwork in Resources */,
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
+				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +565,7 @@
 				D06293FB12C3856A0081391C /* OBStopsViewController.m in Sources */,
 				D06293FC12C3856A0081391C /* OBTableViewController.m in Sources */,
 				D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */,
+				D062950812C38C6A0081391C /* OBMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

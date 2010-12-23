@@ -14,6 +14,7 @@
 #import "OBRoutesViewController.h"
 #import "OBStopsViewController.h"
 #import "OBPredictionsViewController.h"
+#import "OBMapViewController.h"
 #import "MBProgressHUD.h"
 
 @implementation OBTopViewController
@@ -446,6 +447,10 @@
 		[hud setOpacity: 0.9];
 		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
 		[hud show: YES];
+	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
+		OBMapViewController* map = [[OBMapViewController alloc] initWithNibName: @"OBMapViewController" bundle: nil];
+		[self.navigationController pushViewController: map animated: nil];
+		[map release];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];
