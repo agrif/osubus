@@ -5,19 +5,26 @@
 // the file "main.m" for details.
 
 #import "OBMapViewController.h"
+#import "OBPolylineManager.h"
 
 @implementation OBMapViewController
+
+@synthesize map;
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Map"];
 	
+	polylines = [[OBPolylineManager alloc] initWithMapView: map];
+	
 	NSLog(@"OBMapViewController loaded");
 }
 
 - (void) viewDidUnload
 {
+	[polylines release];
+	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
 }
@@ -25,6 +32,17 @@
 - (void) didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+}
+
+#pragma mark MKMapViewDelegate
+
+- (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
+{
+	MKAnnotationView* ret = [polylines mapView: mapView viewForAnnotation: annotation];
+	if (ret)
+		return ret;
+	
+	return nil;
 }
 
 @end

@@ -5,10 +5,16 @@
 // the file "main.m" for details.
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface OBMapViewController : UIViewController
+@class OBPolylineManager;
+
+@interface OBMapViewController : UIViewController <MKMapViewDelegate>
 {
-
+	MKMapView* map;
+	OBPolylineManager* polylines;
 }
+
+@property (nonatomic, retain) IBOutlet MKMapView* map;
 
 @end
