@@ -4,16 +4,10 @@
 // This file is licensed under the GNU GPL v2. See
 // the file "main.m" for details.
 
-// OBPolylineManager based on <https://github.com/wlach/nvpolyline>,
-// with small differences
+// OBOverlayManager based on <https://github.com/wlach/nvpolyline>,
+// but was written from scratch to be more versatile
 
-#include <Foundation/Foundation.h>
-#include <UIKit/UIKit.h>
-#include <MapKit/MapKit.h>
-
-@protocol OBOverlay
-- (MKCoordinateRegion) overlayRegion;
-@end
+#include "OBOverlayManager.h"
 
 @interface OBPolyline : UIView <OBOverlay>
 {
@@ -32,19 +26,5 @@
 
 - (id) initWithMapView: (MKMapView*) mapView;
 - (id) initWithMapView: (MKMapView*) mapView points: (NSArray*) pts;
-
-@end
-
-@interface OBPolylineManager : MKAnnotationView <MKAnnotation>
-{
-	MKMapView* map;
-	NSMutableArray* overlays;
-}
-
-@property (nonatomic, readonly) NSArray* overlays;
-
-- (id) initWithMapView: (MKMapView*) mapView;
-- (void) addOverlay: (UIView<OBOverlay>*) overlay;
-- (void) removeOverlay: (UIView<OBOverlay>*) overlay;
 
 @end

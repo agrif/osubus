@@ -5,7 +5,9 @@
 // the file "main.m" for details.
 
 #import "OBMapViewController.h"
-#import "OBPolylineManager.h"
+
+#import "OBOverlayManager.h"
+#import "OBPolyline.h"
 
 @implementation OBMapViewController
 
@@ -16,8 +18,8 @@
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Map"];
 	
-	polylines = [[OBPolylineManager alloc] initWithMapView: map];
-	[map addAnnotation: polylines];
+	overlays = [[OBOverlayManager alloc] initWithMapView: map];
+	[map addAnnotation: overlays];
 	
 	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	
@@ -26,7 +28,7 @@
 					[[[CLLocation alloc] initWithLatitude: 70.0 longitude: 70.0] autorelease],
 					nil];
 	
-	[polylines addOverlay: route];
+	[overlays addOverlay: route];
 	[route release];
 	
 	NSLog(@"OBMapViewController loaded");
@@ -34,7 +36,7 @@
 
 - (void) viewDidUnload
 {
-	[polylines release];
+	[overlays release];
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
@@ -49,8 +51,8 @@
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
 {
-	if (annotation == polylines)
-		return polylines;
+	if (annotation == overlays)
+		return overlays;
 	
 	return nil;
 }

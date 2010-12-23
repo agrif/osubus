@@ -7,12 +7,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@class OBPolylineManager;
+@class OBOverlayManager;
 
 @interface OBMapViewController : UIViewController <MKMapViewDelegate>
 {
 	MKMapView* map;
-	OBPolylineManager* polylines;
+	OBOverlayManager* overlays;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
