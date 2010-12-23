@@ -15,6 +15,8 @@
 	MKMapView* map;
 }
 
+@property (nonatomic, readonly) MKMapView* map;
+
 - (id) initWithMapView: (MKMapView*) mapView;
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation;
