@@ -93,7 +93,7 @@
 		NSArray* stops = [[OTClient sharedClient] stopsWithRoute: [route objectForKey: @"id"]];
 		for (NSDictionary* stop in stops)
 		{
-			OBStopAnnotation* annotation = [[OBStopAnnotation alloc] initWithRoute: route stop: stop];
+			OBStopAnnotation* annotation = [[OBStopAnnotation alloc] initWithMapViewController: self route: route stop: stop];
 			[annotations addObject: annotation];
 			[map addAnnotation: annotation];
 			[annotation release];
