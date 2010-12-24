@@ -8,12 +8,20 @@
 
 #import "OBTableViewController.h"
 
+// delegate for modal-view mode
+@protocol OBRoutesViewDelegate
+- (BOOL) isRouteEnabled: (NSString*) route;
+- (void) setRoute: (NSString*) route enabled: (BOOL) enabled;
+@end
+
 @interface OBRoutesViewController : OBTableViewController
 {
 	NSArray* routes;
+	id<OBRoutesViewDelegate> routesDelegate;
 }
 
 @property (nonatomic, readonly) NSArray* routes;
+@property (nonatomic, retain) id<OBRoutesViewDelegate> routesDelegate;
 
 - (IBAction) dismissModal;
 

@@ -12,7 +12,7 @@
 
 @implementation OBRoutesViewController
 
-@synthesize routes;
+@synthesize routes, routesDelegate;
 
 - (void) viewDidLoad
 {
@@ -28,6 +28,7 @@
 {
 	[super viewDidUnload];
 	[routes release];
+	self.routesDelegate = nil;
 }
 
 #pragma mark Table View Data Source
@@ -48,8 +49,19 @@
 }
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
-{	
-	return [self routesCellForTable: tableView withData: [routes objectAtIndex: [indexPath row]]];
+{
+	NSDictionary* route = [routes objectAtIndex: [indexPath row]];
+	UITableViewCell* cell = [self routesCellForTable: tableView withData: route];
+	
+	if (routesDelegate)
+	{
+		// modal view mode
+		cell.accessoryType = UITableViewCellAccessoryNone;
+		if ([routesDelegate isRouteEnabled: [route objectForKey: @"short"]])
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	
+	return cell;
 }
 
 #pragma mark Table View Delegate
@@ -63,10 +75,20 @@
 {
 	// navigation logic
 	
-	OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
-	[stops setRoute: [routes objectAtIndex: [indexPath row]]];
-	[self.navigationController pushViewController: stops animated: YES];
-	[stops release];
+	if (routesDelegate)
+	{
+		NSDictionary* route = [routes objectAtIndex: [indexPath row]];
+		[routesDelegate setRoute: [route objectForKey: @"short"] enabled: ![routesDelegate isRouteEnabled: [route objectForKey: @"short"]]];
+		
+		NSArray* indexPaths = [[NSArray alloc] initWithObjects: indexPath, nil];
+		[tableView reloadRowsAtIndexPaths: indexPaths withRowAnimation: UITableViewRowAnimationFade];
+		[indexPaths release];
+	} else {
+		OBStopsViewController* stops = [[OBStopsViewController alloc] initWithNibName: @"OBStopsViewController" bundle: nil];
+		[stops setRoute: [routes objectAtIndex: [indexPath row]]];
+		[self.navigationController pushViewController: stops animated: YES];
+		[stops release];
+	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
 }

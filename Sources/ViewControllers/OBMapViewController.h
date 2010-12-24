@@ -7,13 +7,17 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "OBRoutesViewController.h"
+
 @class OBOverlayManager;
 
-@interface OBMapViewController : UIViewController <MKMapViewDelegate>
+@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate>
 {
 	MKMapView* map;
 	UIBarButtonItem* routesButton;
 	OBOverlayManager* overlays;
+	
+	NSMutableDictionary* routes;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;

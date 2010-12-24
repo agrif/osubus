@@ -6,7 +6,6 @@
 
 #import "OBMapViewController.h"
 
-#import "OBRoutesViewController.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
@@ -25,18 +24,23 @@
 										MKCoordinateSpanMake(0.01, 0.01));
 	map.mapType = MKMapTypeStandard;
 	
+	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
 	[map addAnnotation: overlays];
 	
-	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
+	/*OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	
-	/*route.points = [NSArray arrayWithObjects:
+	route.points = [NSArray arrayWithObjects:
 					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
 					[[[CLLocation alloc] initWithLatitude: 70.0 longitude: 70.0] autorelease],
-					nil];*/
+					nil];
 	
 	[overlays addOverlay: route];
-	[route release];
+	[route release];*/
+	
+	// FIXME magick number -- approximately maximum number of routes, but not exactly
+	// just a rough estimate
+	routes = [[NSMutableDictionary alloc] initWithCapacity: 10];
 	
 	NSLog(@"OBMapViewController loaded");
 }
@@ -44,6 +48,7 @@
 - (void) viewDidUnload
 {
 	[overlays release];
+	[routes release];
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
@@ -63,9 +68,31 @@
 
 - (IBAction) routesButtonPressed
 {
-	OBRoutesViewController* routes = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewControllerModal" bundle: nil];
-	[self.navigationController presentModalViewController: routes animated: YES];
-	[routes release];
+	OBRoutesViewController* routesController = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewControllerModal" bundle: nil];
+	routesController.routesDelegate = self;
+	[self.navigationController presentModalViewController: routesController animated: YES];
+	[routesController release];
+}
+
+- (BOOL) isRouteEnabled: (NSString*) route
+{
+	return [routes objectForKey: route] != nil;
+}
+
+- (void) setRoute: (NSString*) route enabled: (BOOL) enabled
+{
+	if (enabled)
+	{
+		// add in the route
+		// for now, use a dummy object
+		NSArray* data = [[NSArray alloc] init];
+		[routes setObject: data forKey: route];
+		[data release];
+	} else {
+		// remove the route!
+		// for now, remove dummy object
+		[routes removeObjectForKey: route];
+	}
 }
 
 #pragma mark MKMapViewDelegate
