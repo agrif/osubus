@@ -22,13 +22,17 @@
 	[self.navigationItem setRightBarButtonItem: routesButton];
 	
 	// magick numbers -- approximate center of the oval
-	map.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(39.999417, -83.012639),
+	CLLocationCoordinate2D center;
+	center.latitude = 39.999417;
+	center.longitude = -83.012639;
+	map.region = MKCoordinateRegionMake(center,
 										MKCoordinateSpanMake(0.01, 0.01));
 	map.mapType = MKMapTypeStandard;
 	
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
-	[map addAnnotation: overlays];
+	// FIXME overlay manager SCREWS UP disclosure buttons on annotations
+	//[map addAnnotation: overlays];
 	
 	/*OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	

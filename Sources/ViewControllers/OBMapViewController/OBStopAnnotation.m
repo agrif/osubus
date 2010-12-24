@@ -51,7 +51,6 @@
 
 - (void) showStopViewController
 {
-	NSLog(@"opening predictions view via map");
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 	[predictions setStop: stop];
 	[map.navigationController pushViewController: predictions animated: NO];
@@ -62,7 +61,10 @@
 
 - (CLLocationCoordinate2D) coordinate
 {
-	return CLLocationCoordinate2DMake([[stop objectForKey: @"lat"] floatValue], [[stop objectForKey: @"lon"] floatValue]);
+	CLLocationCoordinate2D loc;
+	loc.latitude = [[stop objectForKey: @"lat"] floatValue];
+	loc.longitude = [[stop objectForKey: @"lon"] floatValue];
+	return loc;
 }
 
 - (NSString*) title
