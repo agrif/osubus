@@ -54,10 +54,12 @@
 		if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0)
 			continue;
 		
-		CLLocationCoordinate2D mincoord = CLLocationCoordinate2DMake(region.center.latitude + region.span.latitudeDelta,
-																	 region.center.longitude - region.span.longitudeDelta);
-		CLLocationCoordinate2D maxcoord = CLLocationCoordinate2DMake(region.center.latitude - region.span.latitudeDelta,
-																	 region.center.longitude + region.span.longitudeDelta);
+		CLLocationCoordinate2D mincoord;
+		mincoord.latitude = region.center.latitude + region.span.latitudeDelta;
+		mincoord.longitude = region.center.longitude - region.span.longitudeDelta;
+		CLLocationCoordinate2D maxcoord;
+		maxcoord.latitude = region.center.latitude - region.span.latitudeDelta;
+		maxcoord.longitude = region.center.longitude + region.span.longitudeDelta;
 		
 		CGPoint minpt = [map convertCoordinate: mincoord toPointToView: self];
 		CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: self];
@@ -66,7 +68,7 @@
 								   minpt.y - OB_OVERLAY_MARGIN,
 								   maxpt.x - minpt.x + 2*OB_OVERLAY_MARGIN,
 								   maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
-		
+
 		// now we redraw
 		[overlay setNeedsDisplay];
 	}
