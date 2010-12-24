@@ -53,7 +53,7 @@
 {
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 	[predictions setStop: stop];
-	[map.navigationController pushViewController: predictions animated: NO];
+	[map.navigationController pushViewController: predictions animated: YES];
 	[predictions release];
 }
 
