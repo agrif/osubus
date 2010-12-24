@@ -10,8 +10,8 @@
 
 // delegate for modal-view mode
 @protocol OBRoutesViewDelegate
-- (BOOL) isRouteEnabled: (NSString*) route;
-- (void) setRoute: (NSString*) route enabled: (BOOL) enabled;
+- (BOOL) isRouteEnabled: (NSDictionary*) route;
+- (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled;
 @end
 
 @interface OBRoutesViewController : OBTableViewController

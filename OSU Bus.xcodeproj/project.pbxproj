@@ -46,7 +46,6 @@
 		D06293FB12C3856A0081391C /* OBStopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DB12C3856A0081391C /* OBStopsViewController.m */; };
 		D06293FC12C3856A0081391C /* OBTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DD12C3856A0081391C /* OBTableViewController.m */; };
 		D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DF12C3856A0081391C /* OBTopViewController.m */; };
-		D062950812C38C6A0081391C /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D062950712C38C6A0081391C /* OBMapViewController.m */; };
 		D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D062950912C38D3D0081391C /* OBMapViewController.xib */; };
 		D062951A12C38F850081391C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D062951912C38F850081391C /* MapKit.framework */; };
 		D06295C712C3CF8C0081391C /* OBOverlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D06295C412C3CF8C0081391C /* OBOverlayManager.m */; };
@@ -77,6 +76,8 @@
 		D073592A12C38042004FC62C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D073590E12C38042004FC62C /* Icon@2x.png */; };
 		D073592B12C38042004FC62C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D073590F12C38042004FC62C /* iTunesArtwork */; };
 		D073592C12C38042004FC62C /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D073591012C38042004FC62C /* UserDefaults.plist */; };
+		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
+		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -158,8 +159,6 @@
 		D06293DE12C3856A0081391C /* OBTopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBTopViewController.h; sourceTree = "<group>"; };
 		D06293DF12C3856A0081391C /* OBTopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBTopViewController.m; sourceTree = "<group>"; };
 		D062940E12C386790081391C /* ReleaseChecklist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseChecklist.txt; sourceTree = "<group>"; };
-		D062950612C38C6A0081391C /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
-		D062950712C38C6A0081391C /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
 		D062950912C38D3D0081391C /* OBMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBMapViewController.xib; sourceTree = "<group>"; };
 		D062951912C38F850081391C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D06295C312C3CF8C0081391C /* OBOverlayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOverlayManager.h; sourceTree = "<group>"; };
@@ -194,6 +193,10 @@
 		D073590E12C38042004FC62C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		D073590F12C38042004FC62C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D073591012C38042004FC62C /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
+		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
+		D0AF5DF012C5119A00813A24 /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
+		D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopAnnotation.h; sourceTree = "<group>"; };
+		D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBStopAnnotation.m; sourceTree = "<group>"; };
 		D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -369,6 +372,7 @@
 		D06293CF12C3856A0081391C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				D0AF5DEE12C5119A00813A24 /* OBMapViewController */,
 				D06293D012C3856A0081391C /* OBAboutViewController.h */,
 				D06293D112C3856A0081391C /* OBAboutViewController.m */,
 				D06293D212C3856A0081391C /* OBBulletinsViewController.h */,
@@ -385,8 +389,6 @@
 				D06293DD12C3856A0081391C /* OBTableViewController.m */,
 				D06293DE12C3856A0081391C /* OBTopViewController.h */,
 				D06293DF12C3856A0081391C /* OBTopViewController.m */,
-				D062950612C38C6A0081391C /* OBMapViewController.h */,
-				D062950712C38C6A0081391C /* OBMapViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -463,6 +465,17 @@
 				D073590F12C38042004FC62C /* iTunesArtwork */,
 			);
 			path = Springboard;
+			sourceTree = "<group>";
+		};
+		D0AF5DEE12C5119A00813A24 /* OBMapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */,
+				D0AF5DF012C5119A00813A24 /* OBMapViewController.m */,
+				D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */,
+				D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */,
+			);
+			path = OBMapViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -587,9 +600,10 @@
 				D06293FB12C3856A0081391C /* OBStopsViewController.m in Sources */,
 				D06293FC12C3856A0081391C /* OBTableViewController.m in Sources */,
 				D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */,
-				D062950812C38C6A0081391C /* OBMapViewController.m in Sources */,
 				D06295C712C3CF8C0081391C /* OBOverlayManager.m in Sources */,
 				D06295C812C3CF8C0081391C /* OBPolyline.m in Sources */,
+				D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */,
+				D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

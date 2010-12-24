@@ -57,7 +57,7 @@
 	{
 		// modal view mode
 		cell.accessoryType = UITableViewCellAccessoryNone;
-		if ([routesDelegate isRouteEnabled: [route objectForKey: @"short"]])
+		if ([routesDelegate isRouteEnabled: route])
 			cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	}
 	
@@ -78,7 +78,7 @@
 	if (routesDelegate)
 	{
 		NSDictionary* route = [routes objectAtIndex: [indexPath row]];
-		[routesDelegate setRoute: [route objectForKey: @"short"] enabled: ![routesDelegate isRouteEnabled: [route objectForKey: @"short"]]];
+		[routesDelegate setRoute: route enabled: ![routesDelegate isRouteEnabled: route]];
 		
 		NSArray* indexPaths = [[NSArray alloc] initWithObjects: indexPath, nil];
 		[tableView reloadRowsAtIndexPaths: indexPaths withRowAnimation: UITableViewRowAnimationFade];

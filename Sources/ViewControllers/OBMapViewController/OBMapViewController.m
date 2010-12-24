@@ -6,6 +6,8 @@
 
 #import "OBMapViewController.h"
 
+#import "OTClient.h"
+#import "OBStopAnnotation.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
@@ -74,23 +76,41 @@
 	[routesController release];
 }
 
-- (BOOL) isRouteEnabled: (NSString*) route
+- (BOOL) isRouteEnabled: (NSDictionary*) route
 {
 	return [routes objectForKey: route] != nil;
 }
 
-- (void) setRoute: (NSString*) route enabled: (BOOL) enabled
+- (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
 	if (enabled)
 	{
 		// add in the route
-		// for now, use a dummy object
-		NSArray* data = [[NSArray alloc] init];
-		[routes setObject: data forKey: route];
-		[data release];
+		// create an array of stop annotations
+		
+		NSMutableArray* annotations = [[NSMutableArray alloc] init];
+		
+		NSArray* stops = [[OTClient sharedClient] stopsWithRoute: [route objectForKey: @"id"]];
+		for (NSDictionary* stop in stops)
+		{
+			OBStopAnnotation* annotation = [[OBStopAnnotation alloc] initWithRoute: route stop: stop];
+			[annotations addObject: annotation];
+			[map addAnnotation: annotation];
+			[annotation release];
+		}
+		[stops release];
+		
+		[routes setObject: annotations forKey: route];
+		[annotations release];
 	} else {
 		// remove the route!
-		// for now, remove dummy object
+		// but first, remove the annotations
+		
+		for (OBStopAnnotation* annotation in [routes objectForKey: route])
+		{
+			[map removeAnnotation: annotation];
+		}
+		
 		[routes removeObjectForKey: route];
 	}
 }
@@ -101,6 +121,9 @@
 {
 	if (annotation == overlays)
 		return overlays;
+	
+	if ([annotation isKindOfClass: [OBStopAnnotation class]])
+		return [(OBStopAnnotation*)annotation annotationViewForMap: map];
 	
 	return nil;
 }
