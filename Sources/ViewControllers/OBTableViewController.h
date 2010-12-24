@@ -6,11 +6,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OBTableViewController : UITableViewController
+@interface OBTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
+	UITableView* _tableView;
 	UITableViewCell* newCell;
 }
 
+@property (nonatomic, retain) IBOutlet UITableView* tableView;
 @property (nonatomic, retain) IBOutlet UITableViewCell* newCell;
 
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier;

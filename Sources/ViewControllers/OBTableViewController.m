@@ -10,12 +10,24 @@
 
 @implementation OBTableViewController
 
+@synthesize tableView = _tableView;
 @synthesize newCell;
 
 // globally allow table views to autorotate
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
 	return YES;
+}
+
+// stub implementations of data source methods to pacify compiler
+- (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) path
+{
+	return nil;
+}
+
+- (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
+{
+	return 0;
 }
 
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier

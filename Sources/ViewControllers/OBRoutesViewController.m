@@ -12,6 +12,8 @@
 
 @implementation OBRoutesViewController
 
+@synthesize routes;
+
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
@@ -67,6 +69,13 @@
 	[stops release];
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
+}
+
+#pragma mark modal-style handling
+
+- (IBAction) dismissModal
+{
+	[self.parentViewController dismissModalViewControllerAnimated: YES];
 }
 
 @end

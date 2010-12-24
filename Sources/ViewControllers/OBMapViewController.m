@@ -6,17 +6,19 @@
 
 #import "OBMapViewController.h"
 
+#import "OBRoutesViewController.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
 @implementation OBMapViewController
 
-@synthesize map;
+@synthesize map, routesButton;
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Map"];
+	[self.navigationItem setRightBarButtonItem: routesButton];
 	
 	// magick numbers -- approximate center of the oval
 	map.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(39.999417, -83.012639),
@@ -55,6 +57,15 @@
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
 {
 	return YES;
+}
+
+#pragma mark routes selector stuff
+
+- (IBAction) routesButtonPressed
+{
+	OBRoutesViewController* routes = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewControllerModal" bundle: nil];
+	[self.navigationController presentModalViewController: routes animated: YES];
+	[routes release];
 }
 
 #pragma mark MKMapViewDelegate

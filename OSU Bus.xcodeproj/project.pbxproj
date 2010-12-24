@@ -11,6 +11,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
+		D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -87,6 +88,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		D003744C1139EBC600053FCB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBRoutesViewControllerModal.xib; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 				D073590612C38042004FC62C /* OBStopsViewController.xib */,
 				D073590712C38042004FC62C /* OBTopViewController.xib */,
 				D062950912C38D3D0081391C /* OBMapViewController.xib */,
+				D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
+				D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

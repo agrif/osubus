@@ -13,4 +13,8 @@
 	NSArray* routes;
 }
 
+@property (nonatomic, readonly) NSArray* routes;
+
+- (IBAction) dismissModal;
+
 @end

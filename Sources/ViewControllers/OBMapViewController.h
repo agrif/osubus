@@ -12,9 +12,13 @@
 @interface OBMapViewController : UIViewController <MKMapViewDelegate>
 {
 	MKMapView* map;
+	UIBarButtonItem* routesButton;
 	OBOverlayManager* overlays;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* routesButton;
+
+- (IBAction) routesButtonPressed;
 
 @end
