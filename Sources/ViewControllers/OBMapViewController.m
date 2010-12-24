@@ -18,15 +18,20 @@
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Map"];
 	
+	// magick numbers -- approximate center of the oval
+	map.region = MKCoordinateRegionMake(CLLocationCoordinate2DMake(39.999417, -83.012639),
+										MKCoordinateSpanMake(0.01, 0.01));
+	map.mapType = MKMapTypeStandard;
+	
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
 	[map addAnnotation: overlays];
 	
 	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	
-	route.points = [NSArray arrayWithObjects:
+	/*route.points = [NSArray arrayWithObjects:
 					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
 					[[[CLLocation alloc] initWithLatitude: 70.0 longitude: 70.0] autorelease],
-					nil];
+					nil];*/
 	
 	[overlays addOverlay: route];
 	[route release];
