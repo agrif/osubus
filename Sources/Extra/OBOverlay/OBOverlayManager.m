@@ -61,8 +61,8 @@
 		maxcoord.latitude = region.center.latitude - region.span.latitudeDelta;
 		maxcoord.longitude = region.center.longitude + region.span.longitudeDelta;
 		
-		CGPoint minpt = [map convertCoordinate: mincoord toPointToView: self];
-		CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: self];
+		CGPoint minpt = [map convertCoordinate: mincoord toPointToView: map];
+		CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: map];
 		
 		overlay.frame = CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
 								   minpt.y - OB_OVERLAY_MARGIN,
