@@ -47,6 +47,11 @@
     [super didReceiveMemoryWarning];
 }
 
+- (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
+{
+	return YES;
+}
+
 #pragma mark MKMapViewDelegate
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
