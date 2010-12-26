@@ -6,6 +6,7 @@
 
 #import "OBStopAnnotation.h"
 
+#import <CoreGraphics/CoreGraphics.h>
 #import "OBMapViewController.h"
 #import "OBPredictionsViewController.h"
 #import "NSString+HexColor.h"
@@ -20,8 +21,9 @@
 		route = [_route retain];
 		stop = [_stop retain];
 		
-		self.frame = CGRectMake(0.0, 0.0, 32.0, 32.0);
-		self.backgroundColor = [[route objectForKey: @"color"] colorFromHex];
+		self.frame = CGRectMake(0.0, 0.0, 24.0, 24.0);
+		color = [[[route objectForKey: @"color"] colorFromHex] retain];
+		self.backgroundColor = [UIColor clearColor];
 		
 		self.canShowCallout = YES;
 		
@@ -38,6 +40,7 @@
 {
 	[route release];
 	[stop release];
+	[color release];
 	
 	[super dealloc];
 }
@@ -45,6 +48,24 @@
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
 {
 	return self;
+}
+
+- (void) drawRect: (CGRect) rect
+{
+	CGContextRef c = UIGraphicsGetCurrentContext();
+	CGRect area = CGRectMake(1.0, 1.0, self.frame.size.width - 2.0, self.frame.size.height - 2.0);
+	
+	CGContextSetFillColorWithColor(c, [color CGColor]);
+	CGContextSetAlpha(c, 1.0);
+	
+	CGContextAddEllipseInRect(c, area);
+	CGContextFillPath(c);
+	
+	CGContextSetRGBStrokeColor(c, 0.0, 0.0, 0.0, 1.0);
+	CGContextSetLineWidth(c, 2.0);
+	
+	CGContextAddEllipseInRect(c, area);
+	CGContextStrokePath(c);
 }
 
 - (void) showStopViewController

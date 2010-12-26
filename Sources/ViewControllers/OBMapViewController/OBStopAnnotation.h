@@ -13,10 +13,11 @@
 	OBMapViewController* map;
 	NSDictionary* route;
 	NSDictionary* stop;
+	
+	UIColor* color;
 }
 
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop;
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView;
-- (void) showStopViewController;
 
 @end
