@@ -13,13 +13,12 @@
 
 @implementation OBMapViewController
 
-@synthesize map, routesButton;
+@synthesize map;
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Map"];
-	[self.navigationItem setRightBarButtonItem: routesButton];
 	
 	// magick numbers -- approximate center of the oval
 	CLLocationCoordinate2D center;
