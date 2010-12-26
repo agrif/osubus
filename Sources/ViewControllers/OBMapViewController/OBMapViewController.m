@@ -31,10 +31,10 @@
 	
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
-	// FIXME overlay manager SCREWS UP disclosure buttons on annotations
-	//[map addAnnotation: overlays];
+	[map addAnnotation: overlays];
 	
-	/*OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
+	// temporary test route
+	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	
 	route.points = [NSArray arrayWithObjects:
 					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
@@ -42,7 +42,7 @@
 					nil];
 	
 	[overlays addOverlay: route];
-	[route release];*/
+	[route release];
 	
 	// FIXME magick number -- approximately maximum number of routes, but not exactly
 	// just a rough estimate

@@ -18,7 +18,7 @@
 
 - (id) initWithMapView: (MKMapView*) mapView
 {
-	if (self = [super init])
+	if (self = [super initWithAnnotation: self reuseIdentifier: @"OBOverlayManager"])
 	{
 		map = mapView;
 		overlays = [[NSMutableArray alloc] init];
@@ -43,8 +43,16 @@
 	return map.centerCoordinate;
 }
 
+// send view to back on touch, prevents annonotation wierdness
+- (void) touchesBegan: (NSSet*) touches withEvent: (UIEvent*) event
+{
+	[self.superview sendSubviewToBack: self];
+	[super touchesBegan: touches withEvent: event];
+}
+
 - (CGPoint) centerOffset
 {
+	// we hook this to get position updates during zoom
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
 		// first we need to set up the view frame
