@@ -1,10 +1,8 @@
+// OSU Bus - a client for the OSU Bus System
+// Copyright (C) 2010 Aaron Griffith
 //
-//  OBStopAnnotation.m
-//  OSU Bus
-//
-//  Created by Aaron Griffith on 12/24/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
+// This file is licensed under the GNU GPL v2. See
+// the file "main.m" for details.
 
 #import "OBStopAnnotation.h"
 
