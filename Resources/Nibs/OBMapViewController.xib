@@ -69,9 +69,9 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIBarButtonItem" id="79174889">
-				<string key="IBUITitle">Routes</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUIStyle">1</int>
+				<int key="IBUISystemItemIdentifier">11</int>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -256,7 +256,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Sources/ViewControllers/OBMapViewController.h</string>
+						<string key="minorKey">Sources/ViewControllers/OBMapViewController/OBMapViewController.h</string>
 					</object>
 				</object>
 			</object>
