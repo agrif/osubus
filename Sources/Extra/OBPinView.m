@@ -43,7 +43,7 @@
 		return;
 	
 	// sanity check on image sizes
-	if (!CGSizeEqualToSize(mask.size, overlay.size))
+	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.scale != overlay.scale)
 		return;
 	
 	// clear out old layer
@@ -63,10 +63,16 @@
 	if (!context)
 		return;
 	
-	cacheLayer = CGLayerCreateWithContext(context, mask.size, NULL);
+	// make sure to handle @2x properly
+	CGFloat scale = mask.scale;
+	CGSize layerSize = mask.size;
+	layerSize.width *= scale;
+	layerSize.height *= scale;
+	
+	cacheLayer = CGLayerCreateWithContext(context, layerSize, NULL);
 	CGContextRef c = CGLayerGetContext(cacheLayer);
 	
-	CGRect area = CGRectMake(0.0, 0.0, frame.size.width, frame.size.height);
+	CGRect area = CGRectMake(0.0, 0.0, frame.size.width * scale, frame.size.height * scale);
 	
 	// fill in color according to mask
 	CGContextSaveGState(c);
@@ -94,8 +100,8 @@
 	}
 	
 	// draw the layer
-	CGContextScaleCTM(context, 1.0, -1.0);
-	CGContextDrawLayerAtPoint(context, CGPointMake(0.0, -self.frame.size.height), cacheLayer);
+	CGContextScaleCTM(context, 1.0/mask.scale, -1.0/mask.scale);
+	CGContextDrawLayerAtPoint(context, CGPointMake(0.0, -self.frame.size.height * mask.scale), cacheLayer);
 }
 
 #pragma mark properties
