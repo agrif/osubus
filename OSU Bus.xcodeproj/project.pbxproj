@@ -50,6 +50,7 @@
 		D062951A12C38F850081391C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D062951912C38F850081391C /* MapKit.framework */; };
 		D06295C712C3CF8C0081391C /* OBOverlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D06295C412C3CF8C0081391C /* OBOverlayManager.m */; };
 		D06295C812C3CF8C0081391C /* OBPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = D06295C612C3CF8C0081391C /* OBPolyline.m */; };
+		D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */; };
 		D073591112C38042004FC62C /* cabs.db in Resources */ = {isa = PBXBuildFile; fileRef = D07358F212C38042004FC62C /* cabs.db */; };
 		D073591212C38042004FC62C /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D07358F412C38042004FC62C /* contact.png */; };
 		D073591312C38042004FC62C /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D07358F512C38042004FC62C /* contact@2x.png */; };
@@ -171,6 +172,8 @@
 		D06295C412C3CF8C0081391C /* OBOverlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOverlayManager.m; sourceTree = "<group>"; };
 		D06295C512C3CF8C0081391C /* OBPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPolyline.h; sourceTree = "<group>"; };
 		D06295C612C3CF8C0081391C /* OBPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPolyline.m; sourceTree = "<group>"; };
+		D06579F312C926E800AB2874 /* UIImage+ScaleCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ScaleCompat.h"; sourceTree = "<group>"; };
+		D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ScaleCompat.m"; sourceTree = "<group>"; };
 		D07358F212C38042004FC62C /* cabs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cabs.db; sourceTree = "<group>"; };
 		D07358F412C38042004FC62C /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
 		D07358F512C38042004FC62C /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 				D06293AB12C3856A0081391C /* UILabel+SetTextAnimated.m */,
 				D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */,
 				D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */,
+				D06579F312C926E800AB2874 /* UIImage+ScaleCompat.h */,
+				D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */,
 				D06293A612C3856A0081391C /* OBGradientButton.h */,
 				D06293A712C3856A0081391C /* OBGradientButton.m */,
 				D06293A812C3856A0081391C /* OBGradientView.h */,
@@ -634,6 +639,7 @@
 				D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */,
 				D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */,
 				D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */,
+				D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

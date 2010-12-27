@@ -7,6 +7,7 @@
 #import "OBStopAnnotation.h"
 
 #import <CoreGraphics/CoreGraphics.h>
+#import "UIImage+ScaleCompat.h"
 #import "OBMapViewController.h"
 #import "OBPredictionsViewController.h"
 #import "NSString+HexColor.h"
@@ -22,8 +23,8 @@
 		stop = [_stop retain];
 		
 		self.pinColor = [[route objectForKey: @"color"] colorFromHex];
-		self.mask = [UIImage imageNamed: @"pin-mask"];
-		self.overlay = [UIImage imageNamed: @"pin-overlay"];
+		self.mask = [UIImage compatImageNamed: @"pin-mask"];
+		self.overlay = [UIImage compatImageNamed: @"pin-overlay"];
 		
 		self.centerOffset = CGPointMake(0.0, -self.frame.size.height / 2.0);
 		

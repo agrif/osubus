@@ -6,6 +6,8 @@
 
 #import "OBPinView.h"
 
+#import "UIImage+ScaleCompat.h"
+
 @implementation OBPinView
 
 - (void) _init
@@ -43,7 +45,7 @@
 		return;
 	
 	// sanity check on image sizes
-	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.scale != overlay.scale)
+	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.compatScale != overlay.compatScale)
 		return;
 	
 	// clear out old layer
@@ -64,7 +66,7 @@
 		return;
 	
 	// make sure to handle @2x properly
-	CGFloat scale = mask.scale;
+	CGFloat scale = mask.compatScale;
 	CGSize layerSize = mask.size;
 	layerSize.width *= scale;
 	layerSize.height *= scale;
@@ -100,8 +102,9 @@
 	}
 	
 	// draw the layer
-	CGContextScaleCTM(context, 1.0/mask.scale, -1.0/mask.scale);
-	CGContextDrawLayerAtPoint(context, CGPointMake(0.0, -self.frame.size.height * mask.scale), cacheLayer);
+	CGFloat scale = mask.compatScale;
+	CGContextScaleCTM(context, 1.0/scale, -1.0/scale);
+	CGContextDrawLayerAtPoint(context, CGPointMake(0.0, -self.frame.size.height * scale), cacheLayer);
 }
 
 #pragma mark properties
