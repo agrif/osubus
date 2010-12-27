@@ -77,6 +77,10 @@
 		D073592B12C38042004FC62C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D073590F12C38042004FC62C /* iTunesArtwork */; };
 		D073592C12C38042004FC62C /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D073591012C38042004FC62C /* UserDefaults.plist */; };
 		D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */ = {isa = PBXBuildFile; fileRef = D074AA5112C8FEC20085D5F9 /* OBPinView.m */; };
+		D074AAA112C918980085D5F9 /* pin-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9D12C918980085D5F9 /* pin-mask.png */; };
+		D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9E12C918980085D5F9 /* pin-mask@2x.png */; };
+		D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9F12C918980085D5F9 /* pin-overlay.png */; };
+		D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AAA012C918980085D5F9 /* pin-overlay@2x.png */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
@@ -197,6 +201,11 @@
 		D073591012C38042004FC62C /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
 		D074AA5012C8FEC20085D5F9 /* OBPinView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPinView.h; sourceTree = "<group>"; };
 		D074AA5112C8FEC20085D5F9 /* OBPinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPinView.m; sourceTree = "<group>"; };
+		D074AA9D12C918980085D5F9 /* pin-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-mask.png"; sourceTree = "<group>"; };
+		D074AA9E12C918980085D5F9 /* pin-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-mask@2x.png"; sourceTree = "<group>"; };
+		D074AA9F12C918980085D5F9 /* pin-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay.png"; sourceTree = "<group>"; };
+		D074AAA012C918980085D5F9 /* pin-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay@2x.png"; sourceTree = "<group>"; };
+		D074AAB412C918F80085D5F9 /* pin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pin.svg; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
 		D0AF5DF012C5119A00813A24 /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
 		D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopAnnotation.h; sourceTree = "<group>"; };
@@ -439,6 +448,11 @@
 				D07358F712C38042004FC62C /* info@2x.png */,
 				D07358F812C38042004FC62C /* licenses.png */,
 				D07358F912C38042004FC62C /* licenses@2x.png */,
+				D074AAB412C918F80085D5F9 /* pin.svg */,
+				D074AA9D12C918980085D5F9 /* pin-mask.png */,
+				D074AA9E12C918980085D5F9 /* pin-mask@2x.png */,
+				D074AA9F12C918980085D5F9 /* pin-overlay.png */,
+				D074AAA012C918980085D5F9 /* pin-overlay@2x.png */,
 			);
 			path = Icons;
 			sourceTree = "<group>";
@@ -567,6 +581,10 @@
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
 				D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */,
+				D074AAA112C918980085D5F9 /* pin-mask.png in Resources */,
+				D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */,
+				D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */,
+				D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

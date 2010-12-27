@@ -22,8 +22,10 @@
 		stop = [_stop retain];
 		
 		self.pinColor = [[route objectForKey: @"color"] colorFromHex];
-		self.mask = [UIImage imageNamed: @"contact"];
-		self.overlay = [UIImage imageNamed: @"info"];
+		self.mask = [UIImage imageNamed: @"pin-mask"];
+		self.overlay = [UIImage imageNamed: @"pin-overlay"];
+		
+		self.centerOffset = CGPointMake(0.0, -self.frame.size.height / 2.0);
 		
 		self.canShowCallout = YES;
 		
