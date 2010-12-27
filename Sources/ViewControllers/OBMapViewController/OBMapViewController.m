@@ -11,6 +11,9 @@
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
+static MKCoordinateRegion saved_region;
+static BOOL use_saved_region = NO;
+
 @implementation OBMapViewController
 
 @synthesize map;
@@ -18,14 +21,20 @@
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
-	[self.navigationItem setTitle: @"Map"];
+	[self.navigationItem setTitle: @"Bus Map"];
 	
-	// magick numbers -- approximate center of the oval
-	CLLocationCoordinate2D center;
-	center.latitude = 39.999417;
-	center.longitude = -83.012639;
-	map.region = MKCoordinateRegionMake(center,
-										MKCoordinateSpanMake(0.01, 0.01));
+	if (!use_saved_region)
+	{
+		// magick numbers -- approximate center of the oval
+		CLLocationCoordinate2D center;
+		center.latitude = 39.999417;
+		center.longitude = -83.012639;
+		saved_region = MKCoordinateRegionMake(center,
+											  MKCoordinateSpanMake(0.01, 0.01));
+		use_saved_region = YES;
+	}
+	
+	map.region = saved_region;
 	map.mapType = MKMapTypeStandard;
 	
 	// setup overlay manager
@@ -52,6 +61,9 @@
 
 - (void) viewDidUnload
 {
+	saved_region = map.region;
+	use_saved_region = YES;
+	
 	[overlays release];
 	[routes release];
 	
