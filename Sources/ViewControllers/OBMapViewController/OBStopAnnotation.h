@@ -6,15 +6,15 @@
 
 #import <MapKit/MapKit.h>
 
+#import "OBPinView.h"
+
 @class OBMapViewController;
 
-@interface OBStopAnnotation : MKAnnotationView <MKAnnotation>
+@interface OBStopAnnotation : OBPinView <MKAnnotation>
 {
 	OBMapViewController* map;
 	NSDictionary* route;
 	NSDictionary* stop;
-	
-	UIColor* color;
 }
 
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop;
