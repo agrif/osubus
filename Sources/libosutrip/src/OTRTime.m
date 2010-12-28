@@ -26,7 +26,8 @@
 		return;
 	}
 	
-	NSDate* time = [NSDate dateWithTRIPString: text];
+	// create the date, but also use it to synchronize!
+	NSDate* time = [NSDate dateWithTRIPString: text useToSynchronize: YES];
 	[self setResult: [NSDictionary dictionaryWithObjectsAndKeys: time, @"tm", nil]];
 }
 

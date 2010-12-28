@@ -17,6 +17,24 @@
 
 @implementation OTClient (OTClientRequests)
 
+// time sync mechanism first
+
+- (void) synchronizeTimes
+{
+	// just requesting the time is sufficient to synchronize
+	[self requestTimeWithDelegate: self];
+}
+
+- (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
+{
+	[request release];
+}
+
+- (void) request: (OTRequest*) request hasError: (NSError*) error
+{
+	[request release];
+}
+
 // now, on to actual functions!!
 
 - (OTRequest*) requestTimeWithDelegate: (id<OTRequestDelegate>) delegate;

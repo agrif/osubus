@@ -58,9 +58,10 @@
 
 @end
 
-@interface OTClient(OTClientRequests)
+@interface OTClient(OTClientRequests) <OTRequestDelegate>
 
 // these are NOT autoreleased, they're yours to take care of
+- (void) synchronizeTimes;
 - (OTRequest*) requestTimeWithDelegate: (id<OTRequestDelegate>) delegate;
 - (OTRequest*) requestRoutesWithDelegate: (id<OTRequestDelegate>) delegate;
 - (OTRequest*) requestDirectionsWithDelegate: (id<OTRequestDelegate>) delegate forRoute: (NSString*) rt;

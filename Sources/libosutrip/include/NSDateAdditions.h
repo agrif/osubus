@@ -8,6 +8,8 @@
 
 @interface NSDate (OTNSDateAdditions)
 
+// first one auto-corrects with last sync date, last one lets you set the sync date
 + (NSDate*) dateWithTRIPString: (NSString*) text;
++ (NSDate*) dateWithTRIPString: (NSString*) text useToSynchronize: (BOOL) sync;
 
 @end
