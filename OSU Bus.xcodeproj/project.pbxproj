@@ -12,6 +12,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */; };
+		D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -97,6 +98,8 @@
 		D003744C1139EBC600053FCB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBRoutesViewControllerModal.xib; sourceTree = "<group>"; };
+		D030E88612C95C8600B712A0 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
+		D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -329,6 +332,8 @@
 				D06293A512C3856A0081391C /* NSString+HexColor.m */,
 				D06293AA12C3856A0081391C /* UILabel+SetTextAnimated.h */,
 				D06293AB12C3856A0081391C /* UILabel+SetTextAnimated.m */,
+				D030E88612C95C8600B712A0 /* NSObject+Swizzle.h */,
+				D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */,
 				D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */,
 				D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */,
 				D06579F312C926E800AB2874 /* UIImage+ScaleCompat.h */,
@@ -640,6 +645,7 @@
 				D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */,
 				D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */,
 				D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */,
+				D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

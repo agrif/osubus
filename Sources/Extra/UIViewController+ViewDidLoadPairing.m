@@ -6,12 +6,25 @@
 
 #import "UIViewController+ViewDidLoadPairing.h"
 
+#import "NSObject+Swizzle.h"
+
+static BOOL swizzled = NO;
+
 @implementation UIViewController (ViewDidLoadPairing)
 
-- (void) dealloc
++ (void) load
+{
+	if (!swizzled)
+	{
+		[[self class] swizzleMethod: @selector(dealloc) withMethod: @selector(ViewDidLoadPairing_dealloc)];
+		swizzled = YES;
+	}
+}
+
+- (void) ViewDidLoadPairing_dealloc
 {
 	[self didReceiveMemoryWarning];
-	[super dealloc];
+	[self ViewDidLoadPairing_dealloc];
 }
 
 @end
