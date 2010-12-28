@@ -15,6 +15,7 @@
 
 @interface UIViewController (ViewDidLoadPairing)
 
-- (void) dealloc;
++ (void) load;
+- (void) ViewDidLoadPairing_dealloc;
 
 @end
