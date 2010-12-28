@@ -64,6 +64,12 @@ static BOOL use_saved_region = NO;
 	saved_region = map.region;
 	use_saved_region = YES;
 	
+	// bit of a hack -- shrink the saved region a bit so that the
+	// nearest fit on old OS's is NOT double the original (as it sometimes is)
+	// (weird bug)
+	saved_region.span.latitudeDelta *= 0.99;
+	saved_region.span.longitudeDelta *= 0.99;
+	
 	[overlays release];
 	[routes release];
 	
