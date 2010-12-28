@@ -71,11 +71,6 @@ static BOOL use_saved_region = NO;
     [super viewDidUnload];
 }
 
-- (void) didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
 {
 	return YES;
