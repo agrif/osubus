@@ -237,7 +237,17 @@
 		return;
 	}
 	
+	// generic case first
 	NSString* errstr = @"XML parse error.";
+	
+	switch ([parseError code])
+	{
+		// this is usually because the server could not be reached
+		case NSXMLParserPrematureDocumentEndError:
+			errstr = @"Could not connect to server.";
+			break;
+	};
+	
 	NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys: errstr, NSLocalizedDescriptionKey, parseError, NSUnderlyingErrorKey, nil];
 	NSError* errorl = [NSError errorWithDomain: OTRequestErrorDomain code: OTRequestParseError userInfo: info];
 	
