@@ -33,8 +33,6 @@
 {
 	[super viewDidLoad];
 	
-	//[aboutViewController setModalTransitionStyle: UIModalTransitionStyleFlipHorizontal];
-	
 	[self.navigationItem setTitle: @""];
 	[self.navigationItem setBackBarButtonItem: backButton];
 	
@@ -63,15 +61,30 @@
 - (void) viewDidUnload
 {
 	if (aboutViewController != nil)
+	{
 		[aboutViewController release];
+		aboutViewController = nil;
+	}
 	if (favorites != nil)
+	{
 		[favorites release];
+		favorites = nil;
+	}
 	if (favoritesData != nil)
+	{
 		[favoritesData release];
+		favoritesData = nil;
+	}
 	if (locManager != nil)
+	{
 		[locManager release];
+		locManager = nil;
+	}
 	if (hud != nil)
+	{
 		[hud release];
+		hud = nil;
+	}
 }
 
 - (void) didReceiveMemoryWarning
