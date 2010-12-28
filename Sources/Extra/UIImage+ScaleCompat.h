@@ -11,7 +11,8 @@
 
 @interface UIImage (ScaleCompat)
 
-+ (UIImage*) compatImageNamed: (NSString*) name;
-@property (nonatomic, readonly) CGFloat compatScale;
++ (void) load;
++ (UIImage*) ScaleCompat_imageNamed: (NSString*) name;
+- (CGFloat) ScaleCompat_scale;
 
 @end

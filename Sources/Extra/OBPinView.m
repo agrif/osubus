@@ -45,7 +45,7 @@
 		return;
 	
 	// sanity check on image sizes
-	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.compatScale != overlay.compatScale)
+	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.scale != overlay.scale)
 		return;
 	
 	// clear out old layer
@@ -66,7 +66,7 @@
 		return;
 	
 	// make sure to handle @2x properly
-	CGFloat scale = mask.compatScale;
+	CGFloat scale = mask.scale;
 	CGSize layerSize = mask.size;
 	layerSize.width *= scale;
 	layerSize.height *= scale;
@@ -102,7 +102,7 @@
 	}
 	
 	// draw the layer
-	CGFloat scale = mask.compatScale;
+	CGFloat scale = mask.scale;
 	CGContextScaleCTM(context, 1.0/scale, -1.0/scale);
 	CGContextDrawLayerAtPoint(context, CGPointMake(0.0, -self.frame.size.height * scale), cacheLayer);
 }

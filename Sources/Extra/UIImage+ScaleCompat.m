@@ -6,24 +6,39 @@
 
 #import "UIImage+ScaleCompat.h"
 
+#import "NSObject+Swizzle.h"
+
+static BOOL swizzled = NO;
+static BOOL scale_available = NO;
+
 @implementation UIImage (ScaleCompat)
 
-+ (UIImage*) compatImageNamed: (NSString*) name
++ (void) load
 {
-	UIImage* img = [UIImage imageNamed: name];
+	if (!swizzled)
+	{
+		[[self class] swizzleClassMethod: @selector(imageNamed:) withClassMethod: @selector(ScaleCompat_imageNamed:)];
+		scale_available = [[self class] swizzleMethod: @selector(scale) withMethod: @selector(ScaleCompat_scale)];
+		swizzled = YES;
+	}
+}
+
++ (UIImage*) ScaleCompat_imageNamed: (NSString*) name
+{
+	UIImage* img = [UIImage ScaleCompat_imageNamed: name];
 	if (img)
 		return img;
 	
 	// fallback
-	img = [UIImage imageNamed: [name stringByAppendingString: @".png"]];
+	img = [UIImage ScaleCompat_imageNamed: [name stringByAppendingString: @".png"]];
 	
 	return img;
 }
 
-- (CGFloat) compatScale
+- (CGFloat) ScaleCompat_scale
 {
-	if ([self respondsToSelector: @selector(scale)])
-		return [self scale];
+	if (scale_available)
+		return [self ScaleCompat_scale];
 	return 1.0;
 }
 

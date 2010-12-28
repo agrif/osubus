@@ -8,7 +8,7 @@
 
 @interface NSObject (Swizzle)
 
-+ (void) swizzleMethod: (SEL) orig_sel withMethod: (SEL) alt_sel;
-+ (void) swizzleClassMethod: (SEL) orig_sel withClassMethod: (SEL) alt_sel;
++ (BOOL) swizzleMethod: (SEL) orig_sel withMethod: (SEL) alt_sel;
++ (BOOL) swizzleClassMethod: (SEL) orig_sel withClassMethod: (SEL) alt_sel;
 
 @end
