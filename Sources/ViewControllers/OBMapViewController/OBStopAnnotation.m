@@ -23,10 +23,14 @@
 		stop = [_stop retain];
 		
 		self.pinColor = [[route objectForKey: @"color"] colorFromHex];
+		self.pinShadowed = YES;
+		self.pinShadowRadius = 4.0;
+		self.pinShadowColor = [UIColor colorWithWhite: 0.0 alpha: 0.33];
+		
 		self.mask = [UIImage imageNamed: @"pin-mask"];
 		self.overlay = [UIImage imageNamed: @"pin-overlay"];
 		
-		self.centerOffset = CGPointMake(0.0, -self.frame.size.height / 2.0);
+		self.centerOffset = CGPointMake(0.0, (-self.frame.size.height / 2.0) + self.pinShadowRadius);
 		
 		self.canShowCallout = YES;
 		

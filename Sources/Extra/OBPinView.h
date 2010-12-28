@@ -16,6 +16,9 @@
 	UIImage* mask;
 	UIImage* overlay;
 	UIColor* pinColor;
+	BOOL pinShadowed;
+	CGFloat pinShadowRadius;
+	UIColor* pinShadowColor;
 	
 	CGLayerRef cacheLayer;
 }
@@ -23,6 +26,9 @@
 @property (nonatomic, retain) UIImage* mask;
 @property (nonatomic, retain) UIImage* overlay;
 @property (nonatomic, retain) UIColor* pinColor;
+@property (nonatomic, assign, getter=isPinShadowed) BOOL pinShadowed;
+@property (nonatomic, assign) CGFloat pinShadowRadius;
+@property (nonatomic, retain) UIColor* pinShadowColor;
 
 - (id) init;
 

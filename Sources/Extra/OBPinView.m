@@ -13,8 +13,29 @@
 - (void) _init
 {
 	self.pinColor = [UIColor redColor];
+	self.pinShadowed = YES;
+	self.pinShadowRadius = 4.0;
+	self.pinShadowColor = [UIColor colorWithWhite: 0.0 alpha: 0.33];
+	
 	self.backgroundColor = [UIColor clearColor];
+	self.clipsToBounds = NO;
 	self.opaque = NO;
+}
+
+- (void) dealloc
+{
+	self.mask = nil;
+	self.overlay = nil;
+	self.pinColor = nil;
+	self.pinShadowColor = nil;
+	
+	if (cacheLayer)
+	{
+		CGLayerRelease(cacheLayer);
+		cacheLayer = NULL;
+	}
+	
+	[super dealloc];
 }
 
 - (id) init
@@ -58,6 +79,12 @@
 	// setup the frame
 	CGRect frame = self.frame;
 	frame.size = mask.size;
+	// correct for shadow radius
+	if (pinShadowed)
+	{
+		frame.size.width += 2 * pinShadowRadius;
+		frame.size.height += 2 * pinShadowRadius;
+	}
 	self.frame = frame;
 	
 	// now, on to generating the layer
@@ -71,10 +98,31 @@
 	layerSize.width *= scale;
 	layerSize.height *= scale;
 	
+	// add margins for shadows
+	if (pinShadowed)
+	{
+		layerSize.width += 2 * pinShadowRadius * scale;
+		layerSize.height += 2 * pinShadowRadius * scale;
+	}
+	
 	cacheLayer = CGLayerCreateWithContext(context, layerSize, NULL);
 	CGContextRef c = CGLayerGetContext(cacheLayer);
 	
-	CGRect area = CGRectMake(0.0, 0.0, frame.size.width * scale, frame.size.height * scale);
+	CGRect area = CGRectMake(0.0, 0.0, mask.size.width * scale, mask.size.height * scale);
+	
+	// set up shadowing
+	if (pinShadowed)
+	{
+		// tell context to shadow
+		CGContextSetShadowWithColor(c, CGSizeMake(0.0, 0.0), pinShadowRadius * scale, [pinShadowColor CGColor]);
+		
+		// modify area rect to be in center now
+		area.origin.x += pinShadowRadius * scale;
+		area.origin.y += pinShadowRadius * scale;
+	}
+	
+	// put it all in a layer, so shadowing works pretty
+	CGContextBeginTransparencyLayer(c, NULL);
 	
 	// fill in color according to mask
 	CGContextSaveGState(c);
@@ -85,6 +133,12 @@
 	
 	// now draw the overlay
 	CGContextDrawImage(c, area, [overlay CGImage]);
+	
+	// end layer, let shadowing do its work
+	CGContextEndTransparencyLayer(c);
+	
+	// flush it, make sure it's all done
+	CGContextFlush(c);
 }
 
 - (void) drawRect: (CGRect) rect
@@ -126,6 +180,21 @@
 	return pinColor;
 }
 
+- (BOOL) isPinShadowed
+{
+	return pinShadowed;
+}
+
+- (CGFloat) pinShadowRadius
+{
+	return pinShadowRadius;
+}
+
+- (UIColor*) pinShadowColor
+{
+	return pinShadowColor;
+}
+
 // writes
 
 - (void) setMask: (UIImage*) _mask
@@ -164,6 +233,35 @@
 		if (pinColor)
 			[pinColor retain];
 		[self updateCacheLayerWithContext: NULL];
+	}
+}
+
+- (void) setPinShadowed: (BOOL) _pinShadowed
+{
+	pinShadowed = _pinShadowed;
+	[self updateCacheLayerWithContext: NULL];
+}
+
+- (void) setPinShadowRadius: (CGFloat) _pinShadowRadius
+{
+	if (_pinShadowRadius < 0.0)
+		return;
+	pinShadowRadius = _pinShadowRadius;
+	if (pinShadowed)
+		[self updateCacheLayerWithContext: NULL];
+}
+
+- (void) setPinShadowColor: (UIColor*) _pinShadowColor
+{
+	if (_pinShadowColor != pinShadowColor)
+	{
+		if (pinShadowColor)
+			[pinShadowColor release];
+		pinShadowColor = _pinShadowColor;
+		if (pinShadowColor)
+			[pinShadowColor retain];
+		if (pinShadowed)
+			[self updateCacheLayerWithContext: NULL];
 	}
 }
 
