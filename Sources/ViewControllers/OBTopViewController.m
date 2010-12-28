@@ -87,17 +87,6 @@
 	}
 }
 
-- (void) didReceiveMemoryWarning
-{
-	[super didReceiveMemoryWarning];
-	
-	if (aboutViewController != nil)
-	{
-		[aboutViewController release];
-		aboutViewController = nil;
-	}
-}
-
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
 	return YES;
