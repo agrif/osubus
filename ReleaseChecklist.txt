@@ -14,8 +14,11 @@ Make sure to do all of this, each release! You could screw up, seriously!
    
    c. Upload all these new databases to the Cache Databases section of
       the OSU Bus website.
-   
-3. Tag and commit the current git repository. Useful for later branching!
+
+3. Add changes between the last version and this one to the ChangeLog.
+   (git helps!)
+
+4. Tag and commit the current git repository. Useful for later branching!
    ( commit: `git commit [-a]`
      tag:    `git tag -a v0.0.0 -m "tagging version 0.0.0"`
      push:   `git push && git push --tags` [may take a while] )
@@ -23,4 +26,4 @@ Make sure to do all of this, each release! You could screw up, seriously!
 ### SUBMIT APP TO APP STORE / BUILD AD-HOC VERSION / WHATEVER ###
 ### (wait until approval, upload, whatever till you go on...) ###
 
-3. Make sure to add an appropriate Version Bulletin on the web site!
+5. Make sure to add an appropriate Version Bulletin on the web site!

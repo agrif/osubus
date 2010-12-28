@@ -72,6 +72,7 @@
 		D073592A12C38042004FC62C /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D073590E12C38042004FC62C /* Icon@2x.png */; };
 		D073592B12C38042004FC62C /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D073590F12C38042004FC62C /* iTunesArtwork */; };
 		D073592C12C38042004FC62C /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = D073591012C38042004FC62C /* UserDefaults.plist */; };
+		D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0B3F4DA12CA988F00E9E5C8 /* ChangeLog.txt */; };
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
 		D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
@@ -183,6 +184,7 @@
 		D073590E12C38042004FC62C /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		D073590F12C38042004FC62C /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D073591012C38042004FC62C /* UserDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = UserDefaults.plist; sourceTree = "<group>"; };
+		D0B3F4DA12CA988F00E9E5C8 /* ChangeLog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.txt; sourceTree = "<group>"; };
 		D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewDidLoadPairing.h"; sourceTree = "<group>"; };
 		D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewDidLoadPairing.m"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				D003744C1139EBC600053FCB /* LICENSE */,
+				D0B3F4DA12CA988F00E9E5C8 /* ChangeLog.txt */,
 				D062940E12C386790081391C /* ReleaseChecklist.txt */,
 				D06293A212C3856A0081391C /* Sources */,
 				D062938112C383400081391C /* Third Party Sources */,
@@ -519,6 +522,7 @@
 				D073592B12C38042004FC62C /* iTunesArtwork in Resources */,
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
+				D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
