@@ -42,7 +42,7 @@ static BOOL use_saved_region = NO;
 	[map addAnnotation: overlays];
 	
 	// temporary test route
-	OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
+	/*OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
 	
 	route.points = [NSArray arrayWithObjects:
 					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
@@ -50,7 +50,7 @@ static BOOL use_saved_region = NO;
 					nil];
 	
 	[overlays addOverlay: route];
-	[route release];
+	[route release];*/
 	
 	// FIXME magick number -- approximately maximum number of routes, but not exactly
 	// just a rough estimate
