@@ -12,6 +12,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */; };
+		D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B1B7612CBB6790046BE86 /* Default@2x.png */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -87,6 +88,7 @@
 		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D030E88612C95C8600B712A0 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
 		D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
+		D03B1B7612CBB6790046BE86 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				D073590912C38042004FC62C /* Default.png */,
+				D03B1B7612CBB6790046BE86 /* Default@2x.png */,
 				D073590A12C38042004FC62C /* Icon-Small.png */,
 				D073590B12C38042004FC62C /* Icon-Small@2x.png */,
 				D073590C12C38042004FC62C /* Icon.png */,
@@ -523,6 +526,7 @@
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */,
+				D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,7 +590,7 @@
 				GCC_PREFIX_HEADER = Sources/prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_NAME = "OSU Bus";
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};
@@ -601,14 +605,14 @@
 				GCC_PREFIX_HEADER = Sources/prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_NAME = "OSU Bus";
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Griffith (73LSQGDSM4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aaron Griffith (73LSQGDSM4)";
 				CURRENT_PROJECT_VERSION = "";
@@ -618,16 +622,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Aaron Griffith (73LSQGDSM4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Aaron Griffith (73LSQGDSM4)";
 				CURRENT_PROJECT_VERSION = "";
@@ -637,16 +641,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Release;
 		};
 		D00C2D0411823E640093578A /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "Other Sources/Entitlements.plist";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Aaron Griffith";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Aaron Griffith";
@@ -657,9 +661,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Distribution;
 		};
@@ -674,7 +678,7 @@
 				GCC_PREFIX_HEADER = Sources/prefix.pch;
 				INFOPLIST_FILE = Resources/Info.plist;
 				PRODUCT_NAME = "OSU Bus";
-				SDKROOT = iphonesimulator4.1;
+				SDKROOT = iphoneos4.2;
 			};
 			name = Distribution;
 		};
