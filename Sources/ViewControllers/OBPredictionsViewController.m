@@ -38,16 +38,32 @@
 - (void) viewDidUnload
 {
 	[super viewDidUnload];
+	
 	if (predictions != nil)
+	{
 		[predictions release];
+		predictions = nil;
+	}
 	if (stop != nil)
+	{
 		[stop release];
+		stop = nil;
+	}
 	if (routes != nil)
+	{
 		[routes release];
+		routes = nil;
+	}
 	if (error_cell_text != nil)
+	{
 		[error_cell_text release];
+		error_cell_text = nil;
+	}
 	if (addButton != nil)
+	{
 		[addButton release];
+		addButton = nil;
+	}
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -60,7 +76,11 @@
 
 - (void) viewDidDisappear: (BOOL) animated
 {
-	[refreshTimer invalidate];
+	if (refreshTimer)
+	{
+		[refreshTimer invalidate];
+		refreshTimer = nil;
+	}
 }
 
 - (void) setStop: (NSDictionary*) stopin
@@ -134,10 +154,14 @@
 		predictions = nil;
 	}
 	
-	NSRange range;
-	range.location = 0;
-	range.length = 1;
-	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	if (self.tableView)
+	{
+		NSRange range;
+		range.location = 0;
+		range.length = 1;
+		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	}
+	
 	[request release];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
@@ -154,10 +178,14 @@
 	// take the error and stick it on the screen
 	error_cell_text = [[error localizedDescription] copy];
 	
-	NSRange range;
-	range.location = 0;
-	range.length = 1;
-	[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	if (self.tableView)
+	{
+		NSRange range;
+		range.location = 0;
+		range.length = 1;
+		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+	}
+	
 	[request release];
 	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }

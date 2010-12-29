@@ -77,6 +77,9 @@ int main(int argc, char* argv[])
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
 	[[OTClient sharedClient] setDatabasePath: rwDB];
 	
+	// get started on time sync right away
+	[[OTClient sharedClient] synchronizeTimes];
+	
     int retVal = UIApplicationMain(argc, argv, nil, nil);
     [pool release];
     return retVal;

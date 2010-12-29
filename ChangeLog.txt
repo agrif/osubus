@@ -1,0 +1,36 @@
+This is a log of all the changes that are new in the marked
+version. They are usually created by summarizing the git commit log,
+but they are *not* comprehensive. These are the lists that accompany
+any new releases.
+
+##############
+### v1.0.1 ###
+##############
+
+Features:
+
+ * new website! osubus.gamma-level.com
+
+ * tapping the bulletin banner now goes directly to the detailed view
+   when there is only one bulletin
+
+ * more accurate times (synchronized with the official TRIP time)
+
+ * more informative error message when the TRIP server can't be reached
+
+Fixes:
+
+ * fixed a major bug involving a crash when using "Near Me"
+
+ * fixed a rare crash in low-memory conditions
+
+ * fixed a crash caused by moving from predictions to route list
+   really fast
+
+ * various minor graphical tweaks
+
+##############
+### v1.0.0 ###
+##############
+
+ * First official App Store release.

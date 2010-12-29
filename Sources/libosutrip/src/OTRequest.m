@@ -17,7 +17,8 @@
 	if ([super init] == nil)
 		return nil;
 	
-	delegate = requestDelegate;
+	if (requestDelegate)
+		delegate = [(NSObject*)requestDelegate retain];
 
 	NSURL* url = [[OTClient sharedClient] URLWithName: name arguments: arguments];
 
@@ -34,7 +35,8 @@
 	if ([super init] == nil)
 		return nil;
 	
-	delegate = requestDelegate;
+	if (requestDelegate)
+		delegate = [(NSObject*)requestDelegate retain];
 	
 	NSURL* url = [[OTClient sharedClient] customURLWithName: name arguments: arguments];
 	
@@ -48,6 +50,8 @@
 
 - (void) dealloc
 {
+	if (delegate)
+		[(NSObject*)delegate release];
 	if (thread)
 		[thread release];
 	if (result)
@@ -91,6 +95,7 @@
 
 	if (error == nil)
 		[self didEndDocument];
+	
 	if (delegate)
 	{
 		// this needs a run loop!
@@ -237,7 +242,17 @@
 		return;
 	}
 	
+	// generic case first
 	NSString* errstr = @"XML parse error.";
+	
+	switch ([parseError code])
+	{
+		// this is usually because the server could not be reached
+		case NSXMLParserPrematureDocumentEndError:
+			errstr = @"Could not connect to server.";
+			break;
+	};
+	
 	NSDictionary* info = [NSDictionary dictionaryWithObjectsAndKeys: errstr, NSLocalizedDescriptionKey, parseError, NSUnderlyingErrorKey, nil];
 	NSError* errorl = [NSError errorWithDomain: OTRequestErrorDomain code: OTRequestParseError userInfo: info];
 	
