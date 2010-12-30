@@ -41,22 +41,13 @@ static BOOL use_saved_region = NO;
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
 	[map addAnnotation: overlays];
-	
-	// temporary test route
-	/*OBPolyline* route = [[OBPolyline alloc] initWithMapView: map];
-	
-	route.points = [NSArray arrayWithObjects:
-					[[[CLLocation alloc] initWithLatitude: 0.0 longitude: 0.0] autorelease],
-					[[[CLLocation alloc] initWithLatitude: 70.0 longitude: 70.0] autorelease],
-					nil];
-	
-	[overlays addOverlay: route];
-	[route release];*/
-	
+		
 	// FIXME magick number -- approximately maximum number of routes, but not exactly
 	// just a rough estimate
 	routes = [[NSMutableDictionary alloc] initWithCapacity: 10];
 	requestMap = [[NSMutableDictionary alloc] initWithCapacity: 10];
+	
+	outstandingRequests = 0;
 	
 	NSLog(@"OBMapViewController loaded");
 }
@@ -75,6 +66,9 @@ static BOOL use_saved_region = NO;
 	[overlays release];
 	[routes release];
 	[requestMap release];
+	
+	// reset the network indicator
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
@@ -131,6 +125,10 @@ static BOOL use_saved_region = NO;
 		OTRequest* req = [[OTClient sharedClient] requestPatternsWithDelegate: self forRoute: [route objectForKey: @"short"]];
 		[requestMap setObject: route forKey: req];
 		[req release];
+		
+		outstandingRequests++;
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+		
 	} else {
 		// remove the route!
 		// but first, remove the annotations
@@ -192,6 +190,9 @@ static BOOL use_saved_region = NO;
 	
 	// free request
 	[requestMap removeObjectForKey: request];
+	
+	outstandingRequests--;
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: outstandingRequests > 0];
 }
 
 - (void) request: (OTRequest*) request hasError:(NSError *)error
@@ -207,6 +208,9 @@ static BOOL use_saved_region = NO;
 	
 	// free request
 	[requestMap removeObjectForKey: request];
+	
+	outstandingRequests--;
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: outstandingRequests > 0];
 }
 
 #pragma mark MKMapViewDelegate

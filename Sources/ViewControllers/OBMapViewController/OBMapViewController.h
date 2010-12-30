@@ -21,6 +21,9 @@
 	NSMutableDictionary* routes;
 	// maps active requests -> routes
 	NSMutableDictionary* requestMap;
+	
+	// counts how many requests have yet to return
+	NSInteger outstandingRequests;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
