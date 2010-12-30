@@ -50,14 +50,8 @@
 	[super touchesBegan: touches withEvent: event];
 }
 
-- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay
+- (CGRect) convertMapRegionToRect: (MKCoordinateRegion) region
 {
-	MKCoordinateRegion region = [overlay overlayRegion];
-	
-	// check for empty region
-	if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0.0)
-		return;
-	
 	CLLocationCoordinate2D mincoord;
 	mincoord.latitude = region.center.latitude + region.span.latitudeDelta;
 	mincoord.longitude = region.center.longitude - region.span.longitudeDelta;
@@ -68,17 +62,30 @@
 	CGPoint minpt = [map convertCoordinate: mincoord toPointToView: map];
 	CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: map];
 	
-	overlay.frame = CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
-								minpt.y - OB_OVERLAY_MARGIN,
-								maxpt.x - minpt.x + 2*OB_OVERLAY_MARGIN,
-								maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
+	return CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
+					  minpt.y - OB_OVERLAY_MARGIN,
+					  maxpt.x - minpt.x + 2*OB_OVERLAY_MARGIN,
+					  maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
+}
+
+- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay
+{
+	MKCoordinateRegion region = [overlay overlayRegion];
+	
+	// check for empty region
+	if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0.0)
+		return;
+	
+	overlay.frame = [self convertMapRegionToRect: region];
 }
 
 - (void) redrawOverlays;
 {
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
-		[overlay setNeedsDisplay];
+		// only redraw if it's currently visible
+		if (CGRectIntersectsRect([self convertMapRegionToRect: map.region], [self convertMapRegionToRect: [overlay overlayRegion]]))
+			[overlay setNeedsDisplay];
 	}
 } 
 
@@ -104,6 +111,9 @@
 {
 	if ([overlays containsObject: overlay])
 		return;
+	
+	// DEBUG overlay background
+	//overlay.backgroundColor = [UIColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 0.2];
 	
 	// set the overlay map
 	[overlay setMap: map];
