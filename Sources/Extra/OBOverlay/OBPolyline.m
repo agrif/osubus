@@ -15,6 +15,7 @@
 @synthesize overlayRegion;
 @synthesize polylineColor;
 @synthesize polylineAlpha;
+@synthesize polylineWidth;
 
 - (id) initWithMapView: (MKMapView*) mapView
 {
@@ -23,6 +24,7 @@
 		map = mapView;
 		self.polylineColor = [UIColor blueColor];
 		self.polylineAlpha = 0.5;
+		self.polylineWidth = 4.0;
 	}
 	
 	return self;
@@ -103,7 +105,7 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetStrokeColorWithColor(context, polylineColor.CGColor);
 	CGContextSetAlpha(context, polylineAlpha);
-	CGContextSetLineWidth(context, 4.0);
+	CGContextSetLineWidth(context, polylineWidth);
 	
 	BOOL first = YES;
 	
