@@ -92,7 +92,7 @@
 	} else if ([elementName isEqual: @"stpnm"]) {
 		[subpart setObject: text forKey: @"stpnm"];
 	} else if ([elementName isEqual: @"pdist"]) {
-		[subpart setObject: [NSNumber numberWithFloat: [text floatValue]] forKey: @"pidst"];
+		[subpart setObject: [NSNumber numberWithFloat: [text floatValue]] forKey: @"pdist"];
 	} else if ([elementName isEqual: @"lat"]) {
 		[subpart setObject: [NSNumber numberWithDouble: [text doubleValue]] forKey: @"lat"];
 	} else if ([elementName isEqual: @"lon"]) {
