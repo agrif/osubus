@@ -7,16 +7,20 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "OTClient.h"
 #import "OBRoutesViewController.h"
 
 @class OBOverlayManager;
 
-@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate>
+@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
 {
 	MKMapView* map;
 	OBOverlayManager* overlays;
 	
+	// maps routes -> {@"annotations" : [...], @"overlays" : [...]}
 	NSMutableDictionary* routes;
+	// maps active requests -> routes
+	NSMutableDictionary* requestMap;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;

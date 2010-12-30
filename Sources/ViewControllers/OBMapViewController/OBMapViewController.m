@@ -55,6 +55,7 @@ static BOOL use_saved_region = NO;
 	// FIXME magick number -- approximately maximum number of routes, but not exactly
 	// just a rough estimate
 	routes = [[NSMutableDictionary alloc] initWithCapacity: 10];
+	requestMap = [[NSMutableDictionary alloc] initWithCapacity: 10];
 	
 	NSLog(@"OBMapViewController loaded");
 }
@@ -72,6 +73,7 @@ static BOOL use_saved_region = NO;
 	
 	[overlays release];
 	[routes release];
+	[requestMap release];
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
@@ -116,19 +118,65 @@ static BOOL use_saved_region = NO;
 		}
 		[stops release];
 		
-		[routes setObject: annotations forKey: route];
+		// create the inner dictionary
+		NSMutableDictionary* data = [[NSMutableDictionary alloc] init];
+		[data setObject: annotations forKey: @"annotations"];
 		[annotations release];
+		
+		[routes setObject: data forKey: route];
+		[data release];
+		
+		// start the request for route patterns
+		OTRequest* req = [[OTClient sharedClient] requestPatternsWithDelegate: self forRoute: [route objectForKey: @"short"]];
+		[requestMap setObject: route forKey: req];
+		[req release];
 	} else {
 		// remove the route!
 		// but first, remove the annotations
 		
-		for (OBStopAnnotation* annotation in [routes objectForKey: route])
+		for (OBStopAnnotation* annotation in [[routes objectForKey: route] objectForKey: @"annotations"])
 		{
 			[map removeAnnotation: annotation];
 		}
 		
+		for (NSObject<OBOverlay>* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
+		{
+			[overlays removeOverlay: overlay];
+		}
+		
 		[routes removeObjectForKey: route];
 	}
+}
+
+#pragma mark OTRequestDelegate
+
+- (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
+{
+	// stub implementation
+	NSLog(@"got result: %@", result);
+	
+	// add empty overlays array
+	NSArray* empty = [[NSArray alloc] init];
+	[[routes objectForKey: [requestMap objectForKey: request]] setObject: empty forKey: @"overlays"];
+	[empty release];
+	
+	// free request
+	[requestMap removeObjectForKey: request];
+}
+
+- (void) request: (OTRequest*) request hasError:(NSError *)error
+{
+	// ignore, except for a log message
+	// the worst that happens is there will be no route overlay
+	NSLog(@"error while requesting pattern: %@", error);
+	
+	// add empty overlays array
+	NSArray* empty = [[NSArray alloc] init];
+	[[routes objectForKey: [requestMap objectForKey: request]] setObject: empty forKey: @"overlays"];
+	[empty release];
+	
+	// free request
+	[requestMap removeObjectForKey: request];
 }
 
 #pragma mark MKMapViewDelegate
