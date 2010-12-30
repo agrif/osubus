@@ -18,12 +18,13 @@ static BOOL use_saved_info = NO;
 
 @implementation OBMapViewController
 
-@synthesize map;
+@synthesize map, instructiveView, routesButton;
 
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Bus Map"];
+	[self.navigationItem setRightBarButtonItem: routesButton];
 	
 	if (!use_saved_info)
 	{
@@ -60,6 +61,12 @@ static BOOL use_saved_info = NO;
 			{
 				[overlays addOverlay: overlay];
 			}
+		}
+		
+		if (routes.count > 0)
+		{
+			// we don't need the instructive view anymore, there's stuff on-screen
+			[instructiveView setHidden: YES];
 		}
 	} else {
 		// magick numbers -- approximately maximum number of routes, but not exactly
@@ -148,9 +155,11 @@ static BOOL use_saved_info = NO;
 		[requestMap setObject: route forKey: req];
 		[req release];
 		
+		// hide instructive view, there's stuff on-screen now
+		[instructiveView setHidden: YES];
+		
 		outstandingRequests++;
 		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
-		
 	} else {
 		// remove the route!
 		// but first, remove the annotations

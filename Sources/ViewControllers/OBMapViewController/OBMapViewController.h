@@ -15,6 +15,8 @@
 @interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
 {
 	MKMapView* map;
+	UIView* instructiveView;
+	UIBarButtonItem* routesButton;
 	OBOverlayManager* overlays;
 	
 	// maps routes -> {@"annotations" : [...], @"overlays" : [...]}
@@ -27,6 +29,8 @@
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
+@property (nonatomic, retain) IBOutlet UIView* instructiveView;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* routesButton;
 
 - (IBAction) routesButtonPressed;
 
