@@ -61,6 +61,13 @@
 	[super dealloc];
 }
 
+// dummy copy method, lets us use requests as dictionary keys
+// besides, requests are basically immutable
+- (id) copyWithZone: (NSZone*) zone
+{
+	return [self retain];
+}
+
 - (BOOL) hasResult
 {
 	return [thread isFinished];
