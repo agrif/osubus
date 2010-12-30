@@ -18,6 +18,8 @@
 	UIColor* polylineColor;
 	CGFloat polylineAlpha;
 	CGFloat polylineWidth;
+	UIColor* polylineBorderColor;
+	CGFloat polylineBorderWidth;
 }
 
 @property (nonatomic, assign) MKMapView* map;
@@ -26,6 +28,8 @@
 @property (nonatomic, retain) UIColor* polylineColor;
 @property (nonatomic, assign) CGFloat polylineAlpha;
 @property (nonatomic, assign) CGFloat polylineWidth;
+@property (nonatomic, retain) UIColor* polylineBorderColor;
+@property (nonatomic, assign) CGFloat polylineBorderWidth;
 
 - (id) init;
 - (id) initWithPoints: (NSArray*) pts;

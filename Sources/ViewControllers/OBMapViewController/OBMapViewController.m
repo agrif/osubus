@@ -203,8 +203,9 @@ static BOOL use_saved_info = NO;
 		
 		// setup the route color
 		polyline.polylineColor = [[[requestMap objectForKey: request] objectForKey: @"color"] colorFromHex];
-		polyline.polylineAlpha = 0.8;
+		polyline.polylineAlpha = 1.0;
 		polyline.polylineWidth = 6.0;
+		polyline.polylineBorderWidth = 1.5;
 		
 		// add overlay to our array, and the overlaymanager
 		[req_overlays addObject: polyline];

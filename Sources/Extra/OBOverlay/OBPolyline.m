@@ -17,6 +17,8 @@
 @synthesize polylineColor;
 @synthesize polylineAlpha;
 @synthesize polylineWidth;
+@synthesize polylineBorderColor;
+@synthesize polylineBorderWidth;
 
 - (id) init
 {
@@ -30,6 +32,8 @@
 		self.polylineColor = [UIColor blueColor];
 		self.polylineAlpha = 0.5;
 		self.polylineWidth = 4.0;
+		self.polylineBorderColor = [UIColor blackColor];
+		self.polylineBorderWidth = 1.0;
 		self.points = pts;
 	}
 	
@@ -40,6 +44,7 @@
 {
 	self.points = nil;
 	self.polylineColor = nil;
+	self.polylineBorderColor = nil;
 	self.map = nil;
 	
 	[super dealloc];
@@ -100,10 +105,7 @@
 		return;
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGContextSetStrokeColorWithColor(context, polylineColor.CGColor);
-	CGContextSetAlpha(context, polylineAlpha);
-	CGContextSetLineWidth(context, polylineWidth);
-	
+	CGMutablePathRef path = CGPathCreateMutable();
 	BOOL first = YES;
 	
 	for (CLLocation* loc in points)
@@ -112,14 +114,30 @@
 		
 		if (first)
 		{
-			CGContextMoveToPoint(context, pt.x, pt.y);
+			CGPathMoveToPoint(path, NULL, pt.x, pt.y);
 			first = NO;
 		} else {
-			CGContextAddLineToPoint(context, pt.x, pt.y);
+			CGPathAddLineToPoint(path, NULL, pt.x, pt.y);
 		}
 	}
 	
+	if (polylineAlpha < 1.0)
+		CGContextSetAlpha(context, polylineAlpha);
+	CGContextBeginTransparencyLayer(context, NULL);
+	
+	CGContextSetStrokeColorWithColor(context, polylineBorderColor.CGColor);
+	CGContextSetLineWidth(context, polylineWidth + polylineBorderWidth);
+	CGContextAddPath(context, path);
 	CGContextStrokePath(context);
+	
+	CGContextSetStrokeColorWithColor(context, polylineColor.CGColor);
+	CGContextSetLineWidth(context, polylineWidth);
+	CGContextAddPath(context, path);
+	CGContextStrokePath(context);
+	
+	CGContextEndTransparencyLayer(context);
+	
+	CGPathRelease(path);
 }
 
 @end
