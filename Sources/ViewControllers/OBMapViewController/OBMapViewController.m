@@ -7,6 +7,7 @@
 #import "OBMapViewController.h"
 
 #import "OTClient.h"
+#import "NSString+HexColor.h"
 #import "OBStopAnnotation.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
@@ -139,7 +140,7 @@ static BOOL use_saved_region = NO;
 			[map removeAnnotation: annotation];
 		}
 		
-		for (NSObject<OBOverlay>* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
+		for (UIView<OBOverlay>* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
 		{
 			[overlays removeOverlay: overlay];
 		}
@@ -152,13 +153,42 @@ static BOOL use_saved_region = NO;
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	// stub implementation
-	NSLog(@"got result: %@", result);
+	// array to store new overlays as they're made
+	NSMutableArray* req_overlays = [[NSMutableArray alloc] initWithCapacity: [[result objectForKey: @"ptr"] count]];
 	
-	// add empty overlays array
-	NSArray* empty = [[NSArray alloc] init];
-	[[routes objectForKey: [requestMap objectForKey: request]] setObject: empty forKey: @"overlays"];
-	[empty release];
+	for (NSDictionary* pattern in [result objectForKey: @"ptr"])
+	{
+		// temporary array for points
+		NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
+		
+		for (NSDictionary* point in [pattern objectForKey: @"pt"])
+		{
+			CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
+			[points addObject: loc];
+			[loc release];
+		}
+		
+		// create the overlay
+		OBPolyline* polyline = [[OBPolyline alloc] initWithMapView: map];
+		polyline.points = points;
+		
+		// free points
+		[points release];
+		
+		// setup the route color
+		polyline.polylineColor = [[[requestMap objectForKey: request] objectForKey: @"color"] colorFromHex];
+		polyline.polylineAlpha = 0.8;
+		polyline.polylineWidth = 6.0;
+		
+		// add overlay to our array, and the overlaymanager
+		[req_overlays addObject: polyline];
+		[overlays addOverlay: polyline];
+		[polyline release];
+	}
+	
+	// add overlays to data dict
+	[[routes objectForKey: [requestMap objectForKey: request]] setObject: req_overlays forKey: @"overlays"];
+	[req_overlays release];
 	
 	// free request
 	[requestMap removeObjectForKey: request];
