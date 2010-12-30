@@ -20,13 +20,14 @@
 	CGFloat polylineWidth;
 }
 
+@property (nonatomic, assign) MKMapView* map;
 @property (nonatomic, retain) NSArray* points;
 @property (nonatomic, readonly) MKCoordinateRegion overlayRegion;
 @property (nonatomic, retain) UIColor* polylineColor;
 @property (nonatomic, assign) CGFloat polylineAlpha;
 @property (nonatomic, assign) CGFloat polylineWidth;
 
-- (id) initWithMapView: (MKMapView*) mapView;
-- (id) initWithMapView: (MKMapView*) mapView points: (NSArray*) pts;
+- (id) init;
+- (id) initWithPoints: (NSArray*) pts;
 
 @end

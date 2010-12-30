@@ -12,28 +12,24 @@
 
 @implementation OBPolyline
 
+@synthesize map;
 @synthesize overlayRegion;
 @synthesize polylineColor;
 @synthesize polylineAlpha;
 @synthesize polylineWidth;
 
-- (id) initWithMapView: (MKMapView*) mapView
+- (id) init
+{
+	return [self initWithPoints: nil];
+}
+
+- (id) initWithPoints: (NSArray*) pts
 {
 	if (self = [super init])
 	{
-		map = mapView;
 		self.polylineColor = [UIColor blueColor];
 		self.polylineAlpha = 0.5;
 		self.polylineWidth = 4.0;
-	}
-	
-	return self;
-}
-
-- (id) initWithMapView: (MKMapView*) mapView points: (NSArray*) pts
-{
-	if (self = [self initWithMapView: mapView])
-	{
 		self.points = pts;
 	}
 	
@@ -44,6 +40,7 @@
 {
 	self.points = nil;
 	self.polylineColor = nil;
+	self.map = nil;
 	
 	[super dealloc];
 }
@@ -99,7 +96,7 @@
 
 - (void) drawRect: (CGRect) rect
 {
-	if (!points || points.count == 0)
+	if (!map || !points || points.count == 0)
 		return;
 	
 	CGContextRef context = UIGraphicsGetCurrentContext();

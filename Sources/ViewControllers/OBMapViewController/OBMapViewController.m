@@ -13,7 +13,8 @@
 #import "OBPolyline.h"
 
 static MKCoordinateRegion saved_region;
-static BOOL use_saved_region = NO;
+static NSMutableDictionary* saved_routes;
+static BOOL use_saved_info = NO;
 
 @implementation OBMapViewController
 
@@ -24,29 +25,49 @@ static BOOL use_saved_region = NO;
 	[super viewDidLoad];
 	[self.navigationItem setTitle: @"Bus Map"];
 	
-	if (!use_saved_region)
+	if (!use_saved_info)
 	{
 		// magick numbers -- approximate center of the oval
 		CLLocationCoordinate2D center;
 		center.latitude = 39.999417;
 		center.longitude = -83.012639;
-		saved_region = MKCoordinateRegionMake(center,
-											  MKCoordinateSpanMake(0.01, 0.01));
-		use_saved_region = YES;
+		map.region = MKCoordinateRegionMake(center,
+											MKCoordinateSpanMake(0.01, 0.01));
+	} else {
+		map.region = saved_region;
 	}
 	
-	map.region = saved_region;
 	map.mapType = MKMapTypeStandard;
 	
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
 	[map addAnnotation: overlays];
 		
-	// FIXME magick number -- approximately maximum number of routes, but not exactly
-	// just a rough estimate
-	routes = [[NSMutableDictionary alloc] initWithCapacity: 10];
-	requestMap = [[NSMutableDictionary alloc] initWithCapacity: 10];
+	if (use_saved_info && saved_routes)
+	{
+		routes = saved_routes;
+		saved_routes = nil;
+		
+		// now we must go through and add in all the annotations, overlays
+		for (NSDictionary* data in [routes allValues])
+		{
+			for (OBStopAnnotation* annotation in [data objectForKey: @"annotations"])
+			{
+				[map addAnnotation: annotation];
+			}
+			
+			for (UIView<OBOverlay>* overlay in [data objectForKey: @"overlays"])
+			{
+				[overlays addOverlay: overlay];
+			}
+		}
+	} else {
+		// magick numbers -- approximately maximum number of routes, but not exactly
+		// just a rough estimate
+		routes = [[NSMutableDictionary alloc] initWithCapacity: 10];
+	}
 	
+	requestMap = [[NSMutableDictionary alloc] initWithCapacity: 10];
 	outstandingRequests = 0;
 	
 	NSLog(@"OBMapViewController loaded");
@@ -55,7 +76,8 @@ static BOOL use_saved_region = NO;
 - (void) viewDidUnload
 {
 	saved_region = map.region;
-	use_saved_region = YES;
+	saved_routes = [routes retain];
+	use_saved_info = YES;
 	
 	// bit of a hack -- shrink the saved region a bit so that the
 	// nearest fit on old OS's is NOT double the original (as it sometimes is)
@@ -167,10 +189,7 @@ static BOOL use_saved_region = NO;
 		}
 		
 		// create the overlay
-		OBPolyline* polyline = [[OBPolyline alloc] initWithMapView: map];
-		polyline.points = points;
-		
-		// free points
+		OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
 		[points release];
 		
 		// setup the route color

@@ -93,8 +93,12 @@
 	if ([overlays containsObject: overlay])
 		return;
 	
+	// generic setup for all overlays
 	overlay.backgroundColor = [UIColor clearColor];
 	overlay.clipsToBounds = NO;
+	
+	// set the overlay map
+	[overlay setMap: map];
 	
 	[overlays addObject: overlay];
 	[self addSubview: overlay];

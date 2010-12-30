@@ -15,6 +15,8 @@
 #include <MapKit/MapKit.h>
 
 @protocol OBOverlay
+// DO NOT retain map!!
+- (void) setMap: (MKMapView*) map;
 - (MKCoordinateRegion) overlayRegion;
 @end
 
