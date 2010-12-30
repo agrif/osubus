@@ -29,6 +29,11 @@
 {
 	if (self = [super init])
 	{
+		// generic setup for all overlays
+		self.backgroundColor = [UIColor clearColor];
+		self.clipsToBounds = NO;
+		self.contentMode = UIViewContentModeScaleToFill;
+		
 		self.polylineColor = [UIColor blueColor];
 		self.polylineAlpha = 0.5;
 		self.polylineWidth = 4.0;

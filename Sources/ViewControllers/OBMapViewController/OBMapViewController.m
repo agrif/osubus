@@ -255,4 +255,9 @@ static BOOL use_saved_info = NO;
 	return nil;
 }
 
+- (void) mapView: (MKMapView*) mapView regionDidChangeAnimated: (BOOL) animated
+{
+	[overlays redrawOverlays];
+}
+
 @end

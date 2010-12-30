@@ -29,6 +29,7 @@
 @property (nonatomic, readonly) NSArray* overlays;
 
 - (id) initWithMapView: (MKMapView*) mapView;
+- (void) redrawOverlays;
 - (void) addOverlay: (UIView<OBOverlay>*) overlay;
 - (void) removeOverlay: (UIView<OBOverlay>*) overlay;
 

@@ -10,7 +10,7 @@
 #import "OBOverlayManager.h"
 
 // this gives the views an extra bit of space to work in
-#define OB_OVERLAY_MARGIN 16
+#define OB_OVERLAY_MARGIN 4
 
 @implementation OBOverlayManager
 
@@ -50,6 +50,38 @@
 	[super touchesBegan: touches withEvent: event];
 }
 
+- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay
+{
+	MKCoordinateRegion region = [overlay overlayRegion];
+	
+	// check for empty region
+	if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0.0)
+		return;
+	
+	CLLocationCoordinate2D mincoord;
+	mincoord.latitude = region.center.latitude + region.span.latitudeDelta;
+	mincoord.longitude = region.center.longitude - region.span.longitudeDelta;
+	CLLocationCoordinate2D maxcoord;
+	maxcoord.latitude = region.center.latitude - region.span.latitudeDelta;
+	maxcoord.longitude = region.center.longitude + region.span.longitudeDelta;
+	
+	CGPoint minpt = [map convertCoordinate: mincoord toPointToView: map];
+	CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: map];
+	
+	overlay.frame = CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
+								minpt.y - OB_OVERLAY_MARGIN,
+								maxpt.x - minpt.x + 2*OB_OVERLAY_MARGIN,
+								maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
+}
+
+- (void) redrawOverlays;
+{
+	for (UIView<OBOverlay>* overlay in overlays)
+	{
+		[overlay setNeedsDisplay];
+	}
+} 
+
 - (CGPoint) centerOffset
 {
 	// first, make sure our annotation is the back-most annotation
@@ -58,30 +90,10 @@
 	// we hook this to get position updates during zoom
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
-		// first we need to set up the view frame
-		MKCoordinateRegion region = [overlay overlayRegion];
-		
-		// check for empty region
-		if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0)
-			continue;
-		
-		CLLocationCoordinate2D mincoord;
-		mincoord.latitude = region.center.latitude + region.span.latitudeDelta;
-		mincoord.longitude = region.center.longitude - region.span.longitudeDelta;
-		CLLocationCoordinate2D maxcoord;
-		maxcoord.latitude = region.center.latitude - region.span.latitudeDelta;
-		maxcoord.longitude = region.center.longitude + region.span.longitudeDelta;
-		
-		CGPoint minpt = [map convertCoordinate: mincoord toPointToView: map];
-		CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: map];
-		
-		overlay.frame = CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
-								   minpt.y - OB_OVERLAY_MARGIN,
-								   maxpt.x - minpt.x + 2*OB_OVERLAY_MARGIN,
-								   maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
+		[self updateOverlayFrame: overlay];
 
-		// now we redraw
-		[overlay setNeedsDisplay];
+		// redraw SHOULD be handled by view's content mode
+		//[overlay setNeedsDisplay];
 	}
 	
 	// don't forget to actually implement this function :P
@@ -93,18 +105,20 @@
 	if ([overlays containsObject: overlay])
 		return;
 	
-	// generic setup for all overlays
-	overlay.backgroundColor = [UIColor clearColor];
-	overlay.clipsToBounds = NO;
-	
 	// set the overlay map
 	[overlay setMap: map];
 	
-	[overlays addObject: overlay];
-	[self addSubview: overlay];
+	// rejigger overlay frame
+	[self updateOverlayFrame: overlay];
 	
-	// rejigger the frames, by calling centerOffset
-	[self centerOffset];
+	[overlays addObject: overlay];
+	[self addSubview: overlay];	
+	
+	// force redraw
+	[overlay setNeedsDisplay];
+	
+	// force our annotation to back
+	[self.superview sendSubviewToBack: self];
 }
 
 - (void) removeOverlay: (UIView<OBOverlay>*) overlay
