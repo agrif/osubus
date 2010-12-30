@@ -52,6 +52,9 @@
 
 - (CGPoint) centerOffset
 {
+	// first, make sure our annotation is the back-most annotation
+	[self.superview sendSubviewToBack: self];
+	
 	// we hook this to get position updates during zoom
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
@@ -95,6 +98,9 @@
 	
 	[overlays addObject: overlay];
 	[self addSubview: overlay];
+	
+	// rejigger the frames, by calling centerOffset
+	[self centerOffset];
 }
 
 - (void) removeOverlay: (UIView<OBOverlay>*) overlay
