@@ -545,8 +545,8 @@
 	{
 		[gpsStartDate release];
 		gpsStartDate = nil;
+		[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
 	}
-	[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
 }
 
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
