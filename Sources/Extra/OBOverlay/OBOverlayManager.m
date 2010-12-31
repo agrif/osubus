@@ -26,6 +26,8 @@
 		self.backgroundColor = [UIColor clearColor];
 		self.clipsToBounds = NO;
 		self.frame = CGRectMake(0.0, 0.0, map.frame.size.width, map.frame.size.height);
+		
+		redrawOverlays = [[NSMutableArray alloc] init];
 	}
 	
 	return self;
@@ -34,6 +36,7 @@
 - (void) dealloc
 {
 	[overlays release];
+	[redrawOverlays release];
 	
 	[super dealloc];
 }
@@ -85,7 +88,14 @@
 	{
 		// only redraw if it's currently visible
 		if (CGRectIntersectsRect([self convertMapRegionToRect: map.region], [self convertMapRegionToRect: [overlay overlayRegion]]))
-			[overlay setNeedsDisplay];
+		{
+			// only redraw if we're registered to redraw
+			if ([redrawOverlays containsObject: overlay])
+			{
+				[overlay setNeedsDisplay];
+				[redrawOverlays removeObject: overlay];
+			}
+		}
 	}
 } 
 
@@ -101,6 +111,10 @@
 
 		// redraw SHOULD be handled by view's content mode
 		//[overlay setNeedsDisplay];
+		
+		// but we WILL register this overlay for redraw when map touches end
+		if (![redrawOverlays containsObject: overlay])
+			[redrawOverlays addObject: overlay];
 	}
 	
 	// don't forget to actually implement this function :P

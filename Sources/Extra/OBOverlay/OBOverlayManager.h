@@ -24,6 +24,8 @@
 {
 	MKMapView* map;
 	NSMutableArray* overlays;
+	
+	NSMutableArray* redrawOverlays;
 }
 
 @property (nonatomic, readonly) NSArray* overlays;
