@@ -42,7 +42,6 @@ static BOOL use_saved_info = NO;
 	
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
-	[map addAnnotation: overlays];
 		
 	if (use_saved_info && saved_routes)
 	{

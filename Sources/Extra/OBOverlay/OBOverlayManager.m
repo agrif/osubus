@@ -34,6 +34,8 @@
 		touchTimer = nil;
 		zooming = NO;
 		centerOffsetCount = 0;
+		
+		[map addAnnotation: self];
 	}
 	
 	return self;
@@ -42,6 +44,7 @@
 - (void) dealloc
 {
 	[overlays release];
+	[map removeAnnotation: self];
 	
 	[super dealloc];
 }
