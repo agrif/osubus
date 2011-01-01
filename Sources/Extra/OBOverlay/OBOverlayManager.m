@@ -86,15 +86,11 @@
 {
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
-		// only redraw if it's currently visible
-		if (CGRectIntersectsRect([self convertMapRegionToRect: map.region], [self convertMapRegionToRect: [overlay overlayRegion]]))
+		// only redraw if we're registered to redraw
+		if ([redrawOverlays containsObject: overlay])
 		{
-			// only redraw if we're registered to redraw
-			if ([redrawOverlays containsObject: overlay])
-			{
-				[overlay setNeedsDisplay];
-				[redrawOverlays removeObject: overlay];
-			}
+			[overlay setNeedsDisplay];
+			[redrawOverlays removeObject: overlay];
 		}
 	}
 } 
@@ -112,7 +108,7 @@
 		// redraw SHOULD be handled by view's content mode
 		//[overlay setNeedsDisplay];
 		
-		// but we WILL register this overlay for redraw when map touches end
+		// but we WILL register this overlay for forced redraw when map touches end
 		if (![redrawOverlays containsObject: overlay])
 			[redrawOverlays addObject: overlay];
 	}

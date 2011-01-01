@@ -14,6 +14,7 @@
 #include <UIKit/UIKit.h>
 #include <MapKit/MapKit.h>
 
+// FIXME -- move in CATiledLayer code from OBPolyline, and turn this into a proper class
 @protocol OBOverlay
 // DO NOT retain map!!
 - (void) setMap: (MKMapView*) map;
@@ -31,6 +32,7 @@
 @property (nonatomic, readonly) NSArray* overlays;
 
 - (id) initWithMapView: (MKMapView*) mapView;
+// should be called whenever map touches end
 - (void) redrawOverlays;
 - (void) addOverlay: (UIView<OBOverlay>*) overlay;
 - (void) removeOverlay: (UIView<OBOverlay>*) overlay;

@@ -9,11 +9,18 @@
 
 #include "OBOverlayManager.h"
 
+#include <CoreGraphics/CoreGraphics.h>
+
 @interface OBPolyline : UIView <OBOverlay>
 {
 	MKMapView* map;
 	NSArray* points;
 	MKCoordinateRegion overlayRegion;
+	
+	// set to YES during zooming, so tilelayer doesn't freak out
+	BOOL zooming;
+	// cached path
+	CGMutablePathRef path;
 	
 	UIColor* polylineColor;
 	CGFloat polylineAlpha;

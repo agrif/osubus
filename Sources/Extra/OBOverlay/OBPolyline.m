@@ -8,7 +8,7 @@
 // but was written from scratch to be more versatile
 
 #import "OBPolyline.h"
-#import <CoreGraphics/CoreGraphics.h>
+#import <QuartzCore/CoreAnimation.h>
 
 @implementation OBPolyline
 
@@ -31,8 +31,9 @@
 	{
 		// generic setup for all overlays
 		self.backgroundColor = [UIColor clearColor];
-		self.clipsToBounds = NO;
-		self.contentMode = UIViewContentModeScaleToFill;
+		
+		zooming = NO;
+		path = NULL;
 		
 		self.polylineColor = [UIColor blueColor];
 		self.polylineAlpha = 0.5;
@@ -52,7 +53,16 @@
 	self.polylineBorderColor = nil;
 	self.map = nil;
 	
+	if (path)
+		CGPathRelease(path);
+	
 	[super dealloc];
+}
+
+// use CATiledLayer as our layer class
++ (Class) layerClass
+{
+	return [CATiledLayer class];
 }
 
 - (void) setPoints: (NSArray*) pts
@@ -104,28 +114,59 @@
 	return points;
 }
 
-- (void) drawRect: (CGRect) rect
+- (void) setNeedsDisplay
 {
-	if (!map || !points || points.count == 0)
-		return;
+	// let our draw function do its business
+	zooming = NO;
 	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-	CGMutablePathRef path = CGPathCreateMutable();
-	BOOL first = YES;
+	// clear the tiled layer cache (makes sure ALL tiles are drawn)
+	self.layer.contents = nil;
 	
-	for (CLLocation* loc in points)
+	// regenerate path if needed
+	if (!path)
 	{
-		CGPoint pt = [map convertCoordinate: loc.coordinate toPointToView: self];
+		path = CGPathCreateMutable();
+		BOOL first = YES;
 		
-		if (first)
+		for (CLLocation* loc in points)
 		{
-			CGPathMoveToPoint(path, NULL, pt.x, pt.y);
-			first = NO;
-		} else {
-			CGPathAddLineToPoint(path, NULL, pt.x, pt.y);
+			CGPoint pt = [map convertCoordinate: loc.coordinate toPointToView: self];
+			
+			if (first)
+			{
+				CGPathMoveToPoint(path, NULL, pt.x, pt.y);
+				first = NO;
+			} else {
+				CGPathAddLineToPoint(path, NULL, pt.x, pt.y);
+			}
 		}
 	}
 	
+	// chain up
+	[super setNeedsDisplay];
+}
+
+- (void) setFrame: (CGRect) frame
+{
+	// turn of drawing, for the time being...
+	zooming = YES;
+	
+	// our path has become invalid
+	if (path)
+	{
+		CGPathRelease(path);
+		path = NULL;
+	}
+	
+	// chain up
+	[super setFrame: frame];
+}
+
+- (void) drawLayer: (CALayer*) layer inContext: (CGContextRef) context
+{
+	if (zooming || !path || !map || !points || points.count == 0)
+		return;
+		
 	if (polylineAlpha < 1.0)
 		CGContextSetAlpha(context, polylineAlpha);
 	CGContextBeginTransparencyLayer(context, NULL);
@@ -141,8 +182,6 @@
 	CGContextStrokePath(context);
 	
 	CGContextEndTransparencyLayer(context);
-	
-	CGPathRelease(path);
 }
 
 @end
