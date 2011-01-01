@@ -27,6 +27,7 @@
 		map = mapView;
 		overlays = [[NSMutableArray alloc] init];
 		
+		//self.backgroundColor = [UIColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 0.2];
 		self.backgroundColor = [UIColor clearColor];
 		self.clipsToBounds = NO;
 		self.frame = CGRectMake(0.0, 0.0, map.frame.size.width, map.frame.size.height);
@@ -108,8 +109,12 @@
 	if (zooming)
 	{
 		zooming = NO;
-		//NSLog(@"OBOverlayManager: stopped zooming");
-		[overlays makeObjectsPerformSelector: @selector(stoppedZooming)];
+		
+		for (OBOverlay* overlay in overlays)
+		{
+			[self updateOverlayFrame: overlay toView: self];
+			[overlay stoppedZooming];
+		}
 	}
 }
 
@@ -118,6 +123,9 @@
 {
 	// first, make sure our annotation is the back-most annotation
 	[self.superview sendSubviewToBack: self];
+	
+	// make sure we're covering the full map
+	self.frame = CGRectMake(0.0, 0.0, map.frame.size.width, map.frame.size.height);
 	
 	// now, update call count and reset timer
 	centerOffsetCount++;
@@ -128,10 +136,9 @@
 	if (!zooming && centerOffsetCount > OB_MIN_TOUCHES)
 	{
 		zooming = YES;
-		//NSLog(@"OBOverlayManager: started zooming");
 		[overlays makeObjectsPerformSelector: @selector(startedZooming)];
 	}
-
+	
 	for (OBOverlay* overlay in overlays)
 	{
 		[self updateOverlayFrame: overlay toView: map];
