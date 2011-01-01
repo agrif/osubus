@@ -53,7 +53,7 @@
 	[super touchesBegan: touches withEvent: event];
 }
 
-- (CGRect) convertMapRegionToRect: (MKCoordinateRegion) region
+- (CGRect) convertMapRegionToRect: (MKCoordinateRegion) region toView: (UIView*) toView;
 {
 	CLLocationCoordinate2D mincoord;
 	mincoord.latitude = region.center.latitude + region.span.latitudeDelta;
@@ -62,8 +62,8 @@
 	maxcoord.latitude = region.center.latitude - region.span.latitudeDelta;
 	maxcoord.longitude = region.center.longitude + region.span.longitudeDelta;
 	
-	CGPoint minpt = [map convertCoordinate: mincoord toPointToView: map];
-	CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: map];
+	CGPoint minpt = [map convertCoordinate: mincoord toPointToView: toView];
+	CGPoint maxpt = [map convertCoordinate: maxcoord toPointToView: toView];
 	
 	return CGRectMake(minpt.x - OB_OVERLAY_MARGIN,
 					  minpt.y - OB_OVERLAY_MARGIN,
@@ -71,7 +71,7 @@
 					  maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
 }
 
-- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay
+- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay toView: (UIView*) toView
 {
 	MKCoordinateRegion region = [overlay overlayRegion];
 	
@@ -79,7 +79,7 @@
 	if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0.0)
 		return;
 	
-	overlay.frame = [self convertMapRegionToRect: region];
+	overlay.frame = [self convertMapRegionToRect: region toView: toView];
 }
 
 - (void) redrawOverlays;
@@ -103,7 +103,7 @@
 	// we hook this to get position updates during zoom
 	for (UIView<OBOverlay>* overlay in overlays)
 	{
-		[self updateOverlayFrame: overlay];
+		[self updateOverlayFrame: overlay toView: map];
 
 		// redraw SHOULD be handled by view's content mode
 		//[overlay setNeedsDisplay];
@@ -129,10 +129,10 @@
 	[overlay setMap: map];
 	
 	// rejigger overlay frame
-	[self updateOverlayFrame: overlay];
+	[self updateOverlayFrame: overlay toView: self];
 	
 	[overlays addObject: overlay];
-	[self addSubview: overlay];	
+	[self addSubview: overlay];
 	
 	// force redraw
 	[overlay setNeedsDisplay];
