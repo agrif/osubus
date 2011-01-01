@@ -25,6 +25,14 @@
 
 - (id) init;
 
+// called on zooming start/stop... can be implemented in subclass
+// always called in pairs
+
+// default -- turn off drawing (see above)
+- (void) startedZooming;
+// default -- turn on drawing, tell call setNeedsDisplay on ourselves
+- (void) stoppedZooming;
+
 // must be implemented in subclass - this is where to draw!
 - (void) drawOverlayRect: (CGRect) rect inContext: (CGContextRef) context;
 

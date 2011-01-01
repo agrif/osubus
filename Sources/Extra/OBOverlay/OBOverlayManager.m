@@ -11,6 +11,10 @@
 
 // this gives the views an extra bit of space to work in
 #define OB_OVERLAY_MARGIN 4
+// how long between calls to centerOffset before reset
+#define OB_TOUCH_TIMEOUT 0.1
+// how many calls there can be before we consider ourselves "zooming"
+#define OB_MIN_TOUCHES 1
 
 @implementation OBOverlayManager
 
@@ -27,7 +31,9 @@
 		self.clipsToBounds = NO;
 		self.frame = CGRectMake(0.0, 0.0, map.frame.size.width, map.frame.size.height);
 		
-		redrawOverlays = [[NSMutableArray alloc] init];
+		touchTimer = nil;
+		zooming = NO;
+		centerOffsetCount = 0;
 	}
 	
 	return self;
@@ -36,7 +42,6 @@
 - (void) dealloc
 {
 	[overlays release];
-	[redrawOverlays release];
 	
 	[super dealloc];
 }
@@ -87,32 +92,46 @@
 	return ret;
 }
 
-- (void) redrawOverlays;
+- (void) touchTimeout
 {
-	for (OBOverlay* overlay in overlays)
+	// invalidate our timer
+	[touchTimer invalidate];
+	touchTimer = nil;
+	
+	// reset count
+	centerOffsetCount = 0;
+	
+	// check if we've been zooming
+	if (zooming)
 	{
-		// only redraw if we're registered to redraw
-		if ([redrawOverlays containsObject: overlay])
-		{
-			[overlay setNeedsDisplay];
-			[redrawOverlays removeObject: overlay];
-		}
+		zooming = NO;
+		//NSLog(@"OBOverlayManager: stopped zooming");
+		[overlays makeObjectsPerformSelector: @selector(stoppedZooming)];
 	}
-} 
+}
 
+// we hook this to get position updates during zoom
 - (CGPoint) centerOffset
 {
 	// first, make sure our annotation is the back-most annotation
 	[self.superview sendSubviewToBack: self];
 	
-	// we hook this to get position updates during zoom
+	// now, update call count and reset timer
+	centerOffsetCount++;
+	if (touchTimer)
+		[touchTimer invalidate];
+	touchTimer = [NSTimer scheduledTimerWithTimeInterval: OB_TOUCH_TIMEOUT target: self selector: @selector(touchTimeout) userInfo: nil repeats: NO];
+	
+	if (!zooming && centerOffsetCount > OB_MIN_TOUCHES)
+	{
+		zooming = YES;
+		//NSLog(@"OBOverlayManager: started zooming");
+		[overlays makeObjectsPerformSelector: @selector(startedZooming)];
+	}
+
 	for (OBOverlay* overlay in overlays)
 	{
 		[self updateOverlayFrame: overlay toView: map];
-		
-		// register this overlay for forced redraw when map touches end
-		if (![redrawOverlays containsObject: overlay])
-			[redrawOverlays addObject: overlay];
 	}
 	
 	// don't forget to actually implement this function :P
@@ -124,20 +143,17 @@
 	if ([overlays containsObject: overlay])
 		return;
 	
-	// DEBUG overlay background
-	//overlay.backgroundColor = [UIColor colorWithRed: 1.0 green: 0.0 blue: 0.0 alpha: 0.2];
-	
 	// set the overlay map
 	[overlay setMap: map];
 	
-	// rejigger overlay frame
-	[self updateOverlayFrame: overlay toView: self];
-	
+	// add it
 	[overlays addObject: overlay];
 	[self addSubview: overlay];
 	
-	// force redraw
-	[overlay setNeedsDisplay];
+	// simulate a zoom, stop zoom sequence
+	[overlay startedZooming];
+	[self updateOverlayFrame: overlay toView: self];
+	[overlay stoppedZooming];
 	
 	// force our annotation to back
 	[self.superview sendSubviewToBack: self];

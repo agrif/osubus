@@ -255,10 +255,4 @@ static BOOL use_saved_info = NO;
 	return nil;
 }
 
-- (void) mapView: (MKMapView*) mapView regionDidChangeAnimated: (BOOL) animated
-{
-	// redraw after delay, for iOS 3.1 weirdness
-	[overlays performSelector: @selector(redrawOverlays) withObject: nil afterDelay: 0.1];
-}
-
 @end

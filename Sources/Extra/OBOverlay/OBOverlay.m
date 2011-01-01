@@ -43,7 +43,7 @@
 	return [CATiledLayer class];
 }
 
-- (void) setNeedsDisplay
+- (void) stoppedZooming
 {
 	// let our draw function do its business
 	drawEnabled = YES;
@@ -58,17 +58,13 @@
 	// also, iOS ~3.1 NEEDS this call to show ANYTHING. so there's that.
 	[self.layer setNeedsDisplay];
 	
-	// chain up
-	[super setNeedsDisplay];
+	[self setNeedsDisplay];
 }
 
-- (void) setFrame: (CGRect) frame
+- (void) startedZooming
 {
 	// turn off drawing, for the time being...
 	drawEnabled = NO;
-	
-	// chain up
-	[super setFrame: frame];
 }
 
 - (void) drawLayer: (CALayer*) layer inContext: (CGContextRef) context

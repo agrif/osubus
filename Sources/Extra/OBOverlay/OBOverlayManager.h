@@ -21,14 +21,14 @@
 	MKMapView* map;
 	NSMutableArray* overlays;
 	
-	NSMutableArray* redrawOverlays;
+	NSUInteger centerOffsetCount;
+	BOOL zooming;
+	NSTimer* touchTimer;
 }
 
 @property (nonatomic, readonly) NSArray* overlays;
 
 - (id) initWithMapView: (MKMapView*) mapView;
-// should be called whenever map touches end
-- (void) redrawOverlays;
 - (void) addOverlay: (OBOverlay*) overlay;
 - (void) removeOverlay: (OBOverlay*) overlay;
 
