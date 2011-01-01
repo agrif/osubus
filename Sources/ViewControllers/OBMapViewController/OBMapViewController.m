@@ -57,7 +57,7 @@ static BOOL use_saved_info = NO;
 				[map addAnnotation: annotation];
 			}
 			
-			for (UIView<OBOverlay>* overlay in [data objectForKey: @"overlays"])
+			for (OBOverlay* overlay in [data objectForKey: @"overlays"])
 			{
 				[overlays addOverlay: overlay];
 			}
@@ -169,7 +169,7 @@ static BOOL use_saved_info = NO;
 			[map removeAnnotation: annotation];
 		}
 		
-		for (UIView<OBOverlay>* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
+		for (OBOverlay* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
 		{
 			[overlays removeOverlay: overlay];
 		}
@@ -257,7 +257,8 @@ static BOOL use_saved_info = NO;
 
 - (void) mapView: (MKMapView*) mapView regionDidChangeAnimated: (BOOL) animated
 {
-	[overlays redrawOverlays];
+	// redraw after delay, for iOS 3.1 weirdness
+	[overlays performSelector: @selector(redrawOverlays) withObject: nil afterDelay: 0.1];
 }
 
 @end

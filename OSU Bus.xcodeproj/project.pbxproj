@@ -90,6 +90,7 @@
 		D0B5DD14117E4BA100D15F53 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0B5DD13117E4BA100D15F53 /* CoreLocation.framework */; };
 		D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
+		D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D12F8512CECF8E006086FA /* OBOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +225,8 @@
 		D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewDidLoadPairing.h"; sourceTree = "<group>"; };
 		D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewDidLoadPairing.m"; sourceTree = "<group>"; };
 		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D0D12F8412CECF8E006086FA /* OBOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOverlay.h; sourceTree = "<group>"; };
+		D0D12F8512CECF8E006086FA /* OBOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOverlay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -432,6 +435,8 @@
 			children = (
 				D06295C312C3CF8C0081391C /* OBOverlayManager.h */,
 				D06295C412C3CF8C0081391C /* OBOverlayManager.m */,
+				D0D12F8412CECF8E006086FA /* OBOverlay.h */,
+				D0D12F8512CECF8E006086FA /* OBOverlay.m */,
 				D06295C512C3CF8C0081391C /* OBPolyline.h */,
 				D06295C612C3CF8C0081391C /* OBPolyline.m */,
 			);
@@ -654,6 +659,7 @@
 				D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */,
 				D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */,
 				D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */,
+				D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

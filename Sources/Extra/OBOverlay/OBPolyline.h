@@ -7,19 +7,13 @@
 // OBOverlayManager based on <https://github.com/wlach/nvpolyline>,
 // but was written from scratch to be more versatile
 
-#include "OBOverlayManager.h"
+#import "OBOverlay.h"
 
-#include <CoreGraphics/CoreGraphics.h>
+#import <CoreGraphics/CoreGraphics.h>
 
-@interface OBPolyline : UIView <OBOverlay>
+@interface OBPolyline : OBOverlay
 {
-	MKMapView* map;
 	NSArray* points;
-	MKCoordinateRegion overlayRegion;
-	
-	// set to YES during zooming, so tilelayer doesn't freak out
-	BOOL zooming;
-	// cached path
 	CGMutablePathRef path;
 	
 	UIColor* polylineColor;
@@ -29,9 +23,7 @@
 	CGFloat polylineBorderWidth;
 }
 
-@property (nonatomic, assign) MKMapView* map;
 @property (nonatomic, retain) NSArray* points;
-@property (nonatomic, readonly) MKCoordinateRegion overlayRegion;
 @property (nonatomic, retain) UIColor* polylineColor;
 @property (nonatomic, assign) CGFloat polylineAlpha;
 @property (nonatomic, assign) CGFloat polylineWidth;

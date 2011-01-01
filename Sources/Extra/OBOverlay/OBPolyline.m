@@ -8,12 +8,9 @@
 // but was written from scratch to be more versatile
 
 #import "OBPolyline.h"
-#import <QuartzCore/CoreAnimation.h>
 
 @implementation OBPolyline
 
-@synthesize map;
-@synthesize overlayRegion;
 @synthesize polylineColor;
 @synthesize polylineAlpha;
 @synthesize polylineWidth;
@@ -29,10 +26,6 @@
 {
 	if (self = [super init])
 	{
-		// generic setup for all overlays
-		self.backgroundColor = [UIColor clearColor];
-		
-		zooming = NO;
 		path = NULL;
 		
 		self.polylineColor = [UIColor blueColor];
@@ -51,18 +44,11 @@
 	self.points = nil;
 	self.polylineColor = nil;
 	self.polylineBorderColor = nil;
-	self.map = nil;
 	
 	if (path)
 		CGPathRelease(path);
 	
 	[super dealloc];
-}
-
-// use CATiledLayer as our layer class
-+ (Class) layerClass
-{
-	return [CATiledLayer class];
 }
 
 - (void) setPoints: (NSArray*) pts
@@ -102,11 +88,14 @@
 	}
 	
 	// and now we can set it
-	overlayRegion.center.latitude = (maxcoord.latitude + mincoord.latitude) / 2.0;
-	overlayRegion.center.longitude = (maxcoord.longitude + mincoord.longitude) / 2.0;
+	MKCoordinateRegion region;
+	region.center.latitude = (maxcoord.latitude + mincoord.latitude) / 2.0;
+	region.center.longitude = (maxcoord.longitude + mincoord.longitude) / 2.0;
 	
-	overlayRegion.span.latitudeDelta = (maxcoord.latitude - mincoord.latitude) / 2.0;
-	overlayRegion.span.longitudeDelta = (maxcoord.longitude - mincoord.longitude) / 2.0;
+	region.span.latitudeDelta = (maxcoord.latitude - mincoord.latitude) / 2.0;
+	region.span.longitudeDelta = (maxcoord.longitude - mincoord.longitude) / 2.0;
+	
+	self.overlayRegion = region;
 }
 
 - (NSArray*) points
@@ -116,21 +105,24 @@
 
 - (void) setNeedsDisplay
 {
-	// let our draw function do its business
-	zooming = NO;
+	// zoom level changed, old path cache is now invalid
 	
-	// clear the tiled layer cache (makes sure ALL tiles are drawn)
-	self.layer.contents = nil;
-	
-	// regenerate path if needed
-	if (!path)
+	if (path)
 	{
+		CGPathRelease(path);
+		path = NULL;
+	}
+	
+	if (self.map && points && points.count > 0)
+	{
+		// regenerate path
+		
 		path = CGPathCreateMutable();
 		BOOL first = YES;
 		
 		for (CLLocation* loc in points)
 		{
-			CGPoint pt = [map convertCoordinate: loc.coordinate toPointToView: self];
+			CGPoint pt = [self.map convertCoordinate: loc.coordinate toPointToView: self];
 			
 			if (first)
 			{
@@ -146,27 +138,11 @@
 	[super setNeedsDisplay];
 }
 
-- (void) setFrame: (CGRect) frame
+- (void) drawOverlayRect: (CGRect) rect inContext: (CGContextRef) context
 {
-	// turn of drawing, for the time being...
-	zooming = YES;
-	
-	// our path has become invalid
-	if (path)
-	{
-		CGPathRelease(path);
-		path = NULL;
-	}
-	
-	// chain up
-	[super setFrame: frame];
-}
-
-- (void) drawLayer: (CALayer*) layer inContext: (CGContextRef) context
-{
-	if (zooming || !path || !map || !points || points.count == 0)
+	if (!path)
 		return;
-		
+	
 	if (polylineAlpha < 1.0)
 		CGContextSetAlpha(context, polylineAlpha);
 	CGContextBeginTransparencyLayer(context, NULL);

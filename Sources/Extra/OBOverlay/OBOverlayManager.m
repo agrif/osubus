@@ -71,20 +71,25 @@
 					  maxpt.y - minpt.y + 2*OB_OVERLAY_MARGIN);
 }
 
-- (void) updateOverlayFrame: (UIView<OBOverlay>*) overlay toView: (UIView*) toView
+// returns YES if frame size changed
+- (BOOL) updateOverlayFrame: (OBOverlay*) overlay toView: (UIView*) toView
 {
-	MKCoordinateRegion region = [overlay overlayRegion];
+	MKCoordinateRegion region = overlay.overlayRegion;
 	
 	// check for empty region
 	if (region.span.latitudeDelta == 0.0 || region.span.longitudeDelta == 0.0)
-		return;
+		return NO;
 	
-	overlay.frame = [self convertMapRegionToRect: region toView: toView];
+	CGRect newframe = [self convertMapRegionToRect: region toView: toView];
+	BOOL ret = !CGSizeEqualToSize(overlay.frame.size, newframe.size);
+	overlay.frame = newframe;
+	
+	return ret;
 }
 
 - (void) redrawOverlays;
 {
-	for (UIView<OBOverlay>* overlay in overlays)
+	for (OBOverlay* overlay in overlays)
 	{
 		// only redraw if we're registered to redraw
 		if ([redrawOverlays containsObject: overlay])
@@ -101,14 +106,11 @@
 	[self.superview sendSubviewToBack: self];
 	
 	// we hook this to get position updates during zoom
-	for (UIView<OBOverlay>* overlay in overlays)
+	for (OBOverlay* overlay in overlays)
 	{
 		[self updateOverlayFrame: overlay toView: map];
-
-		// redraw SHOULD be handled by view's content mode
-		//[overlay setNeedsDisplay];
 		
-		// but we WILL register this overlay for forced redraw when map touches end
+		// register this overlay for forced redraw when map touches end
 		if (![redrawOverlays containsObject: overlay])
 			[redrawOverlays addObject: overlay];
 	}
@@ -117,7 +119,7 @@
 	return [super centerOffset];
 }
 
-- (void) addOverlay: (UIView<OBOverlay>*) overlay
+- (void) addOverlay: (OBOverlay*) overlay
 {
 	if ([overlays containsObject: overlay])
 		return;
@@ -141,7 +143,7 @@
 	[self.superview sendSubviewToBack: self];
 }
 
-- (void) removeOverlay: (UIView<OBOverlay>*) overlay
+- (void) removeOverlay: (OBOverlay*) overlay
 {
 	if (![overlays containsObject: overlay])
 		return;

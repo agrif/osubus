@@ -11,15 +11,10 @@
 // but I would hate to keep late-adopters out just because I was
 // too lazy to write a small compatibility layer
 
-#include <UIKit/UIKit.h>
-#include <MapKit/MapKit.h>
+#import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-// FIXME -- move in CATiledLayer code from OBPolyline, and turn this into a proper class
-@protocol OBOverlay
-// DO NOT retain map!!
-- (void) setMap: (MKMapView*) map;
-- (MKCoordinateRegion) overlayRegion;
-@end
+#import "OBOverlay.h"
 
 @interface OBOverlayManager : MKAnnotationView <MKAnnotation>
 {
@@ -34,7 +29,7 @@
 - (id) initWithMapView: (MKMapView*) mapView;
 // should be called whenever map touches end
 - (void) redrawOverlays;
-- (void) addOverlay: (UIView<OBOverlay>*) overlay;
-- (void) removeOverlay: (UIView<OBOverlay>*) overlay;
+- (void) addOverlay: (OBOverlay*) overlay;
+- (void) removeOverlay: (OBOverlay*) overlay;
 
 @end
