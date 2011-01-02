@@ -38,6 +38,14 @@ static BOOL use_saved_info = NO;
 		map.region = saved_region;
 	}
 	
+	// SETUP for map zoom hack
+	hasZoomedIn = NO;
+	finalRegion = map.region;
+	MKCoordinateRegion outerRegion = finalRegion;
+	outerRegion.span.latitudeDelta *= 1.2;
+	outerRegion.span.longitudeDelta *= 1.2;
+	map.region = outerRegion;
+	
 	map.mapType = MKMapTypeStandard;
 	
 	// setup overlay manager
@@ -100,6 +108,16 @@ static BOOL use_saved_info = NO;
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
+}
+
+- (void) viewDidAppear: (BOOL) animated
+{
+	// this block is a HACK that prevents a draw bug on iOS3.1
+	// but it doesn't look *too* bad... I guess
+	if (hasZoomedIn)
+		return;
+	[map setRegion: finalRegion animated: animated];
+	hasZoomedIn = YES;
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation

@@ -26,6 +26,10 @@
 	
 	// counts how many requests have yet to return
 	NSInteger outstandingRequests;
+	
+	// for initial zoom in hack
+	BOOL hasZoomedIn;
+	MKCoordinateRegion finalRegion;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
