@@ -16,7 +16,7 @@
 
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop
 {
-	if (self = [super initWithAnnotation: self reuseIdentifier: @"OBStopAnnotation"])
+	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBStopAnnotation"])
 	{
 		map = _map;
 		route = [_route retain];
@@ -49,6 +49,11 @@
 	[stop release];
 	
 	[super dealloc];
+}
+
+- (id<MKAnnotation>) annotation
+{
+	return self;
 }
 
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView

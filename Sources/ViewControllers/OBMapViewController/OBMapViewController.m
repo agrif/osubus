@@ -183,12 +183,19 @@ static BOOL use_saved_info = NO;
 		
 		for (OBStopAnnotation* annotation in [[routes objectForKey: route] objectForKey: @"annotations"])
 		{
+			// FIXME need this to not crash on iOS 3.1
+			[annotation retain];
 			[map removeAnnotation: annotation];
 		}
 		
-		for (OBOverlay* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
+		if ([[routes objectForKey: route] objectForKey: @"overlays"])
 		{
-			[overlays removeOverlay: overlay];
+			for (OBOverlay* overlay in [[routes objectForKey: route] objectForKey: @"overlays"])
+			{
+				// FIXME need this to not crash on iOS 3.1
+				[overlay retain];
+				[overlays removeOverlay: overlay];
+			}
 		}
 		
 		[routes removeObjectForKey: route];
@@ -199,40 +206,44 @@ static BOOL use_saved_info = NO;
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	// array to store new overlays as they're made
-	NSMutableArray* req_overlays = [[NSMutableArray alloc] initWithCapacity: [[result objectForKey: @"ptr"] count]];
-	
-	for (NSDictionary* pattern in [result objectForKey: @"ptr"])
+	// only do all this if we have somewhere to put it
+	if ([routes objectForKey: [requestMap objectForKey: request]])
 	{
-		// temporary array for points
-		NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
+		// array to store new overlays as they're made
+		NSMutableArray* req_overlays = [[NSMutableArray alloc] initWithCapacity: [[result objectForKey: @"ptr"] count]];
 		
-		for (NSDictionary* point in [pattern objectForKey: @"pt"])
+		for (NSDictionary* pattern in [result objectForKey: @"ptr"])
 		{
-			CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
-			[points addObject: loc];
-			[loc release];
+			// temporary array for points
+			NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
+			
+			for (NSDictionary* point in [pattern objectForKey: @"pt"])
+			{
+				CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
+				[points addObject: loc];
+				[loc release];
+			}
+			
+			// create the overlay
+			OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
+			[points release];
+			
+			// setup the route color
+			polyline.polylineColor = [[[requestMap objectForKey: request] objectForKey: @"color"] colorFromHex];
+			polyline.polylineAlpha = 1.0;
+			polyline.polylineWidth = 6.0;
+			polyline.polylineBorderWidth = 1.5;
+			
+			// add overlay to our array, and the overlaymanager
+			[req_overlays addObject: polyline];
+			[overlays addOverlay: polyline];
+			[polyline release];
 		}
 		
-		// create the overlay
-		OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
-		[points release];
-		
-		// setup the route color
-		polyline.polylineColor = [[[requestMap objectForKey: request] objectForKey: @"color"] colorFromHex];
-		polyline.polylineAlpha = 1.0;
-		polyline.polylineWidth = 6.0;
-		polyline.polylineBorderWidth = 1.5;
-		
-		// add overlay to our array, and the overlaymanager
-		[req_overlays addObject: polyline];
-		[overlays addOverlay: polyline];
-		[polyline release];
+		// add overlays to data dict
+		[[routes objectForKey: [requestMap objectForKey: request]] setObject: req_overlays forKey: @"overlays"];
+		[req_overlays release];
 	}
-	
-	// add overlays to data dict
-	[[routes objectForKey: [requestMap objectForKey: request]] setObject: req_overlays forKey: @"overlays"];
-	[req_overlays release];
 	
 	// free request
 	[requestMap removeObjectForKey: request];
