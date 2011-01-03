@@ -7,6 +7,7 @@
 #import "OBTableViewController.h"
 
 #import "NSString+HexColor.h"
+#import "OBColorBandView.h"
 
 @implementation OBTableViewController
 
@@ -77,17 +78,12 @@
 	return cell;
 }
 
-#define STOPS_COLOR_FIRST_TAG 4
-#define STOPS_COLOR_LAST_TAG 6
-
 - (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
 {
 	// tag 1 - name label
 	// tag 2 - subtitle label (for route names)
 	// tag 3 - distance label
-	// tag 4 - first color bar
-	// tag 5 - second color bar
-	// tag 6 - third color bar
+	// tag 4 - color band view
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
 	UILabel* label;
@@ -95,30 +91,30 @@
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"name"]];
 	
+	// storage for colors
+	NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[data objectForKey: @"routes"] count]];
+	
 	NSMutableString* subtitle = [[NSMutableString alloc] init];
-	unsigned int tag = STOPS_COLOR_FIRST_TAG;
+	unsigned int i = 0;
 	unsigned int routeslen = [[data objectForKey: @"routes"] count];
 	for (NSDictionary* route in [data objectForKey: @"routes"])
 	{
-		if (tag <= STOPS_COLOR_LAST_TAG)
-		{
-			[[cell viewWithTag: tag] setHidden: NO];
-			[[cell viewWithTag: tag] setBackgroundColor: [[route objectForKey: @"color"] colorFromHex]];
-		}
+		[colors addObject: [[route objectForKey: @"color"] colorFromHex]];
 		
-		if (tag == STOPS_COLOR_FIRST_TAG + routeslen - 1 && tag != STOPS_COLOR_FIRST_TAG) {
+		if (i == routeslen - 1 && i != 0) {
 			[subtitle appendString: @" and "];
-		} else if (tag != STOPS_COLOR_FIRST_TAG) {
+		} else if (i != 0) {
 			[subtitle appendString: @", "];
 		}
 		[subtitle appendString: [route objectForKey: @"short"]];
 		
-		tag++;
+		i++;
 	}
-	for (; tag <= STOPS_COLOR_LAST_TAG; tag++)
-	{
-		[[cell viewWithTag: tag] setHidden: YES];
-	}
+	
+	// set color bands
+	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
+	bands.colors = colors;
+	[colors release];
 	
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: subtitle];
