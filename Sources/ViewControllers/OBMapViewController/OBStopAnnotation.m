@@ -11,6 +11,7 @@
 #import "OBMapViewController.h"
 #import "OBPredictionsViewController.h"
 #import "NSString+HexColor.h"
+#import "OBColorBandView.h"
 
 @implementation OBStopAnnotation
 
@@ -38,6 +39,21 @@
 		UIButton* button = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
 		[button addTarget: self action: @selector(showStopViewController) forControlEvents: UIControlEventTouchUpInside];
 		self.rightCalloutAccessoryView = button;
+		
+		// set up route color bands
+		NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[stop objectForKey: @"routes"] count]];
+		for (NSDictionary* r in [stop objectForKey: @"routes"])
+		{
+			[colors addObject:[[r objectForKey: @"color"] colorFromHex]];
+		}
+		
+		OBColorBandView* bands = [[OBColorBandView alloc] initWithFrame: CGRectMake(0.0, 0.0, 32.0, 32.0)];
+		bands.colors = colors;
+		[colors release];
+		bands.autoResizing = YES;
+		
+		self.leftCalloutAccessoryView = bands;
+		[bands release];
 	}
 	
 	return self;

@@ -13,12 +13,14 @@
 	NSArray* colors;
 	CGFloat bandWidth;
 	
+	BOOL autoResizing;
 	BOOL colorsHaveChanged;
 	NSMutableArray* bandViews;
 }
 
 @property (nonatomic, retain) NSArray* colors;
 @property (nonatomic, assign) CGFloat bandWidth;
+@property (nonatomic, assign, getter=isAutoResizing) BOOL autoResizing;
 
 - (id) initWithFrame: (CGRect) frame;
 - (id) initWithFrame: (CGRect) frame colors: (NSArray*) _colors;

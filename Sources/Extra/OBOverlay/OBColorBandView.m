@@ -15,7 +15,9 @@
 	colorsHaveChanged = NO;
 	self.colors = _colors;
 	self.bandWidth = 8.0;
+	self.autoResizing = NO;
 	
+	// standard setup that we REALLY WANT on all of these views;
 	self.backgroundColor = [UIColor clearColor];
 	self.opaque = NO;
 }
@@ -84,6 +86,20 @@
 	return bandWidth;
 }
 
+- (void) setAutoResizing: (BOOL) _autoResizing
+{
+	if (_autoResizing != autoResizing)
+	{
+		autoResizing = _autoResizing;
+		[self layoutSubviews];
+	}
+}
+
+- (BOOL) isAutoResizing
+{
+	return autoResizing;
+}
+
 // helper to get a reasonable subview frame, given an index
 // returns CGRectZero when out of room
 
@@ -100,6 +116,13 @@
 
 - (void) layoutSubviews
 {
+	if (autoResizing)
+	{
+		CGRect bounds = self.bounds;
+		bounds.size.width = colors.count * bandWidth;
+		self.bounds = bounds;
+	}
+	
 	NSUInteger i = 0;
 	if (colorsHaveChanged)
 	{
