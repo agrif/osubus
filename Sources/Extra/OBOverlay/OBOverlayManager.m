@@ -44,6 +44,11 @@
 
 - (void) dealloc
 {
+	for (OBOverlay* overlay in overlays)
+	{
+		[overlay removeFromSuperview];
+		[overlay setMap: nil];
+	}
 	[overlays release];
 	[map removeAnnotation: self];
 	
@@ -176,6 +181,7 @@
 	
 	[overlays removeObject: overlay];
 	[overlay removeFromSuperview];
+	[overlay setMap: nil];
 }
 
 @end
