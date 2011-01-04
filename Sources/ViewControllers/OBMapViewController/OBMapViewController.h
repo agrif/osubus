@@ -19,7 +19,12 @@
 	UIBarButtonItem* routesButton;
 	OBOverlayManager* overlayManager;
 	
-	NSMutableDictionary* overlays;
+	// maps route -> stop annotations array
+	NSMutableDictionary* stopAnnotations;
+	// maps route -> overlay array
+	NSMutableDictionary* routeOverlays;
+	// maps active requests -> route
+	NSMutableDictionary* activeRequests;
 	
 	// for initial zoom in hack
 	BOOL hasZoomedIn;

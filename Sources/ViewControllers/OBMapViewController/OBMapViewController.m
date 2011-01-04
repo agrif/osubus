@@ -42,14 +42,24 @@
 	[map addAnnotation: overlayManager];
 	
 	// just a rough estimate of the number of routes to be displayed
-	overlays = [[NSMutableDictionary alloc] initWithCapacity: 5];
+	stopAnnotations = [[NSMutableDictionary alloc] initWithCapacity: 5];
+	routeOverlays = [[NSMutableDictionary alloc] initWithCapacity: 5];
+	activeRequests = [[NSMutableDictionary alloc] initWithCapacity: 5];
 		
 	NSLog(@"OBMapViewController loaded");
 }
 
 - (void) viewDidUnload
 {
-	[overlays release];
+	NSDictionary* route = nil;
+	while (route = [[stopAnnotations allKeys] objectAtIndex: 0])
+	{
+		[self setRoute: route enabled: NO];
+	}
+	
+	[stopAnnotations release];
+	[routeOverlays release];
+	[activeRequests release];
 
 	[map removeAnnotation: overlayManager];
 	[overlayManager release];
@@ -85,12 +95,52 @@
 
 - (BOOL) isRouteEnabled: (NSDictionary*) route
 {
-	return NO;
+	return [stopAnnotations objectForKey: route] != nil;
 }
 
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
-	//
+	if (enabled)
+	{
+		// add in stops, start route request
+		
+		NSArray* stops = [[OTClient sharedClient] stopsWithRoute: [route objectForKey: @"id"]];
+		NSMutableArray* annotations = [[NSMutableArray alloc] initWithCapacity: stops.count];
+		
+		for (NSDictionary* stop in stops)
+		{
+			OBStopAnnotation* annotation = [[OBStopAnnotation alloc] initWithMapViewController: self route: route stop: stop];
+			[annotations addObject: annotation];
+			[map addAnnotation: annotation];
+			[annotation release];
+		}
+		
+		[stops release];
+		[stopAnnotations setObject: annotations forKey: route];
+		[annotations release];
+		
+		// we don't need the instructive view any more
+		[instructiveView setHidden: YES];
+	} else {
+		// remove stops, overlays, request
+		
+		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: route])
+		{
+			[map removeAnnotation: annotation];
+		}
+		[stopAnnotations removeObjectForKey: route];
+		
+		for (OBOverlay* overlay in [routeOverlays objectForKey: route])
+		{
+			[overlayManager removeOverlay: overlay];
+		}
+		[routeOverlays removeObjectForKey: route];
+		
+		for (OTRequest* req in [activeRequests allKeysForObject: route])
+		{
+			[activeRequests removeObjectForKey: req];
+		}
+	}
 }
 
 #pragma mark OTRequestDelegate
