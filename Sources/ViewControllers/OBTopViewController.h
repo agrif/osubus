@@ -15,6 +15,7 @@
 @class OBBulletinsViewController;
 @class MBProgressHUD;
 @class OBAboutViewController;
+@class OBMapViewController;
 
 enum OBTopOptions
 {
@@ -58,6 +59,7 @@ enum OBTopSections
 	NSMutableData* receivedData;
 	
 	OBBulletinsViewController* bulletinsViewController;
+	OBMapViewController* mapViewController;
 }
 
 @property (nonatomic, retain) IBOutlet OBAboutViewController* aboutViewController;
@@ -70,6 +72,7 @@ enum OBTopSections
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* backButton;
 
 @property (nonatomic, retain) IBOutlet OBBulletinsViewController* bulletinsViewController;
+@property (nonatomic, retain) IBOutlet OBMapViewController* mapViewController;
 
 - (UITableViewCell*) tableView: (UITableView*) tableView navigationCellForIndex: (NSInteger) index;
 

@@ -29,6 +29,7 @@
 @synthesize backButton;
 
 @synthesize bulletinsViewController;
+@synthesize mapViewController;
 
 - (void) viewDidLoad
 {
@@ -450,9 +451,7 @@
 		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
 		[hud show: YES];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
-		OBMapViewController* map = [[OBMapViewController alloc] initWithNibName: @"OBMapViewController" bundle: nil];
-		[self.navigationController pushViewController: map animated: YES];
-		[map release];
+		[self.navigationController pushViewController: self.mapViewController animated: YES];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		[predictions setStop: [favoritesData objectAtIndex: [indexPath row]]];

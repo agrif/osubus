@@ -30,12 +30,12 @@
 										MKCoordinateSpanMake(0.01, 0.01));
 	
 	// SETUP for map zoom hack
-	hasZoomedIn = NO;
+	/*hasZoomedIn = NO;
 	finalRegion = map.region;
 	MKCoordinateRegion outerRegion = finalRegion;
 	outerRegion.span.latitudeDelta *= 1.2;
 	outerRegion.span.longitudeDelta *= 1.2;
-	map.region = outerRegion;
+	map.region = outerRegion;*/
 	
 	// setup overlay manager
 	overlays = [[OBOverlayManager alloc] initWithMapView: map];
@@ -55,10 +55,10 @@
 {
 	// this block is a HACK that prevents a draw bug on iOS3.1
 	// but it doesn't look *too* bad... I guess
-	if (hasZoomedIn)
+	/*if (hasZoomedIn)
 		return;
 	[map setRegion: finalRegion animated: animated];
-	hasZoomedIn = YES;
+	hasZoomedIn = YES;*/
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
