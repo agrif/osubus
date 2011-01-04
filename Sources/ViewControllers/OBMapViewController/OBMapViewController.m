@@ -51,9 +51,9 @@
 
 - (void) viewDidUnload
 {
-	NSDictionary* route = nil;
-	while (route = [[stopAnnotations allKeys] objectAtIndex: 0])
+	while ([[stopAnnotations allKeys] count])
 	{
+		NSDictionary* route = [[stopAnnotations allKeys] objectAtIndex: 0];
 		[self setRoute: route enabled: NO];
 	}
 	
@@ -119,6 +119,11 @@
 		[stopAnnotations setObject: annotations forKey: route];
 		[annotations release];
 		
+		// start the request
+		OTRequest* req = [[OTClient sharedClient] requestPatternsWithDelegate: self forRoute: [route objectForKey: @"short"]];
+		[activeRequests setObject: route forKey: req];
+		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+		
 		// we don't need the instructive view any more
 		[instructiveView setHidden: YES];
 	} else {
@@ -147,7 +152,42 @@
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
+	NSDictionary* route = [activeRequests objectForKey: request];
+	
+	if (route)
+	{
+		NSMutableArray* overlays = [[NSMutableArray alloc] initWithCapacity: [[result objectForKey: @"ptr"] count]];
+		
+		for (NSDictionary* pattern in [result objectForKey: @"ptr"])
+		{
+			NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
+			
+			for (NSDictionary* point in [pattern objectForKey: @"pt"])
+			{
+				CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
+				[points addObject: loc];
+				[loc release];
+			}
+			
+			OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
+			[points release];
+			
+			polyline.polylineColor = [[route objectForKey: @"color"] colorFromHex];
+			polyline.polylineAlpha = 1.0;
+			
+			[overlays addObject: polyline];
+			[overlayManager addOverlay: polyline];
+			[polyline release];
+		}
+		
+		[routeOverlays setObject: overlays forKey: route];
+		[overlays release];
+	}
+	
+	[activeRequests removeObjectForKey: request];
 	[request release];
+	
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: activeRequests.count];
 }
 
 - (void) request: (OTRequest*) request hasError:(NSError *)error
@@ -156,7 +196,10 @@
 	// the worst that happens is there will be no route overlay
 	NSLog(@"error while requesting pattern: %@", error);
 	
+	[activeRequests removeObjectForKey: request];
 	[request release];
+	
+	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: activeRequests.count];
 }
 
 #pragma mark MKMapViewDelegate
