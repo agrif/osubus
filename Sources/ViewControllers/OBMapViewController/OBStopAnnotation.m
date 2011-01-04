@@ -67,14 +67,11 @@
 	[super dealloc];
 }
 
-- (id<MKAnnotation>) annotation
-{
-	return self;
-}
-
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
 {
-	return self;
+	// this is used in a map view delegate that *expects* an object to be
+	// *created*, so retain it...
+	return [self retain];
 }
 
 - (void) showStopViewController

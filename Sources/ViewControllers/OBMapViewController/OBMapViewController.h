@@ -19,14 +19,6 @@
 	UIBarButtonItem* routesButton;
 	OBOverlayManager* overlays;
 	
-	// maps routes -> {@"annotations" : [...], @"overlays" : [...]}
-	NSMutableDictionary* routes;
-	// maps active requests -> routes
-	NSMutableDictionary* requestMap;
-	
-	// counts how many requests have yet to return
-	NSInteger outstandingRequests;
-	
 	// for initial zoom in hack
 	BOOL hasZoomedIn;
 	MKCoordinateRegion finalRegion;

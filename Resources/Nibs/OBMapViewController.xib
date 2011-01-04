@@ -50,7 +50,6 @@
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<int key="IBMKMapType">2</int>
 					</object>
 					<object class="IBUIView" id="384023783">
 						<reference key="NSNextResponder" ref="500442808"/>
