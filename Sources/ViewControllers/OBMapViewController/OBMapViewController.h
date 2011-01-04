@@ -17,7 +17,9 @@
 	MKMapView* map;
 	UIView* instructiveView;
 	UIBarButtonItem* routesButton;
-	OBOverlayManager* overlays;
+	OBOverlayManager* overlayManager;
+	
+	NSMutableDictionary* overlays;
 	
 	// for initial zoom in hack
 	BOOL hasZoomedIn;

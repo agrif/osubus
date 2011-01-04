@@ -38,7 +38,11 @@
 	map.region = outerRegion;*/
 	
 	// setup overlay manager
-	overlays = [[OBOverlayManager alloc] initWithMapView: map];
+	overlayManager = [[OBOverlayManager alloc] initWithMapView: map];
+	[map addAnnotation: overlayManager];
+	
+	// just a rough estimate of the number of routes to be displayed
+	overlays = [[NSMutableDictionary alloc] initWithCapacity: 5];
 		
 	NSLog(@"OBMapViewController loaded");
 }
@@ -46,6 +50,9 @@
 - (void) viewDidUnload
 {
 	[overlays release];
+
+	[map removeAnnotation: overlayManager];
+	[overlayManager release];
 	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
@@ -106,8 +113,8 @@
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
 {
-	if (annotation == overlays)
-		return overlays;
+	if (annotation == overlayManager)
+		return [overlayManager autorelease];
 	
 	if ([annotation isKindOfClass: [OBStopAnnotation class]])
 		return [(OBStopAnnotation*)annotation annotationViewForMap: map];

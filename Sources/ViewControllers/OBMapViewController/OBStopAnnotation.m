@@ -69,7 +69,8 @@
 
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
 {
-	return self;
+	// *this* is how the map view takes it's annotation views
+	return [self autorelease];
 }
 
 - (void) showStopViewController

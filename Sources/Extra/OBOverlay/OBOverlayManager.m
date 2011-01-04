@@ -22,7 +22,7 @@
 
 - (id) initWithMapView: (MKMapView*) mapView
 {
-	if (self = [super initWithAnnotation: self reuseIdentifier: @"OBOverlayManager"])
+	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBOverlayManager"])
 	{
 		map = mapView;
 		overlays = [[NSMutableArray alloc] init];
@@ -35,8 +35,6 @@
 		touchTimer = nil;
 		zooming = NO;
 		centerOffsetCount = 0;
-		
-		[map addAnnotation: self];
 	}
 	
 	return self;
@@ -50,7 +48,6 @@
 		[overlay setMap: nil];
 	}
 	[overlays release];
-	[map removeAnnotation: self];
 	
 	[super dealloc];
 }
