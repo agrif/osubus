@@ -87,9 +87,31 @@
 
 - (void) showStopViewController
 {
+	// parent predictions controller search
+	OBPredictionsViewController* parent = nil;
+	for (UIViewController* controller in map.navigationController.viewControllers)
+	{
+		if ([controller isKindOfClass: [OBPredictionsViewController class]])
+		{
+			parent = (OBPredictionsViewController*)controller;
+			break;
+		}
+	}
+	
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 	[predictions setStop: stop];
-	[map.navigationController pushViewController: predictions animated: YES];
+	
+	if (!parent)
+	{
+		[map.navigationController pushViewController: predictions animated: YES];
+	} else {
+		// moving into what could become an infinite loop
+		// replace view stack with just top / map / new
+		NSArray* newstack = [[NSArray alloc] initWithObjects: [map.navigationController.viewControllers objectAtIndex: 0], map, predictions, nil];
+		[map.navigationController setViewControllers: newstack animated: YES];
+		[newstack release];
+	}
+	
 	[predictions release];
 }
 
