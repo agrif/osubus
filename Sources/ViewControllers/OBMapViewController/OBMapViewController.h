@@ -11,6 +11,7 @@
 #import "OBRoutesViewController.h"
 
 @class OBOverlayManager;
+@class OBStopAnnotation;
 
 @interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
 {
@@ -26,6 +27,8 @@
 	// maps active requests -> route
 	NSMutableDictionary* activeRequests;
 	
+	OBStopAnnotation* primaryStopAnnotation;
+	
 	// for initial zoom in hack
 	BOOL hasZoomedIn;
 	MKCoordinateRegion finalRegion;
@@ -36,5 +39,10 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* routesButton;
 
 - (IBAction) routesButtonPressed;
+
+// call this to get rid of all visible annotations, overlays, etc.
+- (void) clearMap;
+- (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled;
+- (void) setStop: (NSDictionary*) stop;
 
 @end

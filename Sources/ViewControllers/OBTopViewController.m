@@ -451,6 +451,8 @@
 		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
 		[hud show: YES];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
+		// first, remove any special stops that are visible
+		[self.mapViewController setStop: nil];
 		[self.navigationController pushViewController: self.mapViewController animated: YES];
 	} else if ([indexPath section] == OBTS_FAVORITES && [favorites count] != 0) {
 		OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];

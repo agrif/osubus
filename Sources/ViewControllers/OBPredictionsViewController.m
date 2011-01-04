@@ -7,6 +7,8 @@
 #import "OBPredictionsViewController.h"
 
 #import "OTClient.h"
+#import "OBTopViewController.h"
+#import "OBMapViewController.h"
 
 @implementation OBPredictionsViewController
 
@@ -246,7 +248,7 @@
 		case OBPS_ACTIONS:
 			switch ([indexPath row])
 			{
-				case OBPA_DIRECTIONS:
+				case OBPA_MAP:
 					return [self cellForTable: tableView withText: @"Show on Map"];
 			};
 			return nil;
@@ -266,22 +268,18 @@
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	if ([indexPath section] == OBPS_ACTIONS && [indexPath row] == OBPA_DIRECTIONS)
+	if ([indexPath section] == OBPS_ACTIONS && [indexPath row] == OBPA_MAP)
 	{
-		// in a perfect world, we would
-		// open (walking) directions from *here* to the stop
+		// get the root view controller, then the map controller
+		OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+		OBMapViewController* map = top.mapViewController;
 		
-		// first, url-escape the name so we can have it show up on the map
-		NSString* encodedName = [[stop objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"(" withString: @"["];
-		encodedName = [encodedName stringByReplacingOccurrencesOfString: @")" withString: @"]"];
-		encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+		// setup map
+		[map clearMap];
+		[map setStop: stop];
 		
-		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName];
-		NSLog(@"opening URL: %@", url);
-		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
-		
-		[url release];
-		[encodedName release];
+		// push onto stack
+		[self.navigationController pushViewController: map animated: YES];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];

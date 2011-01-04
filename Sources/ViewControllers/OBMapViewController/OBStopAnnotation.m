@@ -20,10 +20,18 @@
 	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBStopAnnotation"])
 	{
 		map = _map;
-		route = [_route retain];
+		if (_route)
+			route = [_route retain];
 		stop = [_stop retain];
 		
-		self.pinColor = [[route objectForKey: @"color"] colorFromHex];
+		if (route)
+		{
+			self.pinColor = [[route objectForKey: @"color"] colorFromHex];
+		} else {
+			// FIXME special image for primary stop?
+			self.pinColor = [UIColor whiteColor];
+		}
+		
 		self.pinShadowed = YES;
 		self.pinShadowRadius = 4.0;
 		self.pinShadowColor = [UIColor colorWithWhite: 0.0 alpha: 0.33];
@@ -35,10 +43,13 @@
 		
 		self.canShowCallout = YES;
 		
-		// set up callout button
-		UIButton* button = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
-		[button addTarget: self action: @selector(showStopViewController) forControlEvents: UIControlEventTouchUpInside];
-		self.rightCalloutAccessoryView = button;
+		if (route)
+		{
+			// set up callout button
+			UIButton* button = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
+			[button addTarget: self action: @selector(showStopViewController) forControlEvents: UIControlEventTouchUpInside];
+			self.rightCalloutAccessoryView = button;
+		}
 		
 		// set up route color bands
 		NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[stop objectForKey: @"routes"] count]];
@@ -61,7 +72,8 @@
 
 - (void) dealloc
 {
-	[route release];
+	if (route)
+		[route release];
 	[stop release];
 	
 	[super dealloc];

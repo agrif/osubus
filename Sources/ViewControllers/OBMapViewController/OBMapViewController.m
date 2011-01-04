@@ -51,15 +51,12 @@
 
 - (void) viewDidUnload
 {
-	while ([[stopAnnotations allKeys] count])
-	{
-		NSDictionary* route = [[stopAnnotations allKeys] objectAtIndex: 0];
-		[self setRoute: route enabled: NO];
-	}
-	
+	[self clearMap];
 	[stopAnnotations release];
 	[routeOverlays release];
 	[activeRequests release];
+	
+	// primaryStopAnnotation is taken care of in clearMap
 
 	[map removeAnnotation: overlayManager];
 	[overlayManager release];
@@ -76,6 +73,16 @@
 		return;
 	[map setRegion: finalRegion animated: animated];
 	hasZoomedIn = YES;*/
+}
+
+- (void) clearMap
+{
+	[self setStop: nil];
+	while ([[stopAnnotations allKeys] count])
+	{
+		NSDictionary* route = [[stopAnnotations allKeys] objectAtIndex: 0];
+		[self setRoute: route enabled: NO];
+	}
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
@@ -100,6 +107,8 @@
 
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
+	self.view;
+	
 	if (enabled)
 	{
 		// add in stops, start route request
@@ -145,6 +154,47 @@
 		{
 			[activeRequests removeObjectForKey: req];
 		}
+	}
+}
+
+#pragma mark view stop on map stuff
+
+- (void) setStop: (NSDictionary*) stop
+{
+	// we must be loaded!
+	self.view;
+	
+	if (stop)
+	{
+		// setup
+		[self setStop: nil];
+		
+		primaryStopAnnotation = [[OBStopAnnotation alloc] initWithMapViewController: self route: nil stop: stop];
+		[map addAnnotation: primaryStopAnnotation];
+		
+		// figure out if we should be animated
+		BOOL animated = self.navigationController.visibleViewController == self;
+		
+		// set map region to be centered on new stop, and select it
+		[map setCenterCoordinate: primaryStopAnnotation.coordinate animated: animated];
+		[map selectAnnotation: primaryStopAnnotation animated: animated];
+		
+		// activate the connected routes
+		for (NSDictionary* route in [stop objectForKey: @"routes"])
+		{
+			[self setRoute: route enabled: YES];
+		}
+		
+		// we no longer need the instructive view
+		[instructiveView setHidden: YES];
+	} else {
+		// remove stop annotation from map
+		if (!primaryStopAnnotation)
+			return;
+		
+		[map removeAnnotation: primaryStopAnnotation];
+		[primaryStopAnnotation release];
+		primaryStopAnnotation = nil;
 	}
 }
 

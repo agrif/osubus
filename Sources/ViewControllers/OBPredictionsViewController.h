@@ -19,7 +19,7 @@ enum OBPredictionsSections
 
 enum OBPredictionsActions
 {
-	OBPA_DIRECTIONS,
+	OBPA_MAP,
 	OBPA_COUNT
 };
 
