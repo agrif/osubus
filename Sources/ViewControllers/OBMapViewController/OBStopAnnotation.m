@@ -69,9 +69,7 @@
 
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
 {
-	// this is used in a map view delegate that *expects* an object to be
-	// *created*, so retain it...
-	return [self retain];
+	return self;
 }
 
 - (void) showStopViewController
