@@ -26,16 +26,15 @@
 	CLLocationCoordinate2D center;
 	center.latitude = 39.999417;
 	center.longitude = -83.012639;
-	map.region = MKCoordinateRegionMake(center,
-										MKCoordinateSpanMake(0.01, 0.01));
+	finalRegion = MKCoordinateRegionMake(center,
+										 MKCoordinateSpanMake(0.01, 0.01));
 	
 	// SETUP for map zoom hack
-	/*hasZoomedIn = NO;
-	finalRegion = map.region;
+	hasZoomedIn = NO;
 	MKCoordinateRegion outerRegion = finalRegion;
-	outerRegion.span.latitudeDelta *= 1.2;
-	outerRegion.span.longitudeDelta *= 1.2;
-	map.region = outerRegion;*/
+	outerRegion.span.latitudeDelta *= 1.5;
+	outerRegion.span.longitudeDelta *= 1.5;
+	map.region = outerRegion;
 	
 	// setup overlay manager
 	overlayManager = [[OBOverlayManager alloc] initWithMapView: map];
@@ -69,10 +68,10 @@
 {
 	// this block is a HACK that prevents a draw bug on iOS3.1
 	// but it doesn't look *too* bad... I guess
-	/*if (hasZoomedIn)
+	if (hasZoomedIn)
 		return;
-	[map setRegion: finalRegion animated: animated];
-	hasZoomedIn = YES;*/
+	[map setRegion: finalRegion animated: YES];
+	hasZoomedIn = YES;
 }
 
 - (void) clearMap
