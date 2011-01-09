@@ -68,6 +68,7 @@
 
 - (void) viewDidAppear: (BOOL) animated
 {
+	// FIXME better solution to this
 	// this block is a HACK that prevents a draw bug on iOS3.1
 	// but it doesn't look *too* bad... I guess
 	if (hasZoomedIn)
@@ -89,6 +90,34 @@
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) toInterfaceOrientation
 {
 	return YES;
+}
+
+// helper to reconfigure the visible annotations
+// to prevent doubles
+- (void) reconfigureVisibleAnnotations
+{
+	NSMutableArray* visibleAnnotations = [[NSMutableArray alloc] init];
+	
+	if (primaryStopAnnotation)
+	{
+		[visibleAnnotations addObject: [primaryStopAnnotation.stop objectForKey: @"id"]];
+	}
+	
+	for (NSArray* annotations in [stopAnnotations allValues])
+	{
+		for (OBStopAnnotation* annotation in annotations)
+		{
+			if ([visibleAnnotations containsObject: [annotation.stop objectForKey: @"id"]])
+			{
+				[annotation setHidden: YES];
+			} else {
+				[annotation setHidden: NO];
+				[visibleAnnotations addObject: [annotation.stop objectForKey: @"id"]];
+			}
+		}
+	}
+	
+	[visibleAnnotations release];
 }
 
 #pragma mark routes selector stuff
@@ -144,6 +173,7 @@
 	} else {
 		// remove stops, overlays, request
 		
+		// FIXME better solution
 		// setup for iOS 3.1 retain bug fix (hack)
 		OBStopAnnotation* firstAnnotation = nil;
 		NSUInteger firstAnnotationRetainCount = 0;
@@ -181,6 +211,8 @@
 			[activeRequests removeObjectForKey: req];
 		}
 	}
+	
+	[self reconfigureVisibleAnnotations];
 }
 
 #pragma mark view stop on map stuff
@@ -229,6 +261,8 @@
 		[primaryStopAnnotation release];
 		primaryStopAnnotation = nil;
 	}
+	
+	[self reconfigureVisibleAnnotations];
 }
 
 #pragma mark OTRequestDelegate

@@ -15,6 +15,8 @@
 
 @implementation OBStopAnnotation
 
+@synthesize stop;
+
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop
 {
 	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBStopAnnotation"])

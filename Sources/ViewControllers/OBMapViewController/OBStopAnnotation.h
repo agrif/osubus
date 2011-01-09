@@ -17,6 +17,8 @@
 	NSDictionary* stop;
 }
 
+@property (nonatomic, readonly) NSDictionary* stop;
+
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop;
 - (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView;
 
