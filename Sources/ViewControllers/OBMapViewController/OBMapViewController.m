@@ -110,8 +110,10 @@
 			if ([visibleAnnotations containsObject: [annotation.stop objectForKey: @"id"]])
 			{
 				[annotation setHidden: YES];
+				[annotation setEnabled: NO];
 			} else {
 				[annotation setHidden: NO];
+				[annotation setEnabled: YES];
 				[visibleAnnotations addObject: [annotation.stop objectForKey: @"id"]];
 			}
 		}

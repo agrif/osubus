@@ -110,6 +110,7 @@
 		// moving into what could become an infinite loop
 		// replace view stack with just top / map / new
 		NSArray* newstack = [[NSArray alloc] initWithObjects: [map.navigationController.viewControllers objectAtIndex: 0], map, predictions, nil];
+		[map setStop: nil];
 		[map.navigationController setViewControllers: newstack animated: YES];
 		[newstack release];
 	}
