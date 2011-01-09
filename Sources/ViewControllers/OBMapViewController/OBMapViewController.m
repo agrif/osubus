@@ -101,7 +101,7 @@
 
 - (BOOL) isRouteEnabled: (NSDictionary*) route
 {
-	return [stopAnnotations objectForKey: route] != nil;
+	return [stopAnnotations objectForKey: [route objectForKey: @"short"]] != nil;
 }
 
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
@@ -124,7 +124,7 @@
 		}
 		
 		[stops release];
-		[stopAnnotations setObject: annotations forKey: route];
+		[stopAnnotations setObject: annotations forKey: [route objectForKey: @"short"]];
 		[annotations release];
 		
 		// start the request
@@ -137,17 +137,37 @@
 	} else {
 		// remove stops, overlays, request
 		
-		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: route])
-		{
-			[map removeAnnotation: annotation];
-		}
-		[stopAnnotations removeObjectForKey: route];
+		// setup for iOS 3.1 retain bug fix (hack)
+		OBStopAnnotation* firstAnnotation = nil;
+		NSUInteger firstAnnotationRetainCount = 0;
+		NSUInteger nonFirstAnnotationRetainCount = 0;
 		
-		for (OBOverlay* overlay in [routeOverlays objectForKey: route])
+		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: [route objectForKey: @"short"]])
+		{
+			if (firstAnnotation == nil)
+			{
+				// implement the iOS 3.1 fix hack
+				firstAnnotation = [annotation retain];
+				[map removeAnnotation: annotation];
+				firstAnnotationRetainCount = [annotation retainCount] - 1;
+			} else {
+				[map removeAnnotation: annotation];
+				nonFirstAnnotationRetainCount = [annotation retainCount];
+			}
+		}
+		
+		// check if we didn't need the hack to begin with
+		if (firstAnnotationRetainCount == nonFirstAnnotationRetainCount && firstAnnotation)
+			[firstAnnotation release];
+		
+		// finally, release our array of annotations
+		[stopAnnotations removeObjectForKey: [route objectForKey: @"short"]];
+		
+		for (OBOverlay* overlay in [routeOverlays objectForKey: [route objectForKey: @"short"]])
 		{
 			[overlayManager removeOverlay: overlay];
 		}
-		[routeOverlays removeObjectForKey: route];
+		[routeOverlays removeObjectForKey: [route objectForKey: @"short"]];
 		
 		for (OTRequest* req in [activeRequests allKeysForObject: route])
 		{
@@ -229,7 +249,7 @@
 			[polyline release];
 		}
 		
-		[routeOverlays setObject: overlays forKey: route];
+		[routeOverlays setObject: overlays forKey: [route objectForKey: @"short"]];
 		[overlays release];
 	}
 	

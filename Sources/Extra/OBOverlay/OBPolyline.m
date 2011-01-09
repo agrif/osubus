@@ -57,8 +57,11 @@
 	{
 		[points release];
 		points = nil;
-		overlayRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(0.0, 0.0),
-											   MKCoordinateSpanMake(0.0, 0.0));
+		
+		overlayRegion.center.latitude = 0.0;
+		overlayRegion.center.longitude = 0.0;
+		overlayRegion.span.latitudeDelta = 0.0;
+		overlayRegion.span.longitudeDelta = 0.0;
 	}
 	
 	if (!pts || pts.count == 0)

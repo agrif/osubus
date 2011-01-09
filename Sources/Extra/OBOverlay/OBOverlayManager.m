@@ -176,9 +176,9 @@
 	if (![overlays containsObject: overlay])
 		return;
 	
-	[overlays removeObject: overlay];
 	[overlay removeFromSuperview];
 	[overlay setMap: nil];
+	[overlays removeObject: overlay];
 }
 
 @end
