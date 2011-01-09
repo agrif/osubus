@@ -12,6 +12,8 @@
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
+#define ZOOM_HACK_SCALE 1.5
+
 @implementation OBMapViewController
 
 @synthesize map, instructiveView, routesButton;
@@ -32,8 +34,8 @@
 	// SETUP for map zoom hack
 	hasZoomedIn = NO;
 	MKCoordinateRegion outerRegion = finalRegion;
-	outerRegion.span.latitudeDelta *= 1.5;
-	outerRegion.span.longitudeDelta *= 1.5;
+	outerRegion.span.latitudeDelta *= ZOOM_HACK_SCALE;
+	outerRegion.span.longitudeDelta *= ZOOM_HACK_SCALE;
 	map.region = outerRegion;
 	
 	// setup overlay manager
@@ -101,12 +103,17 @@
 
 - (BOOL) isRouteEnabled: (NSDictionary*) route
 {
-	return [stopAnnotations objectForKey: [route objectForKey: @"short"]] != nil;
+	self.view;
+	
+	return [stopAnnotations objectForKey: route] != nil;
 }
 
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
 	self.view;
+	
+	if (enabled == [self isRouteEnabled: route])
+		return;
 	
 	if (enabled)
 	{
@@ -124,7 +131,7 @@
 		}
 		
 		[stops release];
-		[stopAnnotations setObject: annotations forKey: [route objectForKey: @"short"]];
+		[stopAnnotations setObject: annotations forKey: route];
 		[annotations release];
 		
 		// start the request
@@ -142,7 +149,7 @@
 		NSUInteger firstAnnotationRetainCount = 0;
 		NSUInteger nonFirstAnnotationRetainCount = 0;
 		
-		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: [route objectForKey: @"short"]])
+		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: route])
 		{
 			if (firstAnnotation == nil)
 			{
@@ -161,13 +168,13 @@
 			[firstAnnotation release];
 		
 		// finally, release our array of annotations
-		[stopAnnotations removeObjectForKey: [route objectForKey: @"short"]];
+		[stopAnnotations removeObjectForKey: route];
 		
-		for (OBOverlay* overlay in [routeOverlays objectForKey: [route objectForKey: @"short"]])
+		for (OBOverlay* overlay in [routeOverlays objectForKey: route])
 		{
 			[overlayManager removeOverlay: overlay];
 		}
-		[routeOverlays removeObjectForKey: [route objectForKey: @"short"]];
+		[routeOverlays removeObjectForKey: route];
 		
 		for (OTRequest* req in [activeRequests allKeysForObject: route])
 		{
@@ -193,6 +200,13 @@
 		
 		// figure out if we should be animated
 		BOOL animated = self.navigationController.visibleViewController == self;
+		
+		if (!hasZoomedIn)
+		{
+			// modify zoom hack
+			finalRegion.center = primaryStopAnnotation.coordinate;
+			animated = NO;
+		}
 		
 		// set map region to be centered on new stop, and select it
 		[map setCenterCoordinate: primaryStopAnnotation.coordinate animated: animated];
@@ -249,7 +263,7 @@
 			[polyline release];
 		}
 		
-		[routeOverlays setObject: overlays forKey: [route objectForKey: @"short"]];
+		[routeOverlays setObject: overlays forKey: route];
 		[overlays release];
 	}
 	

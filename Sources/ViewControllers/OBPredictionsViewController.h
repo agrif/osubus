@@ -31,6 +31,8 @@ enum OBPredictionsActions
 	NSString* error_cell_text;
 	UIBarButtonItem* addButton;
 	NSTimer* refreshTimer;
+	
+	BOOL showMapAction;
 }
 
 - (void) setStop: (NSDictionary*) stopin;

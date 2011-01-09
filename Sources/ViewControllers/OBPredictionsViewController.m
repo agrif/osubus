@@ -68,12 +68,19 @@
 	}
 }
 
+- (void) viewWillAppear: (BOOL) animated
+{
+	OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+	OBMapViewController* map = top.mapViewController;
+	showMapAction = ![self.navigationController.viewControllers containsObject: map];
+}
+
 - (void) viewDidAppear: (BOOL) animated
 {
 	predictions = nil;
 	error_cell_text = nil;
 	[self updateTimes: nil];
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];	
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
 
 - (void) viewDidDisappear: (BOOL) animated
@@ -196,7 +203,7 @@
 
 - (NSInteger) numberOfSectionsInTableView: (UITableView*) tableView;
 {
-	return OBPS_COUNT;
+	return OBPS_COUNT - ([self tableView: tableView numberOfRowsInSection: OBPS_ACTIONS] > 0 ? 0 : 1);
 }
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
@@ -208,7 +215,7 @@
 				return 1;
 			return [predictions count];
 		case OBPS_ACTIONS:
-			return OBPA_COUNT;
+			return OBPA_COUNT - (showMapAction ? 0 : 1);
 	};
 	
 	return 0;
@@ -249,6 +256,7 @@
 			switch ([indexPath row])
 			{
 				case OBPA_MAP:
+					
 					return [self cellForTable: tableView withText: @"Show on Map"];
 			};
 			return nil;
