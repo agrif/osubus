@@ -39,6 +39,13 @@
 	[(UILabel*)[bulletinCell viewWithTag: 1] setText: @""];
 	[(UILabel*)[bulletinCell viewWithTag: 2] setText: @"Loading..."];
 	
+	// setup header for our table view, so it looks nicer
+	UIView* tableHeaderView = [[UIView alloc] initWithFrame: CGRectMake(0.0, -1000.0, self.tableView.bounds.size.width, 1000.0)];
+	tableHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	[tableHeaderView setBackgroundColor: [UIColor colorWithWhite: 0.86 alpha: 1.0]];
+	[self.tableView addSubview: tableHeaderView];
+	[tableHeaderView release];
+	
 	bulletinID = -1;
 	bulletinsLoaded = NO;
 	[bulletinsViewController loadBulletins: self];
