@@ -8,6 +8,7 @@
 
 #import "OTClient.h"
 #import "NSString+HexColor.h"
+#import "MKMapView+ZoomLevel.h"
 #import "OBStopAnnotation.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
@@ -150,14 +151,12 @@
 
 - (void) openMapAppAtStop: (NSDictionary*) stop
 {
-	// FIXME correct zoom
-	
 	// first, url-escape the name so we can have it show up on the map
 	NSString* encodedName = [[stop objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"(" withString: @"["];
 	encodedName = [encodedName stringByReplacingOccurrencesOfString: @")" withString: @"]"];
 	encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 	
-	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName];
+	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&q=%@,%@+(%@)&t=m&z=%i", map.centerCoordinate.latitude, map.centerCoordinate.longitude, [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName, map.zoomLevel];
 	NSLog(@"opening URL: %@", url);
 	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 	
@@ -175,8 +174,7 @@
 		[self openMapAppAtStop: primaryStopAnnotation.stop];
 	} else {
 		// fall back to just opening the map with the pin in the center
-		// FIXME correct zoom, no pin
-		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%f,%f&t=m&z=16", map.region.center.latitude, map.region.center.longitude];
+		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&t=m&z=%i", map.region.center.latitude, map.region.center.longitude, map.zoomLevel];
 		NSLog(@"(fallback) opening URL: %@", url);
 		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 		[url release];
