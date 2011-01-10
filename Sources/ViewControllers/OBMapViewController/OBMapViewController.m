@@ -46,6 +46,27 @@
 	stopAnnotations = [[NSMutableDictionary alloc] initWithCapacity: 5];
 	routeOverlays = [[NSMutableDictionary alloc] initWithCapacity: 5];
 	activeRequests = [[NSMutableDictionary alloc] initWithCapacity: 5];
+	
+	// setup toolbar
+	NSMutableArray* toolbar = [[NSMutableArray alloc] initWithCapacity: 3];
+	UIBarButtonItem* item;
+	
+	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(locateButtonPressed)];
+	item.style = UIBarButtonItemStyleBordered;
+	[toolbar addObject: item];
+	[item release];
+	
+	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace target: nil action: NULL];
+	[toolbar addObject: item];
+	[item release];
+	
+	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction target: self action: @selector(actionButtonPressed)];
+	item.style = UIBarButtonItemStyleBordered;
+	[toolbar addObject: item];
+	[item release];
+	
+	self.toolbarItems = toolbar;
+	[toolbar release];
 		
 	NSLog(@"OBMapViewController loaded");
 }
@@ -62,6 +83,8 @@
 	[map removeAnnotation: overlayManager];
 	[overlayManager release];
 	
+	self.toolbarItems = nil;
+	
 	NSLog(@"OBMapViewController unloaded");
     [super viewDidUnload];
 }
@@ -75,6 +98,16 @@
 		return;
 	[map setRegion: finalRegion animated: YES];
 	hasZoomedIn = YES;
+}
+
+- (void) viewWillAppear: (BOOL) animated
+{
+	[self.navigationController setToolbarHidden: NO animated: animated];
+}
+
+- (void) viewWillDisappear: (BOOL) animated
+{
+	[self.navigationController setToolbarHidden: YES animated: animated];
 }
 
 - (void) clearMap
@@ -120,6 +153,18 @@
 	}
 	
 	[visibleAnnotations release];
+}
+
+#pragma mark IBActions
+
+- (IBAction) locateButtonPressed
+{
+	//
+}
+
+- (IBAction) actionButtonPressed
+{
+	//
 }
 
 #pragma mark routes selector stuff

@@ -39,6 +39,8 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* routesButton;
 
 - (IBAction) routesButtonPressed;
+- (IBAction) locateButtonPressed;
+- (IBAction) actionButtonPressed;
 
 // call this to get rid of all visible annotations, overlays, etc.
 - (void) clearMap;
