@@ -16,7 +16,8 @@
 
 @implementation OBMapViewController
 
-@synthesize map, instructiveView, routesButton;
+@synthesize map, instructiveView;
+@synthesize routesButton, locateButton, flexibleSpace, actionButton;
 
 - (void) viewDidLoad
 {
@@ -48,25 +49,7 @@
 	activeRequests = [[NSMutableDictionary alloc] initWithCapacity: 5];
 	
 	// setup toolbar
-	NSMutableArray* toolbar = [[NSMutableArray alloc] initWithCapacity: 3];
-	UIBarButtonItem* item;
-	
-	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(locateButtonPressed)];
-	item.style = UIBarButtonItemStyleBordered;
-	[toolbar addObject: item];
-	[item release];
-	
-	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemFlexibleSpace target: nil action: NULL];
-	[toolbar addObject: item];
-	[item release];
-	
-	item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAction target: self action: @selector(actionButtonPressed)];
-	item.style = UIBarButtonItemStyleBordered;
-	[toolbar addObject: item];
-	[item release];
-	
-	self.toolbarItems = toolbar;
-	[toolbar release];
+	self.toolbarItems = [NSArray arrayWithObjects: locateButton, flexibleSpace, actionButton, nil];
 		
 	NSLog(@"OBMapViewController loaded");
 }
@@ -102,12 +85,14 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	[self.navigationController setToolbarHidden: NO animated: animated];
+	if (self.navigationController.topViewController == self)
+		[self.navigationController setToolbarHidden: NO animated: animated];
 }
 
 - (void) viewWillDisappear: (BOOL) animated
 {
-	[self.navigationController setToolbarHidden: YES animated: animated];
+	if (self.navigationController.topViewController != self)
+		[self.navigationController setToolbarHidden: YES animated: animated];
 }
 
 - (void) clearMap

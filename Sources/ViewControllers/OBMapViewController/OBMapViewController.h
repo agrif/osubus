@@ -18,6 +18,9 @@
 	MKMapView* map;
 	UIView* instructiveView;
 	UIBarButtonItem* routesButton;
+	UIBarButtonItem* locateButton;
+	UIBarButtonItem* flexibleSpace;
+	UIBarButtonItem* actionButton;
 	OBOverlayManager* overlayManager;
 	
 	// maps route -> stop annotations array
@@ -36,7 +39,11 @@
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
 @property (nonatomic, retain) IBOutlet UIView* instructiveView;
+
 @property (nonatomic, retain) IBOutlet UIBarButtonItem* routesButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* locateButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* flexibleSpace;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem* actionButton;
 
 - (IBAction) routesButtonPressed;
 - (IBAction) locateButtonPressed;
