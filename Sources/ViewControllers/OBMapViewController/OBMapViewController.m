@@ -9,6 +9,7 @@
 #import "OTClient.h"
 #import "NSString+HexColor.h"
 #import "MKMapView+ZoomLevel.h"
+#import "UIApplication+NiceNetworkIndicator.h"
 #import "OBStopAnnotation.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
@@ -225,7 +226,7 @@
 		// start the request
 		OTRequest* req = [[OTClient sharedClient] requestPatternsWithDelegate: self forRoute: [route objectForKey: @"short"]];
 		[activeRequests setObject: route forKey: req];
-		[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+		[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
 		
 		// we don't need the instructive view any more
 		[instructiveView setHidden: YES];
@@ -361,9 +362,8 @@
 	}
 	
 	[activeRequests removeObjectForKey: request];
+	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
-	
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: activeRequests.count];
 }
 
 - (void) request: (OTRequest*) request hasError:(NSError *)error
@@ -373,9 +373,8 @@
 	NSLog(@"error while requesting pattern: %@", error);
 	
 	[activeRequests removeObjectForKey: request];
+	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
-	
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: activeRequests.count];
 }
 
 #pragma mark MKMapViewDelegate

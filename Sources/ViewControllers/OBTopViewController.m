@@ -7,6 +7,7 @@
 #import "OBTopViewController.h"
 
 #import "UILabel+SetTextAnimated.h"
+#import "UIApplication+NiceNetworkIndicator.h"
 #import "OTClient.h"
 
 #import "OBBulletinsViewController.h"
@@ -44,7 +45,7 @@
 	bulletinID = -1;
 	bulletinsLoaded = NO;
 	[bulletinsViewController loadBulletins: self];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: bulletinsViewController];
 	
 	locManager = [[CLLocationManager alloc] init];
 	[locManager setDelegate: self];
@@ -168,7 +169,7 @@
 - (void) startBulletinDisplay
 {
 	// no matter what, clear that network indicator
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
+	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: bulletinsViewController];
 	
 	// failsafe check...
 	if (bulletinsLoaded)

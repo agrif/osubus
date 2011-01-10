@@ -7,6 +7,7 @@
 #import "OBPredictionsViewController.h"
 
 #import "OTClient.h"
+#import "UIApplication+NiceNetworkIndicator.h"
 #import "OBTopViewController.h"
 #import "OBMapViewController.h"
 
@@ -102,8 +103,8 @@
 {
 	if (stop == nil)
 		return;
-	[[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: YES];
+	OTRequest* req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
+	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
 }
 
 - (void) addFavorite: (id) button
@@ -171,8 +172,8 @@
 		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
 	}
 	
+	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 - (void) request: (OTRequest*) request hasError: (NSError*) error
@@ -195,8 +196,8 @@
 		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
 	}
 	
+	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
-	[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible: NO];
 }
 
 #pragma mark Table View Data Source

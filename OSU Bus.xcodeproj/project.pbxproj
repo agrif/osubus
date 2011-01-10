@@ -12,6 +12,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */; };
+		D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */; };
 		D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */; };
 		D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */ = {isa = PBXBuildFile; fileRef = D02AA09A12D223D8003E0F5A /* OBColorBandView.m */; };
 		D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */; };
@@ -104,6 +105,8 @@
 		D00374A61139EF0400053FCB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D017A33712DB600E006A060E /* MKMapView+ZoomLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+ZoomLevel.h"; sourceTree = "<group>"; };
 		D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
+		D017A36B12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NiceNetworkIndicator.h"; sourceTree = "<group>"; };
+		D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NiceNetworkIndicator.m"; sourceTree = "<group>"; };
 		D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBRoutesViewControllerModal.xib; sourceTree = "<group>"; };
 		D02AA09912D223D8003E0F5A /* OBColorBandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBColorBandView.h; path = OBOverlay/OBColorBandView.h; sourceTree = "<group>"; };
 		D02AA09A12D223D8003E0F5A /* OBColorBandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBColorBandView.m; path = OBOverlay/OBColorBandView.m; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */,
 				D017A33712DB600E006A060E /* MKMapView+ZoomLevel.h */,
 				D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */,
+				D017A36B12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.h */,
+				D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */,
 				D06293A612C3856A0081391C /* OBGradientButton.h */,
 				D06293A712C3856A0081391C /* OBGradientButton.m */,
 				D06293A812C3856A0081391C /* OBGradientView.h */,
@@ -672,6 +677,7 @@
 				D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */,
 				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
+				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
