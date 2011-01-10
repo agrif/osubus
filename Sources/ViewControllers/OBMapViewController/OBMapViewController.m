@@ -157,7 +157,6 @@
 	encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 	
 	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&q=%@,%@+(%@)&t=m&z=%i", map.centerCoordinate.latitude, map.centerCoordinate.longitude, [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName, map.zoomLevel];
-	NSLog(@"opening URL: %@", url);
 	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 	
 	[url release];
@@ -175,7 +174,6 @@
 	} else {
 		// fall back to just opening the map with the pin in the center
 		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&t=m&z=%i", map.region.center.latitude, map.region.center.longitude, map.zoomLevel];
-		NSLog(@"(fallback) opening URL: %@", url);
 		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 		[url release];
 	}
