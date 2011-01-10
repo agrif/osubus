@@ -192,14 +192,16 @@
 
 - (BOOL) isRouteEnabled: (NSDictionary*) route
 {
-	self.view;
+	if (stopAnnotations == nil)
+		self.view;
 	
 	return [stopAnnotations objectForKey: route] != nil;
 }
 
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
-	self.view;
+	if (stopAnnotations == nil)
+		self.view;
 	
 	if (enabled == [self isRouteEnabled: route])
 		return;
@@ -280,7 +282,8 @@
 - (void) setStop: (NSDictionary*) stop
 {
 	// we must be loaded!
-	self.view;
+	if (stopAnnotations == nil)
+		self.view;
 	
 	if (stop)
 	{
