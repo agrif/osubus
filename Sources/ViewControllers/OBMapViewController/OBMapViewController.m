@@ -146,7 +146,7 @@
 
 - (IBAction) locateButtonPressed
 {
-	locateButton.style = !map.showsUserLocation ? UIBarButtonItemStyleDone : UIBarButtonItemStyleBordered;
+	locateButton.style = !map.showsUserLocation ? UIBarButtonItemStyleBordered : UIBarButtonItemStylePlain;
 	map.showsUserLocation = !map.showsUserLocation;
 }
 

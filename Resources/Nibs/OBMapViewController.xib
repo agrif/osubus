@@ -106,13 +106,12 @@
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUIBarButtonItem" id="79174889">
+				<string key="IBUITitle">Routes</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<int key="IBUIStyle">1</int>
-				<int key="IBUISystemItemIdentifier">11</int>
 			</object>
 			<object class="IBUIBarButtonItem" id="592139911">
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBUIStyle">1</int>
 				<int key="IBUISystemItemIdentifier">4</int>
 			</object>
 			<object class="IBUIBarButtonItem" id="669635703">
@@ -121,7 +120,6 @@
 			</object>
 			<object class="IBUIBarButtonItem" id="490091079">
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-				<int key="IBUIStyle">1</int>
 				<int key="IBUISystemItemIdentifier">9</int>
 			</object>
 		</object>
@@ -359,6 +357,13 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<object class="IBPartialClassDescription">
+					<string key="className">MKMapView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Sources/Extra/MKMapView+ZoomLevel.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NSObject</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
