@@ -148,9 +148,39 @@
 	map.showsUserLocation = !map.showsUserLocation;
 }
 
+- (void) openMapAppAtStop: (NSDictionary*) stop
+{
+	// FIXME correct zoom
+	
+	// first, url-escape the name so we can have it show up on the map
+	NSString* encodedName = [[stop objectForKey: @"name"] stringByReplacingOccurrencesOfString: @"(" withString: @"["];
+	encodedName = [encodedName stringByReplacingOccurrencesOfString: @")" withString: @"]"];
+	encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+	
+	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%@,%@+(%@)&t=m&z=16", [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName];
+	NSLog(@"opening URL: %@", url);
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+	
+	[url release];
+	[encodedName release];
+}
+
 - (IBAction) actionButtonPressed
 {
-	//
+	if (map.selectedAnnotations.count > 0 && [[map.selectedAnnotations objectAtIndex: 0] isKindOfClass: [OBStopAnnotation class]])
+	{
+		OBStopAnnotation* annotation = (OBStopAnnotation*)[map.selectedAnnotations objectAtIndex: 0];
+		[self openMapAppAtStop: annotation.stop];
+	} else if (primaryStopAnnotation) {
+		[self openMapAppAtStop: primaryStopAnnotation.stop];
+	} else {
+		// fall back to just opening the map with the pin in the center
+		// FIXME correct zoom, no pin
+		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?q=%f,%f&t=m&z=16", map.region.center.latitude, map.region.center.longitude];
+		NSLog(@"(fallback) opening URL: %@", url);
+		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+		[url release];
+	}
 }
 
 #pragma mark routes selector stuff
