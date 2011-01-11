@@ -4,6 +4,20 @@ but they are *not* comprehensive. These are the lists that accompany
 any new releases.
 
 ##############
+### v1.1.0 ###
+##############
+
+Features:
+
+ * new built-in map, with route overlays!
+
+Fixes:
+
+ * fixed "Near Me" popping up unbidden sometimes
+
+ * minor UI tweaks
+
+##############
 ### v1.0.1 ###
 ##############
 
