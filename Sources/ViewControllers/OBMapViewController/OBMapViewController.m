@@ -146,8 +146,14 @@
 
 - (IBAction) locateButtonPressed
 {
-	locateButton.style = !map.showsUserLocation ? UIBarButtonItemStyleBordered : UIBarButtonItemStylePlain;
 	map.showsUserLocation = !map.showsUserLocation;
+	
+	if (map.showsUserLocation)
+	{
+		locateButton.image = [UIImage imageNamed: @"locate-active"];
+	} else {
+		locateButton.image = [UIImage imageNamed: @"locate"];
+	}
 }
 
 - (void) openMapAppAtStop: (NSDictionary*) stop
