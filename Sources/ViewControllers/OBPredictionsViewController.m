@@ -19,7 +19,7 @@
 	
 	routes = [[OTClient sharedClient] routes];
 	
-	addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target: self action: @selector(addFavorite:)];
+	addButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"favorites-add"] style: UIBarButtonItemStyleBordered target: self action: @selector(toggleFavorite:)];
 	
 	if (stop != nil)
 	{
@@ -27,11 +27,13 @@
 		
 		if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
 		{
-			// already a fav, don't add button
+			addButton.image = [UIImage imageNamed: @"favorites-remove"];
+			isFavorite = YES;
 		} else {
-			[self.navigationItem setRightBarButtonItem: addButton];
+			isFavorite = NO;
 		}
 		
+		[self.navigationItem setRightBarButtonItem: addButton];
 		[self.navigationItem setTitle: [stop objectForKey: @"name"]];
 	} else {
 		// do something else, mainly, fail spectacularly!
@@ -107,9 +109,16 @@
 	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
 }
 
-- (void) addFavorite: (id) button
+- (void) toggleFavorite: (UIBarButtonItem*) button
 {
-	UIActionSheet* actionSheet = [[UIActionSheet alloc] initWithTitle: @"Add this route to favorites?" delegate: self cancelButtonTitle: nil destructiveButtonTitle: nil otherButtonTitles: @"Yes", @"No", nil];
+	UIActionSheet* actionSheet;
+	if (isFavorite)
+	{
+		actionSheet = [[UIActionSheet alloc] initWithTitle: @"Remove this route from favorites?" delegate: self cancelButtonTitle: nil destructiveButtonTitle: nil otherButtonTitles: @"Yes", @"No", nil];
+	} else {
+		actionSheet = [[UIActionSheet alloc] initWithTitle: @"Add this route to favorites?" delegate: self cancelButtonTitle: nil destructiveButtonTitle: nil otherButtonTitles: @"Yes", @"No", nil];
+	}
+	
 	actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
 	actionSheet.cancelButtonIndex = 1;
 	[actionSheet showInView: self.view];
@@ -120,14 +129,30 @@
 {
 	if (buttonIndex == 0)
 	{
-		// user clicked YES, add to favorites
-		[self.navigationItem setRightBarButtonItem: nil animated: YES];
-		
-		NSMutableArray* defaults = [[NSMutableArray alloc] initWithArray: [[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"]];
-		[defaults addObject: [stop objectForKey: @"id"]];
-		[[NSUserDefaults standardUserDefaults] setValue: defaults forKey: @"favorites"];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		[defaults release];
+		if (isFavorite)
+		{
+			// user clicked YES, remove from favorites
+			addButton.image = [UIImage imageNamed: @"favorites-add"];
+			
+			NSMutableArray* defaults = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
+			[defaults removeObject: [stop objectForKey: @"id"]];
+			[[NSUserDefaults standardUserDefaults] setValue: defaults forKey: @"favorites"];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			[defaults release];
+			
+			isFavorite = NO;
+		} else {
+			// user clicked YES, add to favorites
+			addButton.image = [UIImage imageNamed: @"favorites-remove"];
+			
+			NSMutableArray* defaults = [[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] mutableCopy];
+			[defaults addObject: [stop objectForKey: @"id"]];
+			[[NSUserDefaults standardUserDefaults] setValue: defaults forKey: @"favorites"];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			[defaults release];
+			
+			isFavorite = YES;
+		}
 	}
 }
 

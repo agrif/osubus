@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="20"
+   height="20"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="favorites.svg"
+   inkscape:export-filename="/Users/agrif/devel/iphoneos/osubus/Resources/Icons/favorites-remove.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="14.958333"
+     inkscape:cx="12"
+     inkscape:cy="12"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1172"
+     inkscape:window-height="547"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1032.3622)">
+    <path
+       sodipodi:type="star"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       id="path3753"
+       sodipodi:sides="5"
+       sodipodi:cx="10.027855"
+       sodipodi:cy="13.504178"
+       sodipodi:r1="12.771602"
+       sodipodi:r2="6.3858008"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.9424778"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 10.027855,0.73257637 13.781334,8.3379566 22.17437,9.5575364 16.101112,15.477499 17.534814,23.836621 10.027855,19.889979 2.5208955,23.836621 3.9545974,15.477499 -2.11866,9.5575358 6.2743753,8.3379567 z"
+       transform="matrix(0.68606784,0,0,0.72137442,3.1202111,1033.5004)"
+       inkscape:transform-center-y="-0.87979121" />
+    <path
+       style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.97399998;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
+       d="m 10.010953,1032.3622 -0.6133622,1.3119 -2.4972621,5.2704 -5.4983571,0.8515 L 0,1040.0032 l 1.007667,1.0127 3.9868567,4.0966 -0.9200439,5.7767 -0.2409639,1.473 1.2267251,-0.6905 4.950712,-2.7388 4.928806,2.7388 1.248631,0.6905 -0.240964,-1.473 -0.941949,-5.7767 4.008762,-4.0966 0.985761,-1.0127 -1.380066,-0.2072 -5.520263,-0.8515 -2.475355,-5.2704 -0.613364,-1.3119 z m 0,3.2682 2.015334,4.3037 0.153341,0.3453 0.350493,0.046 4.512596,0.6905 -3.263965,3.3372 -0.262869,0.2531 0.06572,0.3913 0.766704,4.695 -4.008763,-2.2094 -0.328587,-0.1841 -0.3285872,0.1841 -4.0087624,2.2094 0.7667032,-4.695 0.043812,-0.3913 -0.2409638,-0.2531 -3.263965,-3.3372 4.4906901,-0.6905 0.3723987,-0.046 0.1533404,-0.3453 2.015334,-4.3037 z"
+       id="path3759"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/agrif/devel/iphoneos/osubus/Resources/Icons/favorites-remove.png"
+       inkscape:export-xdpi="75"
+       inkscape:export-ydpi="75" />
+  </g>
+</svg>

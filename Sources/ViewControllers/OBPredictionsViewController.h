@@ -33,11 +33,12 @@ enum OBPredictionsActions
 	NSTimer* refreshTimer;
 	
 	BOOL showMapAction;
+	BOOL isFavorite;
 }
 
 - (void) setStop: (NSDictionary*) stopin;
 - (void) updateTimes: (NSTimer*) timer;
-- (void) addFavorite: (id) button;
+- (void) toggleFavorite: (UIBarButtonItem*) button;
 - (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex;
 
 @end
