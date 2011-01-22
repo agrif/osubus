@@ -1,5 +1,5 @@
 // OSU Bus - a client for the OSU Bus System
-// Copyright (C) 2010 Aaron Griffith
+// Copyright (C) 2010, 2011 Aaron Griffith
 //
 // This file is licensed under the GNU GPL v2. See
 // the file "main.m" for details.
@@ -53,6 +53,17 @@
 {
 	if (bulletin == nil)
 		bulletin = [data retain];
+}
+
+- (BOOL) webView: (UIWebView*) webView shouldStartLoadWithRequest: (NSURLRequest*) request navigationType: (UIWebViewNavigationType) navType
+{
+	if (navType == UIWebViewNavigationTypeLinkClicked)
+	{
+		[[UIApplication sharedApplication] openURL: request.URL];
+		return NO;
+	}
+	
+	return YES;
 }
 
 @end
