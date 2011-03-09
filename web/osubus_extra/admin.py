@@ -1,4 +1,4 @@
-from osubus_extra.models import ExternalLink, Screenshot, Bulletin, VersionBulletin, CacheDatabase
+from osubus_extra.models import ExternalLink, Screenshot, Bulletin, VersionBulletin, CacheDatabase, VersionStats
 from django import forms
 from django.contrib import admin
 
@@ -56,8 +56,12 @@ class VersionBulletinAdmin(admin.ModelAdmin):
 class CacheDatabaseAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'version', 'date', 'file')
 
+class VersionStatsAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'count', 'dbversion', 'dbdate')
+
 admin.site.register(ExternalLink, ExternalLinkAdmin)
 admin.site.register(Screenshot, ScreenshotAdmin)
 admin.site.register(Bulletin, BulletinAdmin)
 admin.site.register(VersionBulletin, VersionBulletinAdmin)
 admin.site.register(CacheDatabase, CacheDatabaseAdmin)
+admin.site.register(VersionStats, VersionStatsAdmin)

@@ -1,7 +1,14 @@
 from django.db import models
 from django.core.files.move import file_move_safe
-from pysqlite2 import dbapi2 as sqlite3
 import random, string, datetime
+
+try:
+    import sqlite3
+except ImportError:
+    try:
+        from pysqlite2 import dbapi2 as sqlite3
+    except ImportError:
+        raise Exception("sqlite3 module not found.")
 
 class ExternalLink(models.Model):
     name = models.CharField(max_length=200)
@@ -49,6 +56,41 @@ class VersionBulletin(MetaBulletin):
     class Meta(MetaBulletin.Meta):
         unique_together = (('major', 'minor', 'revision'),)
         ordering = ['-major', '-minor', '-revision']
+
+class VersionStats(models.Model):
+    major = models.PositiveSmallIntegerField(editable=False)
+    minor = models.PositiveSmallIntegerField(editable=False)
+    revision = models.PositiveSmallIntegerField(editable=False)
+    dbversion = models.PositiveSmallIntegerField(editable=False)
+    dbdate = models.DateField(editable=False)
+    
+    date = models.DateField(editable=False)
+    count = models.PositiveIntegerField()
+    
+    @classmethod
+    def increment(cls, version, dbversion, dbdate):
+        major, minor, revision = version
+        kwargs = {"major" : major, "minor" : minor, "revision" : revision}
+        kwargs["dbversion"] = dbversion
+        kwargs["dbdate"] = dbdate
+        kwargs["date"] = datetime.date.today()
+        
+        try:
+            mod = cls.objects.get(**kwargs)
+        except cls.DoesNotExist:
+            mod = cls(**kwargs)
+            mod.count = 0
+        
+        mod.count = mod.count + 1
+        mod.save()
+    
+    def __unicode__(self):
+        return "(%s) %i.%i.%i" % (self.date, self.major, self.minor, self.revision)
+    
+    class Meta:
+        unique_together = (('dbversion', 'dbdate', 'major', 'minor', 'revision', 'date'),)
+        ordering = ['-date', '-major', '-minor', '-revision']
+        verbose_name_plural = "version stats"
 
 def database_get_upload_path(instance=None, filename=None):
     # temporary path so we can read it later
