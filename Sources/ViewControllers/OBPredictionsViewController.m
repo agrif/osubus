@@ -10,6 +10,7 @@
 #import "UIApplication+NiceNetworkIndicator.h"
 #import "OBTopViewController.h"
 #import "OBMapViewController.h"
+#import "OBVehicleViewController.h"
 
 @implementation OBPredictionsViewController
 
@@ -295,9 +296,7 @@
 
 - (NSIndexPath*) tableView: (UITableView*) tableView willSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	if ([indexPath section] == OBPS_ACTIONS)
-		return indexPath;
-	return nil;
+	return indexPath;
 }
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
@@ -314,6 +313,11 @@
 		
 		// push onto stack
 		[self.navigationController pushViewController: map animated: YES];
+	} else if ([indexPath section] == OBPS_PREDICTIONS) {
+		OBVehicleViewController* vehicle = [[OBVehicleViewController alloc] initWithNibName: @"OBVehicleViewController" bundle: nil];
+		[vehicle setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]];
+		[self.navigationController pushViewController: vehicle animated: YES];
+		[vehicle release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];

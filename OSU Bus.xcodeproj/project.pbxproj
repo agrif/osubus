@@ -104,6 +104,8 @@
 		D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
 		D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D12F8512CECF8E006086FA /* OBOverlay.m */; };
+		D0E796F71327F0C200A3976A /* OBVehicleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E796F61327F0C200A3976A /* OBVehicleViewController.m */; };
+		D0E796FF1327F2E500A3976A /* OBVehicleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E796FE1327F2E500A3976A /* OBVehicleViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -256,6 +258,9 @@
 		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D0D12F8412CECF8E006086FA /* OBOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOverlay.h; sourceTree = "<group>"; };
 		D0D12F8512CECF8E006086FA /* OBOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOverlay.m; sourceTree = "<group>"; };
+		D0E796F51327F0C200A3976A /* OBVehicleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVehicleViewController.h; sourceTree = "<group>"; };
+		D0E796F61327F0C200A3976A /* OBVehicleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVehicleViewController.m; sourceTree = "<group>"; };
+		D0E796FE1327F2E500A3976A /* OBVehicleViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBVehicleViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +458,8 @@
 				D06293D512C3856A0081391C /* OBBulletinViewController.m */,
 				D06293D612C3856A0081391C /* OBPredictionsViewController.h */,
 				D06293D712C3856A0081391C /* OBPredictionsViewController.m */,
+				D0E796F51327F0C200A3976A /* OBVehicleViewController.h */,
+				D0E796F61327F0C200A3976A /* OBVehicleViewController.m */,
 				D06293D812C3856A0081391C /* OBRoutesViewController.h */,
 				D06293D912C3856A0081391C /* OBRoutesViewController.m */,
 				D06293DA12C3856A0081391C /* OBStopsViewController.h */,
@@ -531,6 +538,7 @@
 				D073590012C38042004FC62C /* OBBulletinViewController.xib */,
 				D073590112C38042004FC62C /* OBPredictionsCell.xib */,
 				D073590212C38042004FC62C /* OBPredictionsViewController.xib */,
+				D0E796FE1327F2E500A3976A /* OBVehicleViewController.xib */,
 				D073590312C38042004FC62C /* OBRoutesCell.xib */,
 				D073590412C38042004FC62C /* OBRoutesViewController.xib */,
 				D073590512C38042004FC62C /* OBStopsCell.xib */,
@@ -663,6 +671,7 @@
 				D0B9D16B12DCE7A300D933C5 /* favorites-remove.png in Resources */,
 				D0B9D16C12DCE7A300D933C5 /* favorites-remove@2x.png in Resources */,
 				D0B9D17712DCED4A00D933C5 /* favorites.svg in Resources */,
+				D0E796FF1327F2E500A3976A /* OBVehicleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +727,7 @@
 				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
+				D0E796F71327F0C200A3976A /* OBVehicleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
