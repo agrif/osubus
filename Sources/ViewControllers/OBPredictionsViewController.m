@@ -10,7 +10,6 @@
 #import "UIApplication+NiceNetworkIndicator.h"
 #import "OBTopViewController.h"
 #import "OBMapViewController.h"
-#import "OBVehicleViewController.h"
 
 @implementation OBPredictionsViewController
 
@@ -22,20 +21,27 @@
 	
 	addButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"favorites-add"] style: UIBarButtonItemStyleBordered target: self action: @selector(toggleFavorite:)];
 	
-	if (stop != nil)
+	if (stop != nil || vehicle != nil)
 	{
 		NSLog(@"Loaded OBPredictionsViewController");
 		
-		if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
+		// stop-view specific favorites stuff
+		if (stop)
 		{
-			addButton.image = [UIImage imageNamed: @"favorites-remove"];
-			isFavorite = YES;
+			if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
+			{
+				addButton.image = [UIImage imageNamed: @"favorites-remove"];
+				isFavorite = YES;
+			} else {
+				isFavorite = NO;
+			}
+			[self.navigationItem setRightBarButtonItem: addButton];
+			[self.navigationItem setTitle: [stop objectForKey: @"name"]];
 		} else {
-			isFavorite = NO;
-		}
-		
-		[self.navigationItem setRightBarButtonItem: addButton];
-		[self.navigationItem setTitle: [stop objectForKey: @"name"]];
+			// vehicle setup
+			[self.navigationItem setTitle: @"placeholder"];
+		};
+
 	} else {
 		// do something else, mainly, fail spectacularly!
 	}
@@ -54,6 +60,11 @@
 	{
 		[stop release];
 		stop = nil;
+	}
+	if (vehicle != nil)
+	{
+		[vehicle release];
+		vehicle = nil;
 	}
 	if (routes != nil)
 	{
@@ -74,9 +85,14 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
-	OBMapViewController* map = top.mapViewController;
-	showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	// FIXME: vehicle "Show On Map"
+	showMapAction = NO;
+	if (stop)
+	{
+		OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+		OBMapViewController* map = top.mapViewController;
+		showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	}
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -97,20 +113,25 @@
 
 - (void) setStop: (NSDictionary*) stopin
 {
+	if (stop || vehicle)
+		return;
 	if (stop == nil)
 		stop = [stopin retain];
 }
 
-- (void) updateTimes: (NSTimer*) timer
+- (void) setVehicle: (NSNumber*) vehiclein
 {
-	if (stop == nil)
+	if (stop || vehicle)
 		return;
-	OTRequest* req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
-	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+	if (vehicle == nil)
+		vehicle = [vehiclein retain];
 }
 
 - (void) toggleFavorite: (UIBarButtonItem*) button
 {
+	if (stop == nil)
+		return;
+	
 	UIActionSheet* actionSheet;
 	if (isFavorite)
 	{
@@ -127,6 +148,9 @@
 
 - (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex
 {
+	if (stop == nil)
+		return;
+	
 	if (buttonIndex == 0)
 	{
 		if (isFavorite)
@@ -157,6 +181,20 @@
 }
 
 #pragma mark Request Delegates
+
+- (void) updateTimes: (NSTimer*) timer
+{
+	if (stop == nil && vehicle == nil)
+		return;
+	OTRequest* req = nil;
+	if (stop)
+	{
+		req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
+	} else {
+		req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forVehicleIDs: [NSString stringWithFormat: @"%@", vehicle] count: 5];
+	}
+	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+}
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
@@ -313,10 +351,17 @@
 		// push onto stack
 		[self.navigationController pushViewController: map animated: YES];
 	} else if ([indexPath section] == OBPS_PREDICTIONS) {
-		OBVehicleViewController* vehicle = [[OBVehicleViewController alloc] initWithNibName: @"OBVehicleViewController" bundle: nil];
-		[vehicle setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]];
-		[self.navigationController pushViewController: vehicle animated: YES];
-		[vehicle release];
+		// push on a new predictions view
+		OBPredictionsViewController* vc = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
+		if (vehicle)
+		{
+			// new view is a stop-view FIXME
+		} else {
+			// new view is a vehicle-view
+			[vc setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]];
+		}
+		[self.navigationController pushViewController: vc animated: YES];
+		[vc release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];
