@@ -14,6 +14,9 @@
 {
 	NSNumber* vehicle;
 	NSTimer* refreshTimer;
+	
+	NSString* error_cell_text;
+	NSDictionary* predictions;
 }
 
 - (void) setVehicle: (NSNumber*) vehicle;

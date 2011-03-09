@@ -34,6 +34,18 @@
 		[vehicle release];
 		vehicle = nil;
 	}
+	
+	if (error_cell_text != nil)
+	{
+		[error_cell_text release];
+		error_cell_text = nil;
+	}
+	
+	if (predictions != nil)
+	{
+		[predictions release];
+		predictions = nil;
+	}
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -53,29 +65,38 @@
 
 - (void) setVehicle: (NSNumber*) vehiclein
 {
-	if (vehiclein == nil)
+	if (vehiclein != nil)
 		vehicle = [vehiclein retain];
 }
 
 - (void) updateTimes: (NSTimer*) timer
 {
+	NSLog(@"vehicle: %@", vehicle);
 	if (vehicle == nil)
 		return;
-	//OTRequest* req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
-	//[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+	OTRequest* req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forVehicleIDs: [NSString stringWithFormat: @"%@", vehicle] count: 5];
+	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
 }
 
 #pragma mark Request Delegates
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	/*if (self.tableView)
+	if (error_cell_text)
+		[error_cell_text release];
+	error_cell_text = nil;
+	
+	if (predictions)
+		[predictions release];
+	predictions = [[result objectForKey: @"prd"] retain];
+	
+	if (self.tableView)
 	{
 		NSRange range;
 		range.location = 0;
 		range.length = 1;
 		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
-	}*/
+	}
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
@@ -86,15 +107,21 @@
 	NSLog(@"error: %@", error);
 	
 	// take the error and stick it on the screen
-	//error_cell_text = [[error localizedDescription] copy];
+	if (error_cell_text)
+		[error_cell_text release];
+	error_cell_text = [[error localizedDescription] copy];
 	
-	/*if (self.tableView)
+	if (predictions)
+		[predictions release];
+	predictions = nil;
+	
+	if (self.tableView)
 	{
 		NSRange range;
 		range.location = 0;
 		range.length = 1;
 		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
-	}*/
+	}
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
@@ -109,6 +136,8 @@
 
 - (NSInteger) tableView: (UITableView*) tableView numberOfRowsInSection: (NSInteger) section
 {
+	if (predictions)
+		return [predictions count];
 	return 1;
 }
 
@@ -119,8 +148,20 @@
 
 - (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*) indexPath;
 {
-	UITableViewCell* ret = [self cellForTable: tableView withText: @"Loading..."];
-	[ret setAccessoryType: UITableViewCellAccessoryNone];
+	UITableViewCell* ret = nil;
+	if (predictions)
+	{
+		ret = [self cellForTable: tableView withText: @"content"];
+	} else {
+		if (error_cell_text)
+		{
+			ret = [self cellForTable: tableView withText: error_cell_text];
+		} else {
+			ret = [self cellForTable: tableView withText: @"Loading..."];
+		}		
+		[ret setAccessoryType: UITableViewCellAccessoryNone];
+	}
+	
 	return ret;
 }
 

@@ -82,7 +82,6 @@
 - (void) viewDidAppear: (BOOL) animated
 {
 	predictions = nil;
-	error_cell_text = nil;
 	[self updateTimes: nil];
 	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
