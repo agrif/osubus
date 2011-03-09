@@ -79,26 +79,16 @@
 	return cell;
 }
 
-- (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+// helper for setting a connected routes byline, and setting color bands
+- (void) setupByline: (UILabel*) byline andColorBands: (OBColorBandView*) bands withStop: (NSDictionary*) stop
 {
-	// tag 1 - name label
-	// tag 2 - subtitle label (for route names)
-	// tag 3 - distance label
-	// tag 4 - color band view
-	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
-	
-	UILabel* label;
-	
-	label = (UILabel*)[cell viewWithTag: 1];
-	[label setText: [data objectForKey: @"name"]];
-	
 	// storage for colors
-	NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[data objectForKey: @"routes"] count]];
+	NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[stop objectForKey: @"routes"] count]];
 	
 	NSMutableString* subtitle = [[NSMutableString alloc] init];
 	unsigned int i = 0;
-	unsigned int routeslen = [[data objectForKey: @"routes"] count];
-	for (NSDictionary* route in [data objectForKey: @"routes"])
+	unsigned int routeslen = [[stop objectForKey: @"routes"] count];
+	for (NSDictionary* route in [stop objectForKey: @"routes"])
 	{
 		[colors addObject: [[route objectForKey: @"color"] colorFromHex]];
 		
@@ -112,13 +102,29 @@
 		i++;
 	}
 	
-	// set color bands
-	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
+	[byline setText: subtitle];
+	[subtitle release];
 	bands.colors = colors;
 	[colors release];
+}	
+
+- (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+{
+	// tag 1 - name label
+	// tag 2 - subtitle label (for route names)
+	// tag 3 - distance label
+	// tag 4 - color band view
+	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBStopsCell"];
 	
+	UILabel* label;
+	
+	label = (UILabel*)[cell viewWithTag: 1];
+	[label setText: [data objectForKey: @"name"]];
+	
+	// set color bands and byline
+	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
 	label = (UILabel*)[cell viewWithTag: 2];
-	[label setText: subtitle];
+	[self setupByline: label andColorBands: bands withStop: data];
 	
 	label = (UILabel*)[cell viewWithTag: 3];
 	
@@ -149,8 +155,6 @@
 		[label setHidden: YES];
 	}
 	
-	[subtitle release];
-	
 	return cell;
 }
 
@@ -165,6 +169,7 @@
 	// these are reused for vehicle-based predictions:
 	// tag 1 - stop name label
 	// tag 3 - connected routes
+	// tag 4 - route colors
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBPredictionsCell"];
 	
 	UILabel* label;
@@ -187,39 +192,22 @@
 	if (time < 1.0)
 	{
 		[label setText: @"now"];
-	} else if ((int)time == 1) {
-		[label setText: @"1 minute"];
 	} else {
-		[label setText: [NSString stringWithFormat: @"%i minutes", (int)time]];
+		[label setText: [NSString stringWithFormat: @"%i min", (int)time]];
 	}
 	
 	label = (UILabel*)[cell viewWithTag: 3];
+	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
 	if (vehicle)
 	{
-		// just like in the stops cell function
-		NSMutableString* subtitle = [[NSMutableString alloc] init];
-		unsigned int i = 0;
-		unsigned int routeslen = [[stop objectForKey: @"routes"] count];
-		for (NSDictionary* route in [stop objectForKey: @"routes"])
-		{
-			if (i == routeslen - 1 && i != 0) {
-				[subtitle appendString: @" and "];
-			} else if (i != 0) {
-				[subtitle appendString: @", "];
-			}
-			[subtitle appendString: [route objectForKey: @"short"]];
-			
-			i++;
-		}
-		
-		[label setText: subtitle];
-		[subtitle release];
+		[self setupByline: label andColorBands: bands withStop: stop];
 	} else {
 		[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
+		
+		NSArray* tmpcolors = [[NSArray alloc] initWithObjects: [[data objectForKey: @"color"] colorFromHex], nil];
+		bands.colors = tmpcolors;
+		[tmpcolors release];
 	}
-	
-	UIView* colorbar = [cell viewWithTag: 4];
-	[colorbar setBackgroundColor: [[data objectForKey: @"color"] colorFromHex]];
 	
 	return cell;
 }
