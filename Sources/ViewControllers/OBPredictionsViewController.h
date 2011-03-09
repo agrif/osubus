@@ -27,6 +27,7 @@ enum OBPredictionsActions
 {
 	NSDictionary* stop;
 	NSNumber* vehicle;
+	NSString* vehicle_route;
 	NSArray* predictions;
 	NSArray* routes;
 	NSString* error_cell_text;
@@ -38,7 +39,7 @@ enum OBPredictionsActions
 }
 
 - (void) setStop: (NSDictionary*) stopin;
-- (void) setVehicle: (NSNumber*) vehiclein;
+- (void) setVehicle: (NSNumber*) vehiclein onRoute: (NSString*) route;
 - (void) updateTimes: (NSTimer*) timer;
 - (void) toggleFavorite: (UIBarButtonItem*) button;
 - (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex;

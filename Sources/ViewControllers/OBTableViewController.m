@@ -8,6 +8,7 @@
 
 #import "NSString+HexColor.h"
 #import "OBColorBandView.h"
+#import "OTClient.h"
 
 @implementation OBTableViewController
 
@@ -153,19 +154,33 @@
 	return cell;
 }
 
-- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data
+- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data forVehicle: (BOOL) vehicle
 {
 	// data comes directly as an element from requestPredictions...
 	// tag 1 - route name label
 	// tag 2 - prediction time label
 	// tag 3 - destination label
 	// tag 4 - color bar
+	
+	// these are reused for vehicle-based predictions:
+	// tag 1 - stop name label
+	// tag 3 - connected routes
 	UITableViewCell* cell = [self cellForTable: tableView withIdentifier: @"OBPredictionsCell"];
 	
 	UILabel* label;
 	
+	// fetch the stop from the database, we need it if vehicle == YES
+	NSDictionary* stop = nil;
+	if (vehicle)
+		stop = [[OTClient sharedClient] stop: [data objectForKey: @"stpid"]];
+	
 	label = (UILabel*)[cell viewWithTag: 1];
-	[label setText: [data objectForKey: @"rt"]];
+	if (vehicle)
+	{
+		[label setText: [stop objectForKey: @"name"]];
+	} else {
+		[label setText: [data objectForKey: @"rt"]];
+	}
 	
 	NSTimeInterval time = [(NSDate*)[data objectForKey: @"prdtm"] timeIntervalSinceNow] / 60;
 	label = (UILabel*)[cell viewWithTag: 2];
@@ -179,7 +194,29 @@
 	}
 	
 	label = (UILabel*)[cell viewWithTag: 3];
-	[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
+	if (vehicle)
+	{
+		// just like in the stops cell function
+		NSMutableString* subtitle = [[NSMutableString alloc] init];
+		unsigned int i = 0;
+		unsigned int routeslen = [[stop objectForKey: @"routes"] count];
+		for (NSDictionary* route in [stop objectForKey: @"routes"])
+		{
+			if (i == routeslen - 1 && i != 0) {
+				[subtitle appendString: @" and "];
+			} else if (i != 0) {
+				[subtitle appendString: @", "];
+			}
+			[subtitle appendString: [route objectForKey: @"short"]];
+			
+			i++;
+		}
+		
+		[label setText: subtitle];
+		[subtitle release];
+	} else {
+		[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
+	}
 	
 	UIView* colorbar = [cell viewWithTag: 4];
 	[colorbar setBackgroundColor: [[data objectForKey: @"color"] colorFromHex]];

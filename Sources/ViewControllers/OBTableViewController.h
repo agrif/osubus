@@ -19,6 +19,6 @@
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withText: (NSString*) text;
 - (UITableViewCell*) routesCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
 - (UITableViewCell*) stopsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
-- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data;
+- (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data forVehicle: (BOOL) vehicle;
 
 @end

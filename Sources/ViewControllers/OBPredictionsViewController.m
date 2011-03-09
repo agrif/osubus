@@ -39,7 +39,7 @@
 			[self.navigationItem setTitle: [stop objectForKey: @"name"]];
 		} else {
 			// vehicle setup
-			[self.navigationItem setTitle: @"placeholder"];
+			[self.navigationItem setTitle: [NSString stringWithFormat: @"%@ %@", vehicle_route, vehicle]];
 		};
 
 	} else {
@@ -65,6 +65,11 @@
 	{
 		[vehicle release];
 		vehicle = nil;
+	}
+	if (vehicle_route != nil)
+	{
+		[vehicle_route release];
+		vehicle_route = nil;
 	}
 	if (routes != nil)
 	{
@@ -119,12 +124,17 @@
 		stop = [stopin retain];
 }
 
-- (void) setVehicle: (NSNumber*) vehiclein
+- (void) setVehicle: (NSNumber*) vehiclein onRoute: (NSString*) route
 {
 	if (stop || vehicle)
 		return;
+	if (vehiclein == nil || route == nil)
+		return;
 	if (vehicle == nil)
+	{
 		vehicle = [vehiclein retain];
+		vehicle_route = route;
+	}
 }
 
 - (void) toggleFavorite: (UIBarButtonItem*) button
@@ -214,6 +224,7 @@
 			if ([[route objectForKey: @"short"] isEqual: [prediction objectForKey: @"rt"]])
 			{
 				[prediction setObject: [route objectForKey: @"long"] forKey: @"rt"];
+				[prediction setObject: [route objectForKey: @"short"] forKey: @"rtshort"];
 				[prediction setObject: [route objectForKey: @"color"] forKey: @"color"];
 				break;
 			}
@@ -315,7 +326,7 @@
 				[ret setAccessoryType: UITableViewCellAccessoryNone];
 				return ret;
 			}
-			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
+			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]] forVehicle: (stop == nil)];
 		case OBPS_ACTIONS:
 			switch ([indexPath row])
 			{
@@ -358,7 +369,8 @@
 			// new view is a stop-view FIXME
 		} else {
 			// new view is a vehicle-view
-			[vc setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]];
+			[vc setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]
+				   onRoute: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"rtshort"]];
 		}
 		[self.navigationController pushViewController: vc animated: YES];
 		[vc release];
