@@ -270,6 +270,7 @@
 				if (error_cell_text)
 				{
 					UITableViewCell* cell = [self cellForTable: tableView withText: error_cell_text];
+					cell.textLabel.adjustsFontSizeToFitWidth = YES;
 					[cell setAccessoryType: UITableViewCellAccessoryNone];
 					return cell;
 				}
