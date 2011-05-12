@@ -11,6 +11,72 @@ def screenshots(request):
     all_shots = Screenshot.objects.all()
     return render_to_response('screenshots.html', {'screenshots' : all_shots}, context_instance=RequestContext(request))
 
+def stats(request):
+    colors = ['ff0000', '00ff00', '0000ff']
+    # charts = [{'title' : "Chart Title",
+    #            'dates' : range(32),
+    #            'date_count' : 5,
+    #            'lines' : [{'legend' : 'data1',
+    #                        'data' : range(32)},
+    #                       {'legend' : 'data2',
+    #                        'data' : [1, 0, 3, 2]},
+    #                       ],
+    #            }]
+    charts = []
+    
+    now = datetime.datetime.now()
+    spans = [('1 week', datetime.timedelta(7)),
+             ('1 month', datetime.timedelta(30)),
+             ('1 year', datetime.timedelta(365))]
+    groups = [('by version', lambda s: "%s.%s.%s" % (s.major, s.minor, s.revision)),]
+    for span in spans:
+        stats = VersionStats.objects.filter(date__gte=now - span[1])
+        dates = []
+        groupings = [{}] * len(groups)
+        for stat in stats:
+            datestr = str(stat.date)
+            if not datestr in dates:
+                dates.append(datestr)
+            keys = map(lambda g: g[1](stat), groups)
+            for i, key in enumerate(keys):
+                if not key in groupings[i]:
+                    groupings[i][key] = []
+        
+        for datei, date in enumerate(dates):
+            for stat in stats:
+                keys = map(lambda g: g[1](stat), groups)
+                if not str(stat.date) == date:
+                    continue
+                for i, key in enumerate(keys):
+                    while len(groupings[i][key]) <= datei:
+                        groupings[i][key].append(0)
+                    groupings[i][key][datei] += stat.count
+        for i, grouping in enumerate(groupings):
+            name = groups[i][0]
+            chart = {'title' : "%s (%s)" % (name, span[0]),
+                     'dates' : dates,
+                     'date_count' : 5,
+                     'lines' : []}
+            sorted_keys = grouping.keys()
+            sorted_keys.sort()
+            for key in sorted_keys:
+                chart['lines'].append({'legend' : key, 'data' : grouping[key]})
+            charts.append(chart)
+    
+    print charts
+    for chart in charts:
+        for i, l in enumerate(chart['lines']):
+            l['color'] = colors[i % len(colors)]
+        if len(chart['dates']) > 1:
+            new_dates = []
+            datei = 0.0
+            while datei < len(chart['dates']):
+                new_dates.append(chart['dates'][int(datei)])
+                datei += (len(chart['dates']) - 1.0)/chart['date_count'];
+            chart['dates'] = new_dates
+    
+    return render_to_response('stats.html', {'chartlist' : charts}, context_instance=RequestContext(request))
+
 def bulletins(request, api_version="v1"):
     bulletins = Bulletin.objects.all()
     try:
