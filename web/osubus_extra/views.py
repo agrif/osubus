@@ -37,7 +37,9 @@ def stats(request):
     for span in spans:
         stats = VersionStats.objects.filter(date__gte=now - span[1])
         dates = []
-        groupings = [{}] * len(groups)
+        groupings = []
+        for i in range(len(groups)):
+            groupings.append({})
         for stat in stats:
             datestr = str(stat.date)
             if not datestr in dates:
@@ -78,7 +80,6 @@ def stats(request):
                 chart['range'] = 10
             charts.append(chart)
     
-    print charts
     for chart in charts:
         for i, l in enumerate(chart['lines']):
             l['color'] = colors[i % len(colors)]
