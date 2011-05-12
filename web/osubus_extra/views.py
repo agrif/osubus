@@ -51,13 +51,18 @@ def stats(request):
         
         for datei, date in enumerate(dates):
             for stat in stats:
-                keys = map(lambda g: g[1](stat), groups)
                 if not str(stat.date) == date:
                     continue
+                keys = map(lambda g: g[1](stat), groups)
                 for i, key in enumerate(keys):
                     while len(groupings[i][key]) <= datei:
                         groupings[i][key].append(0)
                     groupings[i][key][datei] += stat.count
+        for grouping in groupings:
+            for key in grouping:
+                while len(grouping[key]) < len(dates):
+                    grouping[key].append(0)
+        
         dates.reverse()
         for i, grouping in enumerate(groupings):
             name = groups[i][0]
