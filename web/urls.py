@@ -17,6 +17,6 @@ urlpatterns = patterns('',
 
 urlpatterns += patterns('osubus_extra.views',
     (r'^screenshots$', 'screenshots'),
-    (r'^stats$', 'stats'),
+    (r'^statistics$', 'stats'),
     (r'^api/(?P<api_version>v\d+)/getservicebulletins', 'bulletins'),
 )
