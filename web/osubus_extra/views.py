@@ -3,6 +3,7 @@ from django.template import RequestContext, TemplateDoesNotExist
 from django.http import Http404
 from django.contrib.sites.models import Site
 from django.contrib.markup.templatetags.markup import markdown
+from django.contrib.auth.decorators import login_required
 from typogrify.templatetags.typogrify import typogrify
 from osubus_extra.models import Screenshot, Bulletin, VersionBulletin, CacheDatabase, VersionStats
 import datetime
@@ -11,11 +12,13 @@ def screenshots(request):
     all_shots = Screenshot.objects.all()
     return render_to_response('screenshots.html', {'screenshots' : all_shots}, context_instance=RequestContext(request))
 
+@login_required
 def stats(request):
     colors = ['ff0000', '00ff00', '0000ff']
     # charts = [{'title' : "Chart Title",
     #            'dates' : range(32),
     #            'date_count' : 5,
+    #            'range' : 3,
     #            'lines' : [{'legend' : 'data1',
     #                        'data' : range(32)},
     #                       {'legend' : 'data2',
@@ -28,7 +31,9 @@ def stats(request):
     spans = [('1 week', datetime.timedelta(7)),
              ('1 month', datetime.timedelta(30)),
              ('1 year', datetime.timedelta(365))]
-    groups = [('by version', lambda s: "%s.%s.%s" % (s.major, s.minor, s.revision)),]
+    groups = [('by version', lambda s: "%s.%s.%s" % (s.major, s.minor, s.revision)),
+              ('by dbdate', lambda s: str(s.dbdate)),
+              ('by dbversion', lambda s: str(s.dbversion)),]
     for span in spans:
         stats = VersionStats.objects.filter(date__gte=now - span[1])
         dates = []
@@ -51,6 +56,7 @@ def stats(request):
                     while len(groupings[i][key]) <= datei:
                         groupings[i][key].append(0)
                     groupings[i][key][datei] += stat.count
+        dates.reverse()
         for i, grouping in enumerate(groupings):
             name = groups[i][0]
             chart = {'title' : "%s (%s)" % (name, span[0]),
@@ -59,8 +65,17 @@ def stats(request):
                      'lines' : []}
             sorted_keys = grouping.keys()
             sorted_keys.sort()
+            data_max = []
             for key in sorted_keys:
-                chart['lines'].append({'legend' : key, 'data' : grouping[key]})
+                data = grouping[key]
+                data.reverse()
+                chart['lines'].append({'legend' : key, 'data' : data})
+                if data:
+                    data_max.append(max(data))
+            if data_max:
+                chart['range'] = max(data_max)
+            else:
+                chart['range'] = 10
             charts.append(chart)
     
     print charts

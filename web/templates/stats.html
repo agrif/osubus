@@ -13,6 +13,7 @@
     {% chart-title c.title %}
 
     {% axis "left" %}
+      {% axis-range 0 c.range %}
     {% endaxis %}
     {% axis "bottom" %}
       {% axis-labels c.dates %}
