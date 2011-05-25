@@ -10,6 +10,7 @@ To the best of my knowledge, this site needs these things to run:
  * Django
  * Python Markdown
  * Typogrify
+ * django-googlecharts
  * Sqlite3
 
 probably all at the latest version. There may be things I left out,

@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'django.contrib.markup',
     'typogrify',
+    'googlecharts',
     'osubus_extra',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',

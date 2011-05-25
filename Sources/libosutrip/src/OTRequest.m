@@ -229,7 +229,8 @@
 		if ([string length] > 0)
 		{
 			// we need to skip the first part of an error -- it's a useless number!
-			if (foundError && !foundFirstErrorCode)
+			// (unless it's not, in the case of request cap exceeded)
+			if (foundError && !foundFirstErrorCode && [string length] < 10)
 			{
 				foundFirstErrorCode = YES;
 			} else {

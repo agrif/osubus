@@ -97,8 +97,18 @@
 - (void) request: (OTRequest*) request hasError: (NSError*) error
 {
 	NSLog(@"request error: %@", error);
-	[topViewController startBulletinDisplay];
-	topViewController = nil;
+	
+	if (requestedCustom == NO)
+	{
+		endOfOfficialBulletins = [bulletins count];
+		
+		requestedCustom = YES;
+		[[OTClient sharedClient] requestCustomServiceBulletinsWithDelegate: self forRoutes: @""];
+	} else {
+		[topViewController startBulletinDisplay];
+		topViewController = nil;
+	}
+	
 	[request release];
 }
 

@@ -3,6 +3,7 @@ from django.template import RequestContext, TemplateDoesNotExist
 from django.http import Http404
 from django.contrib.sites.models import Site
 from django.contrib.markup.templatetags.markup import markdown
+from django.contrib.auth.decorators import login_required
 from typogrify.templatetags.typogrify import typogrify
 from osubus_extra.models import Screenshot, Bulletin, VersionBulletin, CacheDatabase, VersionStats
 import datetime
@@ -10,6 +11,92 @@ import datetime
 def screenshots(request):
     all_shots = Screenshot.objects.all()
     return render_to_response('screenshots.html', {'screenshots' : all_shots}, context_instance=RequestContext(request))
+
+@login_required
+def stats(request):
+    colors = ['ff0000', '00ff00', '0000ff']
+    # charts = [{'title' : "Chart Title",
+    #            'dates' : range(32),
+    #            'date_count' : 5,
+    #            'range' : 3,
+    #            'lines' : [{'legend' : 'data1',
+    #                        'data' : range(32)},
+    #                       {'legend' : 'data2',
+    #                        'data' : [1, 0, 3, 2]},
+    #                       ],
+    #            }]
+    charts = []
+    
+    now = datetime.datetime.now()
+    spans = [('1 week', datetime.timedelta(7)),
+             ('1 month', datetime.timedelta(30)),
+             ('1 year', datetime.timedelta(365))]
+    groups = [('by version', lambda s: "%s.%s.%s" % (s.major, s.minor, s.revision)),
+              ('by dbdate', lambda s: str(s.dbdate)),
+              ('by dbversion', lambda s: str(s.dbversion)),]
+    for span in spans:
+        stats = VersionStats.objects.filter(date__gte=now - span[1])
+        dates = []
+        groupings = []
+        for i in range(len(groups)):
+            groupings.append({})
+        for stat in stats:
+            datestr = str(stat.date)
+            if not datestr in dates:
+                dates.append(datestr)
+            keys = map(lambda g: g[1](stat), groups)
+            for i, key in enumerate(keys):
+                if not key in groupings[i]:
+                    groupings[i][key] = []
+        
+        for datei, date in enumerate(dates):
+            for stat in stats:
+                if not str(stat.date) == date:
+                    continue
+                keys = map(lambda g: g[1](stat), groups)
+                for i, key in enumerate(keys):
+                    while len(groupings[i][key]) <= datei:
+                        groupings[i][key].append(0)
+                    groupings[i][key][datei] += stat.count
+        for grouping in groupings:
+            for key in grouping:
+                while len(grouping[key]) < len(dates):
+                    grouping[key].append(0)
+        
+        dates.reverse()
+        for i, grouping in enumerate(groupings):
+            name = groups[i][0]
+            chart = {'title' : "%s (%s)" % (name, span[0]),
+                     'dates' : dates,
+                     'date_count' : 5,
+                     'lines' : []}
+            sorted_keys = grouping.keys()
+            sorted_keys.sort()
+            data_max = []
+            for key in sorted_keys:
+                data = grouping[key]
+                data.reverse()
+                chart['lines'].append({'legend' : key, 'data' : data})
+                if data:
+                    data_max.append(max(data))
+            if data_max:
+                chart['range'] = max(data_max)
+            else:
+                chart['range'] = 10
+            charts.append(chart)
+    
+    for chart in charts:
+        for i, l in enumerate(chart['lines']):
+            l['color'] = colors[i % len(colors)]
+        if len(chart['dates']) > 1:
+            new_dates = []
+            datei = 0.0
+            while datei < len(chart['dates']):
+                new_dates.append(chart['dates'][int(datei)])
+                datei += (len(chart['dates']) - 1.0)/chart['date_count'];
+            chart['dates'] = new_dates
+    
+    return render_to_response('stats.html', {'chartlist' : charts}, context_instance=RequestContext(request))
 
 def bulletins(request, api_version="v1"):
     bulletins = Bulletin.objects.all()
