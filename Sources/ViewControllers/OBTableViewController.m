@@ -202,7 +202,7 @@
 	{
 		[self setupByline: label andColorBands: bands withStop: stop];
 	} else {
-		[label setText: [NSString stringWithFormat: @"to %@", [data objectForKey: @"des"]]];
+		[label setText: [NSString stringWithFormat: @"%@ to %@", [data objectForKey: @"vid"], [data objectForKey: @"des"]]];
 		
 		NSArray* tmpcolors = [[NSArray alloc] initWithObjects: [[data objectForKey: @"color"] colorFromHex], nil];
 		bands.colors = tmpcolors;
