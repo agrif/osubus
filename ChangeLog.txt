@@ -4,6 +4,16 @@ but they are *not* comprehensive. These are the lists that accompany
 any new releases.
 
 ##############
+### v1.1.1 ###
+##############
+
+Fixes:
+
+ * bulletin view links will now open a new window
+
+ * custom bulletins are now fetched even if official ones error out
+
+##############
 ### v1.1.0 ###
 ##############
 
