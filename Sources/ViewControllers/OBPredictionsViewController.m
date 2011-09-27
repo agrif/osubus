@@ -368,12 +368,40 @@
 		if (vehicle)
 		{
 			// new view is a stop-view FIXME
+			NSDictionary* predstop = [[OTClient sharedClient] stop: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"stpid"]];
+			[vc setStop: predstop];
+			[predstop release];
 		} else {
 			// new view is a vehicle-view
 			[vc setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]
 				   onRoute: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"rtshort"]];
 		}
-		[self.navigationController pushViewController: vc animated: YES];
+		
+		// we could potentially be entering a loop of prediction views, so limit them
+		unsigned int num_predictions_views = 0;
+		UIViewController* first_prediction_view = nil;
+		for (UIViewController* controller in self.navigationController.viewControllers)
+		{
+			if ([controller isKindOfClass: [OBPredictionsViewController class]])
+			{
+				if (!first_prediction_view)
+					first_prediction_view = controller;
+				num_predictions_views++;
+			}
+		}
+		
+		// only allow two prediction views at once, by removing the first if needed
+		if (num_predictions_views >= 2 && false /* FIXME this crashes randomly! */)
+		{
+			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
+			[viewControllers removeObject: first_prediction_view];
+			[viewControllers addObject: vc];
+			[self.navigationController setViewControllers: viewControllers animated: YES];
+			[viewControllers release];
+		} else {
+			[self.navigationController pushViewController: vc animated: YES];
+		}
+		
 		[vc release];
 	}
 	
