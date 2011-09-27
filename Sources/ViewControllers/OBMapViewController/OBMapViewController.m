@@ -11,6 +11,7 @@
 #import "MKMapView+ZoomLevel.h"
 #import "UIApplication+NiceNetworkIndicator.h"
 #import "OBStopAnnotation.h"
+#import "OBVehicleAnnotation.h"
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
@@ -76,13 +77,26 @@
 
 - (void) viewDidAppear: (BOOL) animated
 {
+	// Start the vehicle update timer
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateVehicles:) userInfo: nil repeats: YES];
+	
 	// FIXME better solution to this
 	// this block is a HACK that prevents a draw bug on iOS3.1
 	// but it doesn't look *too* bad... I guess
-	if (hasZoomedIn)
-		return;
-	[map setRegion: finalRegion animated: YES];
-	hasZoomedIn = YES;
+	if (!hasZoomedIn)
+	{
+		[map setRegion: finalRegion animated: YES];
+		hasZoomedIn = YES;
+	}
+}
+
+- (void) viewDidDisappear: (BOOL) animated
+{
+	if (refreshTimer)
+	{
+		[refreshTimer invalidate];
+		refreshTimer = nil;
+	}
 }
 
 - (void) viewWillAppear: (BOOL) animated
@@ -199,7 +213,7 @@
 - (BOOL) isRouteEnabled: (NSDictionary*) route
 {
 	if (stopAnnotations == nil)
-		self.view;
+		[self view];
 	
 	return [stopAnnotations objectForKey: route] != nil;
 }
@@ -207,7 +221,7 @@
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled
 {
 	if (stopAnnotations == nil)
-		self.view;
+		[self view];
 	
 	if (enabled == [self isRouteEnabled: route])
 		return;
@@ -235,6 +249,9 @@
 		OTRequest* req = [[OTClient sharedClient] requestPatternsWithDelegate: self forRoute: [route objectForKey: @"short"]];
 		[activeRequests setObject: route forKey: req];
 		[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+		
+		// update vehicles
+		[self updateVehicles: nil];
 		
 		// we don't need the instructive view any more
 		[instructiveView setHidden: YES];
@@ -289,7 +306,7 @@
 {
 	// we must be loaded!
 	if (stopAnnotations == nil)
-		self.view;
+		[self view];
 	
 	if (stop)
 	{
@@ -334,17 +351,33 @@
 	[self reconfigureVisibleAnnotations];
 }
 
+#pragma mark vehicle update stuff
+
+- (void) updateVehicles: (NSTimer*) timer
+{
+	NSLog(@"updating vehicles");
+	for (NSDictionary* route in stopAnnotations)
+	{
+		// start the request
+		OTRequest* req = [[OTClient sharedClient] requestVehiclesWithDelegate: self forRoutes: [route objectForKey: @"short"]];
+		[activeRequests setObject: route forKey: req];
+		[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+	}
+}
+
 #pragma mark OTRequestDelegate
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
 	NSDictionary* route = [activeRequests objectForKey: request];
+	NSArray* patterns = [result objectForKey: @"ptr"];
+	NSArray* vehicles = [result objectForKey: @"vehicle"];
 	
-	if (route)
+	if (route && patterns)
 	{
-		NSMutableArray* overlays = [[NSMutableArray alloc] initWithCapacity: [[result objectForKey: @"ptr"] count]];
+		NSMutableArray* overlays = [[NSMutableArray alloc] initWithCapacity: [patterns count]];
 		
-		for (NSDictionary* pattern in [result objectForKey: @"ptr"])
+		for (NSDictionary* pattern in patterns)
 		{
 			NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
 			
@@ -368,6 +401,29 @@
 		
 		[routeOverlays setObject: overlays forKey: route];
 		[overlays release];
+	} else if (route && vehicles) {
+		NSMutableArray* annotations = [stopAnnotations objectForKey: route];
+		
+		// remove all vehicle annotations
+		[annotations filterUsingPredicate: [NSPredicate predicateWithBlock:
+											^BOOL(id object, NSDictionary* bindings)
+											{
+												if ([(NSObject*)object isKindOfClass: [OBVehicleAnnotation class]])
+												{
+													[map removeAnnotation: object];
+													return false;
+												}
+												return true;
+											}]];
+		
+		// add new vehicles
+		for (NSDictionary* vehicle in vehicles)
+		{
+			OBVehicleAnnotation* annotation = [[OBVehicleAnnotation alloc] initWithMapViewController: self route: route vehicle: vehicle];
+			[annotations addObject: annotation];
+			[map addAnnotation: annotation];
+			[annotation release];
+		}
 	}
 	
 	[activeRequests removeObjectForKey: request];
@@ -379,7 +435,7 @@
 {
 	// ignore, except for a log message
 	// the worst that happens is there will be no route overlay
-	NSLog(@"error while requesting pattern: %@", error);
+	NSLog(@"error while requesting map data: %@", error);
 	
 	[activeRequests removeObjectForKey: request];
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
@@ -395,6 +451,8 @@
 	
 	if ([annotation isKindOfClass: [OBStopAnnotation class]])
 		return [(OBStopAnnotation*)annotation annotationViewForMap: map];
+	if ([annotation isKindOfClass: [OBVehicleAnnotation class]])
+		return [(OBVehicleAnnotation*)annotation annotationViewForMap: map];
 	
 	return nil;
 }

@@ -87,6 +87,7 @@
 		D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9E12C918980085D5F9 /* pin-mask@2x.png */; };
 		D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9F12C918980085D5F9 /* pin-overlay.png */; };
 		D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AAA012C918980085D5F9 /* pin-overlay@2x.png */; };
+		D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
 		D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0B3F4DA12CA988F00E9E5C8 /* ChangeLog.txt */; };
@@ -235,6 +236,8 @@
 		D074AA9F12C918980085D5F9 /* pin-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay.png"; sourceTree = "<group>"; };
 		D074AAA012C918980085D5F9 /* pin-overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay@2x.png"; sourceTree = "<group>"; };
 		D074AAB412C918F80085D5F9 /* pin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pin.svg; sourceTree = "<group>"; };
+		D090A41D1432163000AD4C31 /* OBVehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVehicleAnnotation.h; sourceTree = "<group>"; };
+		D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVehicleAnnotation.m; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
 		D0AF5DF012C5119A00813A24 /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
 		D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopAnnotation.h; sourceTree = "<group>"; };
@@ -564,6 +567,8 @@
 				D0AF5DF012C5119A00813A24 /* OBMapViewController.m */,
 				D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */,
 				D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */,
+				D090A41D1432163000AD4C31 /* OBVehicleAnnotation.h */,
+				D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */,
 			);
 			path = OBMapViewController;
 			sourceTree = "<group>";
@@ -718,6 +723,7 @@
 				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
+				D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

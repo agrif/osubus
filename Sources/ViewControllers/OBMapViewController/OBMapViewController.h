@@ -35,6 +35,9 @@
 	// for initial zoom in hack
 	BOOL hasZoomedIn;
 	MKCoordinateRegion finalRegion;
+	
+	// vehicle update timer
+	NSTimer* refreshTimer;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
@@ -53,5 +56,7 @@
 - (void) clearMap;
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled;
 - (void) setStop: (NSDictionary*) stop;
+
+- (void) updateVehicles: (NSTimer*) timer;
 
 @end
