@@ -14,7 +14,7 @@ def screenshots(request):
 
 @login_required
 def stats(request):
-    colors = ['ff0000', '00ff00', '0000ff']
+    colors = ['ff0000', '800000', 'ffff00', '808000', '00ff00', '008000', '00ffff', '008080', '0000ff', '000080', 'ff00ff', '800080']
     # charts = [{'title' : "Chart Title",
     #            'dates' : range(32),
     #            'date_count' : 5,
