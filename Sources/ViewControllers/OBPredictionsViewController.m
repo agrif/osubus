@@ -133,7 +133,7 @@
 	if (vehicle == nil)
 	{
 		vehicle = [vehiclein retain];
-		vehicle_route = route;
+		vehicle_route = [route retain];
 	}
 }
 
@@ -391,7 +391,7 @@
 		}
 		
 		// only allow two prediction views at once, by removing the first if needed
-		if (num_predictions_views >= 2 && false /* FIXME this crashes randomly! */)
+		if (num_predictions_views >= 2)
 		{
 			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
 			[viewControllers removeObject: first_prediction_view];
