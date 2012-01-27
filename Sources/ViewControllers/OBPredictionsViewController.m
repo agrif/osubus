@@ -90,14 +90,9 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	// FIXME: vehicle "Show On Map"
-	showMapAction = NO;
-	if (stop)
-	{
-		OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
-		OBMapViewController* map = top.mapViewController;
-		showMapAction = ![self.navigationController.viewControllers containsObject: map];
-	}
+	OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+	OBMapViewController* map = top.mapViewController;
+	showMapAction = ![self.navigationController.viewControllers containsObject: map];
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -124,7 +119,7 @@
 		stop = [stopin retain];
 }
 
-- (void) setVehicle: (NSNumber*) vehiclein onRoute: (NSString*) route
+- (void) setVehicle: (NSString*) vehiclein onRoute: (NSString*) route
 {
 	if (stop || vehicle)
 		return;
@@ -358,7 +353,14 @@
 		
 		// setup map
 		[map clearMap];
-		[map setStop: stop];
+		if (stop)
+		{
+			[map setStop: stop];
+		} else if (vehicle) {
+			NSDictionary* route = [[OTClient sharedClient] routeWithShortName: vehicle_route];
+			[map setVehicle: vehicle onRoute: route];
+			[route release];
+		}
 		
 		// push onto stack
 		[self.navigationController pushViewController: map animated: YES];

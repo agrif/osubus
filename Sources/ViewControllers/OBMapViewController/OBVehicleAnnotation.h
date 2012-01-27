@@ -14,10 +14,11 @@
 	OBMapViewController* map;
 	NSDictionary* route;
 	NSDictionary* vehicle;
+	BOOL primary;
 }
 
 @property (nonatomic, readonly) NSDictionary* vehicle;
 
-- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle;
+- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle primary: (BOOL) _primary;
 
 @end

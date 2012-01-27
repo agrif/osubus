@@ -17,21 +17,21 @@
 
 @synthesize vehicle;
 
-- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle
+- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle primary: (BOOL) _primary
 {
 	if ((self = [super initWithAnnotation: nil reuseIdentifier: @"OBVehicleAnnotation"]))
 	{
 		map = _map;
-		if (_route)
-			route = [_route retain];
+		route = [_route retain];
 		vehicle = [_vehicle retain];
+		primary = _primary;
 		
-		if (route)
+		if (primary)
 		{
-			self.pinColor = [[route objectForKey: @"color"] colorFromHex];
-		} else {
-			// FIXME special image for primary stop?
+			// FIXME special image for primary vehicle?
 			self.pinColor = [UIColor whiteColor];
+		} else {
+			self.pinColor = [[route objectForKey: @"color"] colorFromHex];
 		}
 		
 		self.pinShadowed = YES;
@@ -45,7 +45,7 @@
 		
 		self.canShowCallout = YES;
 		
-		if (route)
+		if (!primary)
 		{
 			// set up callout button
 			UIButton* button = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
