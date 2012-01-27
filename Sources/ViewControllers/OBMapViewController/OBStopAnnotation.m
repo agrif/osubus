@@ -81,12 +81,6 @@
 	[super dealloc];
 }
 
-- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
-{
-	// *this* is how the map view takes it's annotation views
-	return [self autorelease];
-}
-
 - (void) showStopViewController
 {
 	// parent predictions controller search
@@ -116,6 +110,19 @@
 	}
 	
 	[predictions release];
+}
+
+#pragma mark OBMapViewAnnotation protocol
+
+- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
+{
+	// *this* is how the map view takes it's annotation views
+	return [self autorelease];
+}
+
+- (NSObject*) visibilityKey
+{
+	return [stop objectForKey: @"id"];
 }
 
 #pragma mark Annotation Protocol

@@ -134,21 +134,21 @@
 	
 	if (primaryStopAnnotation)
 	{
-		[visibleAnnotations addObject: [primaryStopAnnotation.stop objectForKey: @"id"]];
+		[visibleAnnotations addObject: [primaryStopAnnotation visibilityKey]];
 	}
 	
 	for (NSArray* annotations in [stopAnnotations allValues])
 	{
-		for (OBStopAnnotation* annotation in annotations)
+		for (MKAnnotationView<OBMapViewAnnotation>* annotation in annotations)
 		{
-			if ([visibleAnnotations containsObject: [annotation.stop objectForKey: @"id"]])
+			if ([visibleAnnotations containsObject: [annotation visibilityKey]])
 			{
 				[annotation setHidden: YES];
 				[annotation setEnabled: NO];
 			} else {
 				[annotation setHidden: NO];
 				[annotation setEnabled: YES];
-				[visibleAnnotations addObject: [annotation.stop objectForKey: @"id"]];
+				[visibleAnnotations addObject: [annotation visibilityKey]];
 			}
 		}
 	}
@@ -449,10 +449,8 @@
 	if (annotation == overlayManager)
 		return [overlayManager autorelease];
 	
-	if ([annotation isKindOfClass: [OBStopAnnotation class]])
-		return [(OBStopAnnotation*)annotation annotationViewForMap: map];
-	if ([annotation isKindOfClass: [OBVehicleAnnotation class]])
-		return [(OBVehicleAnnotation*)annotation annotationViewForMap: map];
+	if ([annotation conformsToProtocol: @protocol(OBMapViewAnnotation)])
+		return [(id<OBMapViewAnnotation>)annotation annotationViewForMap: map];
 	
 	return nil;
 }

@@ -13,6 +13,13 @@
 @class OBOverlayManager;
 @class OBStopAnnotation;
 
+@protocol OBMapViewAnnotation
+
+- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView;
+- (NSObject*) visibilityKey;
+
+@end
+
 @interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
 {
 	MKMapView* map;

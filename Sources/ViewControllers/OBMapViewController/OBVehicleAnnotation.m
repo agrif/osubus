@@ -19,7 +19,7 @@
 
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle
 {
-	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBVehicleAnnotation"])
+	if ((self = [super initWithAnnotation: nil reuseIdentifier: @"OBVehicleAnnotation"]))
 	{
 		map = _map;
 		if (_route)
@@ -66,12 +66,6 @@
 	[super dealloc];
 }
 
-- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
-{
-	// *this* is how the map view takes it's annotation views
-	return [self autorelease];
-}
-
 - (void) showVehicleViewController
 {
 	// parent predictions controller search
@@ -101,6 +95,19 @@
 	}
 	
 	[predictions release];
+}
+
+#pragma mark OBMapViewAnnotation protocol
+
+- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView
+{
+	// *this* is how the map view takes it's annotation views
+	return [self autorelease];
+}
+
+- (NSObject*) visibilityKey
+{
+	return [vehicle objectForKey: @"vid"];
 }
 
 #pragma mark Annotation Protocol

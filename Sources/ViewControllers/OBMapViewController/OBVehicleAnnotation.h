@@ -6,11 +6,10 @@
 
 #import <MapKit/MapKit.h>
 
+#import "OBMapViewController.h"
 #import "OBPinView.h"
 
-@class OBMapViewController;
-
-@interface OBVehicleAnnotation : OBPinView <MKAnnotation>
+@interface OBVehicleAnnotation : OBPinView <MKAnnotation, OBMapViewAnnotation>
 {
 	OBMapViewController* map;
 	NSDictionary* route;
@@ -20,6 +19,5 @@
 @property (nonatomic, readonly) NSDictionary* vehicle;
 
 - (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle;
-- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView;
 
 @end
