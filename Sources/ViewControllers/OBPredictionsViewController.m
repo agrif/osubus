@@ -104,7 +104,7 @@
 {
 	predictions = nil;
 	[self updateTimes: nil];
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
 
 - (void) viewDidDisappear: (BOOL) animated

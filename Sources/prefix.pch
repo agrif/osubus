@@ -11,6 +11,9 @@
 // IMPORTANT: remember to also set in info.plist!
 #define OSU_BUS_VERSION "1.1.1"
 
+// Useful global define for refresh intervals
+#define OSU_BUS_REFRESH_TIME 30.0
+
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>

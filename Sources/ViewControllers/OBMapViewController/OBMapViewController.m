@@ -78,7 +78,7 @@
 - (void) viewDidAppear: (BOOL) animated
 {
 	// Start the vehicle update timer
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateVehicles:) userInfo: nil repeats: YES];
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateVehicles:) userInfo: nil repeats: YES];
 	
 	// FIXME better solution to this
 	// this block is a HACK that prevents a draw bug on iOS3.1
