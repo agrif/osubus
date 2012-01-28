@@ -212,6 +212,9 @@
 	
 	//NSLog(@"predictions: %@", predictions);
 	
+	while ([predictions count] > OSU_BUS_PREDICTIONS_COUNT)
+		[predictions removeLastObject];
+	
 	for (NSMutableDictionary* prediction in predictions)
 	{
 		for (NSDictionary* route in routes)
@@ -392,8 +395,8 @@
 			}
 		}
 		
-		// only allow two prediction views at once, by removing the first if needed
-		if (num_predictions_views >= 2)
+		// only allow so many prediction views at once, by removing the first if needed
+		if (num_predictions_views >= OSU_BUS_PREDICTIONS_DEPTH)
 		{
 			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
 			[viewControllers removeObject: first_prediction_view];

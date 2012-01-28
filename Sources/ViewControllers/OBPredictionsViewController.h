@@ -28,7 +28,7 @@ enum OBPredictionsActions
 	NSDictionary* stop;
 	NSString* vehicle;
 	NSString* vehicle_route;
-	NSArray* predictions;
+	NSMutableArray* predictions;
 	NSArray* routes;
 	NSString* error_cell_text;
 	UIBarButtonItem* addButton;
