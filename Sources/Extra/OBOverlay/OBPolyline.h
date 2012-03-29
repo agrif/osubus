@@ -21,6 +21,8 @@
 	CGFloat polylineWidth;
 	UIColor* polylineBorderColor;
 	CGFloat polylineBorderWidth;
+	CGFloat* dash_lengths;
+	size_t dash_count;
 }
 
 @property (nonatomic, retain) NSArray* points;
@@ -29,8 +31,11 @@
 @property (nonatomic, assign) CGFloat polylineWidth;
 @property (nonatomic, retain) UIColor* polylineBorderColor;
 @property (nonatomic, assign) CGFloat polylineBorderWidth;
+@property (nonatomic, readonly) CGFloat* dash_lengths;
+@property (nonatomic, readonly) size_t dash_count;
 
 - (id) init;
 - (id) initWithPoints: (NSArray*) pts;
+- (void) setDashLengths: (CGFloat*) lengths count: (size_t) count;
 
 @end

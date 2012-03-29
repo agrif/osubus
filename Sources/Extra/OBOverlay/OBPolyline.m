@@ -16,6 +16,8 @@
 @synthesize polylineWidth;
 @synthesize polylineBorderColor;
 @synthesize polylineBorderWidth;
+@synthesize dash_lengths;
+@synthesize dash_count;
 
 - (id) init
 {
@@ -47,6 +49,9 @@
 	
 	if (path)
 		CGPathRelease(path);
+	
+	if (dash_lengths)
+		free(dash_lengths);
 	
 	[super dealloc];
 }
@@ -106,6 +111,22 @@
 	return points;
 }
 
+- (void) setDashLengths: (CGFloat*) lengths count: (size_t) count
+{
+	if (dash_lengths)
+	{
+		free(dash_lengths);
+		dash_lengths = NULL;
+	}
+	
+	dash_count = count;
+	if (count > 0)
+	{
+		dash_lengths = malloc(sizeof(CGFloat) * count);
+		memcpy(dash_lengths, lengths, sizeof(CGFloat) * count);
+	}
+}
+
 - (void) setNeedsDisplay
 {
 	// zoom level changed, old path cache is now invalid
@@ -157,6 +178,16 @@
 	
 	CGContextSetStrokeColorWithColor(context, polylineColor.CGColor);
 	CGContextSetLineWidth(context, polylineWidth);
+	if (dash_lengths)
+	{
+		CGFloat* dash_lengths_scaled = malloc(sizeof(CGFloat) * dash_count);
+		for (size_t i = 0; i < dash_count; i++)
+		{
+			dash_lengths_scaled[i] = dash_lengths[i] * polylineWidth;
+		}
+		CGContextSetLineDash(context, 0, dash_lengths_scaled, dash_count);
+		free(dash_lengths_scaled);
+	}
 	CGContextAddPath(context, path);
 	CGContextStrokePath(context);
 	
