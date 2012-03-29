@@ -16,6 +16,24 @@
 
 #define ZOOM_HACK_SCALE 1.5
 
+// useful dotted line definitions
+#define DOTTED_LINE_DEF_LENGTH 4
+struct DottedLineDef
+{
+	CGFloat lengths[DOTTED_LINE_DEF_LENGTH];
+};
+struct DottedLineDef dotted_line_defs[] = {
+	{{1, 1, 1, 1}},
+	{{2, 1, 2, 1}},
+	{{1, 2, 1, 2}},
+	{{2, 1, 1, 1}},
+	{{1, 2, 1, 1}},
+	{{2, 2, 1, 1}},
+	{{2, 2, 2, 2}},
+};
+
+#define NUM_DOTTED_LINE_DEFS (sizeof(dotted_line_defs) / sizeof(struct DottedLineDef))
+
 @implementation OBMapViewController
 
 @synthesize map, instructiveView;
@@ -355,10 +373,22 @@
 				[loc release];
 			}
 			
+			BOOL colorBlindMode = [[NSUserDefaults standardUserDefaults] boolForKey: @"color_blind_mode"];
+			
 			OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
 			[points release];
 			
-			polyline.polylineColor = [[route objectForKey: @"color"] colorFromHex];
+			if (colorBlindMode)
+			{
+				int route_id = [[route objectForKey: @"id"] integerValue];
+				route_id %= NUM_DOTTED_LINE_DEFS;
+				CGFloat* lengths = dotted_line_defs[route_id].lengths;
+				[polyline setDashLengths: lengths count: DOTTED_LINE_DEF_LENGTH];
+				polyline.polylineColor = [UIColor whiteColor];
+				polyline.polylineWidth *= 1.5;
+			} else {
+				polyline.polylineColor = [[route objectForKey: @"color"] colorFromHex];
+			}
 			polyline.polylineAlpha = 1.0;
 			
 			[overlays addObject: polyline];

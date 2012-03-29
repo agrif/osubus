@@ -5,14 +5,24 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-			<key>Title</key>
-			<string>Metric Distances</string>
-			<key>Key</key>
-			<string>metric_preference</string>
 			<key>DefaultValue</key>
 			<false/>
+			<key>Key</key>
+			<string>metric_preference</string>
+			<key>Title</key>
+			<string>Metric Distances</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<false/>
+			<key>Key</key>
+			<string>color_blind_mode</string>
+			<key>Title</key>
+			<string>Color Blind Mode</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 	</array>
 </dict>
