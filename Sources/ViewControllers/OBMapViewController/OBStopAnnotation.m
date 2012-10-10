@@ -97,17 +97,17 @@
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 	[predictions setStop: stop];
 	
-	if (!parent)
+	if (parent)
 	{
-		[map.navigationController pushViewController: predictions animated: YES];
-	} else {
 		// moving into what could become an infinite loop
 		// replace view stack with just top / map / new
-		NSArray* newstack = [[NSArray alloc] initWithObjects: [map.navigationController.viewControllers objectAtIndex: 0], map, predictions, nil];
+		NSArray* newstack = [[NSArray alloc] initWithObjects: [map.navigationController.viewControllers objectAtIndex: 0], map, nil];
 		[map setStop: nil];
-		[map.navigationController setViewControllers: newstack animated: YES];
+		[map.navigationController setViewControllers: newstack animated: NO];
 		[newstack release];
 	}
+	
+	[map.navigationController pushViewController: predictions animated: YES];
 	
 	[predictions release];
 }

@@ -372,7 +372,7 @@
 		OBPredictionsViewController* vc = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
 		if (vehicle)
 		{
-			// new view is a stop-view FIXME
+			// new view is a stop-view
 			NSDictionary* predstop = [[OTClient sharedClient] stop: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"stpid"]];
 			[vc setStop: predstop];
 			[predstop release];
