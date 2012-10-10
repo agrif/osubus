@@ -400,12 +400,11 @@
 		{
 			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
 			[viewControllers removeObject: first_prediction_view];
-			[viewControllers addObject: vc];
-			[self.navigationController setViewControllers: viewControllers animated: YES];
+			[self.navigationController setViewControllers: viewControllers animated: NO];
 			[viewControllers release];
-		} else {
-			[self.navigationController pushViewController: vc animated: YES];
 		}
+		
+		[self.navigationController pushViewController: vc animated: YES];
 		
 		[vc release];
 	}
