@@ -90,9 +90,10 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
-	OBMapViewController* map = top.mapViewController;
-	showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	//OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+	//OBMapViewController* map = top.mapViewController;
+	//showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	showMapAction = YES;
 }
 
 - (void) viewDidAppear: (BOOL) animated
@@ -363,6 +364,15 @@
 			NSDictionary* route = [[OTClient sharedClient] routeWithShortName: vehicle_route];
 			[map setVehicle: vehicle onRoute: route];
 			[route release];
+		}
+		
+		// remove the map from the stack, if it's there already
+		if ([self.navigationController.viewControllers containsObject: map])
+		{
+			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
+			[viewControllers removeObject: map];
+			[self.navigationController setViewControllers: viewControllers animated: NO];
+			[viewControllers release];
 		}
 		
 		// push onto stack
