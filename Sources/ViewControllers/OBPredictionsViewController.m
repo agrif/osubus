@@ -186,6 +186,105 @@
 	}
 }
 
+- (void) animateFromPredictions: (NSArray*) old toPredictions: (NSArray*) new
+{
+	// sanity constants
+	UITableViewRowAnimation insert_anim = UITableViewRowAnimationLeft;
+	UITableViewRowAnimation delete_anim = UITableViewRowAnimationRight;
+	
+	// helper for nice animations
+	[self.tableView	beginUpdates];
+	
+	// first, handle nil old
+	NSUInteger nilpath[] = {0, 0};
+	NSArray* nilpaths = [[NSArray alloc] initWithObjects: [NSIndexPath indexPathWithIndexes: nilpath length: 2], nil];
+	if (!old)
+		[self.tableView deleteRowsAtIndexPaths: nilpaths withRowAnimation: delete_anim];
+	
+	// now, compile lists of deleted and added
+	// index paths to delete, the intersection (ordered as in old and new)
+	// the paths corresponding to the intersection, relative to the old list,
+	// and the index paths to add
+	
+	NSMutableArray* to_delete = [[NSMutableArray alloc] init];
+	NSMutableArray* old_intersection = [[NSMutableArray alloc] init];
+	NSMutableArray* intersection_paths = [[NSMutableArray alloc] init];
+	NSMutableArray* new_intersection = [[NSMutableArray alloc] init];
+	NSMutableArray* to_add = [[NSMutableArray alloc] init];
+	
+	if (old)
+	{
+		[old enumerateObjectsUsingBlock: ^(id prediction, NSUInteger i, BOOL* stop)
+		 {
+			 NSUInteger newidx = new ? [new indexOfObjectPassingTest: ^BOOL(id p, NSUInteger j, BOOL* stopinner)
+										{
+											return [[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]];
+										}] : NSNotFound;
+			 NSUInteger path[] = {0, i};
+			 if (newidx == NSNotFound)
+			 {
+				 [to_delete addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			 } else {
+				 [old_intersection addObject: [prediction objectForKey: @"id"]];
+				 // reloadRowsAtIndexPaths: always takes paths relative to the old info
+				 [intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			 }
+		 }];
+	}
+	
+	if (new)
+	{
+		[new enumerateObjectsUsingBlock: ^(id prediction, NSUInteger i, BOOL* stop)
+		 {
+			 NSUInteger oldidx = old ? [old indexOfObjectPassingTest: ^BOOL(id p, NSUInteger j, BOOL* stopinner)
+										{
+											return [[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]];
+										}] : NSNotFound;
+			 if (oldidx == NSNotFound)
+			 {
+				 NSUInteger path[] = {0, i};
+				 [to_add addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			 } else {
+				 [new_intersection addObject: [prediction objectForKey: @"id"]];
+			 }
+		 }];
+	}
+	
+	// commit the animation changes
+	
+	[self.tableView deleteRowsAtIndexPaths: to_delete withRowAnimation: delete_anim];
+	
+	if (![old_intersection isEqual: new_intersection])
+	{
+		// mixing!
+		
+		NSMutableArray* reload_paths = [[NSMutableArray alloc] init];
+		[intersection_paths enumerateObjectsUsingBlock: ^(id path, NSUInteger i, BOOL* stop)
+		 {
+			 if (![[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
+				 [reload_paths addObject: path];
+		 }];
+		
+		[self.tableView reloadRowsAtIndexPaths: reload_paths withRowAnimation: UITableViewRowAnimationFade];
+		[reload_paths release];
+	}
+	
+	[self.tableView insertRowsAtIndexPaths: to_add withRowAnimation: insert_anim];
+	
+	// finally handle nil new
+	if (!new)
+		[self.tableView insertRowsAtIndexPaths: nilpaths withRowAnimation: insert_anim];
+	
+	[to_delete release];
+	[old_intersection release];
+	[new_intersection release];
+	[intersection_paths release];
+	[to_add	release];
+	[nilpaths release];
+	
+	[self.tableView endUpdates];
+}
+
 #pragma mark Request Delegates
 
 - (void) updateTimes: (NSTimer*) timer
@@ -204,8 +303,7 @@
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	if (predictions)
-		[predictions release];
+	NSArray* old_predictions = predictions;
 	predictions = [[result objectForKey: @"prd"] retain];
 	if (error_cell_text)
 		[error_cell_text release];
@@ -225,6 +323,12 @@
 				[prediction setObject: [route objectForKey: @"long"] forKey: @"rt"];
 				[prediction setObject: [route objectForKey: @"short"] forKey: @"rtshort"];
 				[prediction setObject: [route objectForKey: @"color"] forKey: @"color"];
+				if (stop)
+				{
+					[prediction setObject: [prediction objectForKey: @"vid"] forKey: @"id"];
+				} else {
+					[prediction setObject: [prediction objectForKey: @"stpid"] forKey: @"id"];
+				}
 				break;
 			}
 		}
@@ -239,11 +343,11 @@
 	
 	if (self.tableView)
 	{
-		NSRange range;
-		range.location = 0;
-		range.length = 1;
-		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+		[self animateFromPredictions: old_predictions toPredictions: predictions];
 	}
+	
+	if (old_predictions)
+		[old_predictions release];
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
@@ -254,8 +358,7 @@
 	NSLog(@"error: %@", error);
 	if (error_cell_text)
 		[error_cell_text release];
-	if (predictions)
-		[predictions release];
+	NSArray* old_predictions = predictions;
 	predictions = nil;
 	
 	// take the error and stick it on the screen
@@ -263,11 +366,11 @@
 	
 	if (self.tableView)
 	{
-		NSRange range;
-		range.location = 0;
-		range.length = 1;
-		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+		[self animateFromPredictions: old_predictions toPredictions: predictions];
 	}
+	
+	if (old_predictions)
+		[old_predictions release];
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
