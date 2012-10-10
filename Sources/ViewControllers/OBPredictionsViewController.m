@@ -258,15 +258,25 @@
 	{
 		// mixing!
 		
-		NSMutableArray* reload_paths = [[NSMutableArray alloc] init];
+		NSMutableArray* anim_paths = [[NSMutableArray alloc] init];
+		NSMutableArray* noanim_paths = [[NSMutableArray alloc] init];
 		[intersection_paths enumerateObjectsUsingBlock: ^(id path, NSUInteger i, BOOL* stop)
 		 {
-			 if (![[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
-				 [reload_paths addObject: path];
+			 if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
+			 {
+				 [noanim_paths addObject: path];
+			 } else {
+				 [anim_paths addObject: path];
+			 }
 		 }];
 		
-		[self.tableView reloadRowsAtIndexPaths: reload_paths withRowAnimation: UITableViewRowAnimationFade];
-		[reload_paths release];
+		[self.tableView reloadRowsAtIndexPaths: anim_paths withRowAnimation: UITableViewRowAnimationFade];
+		[self.tableView reloadRowsAtIndexPaths: noanim_paths withRowAnimation: UITableViewRowAnimationNone];
+		[anim_paths release];
+		[noanim_paths release];
+	} else {
+		// no mixing!
+		[self.tableView reloadRowsAtIndexPaths: intersection_paths withRowAnimation: UITableViewRowAnimationNone];
 	}
 	
 	[self.tableView insertRowsAtIndexPaths: to_add withRowAnimation: insert_anim];
