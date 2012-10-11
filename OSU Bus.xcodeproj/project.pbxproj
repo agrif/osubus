@@ -93,6 +93,7 @@
 		D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9F12C918980085D5F9 /* pin-overlay.png */; };
 		D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AAA012C918980085D5F9 /* pin-overlay@2x.png */; };
 		D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */; };
+		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
 		D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */ = {isa = PBXBuildFile; fileRef = D0B3F4DA12CA988F00E9E5C8 /* ChangeLog.txt */; };
@@ -248,6 +249,8 @@
 		D074AAB412C918F80085D5F9 /* pin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pin.svg; sourceTree = "<group>"; };
 		D090A41D1432163000AD4C31 /* OBVehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVehicleAnnotation.h; sourceTree = "<group>"; };
 		D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVehicleAnnotation.m; sourceTree = "<group>"; };
+		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
+		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
 		D0AF5DF012C5119A00813A24 /* OBMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBMapViewController.m; sourceTree = "<group>"; };
 		D0AF5DF412C5129100813A24 /* OBStopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBStopAnnotation.h; sourceTree = "<group>"; };
@@ -386,6 +389,8 @@
 				D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */,
 				D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */,
 				D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */,
+				D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */,
+				D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */,
 				D06579F312C926E800AB2874 /* UIImage+ScaleCompat.h */,
 				D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */,
 				D017A33712DB600E006A060E /* MKMapView+ZoomLevel.h */,
@@ -744,6 +749,7 @@
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
 				D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */,
+				D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,7 +761,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -765,7 +770,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = "OSU Bus";
 				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
