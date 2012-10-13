@@ -21,6 +21,9 @@
 	
 	addButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"favorites-add"] style: UIBarButtonItemStyleBordered target: self action: @selector(toggleFavorite:)];
 	
+	predictions = nil;
+	error_cell_text	= nil;
+	
 	if (stop != nil || vehicle != nil)
 	{
 		NSLog(@"Loaded OBPredictionsViewController");
@@ -98,7 +101,6 @@
 
 - (void) viewDidAppear: (BOOL) animated
 {
-	predictions = nil;
 	[self updateTimes: nil];
 	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
