@@ -188,29 +188,24 @@
 	}
 }
 
-- (void) animateFromPredictions: (NSArray*) old toPredictions: (NSArray*) new
+- (void) animateFromPredictions: (NSMutableArray*) old toPredictions: (NSMutableArray*) new
 {
+	// helper for nice animations
+	
 	// sanity constants
 	UITableViewRowAnimation insert_anim = UITableViewRowAnimationLeft;
 	UITableViewRowAnimation delete_anim = UITableViewRowAnimationRight;
+	UITableViewRowAnimation switch_anim = UITableViewRowAnimationFade;
 	
-	// helper for nice animations
-	[self.tableView	beginUpdates];
-	
-	// first, handle nil old
-	NSUInteger nilpath[] = {0, 0};
-	NSArray* nilpaths = [[NSArray alloc] initWithObjects: [NSIndexPath indexPathWithIndexes: nilpath length: 2], nil];
-	if (!old)
-		[self.tableView deleteRowsAtIndexPaths: nilpaths withRowAnimation: delete_anim];
-	
-	// now, compile lists of deleted and added
+	// compile lists of deleted and added
 	// index paths to delete, the intersection (ordered as in old and new)
-	// the paths corresponding to the intersection, relative to the old list,
+	// the paths corresponding to the intersection, relative to the old list and new,
 	// and the index paths to add
 	
 	NSMutableArray* to_delete = [[NSMutableArray alloc] init];
 	NSMutableArray* old_intersection = [[NSMutableArray alloc] init];
 	NSMutableArray* intersection_paths = [[NSMutableArray alloc] init];
+	NSMutableArray* new_intersection_paths = [[NSMutableArray alloc] init];
 	NSMutableArray* new_intersection = [[NSMutableArray alloc] init];
 	NSMutableArray* to_add = [[NSMutableArray alloc] init];
 	
@@ -241,60 +236,68 @@
 			 NSUInteger oldidx = old ? [old indexOfObjectPassingTest: ^BOOL(id p, NSUInteger j, BOOL* stopinner)
 										{
 											return [[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]];
+			
 										}] : NSNotFound;
+			 NSUInteger path[] = {0, i};
 			 if (oldidx == NSNotFound)
 			 {
-				 NSUInteger path[] = {0, i};
 				 [to_add addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
 			 } else {
 				 [new_intersection addObject: [prediction objectForKey: @"id"]];
+				 [new_intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
 			 }
 		 }];
 	}
 	
-	// commit the animation changes
-	
-	[self.tableView deleteRowsAtIndexPaths: to_delete withRowAnimation: delete_anim];
-	
-	if (![old_intersection isEqual: new_intersection])
-	{
-		// mixing!
-		
-		NSMutableArray* anim_paths = [[NSMutableArray alloc] init];
-		NSMutableArray* noanim_paths = [[NSMutableArray alloc] init];
-		[intersection_paths enumerateObjectsUsingBlock: ^(id path, NSUInteger i, BOOL* stop)
+	// now figure out which cells switch places (meaning animate the change)
+	// and which cells simply change value
+	NSMutableArray* anim_paths = [[NSMutableArray alloc] init];
+	[intersection_paths enumerateObjectsUsingBlock: ^(id path, NSUInteger i, BOOL* stop)
+	 {
+		 if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
 		 {
-			 if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
-			 {
-				 [noanim_paths addObject: path];
-			 } else {
-				 [anim_paths addObject: path];
-			 }
-		 }];
+			 // only animate the value changing
+			 NSUInteger new_i = [[new_intersection_paths objectAtIndex: i] indexAtPosition: 1];
+			 UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
+			 [self animatePredictionsCell: cell withData: [new objectAtIndex: new_i]];
+		 } else {
+			 // needs to be animated
+			 [anim_paths addObject: path];
+		 }
+	 }];
 		
-		[self.tableView reloadRowsAtIndexPaths: anim_paths withRowAnimation: UITableViewRowAnimationFade];
-		[self.tableView reloadRowsAtIndexPaths: noanim_paths withRowAnimation: UITableViewRowAnimationNone];
-		[anim_paths release];
-		[noanim_paths release];
-	} else {
-		// no mixing!
-		[self.tableView reloadRowsAtIndexPaths: intersection_paths withRowAnimation: UITableViewRowAnimationNone];
-	}
+	// start animation block
+	[self.tableView	beginUpdates];
 	
+	// update intersection
+	[self.tableView reloadRowsAtIndexPaths: anim_paths withRowAnimation: switch_anim];
+	
+	// handle nil old
+	NSUInteger nilpath[] = {0, 0};
+	NSArray* nilpaths = [[NSArray alloc] initWithObjects: [NSIndexPath indexPathWithIndexes: nilpath length: 2], nil];
+	if (!old)
+		[self.tableView deleteRowsAtIndexPaths: nilpaths withRowAnimation: delete_anim];
+	
+	// delete missing
+	[self.tableView deleteRowsAtIndexPaths: to_delete withRowAnimation: delete_anim];
+		
+	// insert new
 	[self.tableView insertRowsAtIndexPaths: to_add withRowAnimation: insert_anim];
 	
 	// finally handle nil new
 	if (!new)
 		[self.tableView insertRowsAtIndexPaths: nilpaths withRowAnimation: insert_anim];
 	
+	[self.tableView endUpdates];
+	
 	[to_delete release];
 	[old_intersection release];
 	[new_intersection release];
 	[intersection_paths release];
+	[new_intersection_paths release];
+	[anim_paths release];
 	[to_add	release];
 	[nilpaths release];
-	
-	[self.tableView endUpdates];
 }
 
 #pragma mark Request Delegates

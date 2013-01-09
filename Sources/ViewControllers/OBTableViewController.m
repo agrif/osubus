@@ -7,6 +7,7 @@
 #import "OBTableViewController.h"
 
 #import "NSString+HexColor.h"
+#import "UILabel+SetTextAnimated.h"
 #import "OBColorBandView.h"
 #import "OTClient.h"
 
@@ -156,6 +157,18 @@
 	}
 	
 	return cell;
+}
+
+- (void) animatePredictionsCell: (UITableViewCell*) cell withData: (NSDictionary*) data
+{
+	NSTimeInterval time = [(NSDate*)[data objectForKey: @"prdtm"] timeIntervalSinceNow] / 60;
+	UILabel* label = (UILabel*)[cell viewWithTag: 2];
+	if (time < 1.0)
+	{
+		[label setText: @"now" animated: YES];
+	} else {
+		[label setText: [NSString stringWithFormat: @"%i min", (int)time] animated: YES];
+	}
 }
 
 - (UITableViewCell*) predictionsCellForTable: (UITableView*) tableView withData: (NSDictionary*) data forVehicle: (BOOL) vehicle
