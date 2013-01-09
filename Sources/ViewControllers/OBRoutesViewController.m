@@ -97,7 +97,7 @@
 
 - (IBAction) dismissModal
 {
-	[self.parentViewController dismissModalViewControllerAnimated: YES];
+	[self.presentingViewController dismissModalViewControllerAnimated: YES];
 }
 
 @end

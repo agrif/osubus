@@ -145,6 +145,23 @@ void lat_lon_distance(sqlite3_context* context, int argc, sqlite3_value** argv)
 	return ret;
 }
 
+- (NSDictionary*) routeWithShortName: (NSString*) routename
+{
+	NSArray* routes = [self routes];
+	NSDictionary* ret = nil;
+	for (NSDictionary* route in routes)
+	{
+		if ([routename compare: [route objectForKey: @"short"]] == NSOrderedSame)
+		{
+			ret = [route retain];
+			break;
+		}
+	}
+	[routes release];
+	
+	return ret;
+}
+
 - (NSDictionary*) stop: (NSNumber*) stopid
 {
 	NSDictionary* ret = nil;

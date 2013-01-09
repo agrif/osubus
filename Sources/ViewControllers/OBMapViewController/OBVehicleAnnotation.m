@@ -4,7 +4,7 @@
 // This file is licensed under the GNU GPL v2. See
 // the file "main.m" for details.
 
-#import "OBStopAnnotation.h"
+#import "OBVehicleAnnotation.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 #import "UIImage+ScaleCompat.h"
@@ -13,60 +13,45 @@
 #import "NSString+HexColor.h"
 #import "OBColorBandView.h"
 
-@implementation OBStopAnnotation
+@implementation OBVehicleAnnotation
 
-@synthesize stop;
+@synthesize vehicle;
 
-- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route stop: (NSDictionary*) _stop
+- (id) initWithMapViewController: (OBMapViewController*) _map route: (NSDictionary*) _route vehicle: (NSDictionary*) _vehicle primary: (BOOL) _primary
 {
-	if (self = [super initWithAnnotation: nil reuseIdentifier: @"OBStopAnnotation"])
+	if ((self = [super initWithAnnotation: nil reuseIdentifier: @"OBVehicleAnnotation"]))
 	{
 		map = _map;
-		if (_route)
-			route = [_route retain];
-		stop = [_stop retain];
+		route = [_route retain];
+		vehicle = [_vehicle retain];
+		primary = _primary;
 		
-		if (route)
+		if (primary)
 		{
-			self.pinColor = [[route objectForKey: @"color"] colorFromHex];
-		} else {
-			// FIXME special image for primary stop?
+			// FIXME special image for primary vehicle?
 			self.pinColor = [UIColor whiteColor];
+		} else {
+			self.pinColor = [[route objectForKey: @"color"] colorFromHex];
 		}
 		
 		self.pinShadowed = YES;
 		self.pinShadowRadius = 4.0;
 		self.pinShadowColor = [UIColor colorWithWhite: 0.0 alpha: 0.33];
 		
-		self.mask = [UIImage imageNamed: @"pin-mask"];
-		self.overlay = [UIImage imageNamed: @"pin-overlay"];
+		self.mask = [UIImage imageNamed: @"buspin-mask"];
+		self.overlay = [UIImage imageNamed: @"buspin-overlay"];
 		
 		self.centerOffset = CGPointMake(0.0, (-self.frame.size.height / 2.0) + self.pinShadowRadius);
 		
 		self.canShowCallout = YES;
 		
-		if (route)
+		if (!primary)
 		{
 			// set up callout button
 			UIButton* button = [UIButton buttonWithType: UIButtonTypeDetailDisclosure];
-			[button addTarget: self action: @selector(showStopViewController) forControlEvents: UIControlEventTouchUpInside];
+			[button addTarget: self action: @selector(showVehicleViewController) forControlEvents: UIControlEventTouchUpInside];
 			self.rightCalloutAccessoryView = button;
 		}
-		
-		// set up route color bands
-		NSMutableArray* colors = [[NSMutableArray alloc] initWithCapacity: [[stop objectForKey: @"routes"] count]];
-		for (NSDictionary* r in [stop objectForKey: @"routes"])
-		{
-			[colors addObject:[[r objectForKey: @"color"] colorFromHex]];
-		}
-		
-		OBColorBandView* bands = [[OBColorBandView alloc] initWithFrame: CGRectMake(0.0, 0.0, 32.0, 32.0)];
-		bands.colors = colors;
-		[colors release];
-		bands.autoResizing = YES;
-		
-		self.leftCalloutAccessoryView = bands;
-		[bands release];
 	}
 	
 	return self;
@@ -76,12 +61,12 @@
 {
 	if (route)
 		[route release];
-	[stop release];
+	[vehicle release];
 	
 	[super dealloc];
 }
 
-- (void) showStopViewController
+- (void) showVehicleViewController
 {
 	// parent predictions controller search
 	OBPredictionsViewController* parent = nil;
@@ -95,7 +80,7 @@
 	}
 	
 	OBPredictionsViewController* predictions = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
-	[predictions setStop: stop];
+	[predictions setVehicle: [vehicle objectForKey: @"vid"] onRoute: [route objectForKey: @"short"]];
 	
 	if (parent)
 	{
@@ -122,7 +107,7 @@
 
 - (NSObject*) visibilityKey
 {
-	return [stop objectForKey: @"id"];
+	return [vehicle objectForKey: @"vid"];
 }
 
 #pragma mark Annotation Protocol
@@ -130,14 +115,14 @@
 - (CLLocationCoordinate2D) coordinate
 {
 	CLLocationCoordinate2D loc;
-	loc.latitude = [[stop objectForKey: @"lat"] floatValue];
-	loc.longitude = [[stop objectForKey: @"lon"] floatValue];
+	loc.latitude = [[vehicle objectForKey: @"lat"] floatValue];
+	loc.longitude = [[vehicle objectForKey: @"lon"] floatValue];
 	return loc;
 }
 
 - (NSString*) title
 {
-	return [stop objectForKey: @"name"];
+	return [NSString stringWithFormat: @"%@ %@", [route objectForKey: @"short"], [vehicle objectForKey: @"vid"]];
 }
 
 @end

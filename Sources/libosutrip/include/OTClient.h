@@ -49,6 +49,7 @@
 - (void) writeNewDatabase: (NSData*) data;
 - (NSString*) databasePath;
 - (NSArray*) routes;
+- (NSDictionary*) routeWithShortName: (NSString*) routename;
 - (NSArray*) stops;
 - (NSArray*) stopsWithRoute: (NSNumber*) routeid;
 - (NSDictionary*) stop: (NSNumber*) stopid;

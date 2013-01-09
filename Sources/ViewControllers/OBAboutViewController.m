@@ -36,7 +36,7 @@
 {
 	[super viewDidLoad];
 	
-	self.view = tabBarController.view;
+	[self.view addSubview: tabBarController.view];
 	
 	NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 	[versionLabel setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
@@ -59,7 +59,7 @@
 
 - (IBAction) hideAboutView: (id) button
 {
-	[self.parentViewController dismissModalViewControllerAnimated: YES];
+	[self.presentingViewController dismissModalViewControllerAnimated: YES];
 }
 
 - (IBAction) showWebsite

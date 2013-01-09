@@ -21,20 +21,30 @@
 	
 	addButton = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"favorites-add"] style: UIBarButtonItemStyleBordered target: self action: @selector(toggleFavorite:)];
 	
-	if (stop != nil)
+	predictions = nil;
+	error_cell_text	= nil;
+	
+	if (stop != nil || vehicle != nil)
 	{
 		NSLog(@"Loaded OBPredictionsViewController");
 		
-		if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
+		// stop-view specific favorites stuff
+		if (stop)
 		{
-			addButton.image = [UIImage imageNamed: @"favorites-remove"];
-			isFavorite = YES;
+			if ([[[NSUserDefaults standardUserDefaults] arrayForKey: @"favorites"] containsObject: [stop objectForKey: @"id"]])
+			{
+				addButton.image = [UIImage imageNamed: @"favorites-remove"];
+				isFavorite = YES;
+			} else {
+				isFavorite = NO;
+			}
+			[self.navigationItem setRightBarButtonItem: addButton];
+			[self.navigationItem setTitle: [stop objectForKey: @"name"]];
 		} else {
-			isFavorite = NO;
-		}
-		
-		[self.navigationItem setRightBarButtonItem: addButton];
-		[self.navigationItem setTitle: [stop objectForKey: @"name"]];
+			// vehicle setup
+			[self.navigationItem setTitle: [NSString stringWithFormat: @"%@ %@", vehicle_route, vehicle]];
+		};
+
 	} else {
 		// do something else, mainly, fail spectacularly!
 	}
@@ -53,6 +63,16 @@
 	{
 		[stop release];
 		stop = nil;
+	}
+	if (vehicle != nil)
+	{
+		[vehicle release];
+		vehicle = nil;
+	}
+	if (vehicle_route != nil)
+	{
+		[vehicle_route release];
+		vehicle_route = nil;
 	}
 	if (routes != nil)
 	{
@@ -73,17 +93,16 @@
 
 - (void) viewWillAppear: (BOOL) animated
 {
-	OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
-	OBMapViewController* map = top.mapViewController;
-	showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	//OBTopViewController* top = [self.navigationController.viewControllers objectAtIndex: 0];
+	//OBMapViewController* map = top.mapViewController;
+	//showMapAction = ![self.navigationController.viewControllers containsObject: map];
+	showMapAction = YES;
 }
 
 - (void) viewDidAppear: (BOOL) animated
 {
-	predictions = nil;
-	error_cell_text = nil;
 	[self updateTimes: nil];
-	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: 30.0 target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
+	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateTimes:) userInfo: nil repeats: YES];
 }
 
 - (void) viewDidDisappear: (BOOL) animated
@@ -97,20 +116,30 @@
 
 - (void) setStop: (NSDictionary*) stopin
 {
+	if (stop || vehicle)
+		return;
 	if (stop == nil)
 		stop = [stopin retain];
 }
 
-- (void) updateTimes: (NSTimer*) timer
+- (void) setVehicle: (NSString*) vehiclein onRoute: (NSString*) route
 {
-	if (stop == nil)
+	if (stop || vehicle)
 		return;
-	OTRequest* req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
-	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+	if (vehiclein == nil || route == nil)
+		return;
+	if (vehicle == nil)
+	{
+		vehicle = [vehiclein retain];
+		vehicle_route = [route retain];
+	}
 }
 
 - (void) toggleFavorite: (UIBarButtonItem*) button
 {
+	if (stop == nil)
+		return;
+	
 	UIActionSheet* actionSheet;
 	if (isFavorite)
 	{
@@ -127,6 +156,9 @@
 
 - (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex
 {
+	if (stop == nil)
+		return;
+	
 	if (buttonIndex == 0)
 	{
 		if (isFavorite)
@@ -156,18 +188,178 @@
 	}
 }
 
+- (void) animateFromPredictions: (NSArray*) old toPredictions: (NSMutableArray*) new
+{
+	// helper for nice animations
+	
+	// sanity constants
+	UITableViewRowAnimation insert_anim = UITableViewRowAnimationLeft;
+	UITableViewRowAnimation delete_anim = UITableViewRowAnimationRight;
+	UITableViewRowAnimation switch_anim = UITableViewRowAnimationFade;
+	
+	// compile lists of deleted and added
+	// index paths to delete, the intersection (ordered as in old and new)
+	// the paths corresponding to the intersection, relative to the old list and new,
+	// and the index paths to add
+	
+	NSMutableArray* to_delete = [[NSMutableArray alloc] init];
+	NSMutableArray* old_intersection = [[NSMutableArray alloc] init];
+	NSMutableArray* intersection_paths = [[NSMutableArray alloc] init];
+	NSMutableArray* new_intersection_paths = [[NSMutableArray alloc] init];
+	NSMutableArray* new_intersection = [[NSMutableArray alloc] init];
+	NSMutableArray* to_add = [[NSMutableArray alloc] init];
+	
+	NSUInteger i;
+	
+	if (old)
+	{
+		i = 0;
+		for (NSDictionary* prediction in old)
+		{
+			NSUInteger newidx = NSNotFound;
+			if (new)
+			{
+				NSUInteger j = 0;
+				for (NSDictionary* p in new)
+				{
+					if ([[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]])
+					{
+						newidx = j;
+						break;
+					}
+					j++;
+				}
+			}
+			
+			NSUInteger path[] = {0, i};
+			if (newidx == NSNotFound)
+			{
+				[to_delete addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			} else {
+				[old_intersection addObject: [prediction objectForKey: @"id"]];
+				// reloadRowsAtIndexPaths: always takes paths relative to the old info
+				[intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			}
+			
+			i++;
+		}
+	}
+	
+	if (new)
+	{
+		i = 0;
+		for (NSDictionary* prediction in new)
+		{
+			NSUInteger oldidx = NSNotFound;
+			if (old)
+			{
+				NSUInteger j = 0;
+				for (NSDictionary* p in old)
+				{
+					if ([[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]])
+					{
+						oldidx = j;
+						break;
+					}
+					j++;
+				}
+			}
+			
+			NSUInteger path[] = {0, i};
+			if (oldidx == NSNotFound)
+			{
+				[to_add addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			} else {
+				[new_intersection addObject: [prediction objectForKey: @"id"]];
+				[new_intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			}
+			
+			i++;
+		}
+	}
+	
+	// now figure out which cells switch places (meaning animate the change)
+	// and which cells simply change value
+	NSMutableArray* anim_paths = [[NSMutableArray alloc] init];
+	i = 0;
+	for (NSIndexPath* path in intersection_paths)
+	{
+		if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
+		{
+			// only animate the value changing
+			NSUInteger new_i = [[new_intersection_paths objectAtIndex: i] indexAtPosition: 1];
+			UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
+			[self animatePredictionsCell: cell withData: [new objectAtIndex: new_i]];
+		} else {
+			// needs to be animated
+			[anim_paths addObject: path];
+		}
+		
+		i++;
+	}
+		
+	// start animation block
+	[self.tableView	beginUpdates];
+	
+	// update intersection
+	[self.tableView reloadRowsAtIndexPaths: anim_paths withRowAnimation: switch_anim];
+	
+	// handle nil old
+	NSUInteger nilpath[] = {0, 0};
+	NSArray* nilpaths = [[NSArray alloc] initWithObjects: [NSIndexPath indexPathWithIndexes: nilpath length: 2], nil];
+	if (!old)
+		[self.tableView deleteRowsAtIndexPaths: nilpaths withRowAnimation: delete_anim];
+	
+	// delete missing
+	[self.tableView deleteRowsAtIndexPaths: to_delete withRowAnimation: delete_anim];
+		
+	// insert new
+	[self.tableView insertRowsAtIndexPaths: to_add withRowAnimation: insert_anim];
+	
+	// finally handle nil new
+	if (!new)
+		[self.tableView insertRowsAtIndexPaths: nilpaths withRowAnimation: insert_anim];
+	
+	[self.tableView endUpdates];
+	
+	[to_delete release];
+	[old_intersection release];
+	[new_intersection release];
+	[intersection_paths release];
+	[new_intersection_paths release];
+	[anim_paths release];
+	[to_add	release];
+	[nilpaths release];
+}
+
 #pragma mark Request Delegates
+
+- (void) updateTimes: (NSTimer*) timer
+{
+	if (stop == nil && vehicle == nil)
+		return;
+	OTRequest* req = nil;
+	if (stop)
+	{
+		req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forStopIDs: [NSString stringWithFormat: @"%@", [stop objectForKey: @"id"]] count: 5];
+	} else {
+		req = [[OTClient sharedClient] requestPredictionsWithDelegate: self forVehicleIDs: [NSString stringWithFormat: @"%@", vehicle] count: 5];
+	}
+	[[UIApplication sharedApplication] setNetworkInUse: YES byObject: req];
+}
 
 - (void) request: (OTRequest*) request hasResult: (NSDictionary*) result
 {
-	if (predictions)
-		[predictions release];
+	NSArray* old_predictions = predictions;
 	predictions = [[result objectForKey: @"prd"] retain];
 	if (error_cell_text)
 		[error_cell_text release];
 	error_cell_text = nil;
 	
 	//NSLog(@"predictions: %@", predictions);
+	
+	while ([predictions count] > OSU_BUS_PREDICTIONS_COUNT)
+		[predictions removeLastObject];
 	
 	for (NSMutableDictionary* prediction in predictions)
 	{
@@ -176,7 +368,14 @@
 			if ([[route objectForKey: @"short"] isEqual: [prediction objectForKey: @"rt"]])
 			{
 				[prediction setObject: [route objectForKey: @"long"] forKey: @"rt"];
+				[prediction setObject: [route objectForKey: @"short"] forKey: @"rtshort"];
 				[prediction setObject: [route objectForKey: @"color"] forKey: @"color"];
+				if (stop)
+				{
+					[prediction setObject: [prediction objectForKey: @"vid"] forKey: @"id"];
+				} else {
+					[prediction setObject: [prediction objectForKey: @"stpid"] forKey: @"id"];
+				}
 				break;
 			}
 		}
@@ -191,11 +390,11 @@
 	
 	if (self.tableView)
 	{
-		NSRange range;
-		range.location = 0;
-		range.length = 1;
-		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+		[self animateFromPredictions: old_predictions toPredictions: predictions];
 	}
+	
+	if (old_predictions)
+		[old_predictions release];
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
@@ -206,8 +405,7 @@
 	NSLog(@"error: %@", error);
 	if (error_cell_text)
 		[error_cell_text release];
-	if (predictions)
-		[predictions release];
+	NSArray* old_predictions = predictions;
 	predictions = nil;
 	
 	// take the error and stick it on the screen
@@ -215,11 +413,11 @@
 	
 	if (self.tableView)
 	{
-		NSRange range;
-		range.location = 0;
-		range.length = 1;
-		[self.tableView reloadSections: [NSIndexSet indexSetWithIndexesInRange: range] withRowAnimation: UITableViewRowAnimationFade];
+		[self animateFromPredictions: old_predictions toPredictions: predictions];
 	}
+	
+	if (old_predictions)
+		[old_predictions release];
 	
 	[[UIApplication sharedApplication] setNetworkInUse: NO byObject: request];
 	[request release];
@@ -278,7 +476,7 @@
 				[ret setAccessoryType: UITableViewCellAccessoryNone];
 				return ret;
 			}
-			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]]];
+			return [self predictionsCellForTable: tableView withData: [predictions objectAtIndex: [indexPath row]] forVehicle: (stop == nil)];
 		case OBPS_ACTIONS:
 			switch ([indexPath row])
 			{
@@ -296,9 +494,7 @@
 
 - (NSIndexPath*) tableView: (UITableView*) tableView willSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
-	if ([indexPath section] == OBPS_ACTIONS)
-		return indexPath;
-	return nil;
+	return indexPath;
 }
 
 - (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
@@ -311,10 +507,66 @@
 		
 		// setup map
 		[map clearMap];
-		[map setStop: stop];
+		if (stop)
+		{
+			[map setStop: stop];
+		} else if (vehicle) {
+			NSDictionary* route = [[OTClient sharedClient] routeWithShortName: vehicle_route];
+			[map setVehicle: vehicle onRoute: route];
+			[route release];
+		}
+		
+		// remove the map from the stack, if it's there already
+		if ([self.navigationController.viewControllers containsObject: map])
+		{
+			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
+			[viewControllers removeObject: map];
+			[self.navigationController setViewControllers: viewControllers animated: NO];
+			[viewControllers release];
+		}
 		
 		// push onto stack
 		[self.navigationController pushViewController: map animated: YES];
+	} else if ([indexPath section] == OBPS_PREDICTIONS) {
+		// push on a new predictions view
+		OBPredictionsViewController* vc = [[OBPredictionsViewController alloc] initWithNibName: @"OBPredictionsViewController" bundle: nil];
+		if (vehicle)
+		{
+			// new view is a stop-view
+			NSDictionary* predstop = [[OTClient sharedClient] stop: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"stpid"]];
+			[vc setStop: predstop];
+			[predstop release];
+		} else {
+			// new view is a vehicle-view
+			[vc setVehicle: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"vid"]
+				   onRoute: [[predictions objectAtIndex: [indexPath row]] objectForKey: @"rtshort"]];
+		}
+		
+		// we could potentially be entering a loop of prediction views, so limit them
+		unsigned int num_predictions_views = 0;
+		UIViewController* first_prediction_view = nil;
+		for (UIViewController* controller in self.navigationController.viewControllers)
+		{
+			if ([controller isKindOfClass: [OBPredictionsViewController class]])
+			{
+				if (!first_prediction_view)
+					first_prediction_view = controller;
+				num_predictions_views++;
+			}
+		}
+		
+		// only allow so many prediction views at once, by removing the first if needed
+		if (num_predictions_views >= OSU_BUS_PREDICTIONS_DEPTH)
+		{
+			NSMutableArray* viewControllers = [self.navigationController.viewControllers mutableCopy];
+			[viewControllers removeObject: first_prediction_view];
+			[self.navigationController setViewControllers: viewControllers animated: NO];
+			[viewControllers release];
+		}
+		
+		[self.navigationController pushViewController: vc animated: YES];
+		
+		[vc release];
 	}
 	
 	[tableView deselectRowAtIndexPath: indexPath animated: YES];

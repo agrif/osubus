@@ -26,7 +26,9 @@ enum OBPredictionsActions
 @interface OBPredictionsViewController : OBTableViewController <OTRequestDelegate, UIActionSheetDelegate>
 {
 	NSDictionary* stop;
-	NSArray* predictions;
+	NSString* vehicle;
+	NSString* vehicle_route;
+	NSMutableArray* predictions;
 	NSArray* routes;
 	NSString* error_cell_text;
 	UIBarButtonItem* addButton;
@@ -37,6 +39,7 @@ enum OBPredictionsActions
 }
 
 - (void) setStop: (NSDictionary*) stopin;
+- (void) setVehicle: (NSString*) vehiclein onRoute: (NSString*) route;
 - (void) updateTimes: (NSTimer*) timer;
 - (void) toggleFavorite: (UIBarButtonItem*) button;
 - (void) actionSheet: (UIActionSheet*) actionSheet clickedButtonAtIndex: (NSInteger) buttonIndex;

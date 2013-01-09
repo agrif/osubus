@@ -12,6 +12,14 @@
 
 @class OBOverlayManager;
 @class OBStopAnnotation;
+@class OBVehicleAnnotation;
+
+@protocol OBMapViewAnnotation
+
+- (MKAnnotationView*) annotationViewForMap: (MKMapView*) mapView;
+- (NSObject*) visibilityKey;
+
+@end
 
 @interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
 {
@@ -31,10 +39,16 @@
 	NSMutableDictionary* activeRequests;
 	
 	OBStopAnnotation* primaryStopAnnotation;
+	OBVehicleAnnotation* primaryVehicleAnnotation;
+	NSString* primaryVehicleId;
+	NSDictionary* primaryVehicleRoute;
 	
 	// for initial zoom in hack
 	BOOL hasZoomedIn;
 	MKCoordinateRegion finalRegion;
+	
+	// vehicle update timer
+	NSTimer* refreshTimer;
 }
 
 @property (nonatomic, retain) IBOutlet MKMapView* map;
@@ -53,5 +67,8 @@
 - (void) clearMap;
 - (void) setRoute: (NSDictionary*) route enabled: (BOOL) enabled;
 - (void) setStop: (NSDictionary*) stop;
+- (void) setVehicle: (NSString*) vid onRoute: (NSDictionary*) route;
+
+- (void) updateVehicles: (NSTimer*) timer;
 
 @end
