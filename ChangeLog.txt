@@ -4,6 +4,20 @@ but they are *not* comprehensive. These are the lists that accompany
 any new releases.
 
 ##############
+### v1.2.0 ###
+##############
+
+Features:
+
+ * you can now click on a bus in the stop predictions view to get
+   predictions specific to that bus.
+
+ * busses now show up on the map.
+
+ * predictions now animate changes better, making it clearer which
+   predictions have changed.
+
+##############
 ### v1.1.1 ###
 ##############
 
