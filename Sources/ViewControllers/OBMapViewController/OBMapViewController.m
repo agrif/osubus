@@ -465,18 +465,21 @@
 		// getting vehicles for a selected route
 		
 		NSMutableArray* annotations = [stopAnnotations objectForKey: route];
+		NSMutableArray* annotations_filtered = [[NSMutableArray alloc] initWithCapacity: [annotations count]];
 		
-		// remove all vehicle annotations
-		[annotations filterUsingPredicate: [NSPredicate predicateWithBlock:
-											^BOOL(id object, NSDictionary* bindings)
-											{
-												if ([(NSObject*)object isKindOfClass: [OBVehicleAnnotation class]])
-												{
-													[map removeAnnotation: object];
-													return false;
-												}
-												return true;
-											}]];
+		for (NSObject* object in annotations)
+		{
+			if ([object isKindOfClass: [OBVehicleAnnotation class]])
+			{
+				[map removeAnnotation: object];
+			} else {
+				[annotations_filtered addObject: object];
+			}
+		}
+		
+		annotations = annotations_filtered;
+		[stopAnnotations setObject: annotations_filtered forKey: route];
+		[annotations release];
 		
 		// add new vehicles
 		for (NSDictionary* vehicle in vehicles)

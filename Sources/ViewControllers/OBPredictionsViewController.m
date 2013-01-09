@@ -188,7 +188,7 @@
 	}
 }
 
-- (void) animateFromPredictions: (NSMutableArray*) old toPredictions: (NSMutableArray*) new
+- (void) animateFromPredictions: (NSArray*) old toPredictions: (NSMutableArray*) new
 {
 	// helper for nice animations
 	
@@ -209,62 +209,94 @@
 	NSMutableArray* new_intersection = [[NSMutableArray alloc] init];
 	NSMutableArray* to_add = [[NSMutableArray alloc] init];
 	
+	NSUInteger i;
+	
 	if (old)
 	{
-		[old enumerateObjectsUsingBlock: ^(id prediction, NSUInteger i, BOOL* stop)
-		 {
-			 NSUInteger newidx = new ? [new indexOfObjectPassingTest: ^BOOL(id p, NSUInteger j, BOOL* stopinner)
-										{
-											return [[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]];
-										}] : NSNotFound;
-			 NSUInteger path[] = {0, i};
-			 if (newidx == NSNotFound)
-			 {
-				 [to_delete addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
-			 } else {
-				 [old_intersection addObject: [prediction objectForKey: @"id"]];
-				 // reloadRowsAtIndexPaths: always takes paths relative to the old info
-				 [intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
-			 }
-		 }];
+		i = 0;
+		for (NSDictionary* prediction in old)
+		{
+			NSUInteger newidx = NSNotFound;
+			if (new)
+			{
+				NSUInteger j = 0;
+				for (NSDictionary* p in new)
+				{
+					if ([[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]])
+					{
+						newidx = j;
+						break;
+					}
+					j++;
+				}
+			}
+			
+			NSUInteger path[] = {0, i};
+			if (newidx == NSNotFound)
+			{
+				[to_delete addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			} else {
+				[old_intersection addObject: [prediction objectForKey: @"id"]];
+				// reloadRowsAtIndexPaths: always takes paths relative to the old info
+				[intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			}
+			
+			i++;
+		}
 	}
 	
 	if (new)
 	{
-		[new enumerateObjectsUsingBlock: ^(id prediction, NSUInteger i, BOOL* stop)
-		 {
-			 NSUInteger oldidx = old ? [old indexOfObjectPassingTest: ^BOOL(id p, NSUInteger j, BOOL* stopinner)
-										{
-											return [[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]];
+		i = 0;
+		for (NSDictionary* prediction in new)
+		{
+			NSUInteger oldidx = NSNotFound;
+			if (old)
+			{
+				NSUInteger j = 0;
+				for (NSDictionary* p in old)
+				{
+					if ([[p objectForKey: @"id"] isEqual: [prediction objectForKey: @"id"]])
+					{
+						oldidx = j;
+						break;
+					}
+					j++;
+				}
+			}
 			
-										}] : NSNotFound;
-			 NSUInteger path[] = {0, i};
-			 if (oldidx == NSNotFound)
-			 {
-				 [to_add addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
-			 } else {
-				 [new_intersection addObject: [prediction objectForKey: @"id"]];
-				 [new_intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
-			 }
-		 }];
+			NSUInteger path[] = {0, i};
+			if (oldidx == NSNotFound)
+			{
+				[to_add addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			} else {
+				[new_intersection addObject: [prediction objectForKey: @"id"]];
+				[new_intersection_paths addObject: [NSIndexPath indexPathWithIndexes: path length: 2]];
+			}
+			
+			i++;
+		}
 	}
 	
 	// now figure out which cells switch places (meaning animate the change)
 	// and which cells simply change value
 	NSMutableArray* anim_paths = [[NSMutableArray alloc] init];
-	[intersection_paths enumerateObjectsUsingBlock: ^(id path, NSUInteger i, BOOL* stop)
-	 {
-		 if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
-		 {
-			 // only animate the value changing
-			 NSUInteger new_i = [[new_intersection_paths objectAtIndex: i] indexAtPosition: 1];
-			 UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
-			 [self animatePredictionsCell: cell withData: [new objectAtIndex: new_i]];
-		 } else {
-			 // needs to be animated
-			 [anim_paths addObject: path];
-		 }
-	 }];
+	i = 0;
+	for (NSIndexPath* path in intersection_paths)
+	{
+		if ([[old_intersection objectAtIndex: i] isEqual: [new_intersection objectAtIndex: i]])
+		{
+			// only animate the value changing
+			NSUInteger new_i = [[new_intersection_paths objectAtIndex: i] indexAtPosition: 1];
+			UITableViewCell* cell = [self.tableView cellForRowAtIndexPath: path];
+			[self animatePredictionsCell: cell withData: [new objectAtIndex: new_i]];
+		} else {
+			// needs to be animated
+			[anim_paths addObject: path];
+		}
+		
+		i++;
+	}
 		
 	// start animation block
 	[self.tableView	beginUpdates];
