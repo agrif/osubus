@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 {# APIv1 implementation of OSU TRIP getservicebulletins #}
 {% load markup %}
-{% load typogrify %}
+{% load typogrify_tags %}
 <bustime-response>
 {% for bulletin in bulletins %}
 	<sb>

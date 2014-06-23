@@ -4,7 +4,7 @@ from django.http import Http404
 from django.contrib.sites.models import Site
 from django.contrib.markup.templatetags.markup import markdown
 from django.contrib.auth.decorators import login_required
-from typogrify.templatetags.typogrify import typogrify
+from typogrify.templatetags.typogrify_tags import typogrify
 from osubus_extra.models import Screenshot, Bulletin, VersionBulletin, CacheDatabase, VersionStats
 import datetime
 
