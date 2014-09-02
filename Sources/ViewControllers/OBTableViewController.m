@@ -76,6 +76,8 @@
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: [data objectForKey: @"short"]];
 	[label setTextColor: [[data objectForKey: @"color"] colorFromHex]];
+	if (OSU_BUS_NEW_UI)
+		[label setShadowColor: [UIColor clearColor]];
 	
 	return cell;
 }
