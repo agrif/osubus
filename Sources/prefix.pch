@@ -16,6 +16,9 @@
 #define OSU_BUS_PREDICTIONS_COUNT 6
 #define OSU_BUS_PREDICTIONS_DEPTH 2
 
+// used to test if we're on the new iOS7+ UI
+#define OSU_BUS_NEW_UI (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>

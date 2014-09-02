@@ -93,6 +93,10 @@
 		D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AA9F12C918980085D5F9 /* pin-overlay.png */; };
 		D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D074AAA012C918980085D5F9 /* pin-overlay@2x.png */; };
 		D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */; };
+		D0A5DE0E19B5944700B05D97 /* buspin-overlay-new.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A5DE0C19B5944700B05D97 /* buspin-overlay-new.png */; };
+		D0A5DE0F19B5944700B05D97 /* buspin-overlay-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A5DE0D19B5944700B05D97 /* buspin-overlay-new@2x.png */; };
+		D0A5DE1219B5945B00B05D97 /* pin-overlay-new.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A5DE1019B5945B00B05D97 /* pin-overlay-new.png */; };
+		D0A5DE1319B5945B00B05D97 /* pin-overlay-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A5DE1119B5945B00B05D97 /* pin-overlay-new@2x.png */; };
 		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
@@ -249,6 +253,10 @@
 		D074AAB412C918F80085D5F9 /* pin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = pin.svg; sourceTree = "<group>"; };
 		D090A41D1432163000AD4C31 /* OBVehicleAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBVehicleAnnotation.h; sourceTree = "<group>"; };
 		D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBVehicleAnnotation.m; sourceTree = "<group>"; };
+		D0A5DE0C19B5944700B05D97 /* buspin-overlay-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-overlay-new.png"; sourceTree = "<group>"; };
+		D0A5DE0D19B5944700B05D97 /* buspin-overlay-new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-overlay-new@2x.png"; sourceTree = "<group>"; };
+		D0A5DE1019B5945B00B05D97 /* pin-overlay-new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay-new.png"; sourceTree = "<group>"; };
+		D0A5DE1119B5945B00B05D97 /* pin-overlay-new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay-new@2x.png"; sourceTree = "<group>"; };
 		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
 		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
@@ -515,6 +523,10 @@
 		D07358F312C38042004FC62C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D0A5DE1019B5945B00B05D97 /* pin-overlay-new.png */,
+				D0A5DE1119B5945B00B05D97 /* pin-overlay-new@2x.png */,
+				D0A5DE0C19B5944700B05D97 /* buspin-overlay-new.png */,
+				D0A5DE0D19B5944700B05D97 /* buspin-overlay-new@2x.png */,
 				D07358F412C38042004FC62C /* contact.png */,
 				D07358F512C38042004FC62C /* contact@2x.png */,
 				D07358F612C38042004FC62C /* info.png */,
@@ -668,16 +680,19 @@
 				D073592512C38042004FC62C /* Default.png in Resources */,
 				D073592612C38042004FC62C /* Icon-Small.png in Resources */,
 				D073592712C38042004FC62C /* Icon-Small@2x.png in Resources */,
+				D0A5DE1319B5945B00B05D97 /* pin-overlay-new@2x.png in Resources */,
 				D073592812C38042004FC62C /* Icon.png in Resources */,
 				D073592A12C38042004FC62C /* Icon@2x.png in Resources */,
 				D073592B12C38042004FC62C /* iTunesArtwork in Resources */,
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
+				D0A5DE0E19B5944700B05D97 /* buspin-overlay-new.png in Resources */,
 				D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */,
 				D074AAA112C918980085D5F9 /* pin-mask.png in Resources */,
 				D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */,
 				D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */,
+				D0A5DE0F19B5944700B05D97 /* buspin-overlay-new@2x.png in Resources */,
 				D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */,
 				D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */,
 				D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */,
@@ -685,6 +700,7 @@
 				D0B9D12C12DCE1E600D933C5 /* locate-active@2x.png in Resources */,
 				D0B9D12D12DCE1E600D933C5 /* locate.png in Resources */,
 				D0B9D12E12DCE1E600D933C5 /* locate.svg in Resources */,
+				D0A5DE1219B5945B00B05D97 /* pin-overlay-new.png in Resources */,
 				D0B9D12F12DCE1E600D933C5 /* locate@2x.png in Resources */,
 				D0B9D16912DCE7A300D933C5 /* favorites-add.png in Resources */,
 				D0B9D16A12DCE7A300D933C5 /* favorites-add@2x.png in Resources */,
