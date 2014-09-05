@@ -41,6 +41,7 @@
 	
 	[(UILabel*)[bulletinCell viewWithTag: 1] setText: @""];
 	[(UILabel*)[bulletinCell viewWithTag: 2] setText: @"Loading..."];
+	OSU_BUS_NEW_UI_FONTIFY((UILabel*)[bulletinCell viewWithTag: 1]);
 	
 	// setup header for our table view, so it looks nicer
 	UIView* tableHeaderView = [[UIView alloc] initWithFrame: CGRectMake(0.0, -1000.0, self.tableView.bounds.size.width, 1000.0)];

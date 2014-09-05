@@ -72,6 +72,7 @@
 	
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"long"]];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: [data objectForKey: @"short"]];
@@ -123,6 +124,7 @@
 	
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"name"]];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	
 	// set color bands and byline
 	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
@@ -195,6 +197,7 @@
 		stop = [[OTClient sharedClient] stop: [data objectForKey: @"stpid"]];
 	
 	label = (UILabel*)[cell viewWithTag: 1];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	if (vehicle)
 	{
 		[label setText: [stop objectForKey: @"name"]];
