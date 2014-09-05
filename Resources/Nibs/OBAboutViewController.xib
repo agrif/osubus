@@ -80,7 +80,7 @@ OSU Bus is NOT an official Ohio State University product; it was written indepen
                                 <textInputTraits key="textInputTraits"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
@@ -193,7 +193,7 @@ OSU Bus is NOT an official Ohio State University product; it was written indepen
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
@@ -239,7 +239,7 @@ OSU Bus is NOT an official Ohio State University product; it was written indepen
                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
