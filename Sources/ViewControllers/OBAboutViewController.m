@@ -11,7 +11,7 @@
 
 @implementation OBAboutViewController
 
-@synthesize tabBarController, versionLabel, licenseTextView;
+@synthesize tabs, versionLabel, licenseTextView;
 
 // called from background thread to set the text
 - (void) setLicenseText: (NSString*) text
@@ -32,11 +32,20 @@
 	[pool release];
 }
 
+- (void) loadView
+{
+	// do a little dance, since apparently UITabBarControllers don't like being loaded with nibs
+	[[NSBundle mainBundle] loadNibNamed: @"OBAboutViewController" owner: self options: nil];
+	[super loadView];
+}
+
 - (void) viewDidLoad
 {
 	[super viewDidLoad];
 	
-	[self.view addSubview: tabBarController.view];
+	NSLog(@"found tabs %@\n", tabs);
+	[self setViewControllers: tabs animated: NO];
+	[self setSelectedIndex: 0];
 	
 	NSString* db_ver = [[OTClient sharedClient] databaseVersion];
 	[versionLabel setText: [NSString stringWithFormat: @"Version: %s | Database: %@", OSU_BUS_VERSION, db_ver]];
@@ -48,7 +57,6 @@
 
 - (void) viewDidUnload
 {
-	//self.view = nil;
 	[super viewDidUnload];
 }
 

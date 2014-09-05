@@ -8,14 +8,14 @@
 
 @class OBTopViewController;
 
-@interface OBAboutViewController : UIViewController
+@interface OBAboutViewController : UITabBarController
 {
-	UITabBarController* tabBarController;
+	NSArray* tabs;
 	UILabel* versionLabel;
 	UITextView* licenseTextView;
 }
 
-@property (nonatomic, retain) IBOutlet UITabBarController* tabBarController;
+@property (nonatomic, retain) IBOutletCollection(UIViewController) NSArray* tabs;
 @property (nonatomic, retain) IBOutlet UILabel* versionLabel;
 @property (nonatomic, retain) IBOutlet UITextView* licenseTextView;
 

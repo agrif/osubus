@@ -624,7 +624,7 @@
 {
 	if (aboutViewController == nil)
 	{
-		aboutViewController = [[OBAboutViewController alloc] initWithNibName: @"OBAboutViewController" bundle: nil];
+		aboutViewController = [[OBAboutViewController alloc] init];
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];
