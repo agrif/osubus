@@ -10,10 +10,6 @@
 
 - (void) viewDidLoad
 {
-	// don't extend underneath translucent bars
-	if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-	
 	[super viewDidLoad];
 	if (bulletin)
 	{
