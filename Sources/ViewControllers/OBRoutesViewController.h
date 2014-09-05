@@ -23,6 +23,6 @@
 @property (nonatomic, readonly) NSArray* routes;
 @property (nonatomic, retain) id<OBRoutesViewDelegate> routesDelegate;
 
-- (IBAction) dismissModal;
+- (void) presentModallyOn: (UIViewController*) controller withDelegate: (id<OBRoutesViewDelegate>) delegate;
 
 @end

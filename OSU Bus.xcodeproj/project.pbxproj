@@ -13,7 +13,6 @@
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */; };
 		D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */; };
-		D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */; };
 		D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */ = {isa = PBXBuildFile; fileRef = D02AA09A12D223D8003E0F5A /* OBColorBandView.m */; };
 		D02AA80B1434E2AA00FBE924 /* buspin-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = D02AA8061434E2AA00FBE924 /* buspin-mask.png */; };
 		D02AA80C1434E2AA00FBE924 /* buspin-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D02AA8071434E2AA00FBE924 /* buspin-mask@2x.png */; };
@@ -129,7 +128,6 @@
 		D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		D017A36B12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NiceNetworkIndicator.h"; sourceTree = "<group>"; };
 		D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NiceNetworkIndicator.m"; sourceTree = "<group>"; };
-		D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBRoutesViewControllerModal.xib; sourceTree = "<group>"; };
 		D02AA09912D223D8003E0F5A /* OBColorBandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBColorBandView.h; path = OBOverlay/OBColorBandView.h; sourceTree = "<group>"; };
 		D02AA09A12D223D8003E0F5A /* OBColorBandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBColorBandView.m; path = OBOverlay/OBColorBandView.m; sourceTree = "<group>"; };
 		D02AA8061434E2AA00FBE924 /* buspin-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-mask.png"; sourceTree = "<group>"; };
@@ -574,7 +572,6 @@
 				D073590612C38042004FC62C /* OBStopsViewController.xib */,
 				D073590712C38042004FC62C /* OBTopViewController.xib */,
 				D062950912C38D3D0081391C /* OBMapViewController.xib */,
-				D020658512C505A500FCE372 /* OBRoutesViewControllerModal.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -692,7 +689,6 @@
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
 				D0A5DE0E19B5944700B05D97 /* buspin-overlay-new.png in Resources */,
-				D020658612C505A500FCE372 /* OBRoutesViewControllerModal.xib in Resources */,
 				D074AAA112C918980085D5F9 /* pin-mask.png in Resources */,
 				D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */,
 				D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */,
