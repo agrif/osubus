@@ -16,7 +16,9 @@
 		[self.navigationItem setTitle: [bulletin objectForKey: @"title"]];
 		
 		UIWebView* body = (UIWebView*)[self view];
-		[body loadHTMLString: [bulletin objectForKey: @"body"] baseURL: nil];
+		NSString* templated = [[NSString alloc] initWithFormat: @"<html><body style=\"font-family: '%@', 'Arial', 'Serif'\">%@</body></html>", (OSU_BUS_NEW_UI ? @"HelveticaNeue" : @"Helvetica"), [bulletin objectForKey: @"body"]];
+		[body loadHTMLString: templated baseURL: nil];
+		[templated release];
 	}
 	NSLog(@"OBBulletinViewController loaded");
 }
