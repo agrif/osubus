@@ -12,13 +12,13 @@
 @synthesize result;
 @synthesize error;
 
-- (id) initWithName: (NSString*) name arguments: (NSDictionary*) arguments delegate: (id<OTRequestDelegate>) requestDelegate;
+- (id) initWithName: (NSString*) name arguments: (NSDictionary*) arguments delegate: (NSObject<OTRequestDelegate>*) requestDelegate;
 {
 	if ([super init] == nil)
 		return nil;
 	
 	if (requestDelegate)
-		delegate = [(NSObject*)requestDelegate retain];
+		delegate = [requestDelegate retain];
 
 	NSURL* url = [[OTClient sharedClient] URLWithName: name arguments: arguments];
 
@@ -30,13 +30,13 @@
 	return self;
 }
 
-- (id) initCustomWithName: (NSString*) name arguments: (NSDictionary*) arguments delegate: (id<OTRequestDelegate>) requestDelegate;
+- (id) initCustomWithName: (NSString*) name arguments: (NSDictionary*) arguments delegate: (NSObject<OTRequestDelegate>*) requestDelegate;
 {
 	if ([super init] == nil)
 		return nil;
 	
 	if (requestDelegate)
-		delegate = [(NSObject*)requestDelegate retain];
+		delegate = [requestDelegate retain];
 	
 	NSURL* url = [[OTClient sharedClient] customURLWithName: name arguments: arguments];
 	

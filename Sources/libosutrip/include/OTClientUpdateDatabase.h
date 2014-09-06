@@ -15,7 +15,7 @@
 void initializeDB(FMDatabase* db);
 NSNumber* addPrettyName(FMDatabase* db, NSString* original);
 NSNumber* addRouteColor(FMDatabase* db, NSString* rt);
-void addStops(FMDatabase* db, int routeID, NSString* rt, int directionID, NSString* dir);
-void addDirections(FMDatabase* db, int routeID, NSString* rt);
+void addStops(FMDatabase* db, long long routeID, NSString* rt, long long directionID, NSString* dir);
+void addDirections(FMDatabase* db, long long routeID, NSString* rt);
 void addRoutes(FMDatabase* db);
 

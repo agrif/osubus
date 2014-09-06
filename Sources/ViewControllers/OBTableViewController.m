@@ -91,7 +91,7 @@
 	
 	NSMutableString* subtitle = [[NSMutableString alloc] init];
 	unsigned int i = 0;
-	unsigned int routeslen = [[stop objectForKey: @"routes"] count];
+	unsigned long routeslen = [[stop objectForKey: @"routes"] count];
 	for (NSDictionary* route in [stop objectForKey: @"routes"])
 	{
 		[colors addObject: [[route objectForKey: @"color"] colorFromHex]];
