@@ -12,8 +12,7 @@
 #import "UIApplication+NiceNetworkIndicator.h"
 #import "OBStopAnnotation.h"
 #import "OBVehicleAnnotation.h"
-#import "OBOverlayManager.h"
-#import "OBPolyline.h"
+#import "OBPatternOverlay.h"
 
 @implementation OBMapViewController
 
@@ -31,10 +30,6 @@
 	center.latitude = 39.999417;
 	center.longitude = -83.012639;
 	map.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.01, 0.01));
-	
-	// setup overlay manager
-	overlayManager = [[OBOverlayManager alloc] initWithMapView: map];
-	[map addAnnotation: overlayManager];
 	
 	// just a rough estimate of the number of routes to be displayed
 	stopAnnotations = [[NSMutableDictionary alloc] initWithCapacity: 5];
@@ -55,9 +50,6 @@
 	[activeRequests release];
 	
 	// primary{Stop,Vehicle}Annotation and primaryVehicle* is taken care of in clearMap
-
-	[map removeAnnotation: overlayManager];
-	[overlayManager release];
 	
 	self.toolbarItems = nil;
 	
@@ -251,10 +243,7 @@
 		// finally, release our array of annotations
 		[stopAnnotations removeObjectForKey: route];
 		
-		for (OBOverlay* overlay in [routeOverlays objectForKey: route])
-		{
-			[overlayManager removeOverlay: overlay];
-		}
+		[map removeOverlays: [routeOverlays objectForKey: route]];
 		[routeOverlays removeObjectForKey: route];
 		
 		for (OTRequest* req in [activeRequests allKeysForObject: route])
@@ -392,23 +381,13 @@
 		
 		for (NSDictionary* pattern in patterns)
 		{
-			NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
-			
-			for (NSDictionary* point in [pattern objectForKey: @"pt"])
-			{
-				CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
-				[points addObject: loc];
-				[loc release];
-			}
-			
-			OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
-			[points release];
+			OBPatternOverlay* polyline = [[OBPatternOverlay alloc] initWithPattern: pattern];
 			
 			polyline.polylineColor = [[route objectForKey: @"color"] colorFromHex];
 			polyline.polylineAlpha = 1.0;
 			
 			[overlays addObject: polyline];
-			[overlayManager addOverlay: polyline];
+			[map addOverlay: polyline];
 			[polyline release];
 		}
 		
@@ -490,13 +469,15 @@
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
 {
-	if (annotation == overlayManager)
-		return [overlayManager autorelease];
-	
 	if ([annotation conformsToProtocol: @protocol(OBMapViewAnnotation)])
 		return [(id<OBMapViewAnnotation>)annotation annotationViewForMap: map];
 	
 	return nil;
+}
+
+- (MKOverlayView*) mapView: (MKMapView*) mapView viewForOverlay: (id <MKOverlay>) overlay
+{
+	return (OBPatternOverlay*)overlay;
 }
 
 @end

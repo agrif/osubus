@@ -10,7 +10,6 @@
 #import "OTClient.h"
 #import "OBRoutesViewController.h"
 
-@class OBOverlayManager;
 @class OBStopAnnotation;
 @class OBVehicleAnnotation;
 
@@ -29,7 +28,6 @@
 	UIBarButtonItem* locateButton;
 	UIBarButtonItem* flexibleSpace;
 	UIBarButtonItem* actionButton;
-	OBOverlayManager* overlayManager;
 	
 	// maps route -> stop annotations array
 	NSMutableDictionary* stopAnnotations;

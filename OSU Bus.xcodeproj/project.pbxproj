@@ -57,8 +57,6 @@
 		D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D06293DF12C3856A0081391C /* OBTopViewController.m */; };
 		D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D062950912C38D3D0081391C /* OBMapViewController.xib */; };
 		D062951A12C38F850081391C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D062951912C38F850081391C /* MapKit.framework */; };
-		D06295C712C3CF8C0081391C /* OBOverlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D06295C412C3CF8C0081391C /* OBOverlayManager.m */; };
-		D06295C812C3CF8C0081391C /* OBPolyline.m in Sources */ = {isa = PBXBuildFile; fileRef = D06295C612C3CF8C0081391C /* OBPolyline.m */; };
 		D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */; };
 		D073591112C38042004FC62C /* cabs.db in Resources */ = {isa = PBXBuildFile; fileRef = D07358F212C38042004FC62C /* cabs.db */; };
 		D073591212C38042004FC62C /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = D07358F412C38042004FC62C /* contact.png */; };
@@ -105,6 +103,8 @@
 		D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976219C09FE000CAAB26 /* Icon-Small7.png */; };
 		D0A6976519C09FE000CAAB26 /* Icon-Small7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */; };
 		D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */; };
+		D0A6976B19C0D2AE00CAAB26 /* OBPatternOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976A19C0D2AE00CAAB26 /* OBPatternOverlay.m */; };
+		D0A6976E19C0DB0C00CAAB26 /* OBPolylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976D19C0DB0C00CAAB26 /* OBPolylineView.m */; };
 		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
@@ -122,7 +122,6 @@
 		D0B9D17712DCED4A00D933C5 /* favorites.svg in Resources */ = {isa = PBXBuildFile; fileRef = D0B9D17612DCED4A00D933C5 /* favorites.svg */; };
 		D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */ = {isa = PBXBuildFile; fileRef = D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */; };
 		D0C4149812B765A500510999 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0C4149712B765A500510999 /* QuartzCore.framework */; };
-		D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D12F8512CECF8E006086FA /* OBOverlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,10 +216,6 @@
 		D062940E12C386790081391C /* ReleaseChecklist.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReleaseChecklist.txt; sourceTree = "<group>"; };
 		D062950912C38D3D0081391C /* OBMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OBMapViewController.xib; sourceTree = "<group>"; };
 		D062951912C38F850081391C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		D06295C312C3CF8C0081391C /* OBOverlayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOverlayManager.h; sourceTree = "<group>"; };
-		D06295C412C3CF8C0081391C /* OBOverlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOverlayManager.m; sourceTree = "<group>"; };
-		D06295C512C3CF8C0081391C /* OBPolyline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPolyline.h; sourceTree = "<group>"; };
-		D06295C612C3CF8C0081391C /* OBPolyline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPolyline.m; sourceTree = "<group>"; };
 		D06579F312C926E800AB2874 /* UIImage+ScaleCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ScaleCompat.h"; sourceTree = "<group>"; };
 		D06579F412C926E800AB2874 /* UIImage+ScaleCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ScaleCompat.m"; sourceTree = "<group>"; };
 		D07358F212C38042004FC62C /* cabs.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = cabs.db; sourceTree = "<group>"; };
@@ -274,6 +269,10 @@
 		D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7@2x.png"; sourceTree = "<group>"; };
 		D0A6976619C0BA5200CAAB26 /* OBInsetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInsetLabel.h; sourceTree = "<group>"; };
 		D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInsetLabel.m; sourceTree = "<group>"; };
+		D0A6976919C0D2AE00CAAB26 /* OBPatternOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPatternOverlay.h; sourceTree = "<group>"; };
+		D0A6976A19C0D2AE00CAAB26 /* OBPatternOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPatternOverlay.m; sourceTree = "<group>"; };
+		D0A6976C19C0DB0C00CAAB26 /* OBPolylineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPolylineView.h; sourceTree = "<group>"; };
+		D0A6976D19C0DB0C00CAAB26 /* OBPolylineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPolylineView.m; sourceTree = "<group>"; };
 		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
 		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
@@ -295,8 +294,6 @@
 		D0BCBA3A12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ViewDidLoadPairing.h"; sourceTree = "<group>"; };
 		D0BCBA3B12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ViewDidLoadPairing.m"; sourceTree = "<group>"; };
 		D0C4149712B765A500510999 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		D0D12F8412CECF8E006086FA /* OBOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBOverlay.h; sourceTree = "<group>"; };
-		D0D12F8512CECF8E006086FA /* OBOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBOverlay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -405,7 +402,6 @@
 		D06293A312C3856A0081391C /* Extra */ = {
 			isa = PBXGroup;
 			children = (
-				D06295C212C3CF8C0081391C /* OBOverlay */,
 				D06293A412C3856A0081391C /* NSString+HexColor.h */,
 				D06293A512C3856A0081391C /* NSString+HexColor.m */,
 				D06293AA12C3856A0081391C /* UILabel+SetTextAnimated.h */,
@@ -432,6 +428,8 @@
 				D02AA09A12D223D8003E0F5A /* OBColorBandView.m */,
 				D0A6976619C0BA5200CAAB26 /* OBInsetLabel.h */,
 				D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */,
+				D0A6976C19C0DB0C00CAAB26 /* OBPolylineView.h */,
+				D0A6976D19C0DB0C00CAAB26 /* OBPolylineView.m */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -508,19 +506,6 @@
 				D06293DF12C3856A0081391C /* OBTopViewController.m */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		D06295C212C3CF8C0081391C /* OBOverlay */ = {
-			isa = PBXGroup;
-			children = (
-				D06295C312C3CF8C0081391C /* OBOverlayManager.h */,
-				D06295C412C3CF8C0081391C /* OBOverlayManager.m */,
-				D0D12F8412CECF8E006086FA /* OBOverlay.h */,
-				D0D12F8512CECF8E006086FA /* OBOverlay.m */,
-				D06295C512C3CF8C0081391C /* OBPolyline.h */,
-				D06295C612C3CF8C0081391C /* OBPolyline.m */,
-			);
-			path = OBOverlay;
 			sourceTree = "<group>";
 		};
 		D07358F112C38042004FC62C /* Resources */ = {
@@ -627,6 +612,8 @@
 				D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */,
 				D090A41D1432163000AD4C31 /* OBVehicleAnnotation.h */,
 				D090A41E1432163100AD4C31 /* OBVehicleAnnotation.m */,
+				D0A6976919C0D2AE00CAAB26 /* OBPatternOverlay.h */,
+				D0A6976A19C0D2AE00CAAB26 /* OBPatternOverlay.m */,
 			);
 			path = OBMapViewController;
 			sourceTree = "<group>";
@@ -772,6 +759,7 @@
 				D06293EA12C3856A0081391C /* OTRDirections.m in Sources */,
 				D06293EB12C3856A0081391C /* OTRequest.m in Sources */,
 				D06293EC12C3856A0081391C /* OTRPatterns.m in Sources */,
+				D0A6976E19C0DB0C00CAAB26 /* OBPolylineView.m in Sources */,
 				D06293ED12C3856A0081391C /* OTRPredictions.m in Sources */,
 				D06293EE12C3856A0081391C /* OTRRoutes.m in Sources */,
 				D06293EF12C3856A0081391C /* OTRServiceBulletins.m in Sources */,
@@ -779,6 +767,7 @@
 				D06293F112C3856A0081391C /* OTRTime.m in Sources */,
 				D06293F212C3856A0081391C /* OTRVehicles.m in Sources */,
 				D06293F312C3856A0081391C /* main.m in Sources */,
+				D0A6976B19C0D2AE00CAAB26 /* OBPatternOverlay.m in Sources */,
 				D06293F412C3856A0081391C /* OBAppDelegate.m in Sources */,
 				D06293F612C3856A0081391C /* OBAboutViewController.m in Sources */,
 				D06293F712C3856A0081391C /* OBBulletinsViewController.m in Sources */,
@@ -788,15 +777,12 @@
 				D06293FB12C3856A0081391C /* OBStopsViewController.m in Sources */,
 				D06293FC12C3856A0081391C /* OBTableViewController.m in Sources */,
 				D06293FD12C3856A0081391C /* OBTopViewController.m in Sources */,
-				D06295C712C3CF8C0081391C /* OBOverlayManager.m in Sources */,
-				D06295C812C3CF8C0081391C /* OBPolyline.m in Sources */,
 				D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */,
 				D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */,
 				D0BCBA3C12C8E0D000C40415 /* UIViewController+ViewDidLoadPairing.m in Sources */,
 				D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */,
 				D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */,
 				D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */,
-				D0D12F8612CECF8E006086FA /* OBOverlay.m in Sources */,
 				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
