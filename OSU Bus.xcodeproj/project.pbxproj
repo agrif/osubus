@@ -100,6 +100,10 @@
 		D0A6975A19BB4CD400CAAB26 /* Default7-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */; };
 		D0A6975B19BB4CD400CAAB26 /* Default7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975919BB4CD400CAAB26 /* Default7@2x.png */; };
 		D0A6975D19BB4DE300CAAB26 /* Default7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975C19BB4DE300CAAB26 /* Default7.png */; };
+		D0A6976019C09F2100CAAB26 /* Icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975E19C09F2100CAAB26 /* Icon7.png */; };
+		D0A6976119C09F2100CAAB26 /* Icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */; };
+		D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976219C09FE000CAAB26 /* Icon-Small7.png */; };
+		D0A6976519C09FE000CAAB26 /* Icon-Small7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */; };
 		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
@@ -263,6 +267,10 @@
 		D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-568h@2x.png"; sourceTree = "<group>"; };
 		D0A6975919BB4CD400CAAB26 /* Default7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7@2x.png"; sourceTree = "<group>"; };
 		D0A6975C19BB4DE300CAAB26 /* Default7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default7.png; sourceTree = "<group>"; };
+		D0A6975E19C09F2100CAAB26 /* Icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon7.png; sourceTree = "<group>"; };
+		D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon7@2x.png"; sourceTree = "<group>"; };
+		D0A6976219C09FE000CAAB26 /* Icon-Small7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7.png"; sourceTree = "<group>"; };
+		D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7@2x.png"; sourceTree = "<group>"; };
 		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
 		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
@@ -585,6 +593,10 @@
 		D073590812C38042004FC62C /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
+				D0A6976219C09FE000CAAB26 /* Icon-Small7.png */,
+				D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */,
+				D0A6975E19C09F2100CAAB26 /* Icon7.png */,
+				D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */,
 				D0A6975C19BB4DE300CAAB26 /* Default7.png */,
 				D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */,
 				D0A6975919BB4CD400CAAB26 /* Default7@2x.png */,
@@ -683,8 +695,10 @@
 				D073591E12C38042004FC62C /* OBPredictionsCell.xib in Resources */,
 				D073591F12C38042004FC62C /* OBPredictionsViewController.xib in Resources */,
 				D073592012C38042004FC62C /* OBRoutesCell.xib in Resources */,
+				D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */,
 				D073592112C38042004FC62C /* OBRoutesViewController.xib in Resources */,
 				D0A6975B19BB4CD400CAAB26 /* Default7@2x.png in Resources */,
+				D0A6976019C09F2100CAAB26 /* Icon7.png in Resources */,
 				D073592212C38042004FC62C /* OBStopsCell.xib in Resources */,
 				D073592312C38042004FC62C /* OBStopsViewController.xib in Resources */,
 				D073592412C38042004FC62C /* OBTopViewController.xib in Resources */,
@@ -702,12 +716,14 @@
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
 				D0A5DE0E19B5944700B05D97 /* buspin-overlay-new.png in Resources */,
 				D074AAA112C918980085D5F9 /* pin-mask.png in Resources */,
+				D0A6976119C09F2100CAAB26 /* Icon7@2x.png in Resources */,
 				D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */,
 				D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */,
 				D0A5DE0F19B5944700B05D97 /* buspin-overlay-new@2x.png in Resources */,
 				D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */,
 				D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */,
 				D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */,
+				D0A6976519C09FE000CAAB26 /* Icon-Small7@2x.png in Resources */,
 				D0B9D12B12DCE1E600D933C5 /* locate-active.png in Resources */,
 				D0B9D12C12DCE1E600D933C5 /* locate-active@2x.png in Resources */,
 				D0B9D12D12DCE1E600D933C5 /* locate.png in Resources */,
