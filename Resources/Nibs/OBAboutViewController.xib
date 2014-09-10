@@ -63,7 +63,7 @@
                 </viewController>
             </viewControllers>
         </navigationController>
-        <navigationController title="About" definesPresentationContext="YES" id="ceI-YZ-Bpu">
+        <navigationController title="About" id="ceI-YZ-Bpu">
             <tabBarItem key="tabBarItem" title="About" image="info.png" id="0Za-xE-CMu"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

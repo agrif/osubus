@@ -129,9 +129,9 @@
 	return idx;
 }
 
-- (UITableViewCell*) tableView: (UITableView*) tableView cellForRowAtIndexPath: (NSIndexPath*)indexPath
+- (UITableViewCell*) tableView: (UITableView*) lTableView cellForRowAtIndexPath: (NSIndexPath*)indexPath
 {
-	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier: @"UITableViewCell"];
+	UITableViewCell* cell = [lTableView dequeueReusableCellWithIdentifier: @"UITableViewCell"];
 	if (!cell)
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"UITableViewCell"] autorelease];
@@ -172,27 +172,27 @@
 	return nil;
 }
 
-- (UIView*) tableView: (UITableView*) tableView viewForHeaderInSection: (NSInteger) section
+- (UIView*) tableView: (UITableView*) lTableView viewForHeaderInSection: (NSInteger) section
 {
 	UIView* view = [headers objectAtIndex: section];
 	CGRect frame = view.frame;
-	frame.size.width = tableView.frame.size.width;
+	frame.size.width = lTableView.frame.size.width;
 	view.frame = frame;
 	[view sizeToFit];
 	[view retain];
 	return view;
 }
 
-- (CGFloat)tableView: (UITableView*) tableView heightForHeaderInSection: (NSInteger) section
+- (CGFloat)tableView: (UITableView*) lTableView heightForHeaderInSection: (NSInteger) section
 {
-	UIView* view = [self tableView: tableView viewForHeaderInSection: section];
+	UIView* view = [self tableView: lTableView viewForHeaderInSection: section];
 	NSUInteger height = view.frame.size.height;
 	[view release];
 	
 	return height;
 }
 
-- (void) tableView: (UITableView*) tableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
+- (void) tableView: (UITableView*) lTableView didSelectRowAtIndexPath: (NSIndexPath*) indexPath
 {
 	switch ([self normalIndexForIndexPath: indexPath])
 	{
@@ -223,7 +223,10 @@
 
 - (void) showEmail
 {
-	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: @"mailto:?to=griffith.637@osu.edu&subject=[OSU%20Bus]%20"]];
+	NSString* db_ver = [[OTClient sharedClient] databaseVersion];
+	NSString* url = [NSString stringWithFormat: @"mailto:?to=griffith.637@osu.edu&subject=[OSU%%20Bus%%20%s-%@]%%20", OSU_BUS_VERSION, db_ver];
+	
+	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 }
 
 - (void) showSource
