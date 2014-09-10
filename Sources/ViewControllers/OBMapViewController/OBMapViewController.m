@@ -15,8 +15,6 @@
 #import "OBOverlayManager.h"
 #import "OBPolyline.h"
 
-#define ZOOM_HACK_SCALE 1.5
-
 @implementation OBMapViewController
 
 @synthesize map, instructiveView;
@@ -32,15 +30,7 @@
 	CLLocationCoordinate2D center;
 	center.latitude = 39.999417;
 	center.longitude = -83.012639;
-	finalRegion = MKCoordinateRegionMake(center,
-										 MKCoordinateSpanMake(0.01, 0.01));
-	
-	// SETUP for map zoom hack
-	hasZoomedIn = NO;
-	MKCoordinateRegion outerRegion = finalRegion;
-	outerRegion.span.latitudeDelta *= ZOOM_HACK_SCALE;
-	outerRegion.span.longitudeDelta *= ZOOM_HACK_SCALE;
-	map.region = outerRegion;
+	map.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.01, 0.01));
 	
 	// setup overlay manager
 	overlayManager = [[OBOverlayManager alloc] initWithMapView: map];
@@ -79,15 +69,6 @@
 {
 	// Start the vehicle update timer
 	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateVehicles:) userInfo: nil repeats: YES];
-	
-	// FIXME better solution to this
-	// this block is a HACK that prevents a draw bug on iOS3.1
-	// but it doesn't look *too* bad... I guess
-	if (!hasZoomedIn)
-	{
-		[map setRegion: finalRegion animated: YES];
-		hasZoomedIn = YES;
-	}
 }
 
 - (void) viewDidDisappear: (BOOL) animated
@@ -324,13 +305,6 @@
 		// figure out if we should be animated
 		BOOL animated = self.navigationController.visibleViewController == self;
 		
-		if (!hasZoomedIn)
-		{
-			// modify zoom hack
-			finalRegion.center = primaryStopAnnotation.coordinate;
-			animated = NO;
-		}
-		
 		// set map region to be centered on new stop, and select it
 		[map setCenterCoordinate: primaryStopAnnotation.coordinate animated: animated];
 		[map selectAnnotation: primaryStopAnnotation animated: animated];
@@ -508,17 +482,9 @@
 		
 		if (zoomInOnAnnotation)
 		{
-			BOOL animated = YES;
-			if (!hasZoomedIn)
-			{
-				// modify zoom hack
-				finalRegion.center = primaryVehicleAnnotation.coordinate;
-				animated = NO;
-			}
-			
 			// set map region to be centered on new stop, and select it
-			[map setCenterCoordinate: primaryVehicleAnnotation.coordinate animated: animated];
-			[map selectAnnotation: primaryVehicleAnnotation animated: animated];
+			[map setCenterCoordinate: primaryVehicleAnnotation.coordinate animated: YES];
+			[map selectAnnotation: primaryVehicleAnnotation animated: YES];
 		}
 	}
 	

@@ -43,10 +43,6 @@
 	NSString* primaryVehicleId;
 	NSDictionary* primaryVehicleRoute;
 	
-	// for initial zoom in hack
-	BOOL hasZoomedIn;
-	MKCoordinateRegion finalRegion;
-	
 	// vehicle update timer
 	NSTimer* refreshTimer;
 }
