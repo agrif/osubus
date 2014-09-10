@@ -243,30 +243,10 @@
 		[instructiveView setHidden: YES];
 	} else {
 		// remove stops, overlays, request
-		
-		// FIXME better solution
-		// setup for iOS 3.1 retain bug fix (hack)
-		OBStopAnnotation* firstAnnotation = nil;
-		NSUInteger firstAnnotationRetainCount = 0;
-		NSUInteger nonFirstAnnotationRetainCount = 0;
-		
 		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: route])
 		{
-			if (firstAnnotation == nil)
-			{
-				// implement the iOS 3.1 fix hack
-				firstAnnotation = [annotation retain];
-				[map removeAnnotation: annotation];
-				firstAnnotationRetainCount = [annotation retainCount] - 1;
-			} else {
-				[map removeAnnotation: annotation];
-				nonFirstAnnotationRetainCount = [annotation retainCount];
-			}
+			[map removeAnnotation: annotation];
 		}
-		
-		// check if we didn't need the hack to begin with
-		if (firstAnnotationRetainCount == nonFirstAnnotationRetainCount && firstAnnotation)
-			[firstAnnotation release];
 		
 		// finally, release our array of annotations
 		[stopAnnotations removeObjectForKey: route];
