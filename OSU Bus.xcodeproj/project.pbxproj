@@ -104,6 +104,7 @@
 		D0A6976119C09F2100CAAB26 /* Icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */; };
 		D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976219C09FE000CAAB26 /* Icon-Small7.png */; };
 		D0A6976519C09FE000CAAB26 /* Icon-Small7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */; };
+		D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */; };
 		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
@@ -271,6 +272,8 @@
 		D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon7@2x.png"; sourceTree = "<group>"; };
 		D0A6976219C09FE000CAAB26 /* Icon-Small7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7.png"; sourceTree = "<group>"; };
 		D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7@2x.png"; sourceTree = "<group>"; };
+		D0A6976619C0BA5200CAAB26 /* OBInsetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInsetLabel.h; sourceTree = "<group>"; };
+		D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInsetLabel.m; sourceTree = "<group>"; };
 		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
 		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
@@ -427,6 +430,8 @@
 				D074AA5112C8FEC20085D5F9 /* OBPinView.m */,
 				D02AA09912D223D8003E0F5A /* OBColorBandView.h */,
 				D02AA09A12D223D8003E0F5A /* OBColorBandView.m */,
+				D0A6976619C0BA5200CAAB26 /* OBInsetLabel.h */,
+				D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */,
 			);
 			path = Extra;
 			sourceTree = "<group>";
@@ -795,6 +800,7 @@
 				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
+				D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */,
 				D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */,
 				D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */,
 			);

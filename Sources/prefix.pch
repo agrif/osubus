@@ -20,7 +20,8 @@
 #define OSU_BUS_NEW_UI (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
 
 // special font for ios7 table cells
-#define OSU_BUS_NEW_UI_FONT [UIFont fontWithName:@"HelveticaNeue-Light" size:18]
+#define OSU_BUS_NEW_UI_FONT_NAME @"HelveticaNeue-Light"
+#define OSU_BUS_NEW_UI_FONT [UIFont fontWithName: OSU_BUS_NEW_UI_FONT_NAME size: 18]
 #define OSU_BUS_NEW_UI_FONTIFY(label) do { if (OSU_BUS_NEW_UI) { (label).font = OSU_BUS_NEW_UI_FONT; } } while (NO)
 
 #ifdef __OBJC__

@@ -7,211 +7,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OBAboutViewController">
             <connections>
+                <outlet property="headerView" destination="2BF-s2-nAR" id="g8O-hw-qT0"/>
                 <outlet property="licenseTextView" destination="64" id="126"/>
-                <outlet property="versionLabel" destination="30" id="125"/>
+                <outlet property="tableView" destination="OK7-HD-VnQ" id="FrB-T7-QcM"/>
+                <outlet property="versionLabel" destination="1g2-5C-eff" id="ziJ-ZT-ysZ"/>
                 <outlet property="view" destination="cSV-Og-SQY" id="a7d-ga-iLT"/>
-                <outletCollection property="tabs" destination="8" id="MU5-8Z-gnX"/>
-                <outletCollection property="tabs" destination="13" id="jci-YP-KcO"/>
-                <outletCollection property="tabs" destination="20" id="976-du-9Wp"/>
+                <outletCollection property="tabs" destination="ceI-YZ-Bpu" id="7Ua-0W-Rw3"/>
+                <outletCollection property="tabs" destination="20" id="J6V-RS-vmT"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <navigationController title="About" id="8">
-            <view key="view" contentMode="scaleToFill" id="115">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            </view>
-            <extendedEdge key="edgesForExtendedLayout"/>
-            <tabBarItem key="tabBarItem" title="About" image="info.png" id="9"/>
-            <toolbarItems/>
-            <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <nil key="simulatedDestinationMetrics"/>
-            <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="12">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </navigationBar>
-            <viewControllers>
-                <viewController id="10">
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="25" customClass="OBGradientView">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="an iPhone client for the OSU" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="28">
-                                <rect key="frame" x="20" y="7" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="center" text="Version: 1.0 | Database: 28-02-2010" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="30">
-                                <rect key="frame" x="20" y="78" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <color key="textColor" white="0.25" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Transportation Route Information Program" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumFontSize="10" id="29">
-                                <rect key="frame" x="34" y="26" width="251" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
-                                <color key="textColor" red="0.41892117000000001" green="0.0" blue="0.0095368885" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="written by Aaron Griffith" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumFontSize="10" id="31">
-                                <rect key="frame" x="34" y="97" width="251" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                <color key="textColor" red="0.41892117000000001" green="0.0" blue="0.0095368885" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" editable="NO" id="35">
-                                <rect key="frame" x="0.0" y="123" width="320" height="313"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
-                                <string key="text">OSU Bus is offered free of charge to those who find it useful, and its source is freely available as well. However, iPhone development is not free. If you like this App and use it often, consider donating the few bucks you would have spent for a non-free App. See the "Contact" tab for details.
-
-This program uses data from the OSU TRIP program, as well as code from some open-source projects. See the "Licenses" tab for details.
-
-OSU Bus is NOT an official Ohio State University product; it was written independently by a student.</string>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="OSU Bus" id="11">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="36">
-                            <connections>
-                                <action selector="hideAboutView:" destination="-1" id="131"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <nil key="simulatedDestinationMetrics"/>
-                </viewController>
-            </viewControllers>
-            <toolbar key="toolbar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="132">
-                <rect key="frame" x="0.0" y="416" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </toolbar>
-        </navigationController>
-        <navigationController title="Contact" id="13">
-            <extendedEdge key="edgesForExtendedLayout"/>
-            <tabBarItem key="tabBarItem" title="Contact" image="contact.png" id="14"/>
-            <toolbarItems/>
-            <nil key="simulatedStatusBarMetrics"/>
-            <nil key="simulatedTopBarMetrics"/>
-            <nil key="simulatedBottomBarMetrics"/>
-            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-            <nil key="simulatedDestinationMetrics"/>
-            <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="17">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </navigationBar>
-            <viewControllers>
-                <viewController id="15">
-                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="50" customClass="OBGradientView">
-                        <rect key="frame" x="0.0" y="44" width="320" height="436"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Do you like OSU Bus? Have ideas for the next version? Found a bug you want fixed? I would love to hear from you." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" minimumFontSize="10" id="53">
-                                <rect key="frame" x="20" y="22" width="280" height="67"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="OSU Bus is free software. Its source is distributed under the GNU GPL version 2." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" minimumFontSize="10" id="57">
-                                <rect key="frame" x="20" y="207" width="280" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="iPhone development is not free, but this App is. Donations are always appreciated!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" minimumFontSize="10" id="58">
-                                <rect key="frame" x="20" y="319" width="280" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="54" customClass="OBGradientButton">
-                                <rect key="frame" x="20" y="99" width="280" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="email: griffith.637@osu.edu">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showEmail" destination="-1" eventType="touchUpInside" id="128"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="55" customClass="OBGradientButton">
-                                <rect key="frame" x="20" y="152" width="280" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="http://osubus.gamma-level.com/">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showWebsite" destination="-1" eventType="touchUpInside" id="130"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="52" customClass="OBGradientButton">
-                                <rect key="frame" x="20" y="368" width="280" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="Donate!">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showDonate" destination="-1" eventType="touchUpInside" id="127"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="56" customClass="OBGradientButton">
-                                <rect key="frame" x="20" y="266" width="280" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal" title="Browse the Source">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showSource" destination="-1" eventType="touchUpInside" id="129"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Contact" id="16">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="37">
-                            <connections>
-                                <action selector="hideAboutView:" destination="-1" id="133"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <nil key="simulatedDestinationMetrics"/>
-                </viewController>
-            </viewControllers>
-        </navigationController>
         <navigationController title="Licenses" id="20">
             <extendedEdge key="edgesForExtendedLayout"/>
             <tabBarItem key="tabBarItem" title="Licenses" image="licenses.png" id="21"/>
@@ -258,15 +63,85 @@ OSU Bus is NOT an official Ohio State University product; it was written indepen
                 </viewController>
             </viewControllers>
         </navigationController>
+        <navigationController title="About" definesPresentationContext="YES" id="ceI-YZ-Bpu">
+            <tabBarItem key="tabBarItem" title="About" image="info.png" id="0Za-xE-CMu"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <navigationBar key="navigationBar" contentMode="scaleToFill" id="lid-BV-BcB">
+                <autoresizingMask key="autoresizingMask"/>
+            </navigationBar>
+            <viewControllers>
+                <viewController id="UNS-Zu-aQn">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OK7-HD-VnQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="-1" id="56o-Ie-dO9"/>
+                            <outlet property="delegate" destination="-1" id="dNv-1A-ez5"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="About" id="pUl-Vn-6eQ">
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="pDt-wi-5my">
+                            <connections>
+                                <action selector="hideAboutView:" destination="-1" id="xpf-IQ-DSb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <nil key="simulatedDestinationMetrics"/>
+                </viewController>
+            </viewControllers>
+        </navigationController>
         <view contentMode="scaleToFill" id="cSV-Og-SQY">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
+        <view opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="2BF-s2-nAR" userLabel="Header View">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="center" text="Version: 1.0 | Database: 28-02-2010" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="1g2-5C-eff">
+                    <rect key="frame" x="20" y="91" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.25" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="Transportation Route Information Program" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumFontSize="10" id="jCw-9f-kr7">
+                    <rect key="frame" x="34" y="39" width="251" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.41892117000000001" green="0.0" blue="0.0095368885" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="an iPhone client for the OSU" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="71O-TW-cTn">
+                    <rect key="frame" x="20" y="20" width="280" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" text="written by Aaron Griffith" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" minimumFontSize="10" id="Fu5-et-dCq">
+                    <rect key="frame" x="34" y="110" width="251" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.41892117000000001" green="0.0" blue="0.0095368885" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
     </objects>
     <resources>
-        <image name="contact.png" width="24" height="24"/>
         <image name="info.png" width="24" height="24"/>
         <image name="licenses.png" width="24" height="24"/>
     </resources>
