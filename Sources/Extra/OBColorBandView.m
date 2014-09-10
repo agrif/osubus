@@ -128,7 +128,7 @@
 	{
 		if (bandViews)
 		{
-			for (OBGradientView* view in bandViews)
+			for (UIView* view in bandViews)
 			{
 				[view removeFromSuperview];
 			}
@@ -144,7 +144,14 @@
 		
 		for (UIColor* color in colors)
 		{
-			OBGradientView* newView = [[OBGradientView alloc] initWithFrame: [self createSubviewRect: i]];
+			UIView* newView;
+			// use gradient views only for old UI
+			if (OSU_BUS_NEW_UI)
+			{
+				newView = [[UIView alloc] initWithFrame: [self createSubviewRect: i]];
+			} else {
+				newView = [[OBGradientView alloc] initWithFrame: [self createSubviewRect: i]];
+			}
 			newView.backgroundColor = color;
 			[self addSubview: newView];
 			
@@ -155,7 +162,7 @@
 		
 		colorsHaveChanged = NO;
 	} else {
-		for (OBGradientView* view in bandViews)
+		for (UIView* view in bandViews)
 		{
 			view.frame = [self createSubviewRect: i];
 			i++;

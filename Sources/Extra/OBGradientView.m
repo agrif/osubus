@@ -36,7 +36,7 @@
 	size_t num_locations = 2;
 	CGFloat locations[2] = { 0.0, 1.0 };
 	CGFloat components[8] = {
-		1.0, 1.0, 1.0, OSU_BUS_NEW_UI ? 0.00 : 0.45, // start color
+		1.0, 1.0, 1.0, 0.45, // start color
 		1.0, 1.0, 1.0, 0.00, // end color
 	};
 	

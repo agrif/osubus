@@ -46,7 +46,7 @@
 	// setup header for our table view, so it looks nicer
 	UIView* tableHeaderView = [[UIView alloc] initWithFrame: CGRectMake(0.0, -1000.0, self.tableView.bounds.size.width, 1000.0)];
 	tableHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	[tableHeaderView setBackgroundColor: [UIColor colorWithWhite: (OSU_BUS_NEW_UI ? 0.85 : 0.92) alpha: 1.0]];
+	[tableHeaderView setBackgroundColor: [UIColor colorWithWhite: 0.92 alpha: 1.0]];
 	[self.tableView addSubview: tableHeaderView];
 	[tableHeaderView release];
 	
