@@ -13,7 +13,6 @@
 		D00374A71139EF0500053FCB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D00374A61139EF0400053FCB /* libsqlite3.dylib */; };
 		D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */; };
 		D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */; };
-		D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */ = {isa = PBXBuildFile; fileRef = D02AA09A12D223D8003E0F5A /* OBColorBandView.m */; };
 		D02AA80B1434E2AA00FBE924 /* buspin-mask.png in Resources */ = {isa = PBXBuildFile; fileRef = D02AA8061434E2AA00FBE924 /* buspin-mask.png */; };
 		D02AA80C1434E2AA00FBE924 /* buspin-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D02AA8071434E2AA00FBE924 /* buspin-mask@2x.png */; };
 		D02AA80D1434E2AA00FBE924 /* buspin-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = D02AA8081434E2AA00FBE924 /* buspin-overlay.png */; };
@@ -105,6 +104,7 @@
 		D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */; };
 		D0A6976B19C0D2AE00CAAB26 /* OBPatternOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976A19C0D2AE00CAAB26 /* OBPatternOverlay.m */; };
 		D0A6976E19C0DB0C00CAAB26 /* OBPolylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6976D19C0DB0C00CAAB26 /* OBPolylineView.m */; };
+		D0A6977119C0E01000CAAB26 /* OBColorBandView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A6977019C0E01000CAAB26 /* OBColorBandView.m */; };
 		D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */; };
 		D0AF5DF112C5119A00813A24 /* OBMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF012C5119A00813A24 /* OBMapViewController.m */; };
 		D0AF5DF612C5129100813A24 /* OBStopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D0AF5DF512C5129100813A24 /* OBStopAnnotation.m */; };
@@ -135,8 +135,6 @@
 		D017A33812DB600E006A060E /* MKMapView+ZoomLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+ZoomLevel.m"; sourceTree = "<group>"; };
 		D017A36B12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+NiceNetworkIndicator.h"; sourceTree = "<group>"; };
 		D017A36C12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+NiceNetworkIndicator.m"; sourceTree = "<group>"; };
-		D02AA09912D223D8003E0F5A /* OBColorBandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OBColorBandView.h; path = OBOverlay/OBColorBandView.h; sourceTree = "<group>"; };
-		D02AA09A12D223D8003E0F5A /* OBColorBandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OBColorBandView.m; path = OBOverlay/OBColorBandView.m; sourceTree = "<group>"; };
 		D02AA8061434E2AA00FBE924 /* buspin-mask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-mask.png"; sourceTree = "<group>"; };
 		D02AA8071434E2AA00FBE924 /* buspin-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-mask@2x.png"; sourceTree = "<group>"; };
 		D02AA8081434E2AA00FBE924 /* buspin-overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-overlay.png"; sourceTree = "<group>"; };
@@ -273,6 +271,8 @@
 		D0A6976A19C0D2AE00CAAB26 /* OBPatternOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPatternOverlay.m; sourceTree = "<group>"; };
 		D0A6976C19C0DB0C00CAAB26 /* OBPolylineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBPolylineView.h; sourceTree = "<group>"; };
 		D0A6976D19C0DB0C00CAAB26 /* OBPolylineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBPolylineView.m; sourceTree = "<group>"; };
+		D0A6976F19C0E01000CAAB26 /* OBColorBandView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBColorBandView.h; sourceTree = "<group>"; };
+		D0A6977019C0E01000CAAB26 /* OBColorBandView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBColorBandView.m; sourceTree = "<group>"; };
 		D0ABB0ED16265DE900B3C2E8 /* UIViewController+PresentingCompat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+PresentingCompat.h"; sourceTree = "<group>"; };
 		D0ABB0EE16265DE900B3C2E8 /* UIViewController+PresentingCompat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+PresentingCompat.m"; sourceTree = "<group>"; };
 		D0AF5DEF12C5119A00813A24 /* OBMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBMapViewController.h; sourceTree = "<group>"; };
@@ -402,6 +402,8 @@
 		D06293A312C3856A0081391C /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				D0A6976F19C0E01000CAAB26 /* OBColorBandView.h */,
+				D0A6977019C0E01000CAAB26 /* OBColorBandView.m */,
 				D06293A412C3856A0081391C /* NSString+HexColor.h */,
 				D06293A512C3856A0081391C /* NSString+HexColor.m */,
 				D06293AA12C3856A0081391C /* UILabel+SetTextAnimated.h */,
@@ -424,8 +426,6 @@
 				D06293A912C3856A0081391C /* OBGradientView.m */,
 				D074AA5012C8FEC20085D5F9 /* OBPinView.h */,
 				D074AA5112C8FEC20085D5F9 /* OBPinView.m */,
-				D02AA09912D223D8003E0F5A /* OBColorBandView.h */,
-				D02AA09A12D223D8003E0F5A /* OBColorBandView.m */,
 				D0A6976619C0BA5200CAAB26 /* OBInsetLabel.h */,
 				D0A6976719C0BA5200CAAB26 /* OBInsetLabel.m */,
 				D0A6976C19C0DB0C00CAAB26 /* OBPolylineView.h */,
@@ -769,6 +769,7 @@
 				D06293F312C3856A0081391C /* main.m in Sources */,
 				D0A6976B19C0D2AE00CAAB26 /* OBPatternOverlay.m in Sources */,
 				D06293F412C3856A0081391C /* OBAppDelegate.m in Sources */,
+				D0A6977119C0E01000CAAB26 /* OBColorBandView.m in Sources */,
 				D06293F612C3856A0081391C /* OBAboutViewController.m in Sources */,
 				D06293F712C3856A0081391C /* OBBulletinsViewController.m in Sources */,
 				D06293F812C3856A0081391C /* OBBulletinViewController.m in Sources */,
@@ -783,7 +784,6 @@
 				D074AA5212C8FEC20085D5F9 /* OBPinView.m in Sources */,
 				D06579F512C926E800AB2874 /* UIImage+ScaleCompat.m in Sources */,
 				D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */,
-				D02AA09B12D223D8003E0F5A /* OBColorBandView.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
 				D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */,
