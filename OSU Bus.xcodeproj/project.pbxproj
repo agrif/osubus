@@ -22,6 +22,24 @@
 		D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B1B7612CBB6790046BE86 /* Default@2x.png */; };
 		D03FB6E919C23C4400718C06 /* Default7-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */; };
 		D03FB6EA19C23C4400718C06 /* Default7-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */; };
+		D03FB6EF19C3B5B400718C06 /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6EB19C3B5B400718C06 /* Icon-Small@3x.png */; };
+		D03FB6F019C3B5B400718C06 /* Icon-Small7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6EC19C3B5B400718C06 /* Icon-Small7@3x.png */; };
+		D03FB6F119C3B5B400718C06 /* Icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6ED19C3B5B400718C06 /* Icon@3x.png */; };
+		D03FB6F219C3B5B400718C06 /* Icon7@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6EE19C3B5B400718C06 /* Icon7@3x.png */; };
+		D03FB70119C3B5CF00718C06 /* buspin-mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F319C3B5CF00718C06 /* buspin-mask@3x.png */; };
+		D03FB70219C3B5CF00718C06 /* buspin-overlay-new@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F419C3B5CF00718C06 /* buspin-overlay-new@3x.png */; };
+		D03FB70319C3B5CF00718C06 /* buspin-overlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F519C3B5CF00718C06 /* buspin-overlay@3x.png */; };
+		D03FB70419C3B5CF00718C06 /* favorites-add@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F619C3B5CF00718C06 /* favorites-add@3x.png */; };
+		D03FB70519C3B5CF00718C06 /* favorites-remove@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F719C3B5CF00718C06 /* favorites-remove@3x.png */; };
+		D03FB70619C3B5CF00718C06 /* info.svg in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F819C3B5CF00718C06 /* info.svg */; };
+		D03FB70719C3B5CF00718C06 /* info@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6F919C3B5CF00718C06 /* info@3x.png */; };
+		D03FB70819C3B5CF00718C06 /* licenses.svg in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FA19C3B5CF00718C06 /* licenses.svg */; };
+		D03FB70919C3B5CF00718C06 /* licenses@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FB19C3B5CF00718C06 /* licenses@3x.png */; };
+		D03FB70A19C3B5CF00718C06 /* locate-active@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FC19C3B5CF00718C06 /* locate-active@3x.png */; };
+		D03FB70B19C3B5CF00718C06 /* locate@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FD19C3B5CF00718C06 /* locate@3x.png */; };
+		D03FB70C19C3B5CF00718C06 /* pin-mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FE19C3B5CF00718C06 /* pin-mask@3x.png */; };
+		D03FB70D19C3B5CF00718C06 /* pin-overlay-new@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FF19C3B5CF00718C06 /* pin-overlay-new@3x.png */; };
+		D03FB70E19C3B5CF00718C06 /* pin-overlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB70019C3B5CF00718C06 /* pin-overlay@3x.png */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -144,6 +162,24 @@
 		D03B1B7612CBB6790046BE86 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-667h@2x.png"; sourceTree = "<group>"; };
 		D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-736h@3x.png"; sourceTree = "<group>"; };
+		D03FB6EB19C3B5B400718C06 /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		D03FB6EC19C3B5B400718C06 /* Icon-Small7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7@3x.png"; sourceTree = "<group>"; };
+		D03FB6ED19C3B5B400718C06 /* Icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@3x.png"; sourceTree = "<group>"; };
+		D03FB6EE19C3B5B400718C06 /* Icon7@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon7@3x.png"; sourceTree = "<group>"; };
+		D03FB6F319C3B5CF00718C06 /* buspin-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-mask@3x.png"; sourceTree = "<group>"; };
+		D03FB6F419C3B5CF00718C06 /* buspin-overlay-new@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-overlay-new@3x.png"; sourceTree = "<group>"; };
+		D03FB6F519C3B5CF00718C06 /* buspin-overlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buspin-overlay@3x.png"; sourceTree = "<group>"; };
+		D03FB6F619C3B5CF00718C06 /* favorites-add@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites-add@3x.png"; sourceTree = "<group>"; };
+		D03FB6F719C3B5CF00718C06 /* favorites-remove@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "favorites-remove@3x.png"; sourceTree = "<group>"; };
+		D03FB6F819C3B5CF00718C06 /* info.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = info.svg; sourceTree = "<group>"; };
+		D03FB6F919C3B5CF00718C06 /* info@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@3x.png"; sourceTree = "<group>"; };
+		D03FB6FA19C3B5CF00718C06 /* licenses.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = licenses.svg; sourceTree = "<group>"; };
+		D03FB6FB19C3B5CF00718C06 /* licenses@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "licenses@3x.png"; sourceTree = "<group>"; };
+		D03FB6FC19C3B5CF00718C06 /* locate-active@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locate-active@3x.png"; sourceTree = "<group>"; };
+		D03FB6FD19C3B5CF00718C06 /* locate@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "locate@3x.png"; sourceTree = "<group>"; };
+		D03FB6FE19C3B5CF00718C06 /* pin-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-mask@3x.png"; sourceTree = "<group>"; };
+		D03FB6FF19C3B5CF00718C06 /* pin-overlay-new@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay-new@3x.png"; sourceTree = "<group>"; };
+		D03FB70019C3B5CF00718C06 /* pin-overlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay@3x.png"; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -525,6 +561,20 @@
 		D07358F312C38042004FC62C /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D03FB6F319C3B5CF00718C06 /* buspin-mask@3x.png */,
+				D03FB6F419C3B5CF00718C06 /* buspin-overlay-new@3x.png */,
+				D03FB6F519C3B5CF00718C06 /* buspin-overlay@3x.png */,
+				D03FB6F619C3B5CF00718C06 /* favorites-add@3x.png */,
+				D03FB6F719C3B5CF00718C06 /* favorites-remove@3x.png */,
+				D03FB6F819C3B5CF00718C06 /* info.svg */,
+				D03FB6F919C3B5CF00718C06 /* info@3x.png */,
+				D03FB6FA19C3B5CF00718C06 /* licenses.svg */,
+				D03FB6FB19C3B5CF00718C06 /* licenses@3x.png */,
+				D03FB6FC19C3B5CF00718C06 /* locate-active@3x.png */,
+				D03FB6FD19C3B5CF00718C06 /* locate@3x.png */,
+				D03FB6FE19C3B5CF00718C06 /* pin-mask@3x.png */,
+				D03FB6FF19C3B5CF00718C06 /* pin-overlay-new@3x.png */,
+				D03FB70019C3B5CF00718C06 /* pin-overlay@3x.png */,
 				D0A5DE1019B5945B00B05D97 /* pin-overlay-new.png */,
 				D0A5DE1119B5945B00B05D97 /* pin-overlay-new@2x.png */,
 				D0A5DE0C19B5944700B05D97 /* buspin-overlay-new.png */,
@@ -579,6 +629,10 @@
 		D073590812C38042004FC62C /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
+				D03FB6EB19C3B5B400718C06 /* Icon-Small@3x.png */,
+				D03FB6EC19C3B5B400718C06 /* Icon-Small7@3x.png */,
+				D03FB6ED19C3B5B400718C06 /* Icon@3x.png */,
+				D03FB6EE19C3B5B400718C06 /* Icon7@3x.png */,
 				D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */,
 				D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */,
 				D0A6976219C09FE000CAAB26 /* Icon-Small7.png */,
@@ -670,21 +724,30 @@
 			files = (
 				D073591112C38042004FC62C /* cabs.db in Resources */,
 				D073591412C38042004FC62C /* info.png in Resources */,
+				D03FB70619C3B5CF00718C06 /* info.svg in Resources */,
+				D03FB70719C3B5CF00718C06 /* info@3x.png in Resources */,
+				D03FB70219C3B5CF00718C06 /* buspin-overlay-new@3x.png in Resources */,
+				D03FB6F019C3B5B400718C06 /* Icon-Small7@3x.png in Resources */,
 				D073591512C38042004FC62C /* info@2x.png in Resources */,
 				D073591612C38042004FC62C /* licenses.png in Resources */,
 				D073591712C38042004FC62C /* licenses@2x.png in Resources */,
 				D073591912C38042004FC62C /* Licenses.txt in Resources */,
+				D03FB70919C3B5CF00718C06 /* licenses@3x.png in Resources */,
+				D03FB70D19C3B5CF00718C06 /* pin-overlay-new@3x.png in Resources */,
 				D073591A12C38042004FC62C /* MainWindow.xib in Resources */,
 				D073591B12C38042004FC62C /* OBAboutViewController.xib in Resources */,
+				D03FB70519C3B5CF00718C06 /* favorites-remove@3x.png in Resources */,
 				D073591C12C38042004FC62C /* OBBulletinsViewController.xib in Resources */,
 				D073591D12C38042004FC62C /* OBBulletinViewController.xib in Resources */,
 				D073591E12C38042004FC62C /* OBPredictionsCell.xib in Resources */,
+				D03FB70A19C3B5CF00718C06 /* locate-active@3x.png in Resources */,
 				D073591F12C38042004FC62C /* OBPredictionsViewController.xib in Resources */,
 				D073592012C38042004FC62C /* OBRoutesCell.xib in Resources */,
 				D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */,
 				D073592112C38042004FC62C /* OBRoutesViewController.xib in Resources */,
 				D0A6975B19BB4CD400CAAB26 /* Default7@2x.png in Resources */,
 				D0A6976019C09F2100CAAB26 /* Icon7.png in Resources */,
+				D03FB70B19C3B5CF00718C06 /* locate@3x.png in Resources */,
 				D073592212C38042004FC62C /* OBStopsCell.xib in Resources */,
 				D073592312C38042004FC62C /* OBStopsViewController.xib in Resources */,
 				D073592412C38042004FC62C /* OBTopViewController.xib in Resources */,
@@ -693,20 +756,29 @@
 				D073592612C38042004FC62C /* Icon-Small.png in Resources */,
 				D073592712C38042004FC62C /* Icon-Small@2x.png in Resources */,
 				D0A5DE1319B5945B00B05D97 /* pin-overlay-new@2x.png in Resources */,
+				D03FB70E19C3B5CF00718C06 /* pin-overlay@3x.png in Resources */,
 				D0A5DE1519B598A300B05D97 /* Default-568h@2x.png in Resources */,
 				D073592812C38042004FC62C /* Icon.png in Resources */,
+				D03FB70819C3B5CF00718C06 /* licenses.svg in Resources */,
 				D073592A12C38042004FC62C /* Icon@2x.png in Resources */,
 				D073592B12C38042004FC62C /* iTunesArtwork in Resources */,
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
+				D03FB6F119C3B5B400718C06 /* Icon@3x.png in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
+				D03FB70419C3B5CF00718C06 /* favorites-add@3x.png in Resources */,
+				D03FB6EF19C3B5B400718C06 /* Icon-Small@3x.png in Resources */,
 				D0A5DE0E19B5944700B05D97 /* buspin-overlay-new.png in Resources */,
 				D074AAA112C918980085D5F9 /* pin-mask.png in Resources */,
 				D0A6976119C09F2100CAAB26 /* Icon7@2x.png in Resources */,
 				D074AAA212C918980085D5F9 /* pin-mask@2x.png in Resources */,
 				D074AAA312C918980085D5F9 /* pin-overlay.png in Resources */,
+				D03FB70C19C3B5CF00718C06 /* pin-mask@3x.png in Resources */,
 				D0A5DE0F19B5944700B05D97 /* buspin-overlay-new@2x.png in Resources */,
 				D074AAA412C918980085D5F9 /* pin-overlay@2x.png in Resources */,
+				D03FB70119C3B5CF00718C06 /* buspin-mask@3x.png in Resources */,
+				D03FB6F219C3B5B400718C06 /* Icon7@3x.png in Resources */,
+				D03FB70319C3B5CF00718C06 /* buspin-overlay@3x.png in Resources */,
 				D0B3F4DB12CA988F00E9E5C8 /* ChangeLog.txt in Resources */,
 				D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */,
 				D0A6976519C09FE000CAAB26 /* Icon-Small7@2x.png in Resources */,

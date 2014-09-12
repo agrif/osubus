@@ -98,6 +98,7 @@ def timeser(n):
 
 Renderer.register('.png')(timeser(1))
 Renderer.register('@2x.png')(timeser(2))
+Renderer.register('@3x.png')(timeser(3))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Render OSU Bus icons from SVG. By default, renders only PNGs that are older than their source SVG, and tries to update all possible icons.')
