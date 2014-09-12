@@ -1,8 +1,13 @@
 import os.path
 import cairo
+import argparse
 from gi.repository import Rsvg as rsvg
 
+# Python 3!
+
 class Renderer:
+    only = []
+    force = False
     renderers = []
     @classmethod
     def register(cls, suffix):
@@ -14,6 +19,7 @@ class Renderer:
     def __init__(self, source):
         self.source = source
         self.destination = os.path.dirname(source)
+        self.mtime = os.path.getmtime(source)
         self.jobs = []
         self.svg = rsvg.Handle.new_from_file(source)
     
@@ -37,17 +43,28 @@ class Renderer:
             return (w, h, id, svg)
         return transformer
     
+    def _do_job_p(self, out):
+        try:
+            older = os.path.getmtime(os.path.join(self.destination, out)) < self.mtime
+        except FileNotFoundError:
+            older = True
+        allowed = (self.only == []) or (self.source in self.only)
+        force = self.force
+        return allowed and (older or force)
+    
     def render(self, out, **kwargs):
         transformer = self._get_transformer(**kwargs)
         
         for suffix, renderer in self.renderers:
-            self.jobs.append((out + suffix, transformer, renderer))
+            if self._do_job_p(out + suffix):
+                self.jobs.append((out + suffix, transformer, renderer))
     
     def render_raw(self, out, **kwargs):
         transformer = self._get_transformer(**kwargs)
         _, renderer = self.renderers[0]
         
-        self.jobs.append((out, transformer, renderer))
+        if self._do_job_p(out):
+            self.jobs.append((out, transformer, renderer))
     
     def __enter__(self):
         return self
@@ -83,6 +100,14 @@ Renderer.register('.png')(timeser(1))
 Renderer.register('@2x.png')(timeser(2))
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Render OSU Bus icons from SVG. By default, renders only PNGs that are older than their source SVG, and tries to update all possible icons.')
+    parser.add_argument('targets', metavar='TARGET', type=str, nargs='*', help='which SVGs to render')
+    parser.add_argument('-f', '--force', dest='force', action='store_const', const=True, default=False, help='ignore mtimes when rendering')
+    
+    args = parser.parse_args()
+    Renderer.force = args.force
+    Renderer.only = args.targets
+    
     with Renderer('Resources/Springboard/Icon.svg') as r:
         r.render('Icon', width=57)
         r.render('Icon7', width=60)
@@ -107,3 +132,9 @@ if __name__ == "__main__":
     with Renderer('Resources/Icons/locate.svg') as r:
         r.render('locate', id='#inactive')
         r.render('locate-active', id='#active')
+    
+    with Renderer('Resources/Icons/licenses.svg') as r:
+        r.render('licenses')
+    
+    with Renderer('Resources/Icons/info.svg') as r:
+        r.render('info')
