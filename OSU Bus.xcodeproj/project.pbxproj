@@ -20,6 +20,8 @@
 		D02AA80F1434E2AA00FBE924 /* buspin.svg in Resources */ = {isa = PBXBuildFile; fileRef = D02AA80A1434E2AA00FBE924 /* buspin.svg */; };
 		D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */; };
 		D03B1B7712CBB6790046BE86 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03B1B7612CBB6790046BE86 /* Default@2x.png */; };
+		D03FB6E919C23C4400718C06 /* Default7-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */; };
+		D03FB6EA19C23C4400718C06 /* Default7-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -96,7 +98,6 @@
 		D0A5DE1519B598A300B05D97 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A5DE1419B598A300B05D97 /* Default-568h@2x.png */; };
 		D0A6975A19BB4CD400CAAB26 /* Default7-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */; };
 		D0A6975B19BB4CD400CAAB26 /* Default7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975919BB4CD400CAAB26 /* Default7@2x.png */; };
-		D0A6975D19BB4DE300CAAB26 /* Default7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975C19BB4DE300CAAB26 /* Default7.png */; };
 		D0A6976019C09F2100CAAB26 /* Icon7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975E19C09F2100CAAB26 /* Icon7.png */; };
 		D0A6976119C09F2100CAAB26 /* Icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */; };
 		D0A6976419C09FE000CAAB26 /* Icon-Small7.png in Resources */ = {isa = PBXBuildFile; fileRef = D0A6976219C09FE000CAAB26 /* Icon-Small7.png */; };
@@ -143,6 +144,8 @@
 		D030E88612C95C8600B712A0 /* NSObject+Swizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Swizzle.h"; sourceTree = "<group>"; };
 		D030E88712C95C8600B712A0 /* NSObject+Swizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Swizzle.m"; sourceTree = "<group>"; };
 		D03B1B7612CBB6790046BE86 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-667h@2x.png"; sourceTree = "<group>"; };
+		D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-736h@3x.png"; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -260,7 +263,6 @@
 		D0A5DE1419B598A300B05D97 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7-568h@2x.png"; sourceTree = "<group>"; };
 		D0A6975919BB4CD400CAAB26 /* Default7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default7@2x.png"; sourceTree = "<group>"; };
-		D0A6975C19BB4DE300CAAB26 /* Default7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default7.png; sourceTree = "<group>"; };
 		D0A6975E19C09F2100CAAB26 /* Icon7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon7.png; sourceTree = "<group>"; };
 		D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon7@2x.png"; sourceTree = "<group>"; };
 		D0A6976219C09FE000CAAB26 /* Icon-Small7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small7.png"; sourceTree = "<group>"; };
@@ -583,11 +585,12 @@
 		D073590812C38042004FC62C /* Springboard */ = {
 			isa = PBXGroup;
 			children = (
+				D03FB6E719C23C4400718C06 /* Default7-667h@2x.png */,
+				D03FB6E819C23C4400718C06 /* Default7-736h@3x.png */,
 				D0A6976219C09FE000CAAB26 /* Icon-Small7.png */,
 				D0A6976319C09FE000CAAB26 /* Icon-Small7@2x.png */,
 				D0A6975E19C09F2100CAAB26 /* Icon7.png */,
 				D0A6975F19C09F2100CAAB26 /* Icon7@2x.png */,
-				D0A6975C19BB4DE300CAAB26 /* Default7.png */,
 				D0A6975819BB4CD400CAAB26 /* Default7-568h@2x.png */,
 				D0A6975919BB4CD400CAAB26 /* Default7@2x.png */,
 				D0A5DE1419B598A300B05D97 /* Default-568h@2x.png */,
@@ -679,7 +682,6 @@
 				D073591612C38042004FC62C /* licenses.png in Resources */,
 				D073591712C38042004FC62C /* licenses@2x.png in Resources */,
 				D073591912C38042004FC62C /* Licenses.txt in Resources */,
-				D0A6975D19BB4DE300CAAB26 /* Default7.png in Resources */,
 				D073591A12C38042004FC62C /* MainWindow.xib in Resources */,
 				D073591B12C38042004FC62C /* OBAboutViewController.xib in Resources */,
 				D073591C12C38042004FC62C /* OBBulletinsViewController.xib in Resources */,
@@ -730,7 +732,9 @@
 				D02AA80B1434E2AA00FBE924 /* buspin-mask.png in Resources */,
 				D02AA80C1434E2AA00FBE924 /* buspin-mask@2x.png in Resources */,
 				D02AA80D1434E2AA00FBE924 /* buspin-overlay.png in Resources */,
+				D03FB6E919C23C4400718C06 /* Default7-667h@2x.png in Resources */,
 				D02AA80E1434E2AA00FBE924 /* buspin-overlay@2x.png in Resources */,
+				D03FB6EA19C23C4400718C06 /* Default7-736h@3x.png in Resources */,
 				D02AA80F1434E2AA00FBE924 /* buspin.svg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
