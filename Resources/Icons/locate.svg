@@ -13,22 +13,13 @@
    height="24"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="locate.svg"
    inkscape:export-filename="/Users/agrif/devel/iphoneos/osubus/Resources/Icons/locate-active.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
-     id="defs4">
-    <filter
-       inkscape:collect="always"
-       id="filter3844">
-      <feGaussianBlur
-         inkscape:collect="always"
-         stdDeviation="0.80508475"
-         id="feGaussianBlur3846" />
-    </filter>
-  </defs>
+     id="defs4" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -37,7 +28,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="14.672466"
-     inkscape:cx="10.841367"
+     inkscape:cx="-1.2220448"
      inkscape:cy="11.198335"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -57,7 +48,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -69,7 +60,12 @@
     <path
        style="opacity:1;fill:#808080;fill-opacity:1;fill-rule:evenodd;stroke:none"
        d="m 12,1028.3622 c -6.6274171,0 -12,5.3726 -12,12 0,6.6274 5.3725829,12 12,12 6.627418,0 12,-5.3726 12,-12 0,-6.6274 -5.372582,-12 -12,-12 z m -1.2,2.475 0,4.725 2.4,0 0,-4.725 c 4.338733,0.5431 7.781827,3.9863 8.325,8.325 l -4.725,0 0,2.4 4.725,0 c -0.543173,4.3387 -3.986267,7.7819 -8.325,8.325 l 0,-4.725 -2.4,0 0,4.725 c -4.338733,-0.5431 -7.7818273,-3.9863 -8.325,-8.325 l 4.725,0 0,-2.4 -4.725,0 c 0.5431727,-4.3387 3.986267,-7.7819 8.325,-8.325 z"
-       id="path3753"
+       id="active"
        inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="inactive"
+       d="m 12,1028.3622 c -6.6274171,0 -12,5.3726 -12,12 0,6.6274 5.3725829,12 12,12 6.627418,0 12,-5.3726 12,-12 0,-6.6274 -5.372582,-12 -12,-12 z m -1.2,2.475 0,4.725 2.4,0 0,-4.725 c 4.338733,0.5431 7.781827,3.9863 8.325,8.325 l -4.725,0 0,2.4 4.725,0 c -0.543173,4.3387 -3.986267,7.7819 -8.325,8.325 l 0,-4.725 -2.4,0 0,4.725 c -4.338733,-0.5431 -7.7818273,-3.9863 -8.325,-8.325 l 4.725,0 0,-2.4 -4.725,0 c 0.5431727,-4.3387 3.986267,-7.7819 8.325,-8.325 z"
+       style="opacity:1;fill:#c0c0c0;fill-opacity:1;fill-rule:evenodd;stroke:none" />
   </g>
 </svg>

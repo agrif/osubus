@@ -13,7 +13,7 @@
    height="20"
    id="svg2"
    version="1.1"
-   inkscape:version="0.48.0 r9654"
+   inkscape:version="0.48.5 r10040"
    sodipodi:docname="favorites.svg"
    inkscape:export-filename="/Users/agrif/devel/iphoneos/osubus/Resources/Icons/favorites-remove.png"
    inkscape:export-xdpi="90"
@@ -25,7 +25,7 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="14.958333"
      inkscape:cx="12"
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -75,7 +75,7 @@
     <path
        style="font-size:medium;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-indent:0;text-align:start;text-decoration:none;line-height:normal;letter-spacing:normal;word-spacing:normal;text-transform:none;direction:ltr;block-progression:tb;writing-mode:lr-tb;text-anchor:start;baseline-shift:baseline;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.97399998;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Sans;-inkscape-font-specification:Sans"
        d="m 10.010953,1032.3622 -0.6133622,1.3119 -2.4972621,5.2704 -5.4983571,0.8515 L 0,1040.0032 l 1.007667,1.0127 3.9868567,4.0966 -0.9200439,5.7767 -0.2409639,1.473 1.2267251,-0.6905 4.950712,-2.7388 4.928806,2.7388 1.248631,0.6905 -0.240964,-1.473 -0.941949,-5.7767 4.008762,-4.0966 0.985761,-1.0127 -1.380066,-0.2072 -5.520263,-0.8515 -2.475355,-5.2704 -0.613364,-1.3119 z m 0,3.2682 2.015334,4.3037 0.153341,0.3453 0.350493,0.046 4.512596,0.6905 -3.263965,3.3372 -0.262869,0.2531 0.06572,0.3913 0.766704,4.695 -4.008763,-2.2094 -0.328587,-0.1841 -0.3285872,0.1841 -4.0087624,2.2094 0.7667032,-4.695 0.043812,-0.3913 -0.2409638,-0.2531 -3.263965,-3.3372 4.4906901,-0.6905 0.3723987,-0.046 0.1533404,-0.3453 2.015334,-4.3037 z"
-       id="path3759"
+       id="add"
        inkscape:connector-curvature="0"
        inkscape:export-filename="/Users/agrif/devel/iphoneos/osubus/Resources/Icons/favorites-remove.png"
        inkscape:export-xdpi="75"
