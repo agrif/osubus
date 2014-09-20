@@ -183,7 +183,7 @@
 
 - (IBAction) routesButtonPressed
 {
-	OBRoutesViewController* routesController = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewControllerModal" bundle: nil];
+	OBRoutesViewController* routesController = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewController" bundle: nil];
 	[routesController presentModallyOn: self.navigationController withDelegate:self];
 	[routesController release];
 }
