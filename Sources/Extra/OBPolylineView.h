@@ -6,8 +6,10 @@
 
 #import <MapKit/MapKit.h>
 
-@interface OBPolylineView : MKPolylineView
+@interface OBPolylineView : MKOverlayView
 {
+	MKPolyline* polyline;
+	
 	UIColor* polylineColor;
 	CGFloat polylineAlpha;
 	CGFloat polylineWidth;
@@ -15,10 +17,13 @@
 	CGFloat polylineBorderWidth;
 }
 
+@property (nonatomic, retain) MKPolyline* polyline;
 @property (nonatomic, retain) UIColor* polylineColor;
 @property (nonatomic, assign) CGFloat polylineAlpha;
 @property (nonatomic, assign) CGFloat polylineWidth;
 @property (nonatomic, retain) UIColor* polylineBorderColor;
 @property (nonatomic, assign) CGFloat polylineBorderWidth;
+
+- (instancetype) initWithPolyline: (MKPolyline*) pl;
 
 @end

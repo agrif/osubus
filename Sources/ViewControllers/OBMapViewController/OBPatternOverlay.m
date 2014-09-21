@@ -21,10 +21,10 @@
 		i++;
 	}
 	
-	MKPolyline* polyline = [MKPolyline polylineWithCoordinates: points count: count];
+	MKPolyline* pl = [MKPolyline polylineWithCoordinates: points count: count];
 	free(points);
 	
-	return [super initWithPolyline: polyline];
+	return [super initWithPolyline: pl];
 }
 
 - (MKMapRect) boundingMapRect
