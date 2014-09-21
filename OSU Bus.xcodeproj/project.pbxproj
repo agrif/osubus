@@ -40,6 +40,8 @@
 		D03FB70C19C3B5CF00718C06 /* pin-mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FE19C3B5CF00718C06 /* pin-mask@3x.png */; };
 		D03FB70D19C3B5CF00718C06 /* pin-overlay-new@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB6FF19C3B5CF00718C06 /* pin-overlay-new@3x.png */; };
 		D03FB70E19C3B5CF00718C06 /* pin-overlay@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D03FB70019C3B5CF00718C06 /* pin-overlay@3x.png */; };
+		D03FB71119CE773500718C06 /* OBInfoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FB71019CE773500718C06 /* OBInfoTableView.m */; };
+		D03FB71419CE861700718C06 /* About.xml in Resources */ = {isa = PBXBuildFile; fileRef = D03FB71219CE861600718C06 /* About.xml */; };
 		D062937E12C3820B0081391C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D062937D12C3820B0081391C /* Settings.bundle */; };
 		D062939112C383400081391C /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938612C383400081391C /* FMDatabase.m */; };
 		D062939212C383400081391C /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D062938812C383400081391C /* FMDatabaseAdditions.m */; };
@@ -180,6 +182,9 @@
 		D03FB6FE19C3B5CF00718C06 /* pin-mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-mask@3x.png"; sourceTree = "<group>"; };
 		D03FB6FF19C3B5CF00718C06 /* pin-overlay-new@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay-new@3x.png"; sourceTree = "<group>"; };
 		D03FB70019C3B5CF00718C06 /* pin-overlay@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin-overlay@3x.png"; sourceTree = "<group>"; };
+		D03FB70F19CE773500718C06 /* OBInfoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBInfoTableView.h; sourceTree = "<group>"; };
+		D03FB71019CE773500718C06 /* OBInfoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBInfoTableView.m; sourceTree = "<group>"; };
+		D03FB71219CE861600718C06 /* About.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = About.xml; sourceTree = "<group>"; };
 		D062937D12C3820B0081391C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D062938312C383400081391C /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		D062938412C383400081391C /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
@@ -436,6 +441,8 @@
 		D06293A312C3856A0081391C /* Extra */ = {
 			isa = PBXGroup;
 			children = (
+				D03FB70F19CE773500718C06 /* OBInfoTableView.h */,
+				D03FB71019CE773500718C06 /* OBInfoTableView.m */,
 				D0A6976F19C0E01000CAAB26 /* OBColorBandView.h */,
 				D0A6977019C0E01000CAAB26 /* OBColorBandView.m */,
 				D06293A412C3856A0081391C /* NSString+HexColor.h */,
@@ -554,6 +561,7 @@
 				D062939C12C383950081391C /* Entitlements.plist */,
 				D07358FB12C38042004FC62C /* Licenses.txt */,
 				D073591012C38042004FC62C /* UserDefaults.plist */,
+				D03FB71219CE861600718C06 /* About.xml */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				D073592A12C38042004FC62C /* Icon@2x.png in Resources */,
 				D073592B12C38042004FC62C /* iTunesArtwork in Resources */,
 				D073592C12C38042004FC62C /* UserDefaults.plist in Resources */,
+				D03FB71419CE861700718C06 /* About.xml in Resources */,
 				D03FB6F119C3B5B400718C06 /* Icon@3x.png in Resources */,
 				D062937E12C3820B0081391C /* Settings.bundle in Resources */,
 				D062950A12C38D3D0081391C /* OBMapViewController.xib in Resources */,
@@ -859,6 +868,7 @@
 				D030E88812C95C8600B712A0 /* NSObject+Swizzle.m in Sources */,
 				D017A33912DB600E006A060E /* MKMapView+ZoomLevel.m in Sources */,
 				D017A36D12DB79BD006A060E /* UIApplication+NiceNetworkIndicator.m in Sources */,
+				D03FB71119CE773500718C06 /* OBInfoTableView.m in Sources */,
 				D0A6976819C0BA5200CAAB26 /* OBInsetLabel.m in Sources */,
 				D090A41F1432163100AD4C31 /* OBVehicleAnnotation.m in Sources */,
 				D0ABB0EF16265DE900B3C2E8 /* UIViewController+PresentingCompat.m in Sources */,

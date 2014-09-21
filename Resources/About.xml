@@ -1,0 +1,9 @@
+<info>
+	<text>OSU Bus is offered free of charge to those who find it useful. However, iPhone development is not free. If you like this App and use it often, consider donating the few bucks you would have spent for a non-free App.</text>
+	<link action="donate">Donate!</link>
+	<text>Do you like OSU Bus? Have ideas for the next version? Found a bug you want fixed? I would love to hear from you.</text>
+	<link action="email">email: griffith.637@osu.edu</link>
+	<link action="website">http://osubus.rakeri.net/</link>
+	<text>This program uses data from the OSU TRIP program, as well as code from some open-source projects; see the "Licenses" tab for details. OSU Bus itself is free software: its source is distributed under the GNU GPL version 2.</text>
+	<link action="source">Browse the Source</link>
+</info>
