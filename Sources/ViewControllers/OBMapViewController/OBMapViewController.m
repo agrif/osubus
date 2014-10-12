@@ -139,6 +139,18 @@
 
 - (IBAction) locateButtonPressed
 {
+	if ([CLLocationManager respondsToSelector: @selector(authorizationStatus)] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+	{
+		CLLocationManager* manager = [[CLLocationManager alloc] init];
+		if ([manager respondsToSelector: @selector(requestWhenInUseAuthorization)])
+		{
+			[manager requestWhenInUseAuthorization];
+			[manager setDelegate: self];
+			return;
+		} else {
+			[manager release];
+		}
+	}
 	map.showsUserLocation = !map.showsUserLocation;
 	
 	if (map.showsUserLocation)
@@ -147,6 +159,15 @@
 	} else {
 		locateButton.image = [UIImage imageNamed: @"locate"];
 	}
+}
+
+- (void) locationManager: (CLLocationManager*) manager didChangeAuthorizationStatus: (CLAuthorizationStatus)status
+{
+	if (status == kCLAuthorizationStatusNotDetermined)
+		return;
+	
+	[manager autorelease];
+	[self locateButtonPressed];
 }
 
 - (void) openMapAppAtStop: (NSDictionary*) stop

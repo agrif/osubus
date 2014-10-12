@@ -77,6 +77,7 @@ enum OBTopSections
 - (void) updateBulletinCell: (NSTimer*) timer;
 - (void) saveFavorites;
 
+- (void) startNearMe;
 - (void) locationTimeout;
 
 - (IBAction) showAboutView: (id) sender;

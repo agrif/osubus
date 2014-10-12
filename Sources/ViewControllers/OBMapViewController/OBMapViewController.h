@@ -20,7 +20,7 @@
 
 @end
 
-@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
+@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate, CLLocationManagerDelegate>
 {
 	MKMapView* map;
 	UIView* instructiveView;

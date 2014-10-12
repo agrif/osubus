@@ -45,6 +45,8 @@
 	<string>MainWindow</string>
 	<key>SBUsesNetwork</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>OSU Bus uses your location to find stops near you, and to show your location on the Bus Map.</string>
 	<key>UILaunchImages</key>
 	<array>
 		<dict>

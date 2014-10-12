@@ -452,13 +452,7 @@
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
-		gpsStartDate = [[NSDate alloc] init];
-		[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: OSU_BUS_GPS_MAX_WAIT];
-		[locManager startUpdatingLocation];
-		hud.labelText = @"Getting Position...";
-		[hud setOpacity: 0.9];
-		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
-		[hud show: YES];
+		[self startNearMe];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
 		// first, remove any special stops that are visible
 		[self.mapViewController setStop: nil];
@@ -553,6 +547,26 @@
 
 # pragma mark GPS fun
 
+- (void) startNearMe
+{
+	if (gpsStartDate)
+		[gpsStartDate release];
+	gpsStartDate = [[NSDate alloc] init];
+	
+	if ([locManager respondsToSelector: @selector(requestWhenInUseAuthorization)] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+	{
+		[locManager requestWhenInUseAuthorization];
+		return;
+	}
+	
+	[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: OSU_BUS_GPS_MAX_WAIT];
+	[locManager startUpdatingLocation];
+	hud.labelText = @"Getting Position...";
+	[hud setOpacity: 0.9];
+	[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
+	[hud show: YES];
+}
+
 - (void) locationTimeout
 {
 	// force an update
@@ -564,7 +578,25 @@
 	}
 }
 
+- (void) locationManager: (CLLocationManager*) manager didChangeAuthorizationStatus: (CLAuthorizationStatus)status
+{
+	if (gpsStartDate && status != kCLAuthorizationStatusNotDetermined)
+	{
+		[self startNearMe];
+	}
+}
+
+- (void) locationManager: (CLLocationManager*) manager didUpdateLocations: (NSArray*) locations
+{
+	[self locationManager: manager didUpdateToLocation: [locations objectAtIndex: locations.count - 1]];
+}
+
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
+{
+	[self locationManager: manager didUpdateToLocation: newLocation];
+}
+
+- (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation
 {
 	// if we're not on top...
 	if ([self.navigationController topViewController] != self)
