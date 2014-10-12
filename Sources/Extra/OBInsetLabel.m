@@ -27,22 +27,18 @@
 
 - (CGSize) sizeThatFits: (CGSize) size
 {
-	CGSize inset = size;
-	inset.width -= self.edgeInsets.left + self.edgeInsets.right;
-	inset.height -= self.edgeInsets.top + self.edgeInsets.bottom;
+	CGSize maximumSize = CGSizeMake(size.width - (self.edgeInsets.left + self.edgeInsets.right), FLT_MAX);
+	CGSize result = [self.text sizeWithFont: self.font constrainedToSize: maximumSize lineBreakMode: self.lineBreakMode];
 	
-	CGSize result = [super sizeThatFits: inset];
-	result.width += self.edgeInsets.left + self.edgeInsets.right;
-	result.height += self.edgeInsets.top + self	.edgeInsets.bottom;
+	result.width = size.width;
+	result.height += self.edgeInsets.top + self.edgeInsets.bottom;
+	result.height = ceilf(result.height);
 	return result;
 }
 
 - (CGSize) intrinsicContentSize
 {
-	CGSize size = [super intrinsicContentSize];
-	size.width  += self.edgeInsets.left + self.edgeInsets.right;
-	size.height += self.edgeInsets.top + self.edgeInsets.bottom;
-	return size;
+	return [self sizeThatFits: self.frame.size];
 }
 
 @end
