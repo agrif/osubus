@@ -37,6 +37,7 @@
 	activeRequests = [[NSMutableDictionary alloc] initWithCapacity: 5];
 	
 	// setup toolbar
+	locateButton.image = [UIImage imageNamed: @"locate"];
 	self.toolbarItems = [NSArray arrayWithObjects: locateButton, flexibleSpace, actionButton, nil];
 		
 	NSLog(@"OBMapViewController loaded");
