@@ -9,9 +9,6 @@
 
 #import "OBTableViewController.h"
 
-#define GPS_ACCURACY 100 /* meters */
-#define GPS_MAX_WAIT 10 /* seconds */
-
 @class OBBulletinsViewController;
 @class MBProgressHUD;
 @class OBAboutViewController;

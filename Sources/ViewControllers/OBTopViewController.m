@@ -453,7 +453,7 @@
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
 		gpsStartDate = [[NSDate alloc] init];
-		[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: GPS_MAX_WAIT];
+		[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: OSU_BUS_GPS_MAX_WAIT];
 		[locManager startUpdatingLocation];
 		hud.labelText = @"Getting Position...";
 		[hud setOpacity: 0.9];
@@ -560,7 +560,7 @@
 	{
 		[gpsStartDate release];
 		gpsStartDate = nil;
-		[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
+		[self locationManager: locManager didFailWithError: nil];
 	}
 }
 
@@ -580,9 +580,9 @@
 	}
 	
 	// throw away bad locations, if we're under 10 seconds
-	if (gpsStartDate != nil && [gpsStartDate timeIntervalSinceNow] > -GPS_MAX_WAIT)
+	if (gpsStartDate != nil && [gpsStartDate timeIntervalSinceNow] > -OSU_BUS_GPS_MAX_WAIT)
 	{
-		if ([newLocation horizontalAccuracy] > GPS_ACCURACY)
+		if ([newLocation horizontalAccuracy] > OSU_BUS_GPS_ACCURACY)
 			return;
 	}
 	
@@ -603,6 +603,11 @@
 	[stops release];
 }
 
+- (void) locationManager: (CLLocationManager*) manager didFinishDeferredUpdatesWithError: (NSError*) error
+{
+	[self locationManager: manager didFinishDeferredUpdatesWithError: error];
+}
+
 - (void) locationManager: (CLLocationManager*) manager didFailWithError: (NSError*) error
 {
 	[manager stopUpdatingLocation];
@@ -613,7 +618,11 @@
 		gpsStartDate = nil;
 	}
 	
-	NSLog(@"GPS Error: %@", [error localizedDescription]);
+	if (error)
+	{
+		NSLog(@"GPS Error: %@", [error localizedDescription]);
+	}
+	
 	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
 	[alertView show];
 	[alertView release];
