@@ -4,6 +4,16 @@ but they are *not* comprehensive. These are the lists that accompany
 any new releases.
 
 ##############
+### v1.2.2 ###
+##############
+
+Fixes:
+
+ * "Near Me" and "Show my Location" on Bus Map work again
+
+ * text in About page is no longer clipped
+
+##############
 ### v1.2.1 ###
 ##############
 
