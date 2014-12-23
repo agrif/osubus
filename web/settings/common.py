@@ -16,6 +16,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+ALLOWED_HOSTS = ['osubus.rakeri.net', 'osubus.gammalevel.com', 'osubus.gamma-level.com']
+
 # get rid of pesky slashes on flatpages
 APPEND_SLASH = False
 
@@ -125,7 +127,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    'django.contrib.markup',
     'typogrify',
     'googlecharts',
     'osubus_extra',
