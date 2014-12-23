@@ -10,7 +10,6 @@
 #import "OTClient.h"
 #import "OBRoutesViewController.h"
 
-@class OBOverlayManager;
 @class OBStopAnnotation;
 @class OBVehicleAnnotation;
 
@@ -21,7 +20,7 @@
 
 @end
 
-@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate>
+@interface OBMapViewController : UIViewController <MKMapViewDelegate, OBRoutesViewDelegate, OTRequestDelegate, CLLocationManagerDelegate>
 {
 	MKMapView* map;
 	UIView* instructiveView;
@@ -29,7 +28,6 @@
 	UIBarButtonItem* locateButton;
 	UIBarButtonItem* flexibleSpace;
 	UIBarButtonItem* actionButton;
-	OBOverlayManager* overlayManager;
 	
 	// maps route -> stop annotations array
 	NSMutableDictionary* stopAnnotations;
@@ -42,10 +40,6 @@
 	OBVehicleAnnotation* primaryVehicleAnnotation;
 	NSString* primaryVehicleId;
 	NSDictionary* primaryVehicleRoute;
-	
-	// for initial zoom in hack
-	BOOL hasZoomedIn;
-	MKCoordinateRegion finalRegion;
 	
 	// vehicle update timer
 	NSTimer* refreshTimer;

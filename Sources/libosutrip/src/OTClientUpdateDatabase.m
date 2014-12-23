@@ -72,7 +72,7 @@ NSNumber* addRouteColor(FMDatabase* db, NSString* rt)
 	
 	if ([db executeUpdate: @"INSERT INTO route_colors (rt, color) VALUES (?, ?)", rt, @"#000000"])
 	{
-		return [NSNumber numberWithInt: [db lastInsertRowId]];
+		return [NSNumber numberWithLongLong: [db lastInsertRowId]];
 	}
 	
 	return nil;
@@ -91,13 +91,13 @@ NSNumber* addPrettyName(FMDatabase* db, NSString* original)
 	
 	if ([db executeUpdate: @"INSERT INTO pretty_names (original, pretty) VALUES (?, ?)", original, original])
 	{
-		return [NSNumber numberWithInt: [db lastInsertRowId]];
+		return [NSNumber numberWithLongLong: [db lastInsertRowId]];
 	}
 	
 	return nil;
 }
 
-void addStops(FMDatabase* db, int routeID, NSString* rt, int directionID, NSString* dir)
+void addStops(FMDatabase* db, long long routeID, NSString* rt, long long directionID, NSString* dir)
 {
 	OTRequest* req = [[OTClient sharedClient] requestStopsWithDelegate: nil forRoute: rt inDirection: dir];
 	[req waitForResult];
@@ -123,7 +123,7 @@ void addStops(FMDatabase* db, int routeID, NSString* rt, int directionID, NSStri
 				exit(1);
 			}
 		} else {
-			if (![db executeUpdate: @"INSERT INTO stops (routes, direction, stpid, stpnm, lat, lon) VALUES (?, ?, ?, ?, ?, ?)", [NSNumber numberWithInt: 1 << routeID], [NSNumber numberWithInt: directionID], [stop objectForKey: @"stpid"], addPrettyName(db, [stop objectForKey: @"stpnm"]), [stop objectForKey: @"lat"], [stop objectForKey: @"lon"]])
+			if (![db executeUpdate: @"INSERT INTO stops (routes, direction, stpid, stpnm, lat, lon) VALUES (?, ?, ?, ?, ?, ?)", [NSNumber numberWithInt: 1 << routeID], [NSNumber numberWithLongLong: directionID], [stop objectForKey: @"stpid"], addPrettyName(db, [stop objectForKey: @"stpnm"]), [stop objectForKey: @"lat"], [stop objectForKey: @"lon"]])
 			{
 				NSLog(@"Error adding stop...");
 				exit(1);
@@ -140,7 +140,7 @@ void addStops(FMDatabase* db, int routeID, NSString* rt, int directionID, NSStri
 	REQ_DELAY;
 }
 
-void addDirections(FMDatabase* db, int routeID, NSString* rt)
+void addDirections(FMDatabase* db, long long routeID, NSString* rt)
 {
 	OTRequest* req = [[OTClient sharedClient] requestDirectionsWithDelegate: nil forRoute: rt];
 	[req waitForResult];
@@ -154,7 +154,7 @@ void addDirections(FMDatabase* db, int routeID, NSString* rt)
 	for (NSString* direction in directions)
 	{
 		NSLog(@"Adding direction: %@", direction);
-		if ([db executeUpdate: @"INSERT INTO directions (route, dir, name) VALUES (?, ?, ?)", [NSNumber numberWithInt: routeID], direction, addPrettyName(db, direction)])
+		if ([db executeUpdate: @"INSERT INTO directions (route, dir, name) VALUES (?, ?, ?)", [NSNumber numberWithLongLong: routeID], direction, addPrettyName(db, direction)])
 		{
 			addStops(db, routeID, rt, [db lastInsertRowId], direction);
 		} else {

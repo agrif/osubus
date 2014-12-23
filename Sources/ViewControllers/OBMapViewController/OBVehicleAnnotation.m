@@ -39,7 +39,7 @@
 		self.pinShadowColor = [UIColor colorWithWhite: 0.0 alpha: 0.33];
 		
 		self.mask = [UIImage imageNamed: @"buspin-mask"];
-		self.overlay = [UIImage imageNamed: @"buspin-overlay"];
+		self.overlay = [UIImage imageNamed: OSU_BUS_NEW_UI ? @"buspin-overlay-new" : @"buspin-overlay"];
 		
 		self.centerOffset = CGPointMake(0.0, (-self.frame.size.height / 2.0) + self.pinShadowRadius);
 		

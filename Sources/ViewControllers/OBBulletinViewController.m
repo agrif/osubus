@@ -13,26 +13,12 @@
 	[super viewDidLoad];
 	if (bulletin)
 	{
-		//[self.navigationItem setTitle: [bulletin objectForKey: @"title"]];
+		[self.navigationItem setTitle: [bulletin objectForKey: @"title"]];
 		
-		// tag 1 - title
-		// tag 2 - source
-		// tag 3 - body
-		UILabel* label;
-		
-		label = (UILabel*)[[self view] viewWithTag: 1];
-		[label setText: [bulletin objectForKey: @"title"]];
-		
-		label = (UILabel*)[[self view] viewWithTag: 2];
-		if ([[bulletin objectForKey: @"source"] isEqual: @"official"])
-		{
-			[label setText: @"Service Bulletin"];
-		} else if ([[bulletin objectForKey: @"source"] isEqual: @"custom"]) {
-			[label setText: @"Application News"];
-		}
-		
-		UIWebView* body = (UIWebView*)[[self view] viewWithTag: 3];
-		[body loadHTMLString: [bulletin objectForKey: @"body"] baseURL: nil];
+		UIWebView* body = (UIWebView*)[self view];
+		NSString* templated = [[NSString alloc] initWithFormat: @"<html><body style=\"font-family: '%@', 'Arial', 'Serif'\">%@</body></html>", (OSU_BUS_NEW_UI ? @"HelveticaNeue" : @"Helvetica"), [bulletin objectForKey: @"body"]];
+		[body loadHTMLString: templated baseURL: nil];
+		[templated release];
 	}
 	NSLog(@"OBBulletinViewController loaded");
 }

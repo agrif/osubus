@@ -1,4 +1,4 @@
-OSU Bus wants to be free software. I distribute its source under the GNU General Public License, version 2. You can take a look at this source through the "Contact" tab below.
+OSU Bus wants to be free software. I distribute its source under the GNU General Public License, version 2. You can take a look at this source through the "About" tab below.
 
 OSU Bus uses data from the OSU Transportation Route Information Program (http://trip.osu.edu/), and that data has its own license. I owe thanks to the people running this program at OSU, for making this data open and available for developers like me.
 

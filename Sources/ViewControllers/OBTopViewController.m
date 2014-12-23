@@ -41,11 +41,12 @@
 	
 	[(UILabel*)[bulletinCell viewWithTag: 1] setText: @""];
 	[(UILabel*)[bulletinCell viewWithTag: 2] setText: @"Loading..."];
+	OSU_BUS_NEW_UI_FONTIFY((UILabel*)[bulletinCell viewWithTag: 1]);
 	
 	// setup header for our table view, so it looks nicer
 	UIView* tableHeaderView = [[UIView alloc] initWithFrame: CGRectMake(0.0, -1000.0, self.tableView.bounds.size.width, 1000.0)];
 	tableHeaderView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	[tableHeaderView setBackgroundColor: [UIColor colorWithWhite: 0.86 alpha: 1.0]];
+	[tableHeaderView setBackgroundColor: [UIColor colorWithWhite: 0.92 alpha: 1.0]];
 	[self.tableView addSubview: tableHeaderView];
 	[tableHeaderView release];
 	
@@ -451,13 +452,7 @@
 		[self.navigationController pushViewController: stops animated: YES];
 		[stops release];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_NEARME) {
-		gpsStartDate = [[NSDate alloc] init];
-		[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: GPS_MAX_WAIT];
-		[locManager startUpdatingLocation];
-		hud.labelText = @"Getting Position...";
-		[hud setOpacity: 0.9];
-		[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
-		[hud show: YES];
+		[self startNearMe];
 	} else if ([indexPath section] == OBTS_NAVIGATION && [indexPath row] == OBTO_MAP) {
 		// first, remove any special stops that are visible
 		[self.mapViewController setStop: nil];
@@ -552,6 +547,26 @@
 
 # pragma mark GPS fun
 
+- (void) startNearMe
+{
+	if (gpsStartDate)
+		[gpsStartDate release];
+	gpsStartDate = [[NSDate alloc] init];
+	
+	if ([locManager respondsToSelector: @selector(requestWhenInUseAuthorization)] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+	{
+		[locManager requestWhenInUseAuthorization];
+		return;
+	}
+	
+	[self performSelector: @selector(locationTimeout) withObject: nil afterDelay: OSU_BUS_GPS_MAX_WAIT];
+	[locManager startUpdatingLocation];
+	hud.labelText = @"Getting Position...";
+	[hud setOpacity: 0.9];
+	[(UIActivityIndicatorView*)[hud indicator] setHidden: NO];
+	[hud show: YES];
+}
+
 - (void) locationTimeout
 {
 	// force an update
@@ -559,11 +574,29 @@
 	{
 		[gpsStartDate release];
 		gpsStartDate = nil;
-		[self locationManager: locManager didUpdateToLocation: locManager.location fromLocation: nil];
+		[self locationManager: locManager didFailWithError: nil];
 	}
 }
 
+- (void) locationManager: (CLLocationManager*) manager didChangeAuthorizationStatus: (CLAuthorizationStatus)status
+{
+	if (gpsStartDate && status != kCLAuthorizationStatusNotDetermined)
+	{
+		[self startNearMe];
+	}
+}
+
+- (void) locationManager: (CLLocationManager*) manager didUpdateLocations: (NSArray*) locations
+{
+	[self locationManager: manager didUpdateToLocation: [locations objectAtIndex: locations.count - 1]];
+}
+
 - (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation fromLocation: (CLLocation*) oldLocation
+{
+	[self locationManager: manager didUpdateToLocation: newLocation];
+}
+
+- (void) locationManager: (CLLocationManager*) manager didUpdateToLocation: (CLLocation*) newLocation
 {
 	// if we're not on top...
 	if ([self.navigationController topViewController] != self)
@@ -579,9 +612,9 @@
 	}
 	
 	// throw away bad locations, if we're under 10 seconds
-	if (gpsStartDate != nil && [gpsStartDate timeIntervalSinceNow] > -GPS_MAX_WAIT)
+	if (gpsStartDate != nil && [gpsStartDate timeIntervalSinceNow] > -OSU_BUS_GPS_MAX_WAIT)
 	{
-		if ([newLocation horizontalAccuracy] > GPS_ACCURACY)
+		if ([newLocation horizontalAccuracy] > OSU_BUS_GPS_ACCURACY)
 			return;
 	}
 	
@@ -602,6 +635,11 @@
 	[stops release];
 }
 
+- (void) locationManager: (CLLocationManager*) manager didFinishDeferredUpdatesWithError: (NSError*) error
+{
+	[self locationManager: manager didFinishDeferredUpdatesWithError: error];
+}
+
 - (void) locationManager: (CLLocationManager*) manager didFailWithError: (NSError*) error
 {
 	[manager stopUpdatingLocation];
@@ -612,7 +650,11 @@
 		gpsStartDate = nil;
 	}
 	
-	NSLog(@"GPS Error: %@", [error localizedDescription]);
+	if (error)
+	{
+		NSLog(@"GPS Error: %@", [error localizedDescription]);
+	}
+	
 	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
 	[alertView show];
 	[alertView release];
@@ -624,7 +666,7 @@
 {
 	if (aboutViewController == nil)
 	{
-		aboutViewController = [[OBAboutViewController alloc] initWithNibName: @"OBAboutViewController" bundle: nil];
+		aboutViewController = [[OBAboutViewController alloc] init];
 	}
 	
 	[self.navigationController presentModalViewController: aboutViewController animated: YES];

@@ -21,8 +21,8 @@
 
 	if (top > 0)
 	{
-		NSNumber* num = [[NSNumber alloc] initWithInt: top];
-		NSString* numstr = [[NSString alloc] initWithFormat: @"%i", num, nil];
+		NSNumber* num = [[NSNumber alloc] initWithLong: top];
+		NSString* numstr = [[NSString alloc] initWithFormat: @"%@", num, nil];
 		[arguments setObject: numstr forKey: @"top"];
 		[numstr release];
 		[num release];
@@ -48,8 +48,8 @@
 	
 	if (top > 0)
 	{
-		NSNumber* num = [[NSNumber alloc] initWithInt: top];
-		NSString* numstr = [[NSString alloc] initWithFormat: @"%i", num, nil];
+		NSNumber* num = [[NSNumber alloc] initWithLong: top];
+		NSString* numstr = [[NSString alloc] initWithFormat: @"%@", num, nil];
 		[arguments setObject: numstr forKey: @"top"];
 		[numstr release];
 		[num release];

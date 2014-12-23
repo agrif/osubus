@@ -72,10 +72,13 @@
 	
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"long"]];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	
 	label = (UILabel*)[cell viewWithTag: 2];
 	[label setText: [data objectForKey: @"short"]];
 	[label setTextColor: [[data objectForKey: @"color"] colorFromHex]];
+	if (OSU_BUS_NEW_UI)
+		[label setShadowColor: [UIColor clearColor]];
 	
 	return cell;
 }
@@ -88,7 +91,7 @@
 	
 	NSMutableString* subtitle = [[NSMutableString alloc] init];
 	unsigned int i = 0;
-	unsigned int routeslen = [[stop objectForKey: @"routes"] count];
+	unsigned long routeslen = [[stop objectForKey: @"routes"] count];
 	for (NSDictionary* route in [stop objectForKey: @"routes"])
 	{
 		[colors addObject: [[route objectForKey: @"color"] colorFromHex]];
@@ -121,6 +124,7 @@
 	
 	label = (UILabel*)[cell viewWithTag: 1];
 	[label setText: [data objectForKey: @"name"]];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	
 	// set color bands and byline
 	OBColorBandView* bands = (OBColorBandView*)[cell viewWithTag: 4];
@@ -193,6 +197,7 @@
 		stop = [[OTClient sharedClient] stop: [data objectForKey: @"stpid"]];
 	
 	label = (UILabel*)[cell viewWithTag: 1];
+	OSU_BUS_NEW_UI_FONTIFY(label);
 	if (vehicle)
 	{
 		[label setText: [stop objectForKey: @"name"]];

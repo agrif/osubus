@@ -62,12 +62,13 @@
 - (void) updateCacheLayerWithContext: (CGContextRef) context
 {
 	// see if we even need to update
-	if (!pinColor || !mask || !overlay)
+	if (!pinColor || !mask)
 		return;
 	
 	// sanity check on image sizes
-	if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.scale != overlay.scale)
-		return;
+	if (overlay)
+		if (!CGSizeEqualToSize(mask.size, overlay.size) || mask.scale != overlay.scale)
+			return;
 	
 	// clear out old layer
 	if (cacheLayer)
@@ -132,7 +133,8 @@
 	CGContextRestoreGState(c);
 	
 	// now draw the overlay
-	CGContextDrawImage(c, area, [overlay CGImage]);
+	if (overlay)
+		CGContextDrawImage(c, area, [overlay CGImage]);
 	
 	// end layer, let shadowing do its work
 	CGContextEndTransparencyLayer(c);

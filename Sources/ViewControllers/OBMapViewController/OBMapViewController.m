@@ -12,10 +12,7 @@
 #import "UIApplication+NiceNetworkIndicator.h"
 #import "OBStopAnnotation.h"
 #import "OBVehicleAnnotation.h"
-#import "OBOverlayManager.h"
-#import "OBPolyline.h"
-
-#define ZOOM_HACK_SCALE 1.5
+#import "OBPatternOverlay.h"
 
 @implementation OBMapViewController
 
@@ -32,19 +29,7 @@
 	CLLocationCoordinate2D center;
 	center.latitude = 39.999417;
 	center.longitude = -83.012639;
-	finalRegion = MKCoordinateRegionMake(center,
-										 MKCoordinateSpanMake(0.01, 0.01));
-	
-	// SETUP for map zoom hack
-	hasZoomedIn = NO;
-	MKCoordinateRegion outerRegion = finalRegion;
-	outerRegion.span.latitudeDelta *= ZOOM_HACK_SCALE;
-	outerRegion.span.longitudeDelta *= ZOOM_HACK_SCALE;
-	map.region = outerRegion;
-	
-	// setup overlay manager
-	overlayManager = [[OBOverlayManager alloc] initWithMapView: map];
-	[map addAnnotation: overlayManager];
+	map.region = MKCoordinateRegionMake(center, MKCoordinateSpanMake(0.01, 0.01));
 	
 	// just a rough estimate of the number of routes to be displayed
 	stopAnnotations = [[NSMutableDictionary alloc] initWithCapacity: 5];
@@ -52,6 +37,7 @@
 	activeRequests = [[NSMutableDictionary alloc] initWithCapacity: 5];
 	
 	// setup toolbar
+	locateButton.image = [UIImage imageNamed: @"locate"];
 	self.toolbarItems = [NSArray arrayWithObjects: locateButton, flexibleSpace, actionButton, nil];
 		
 	NSLog(@"OBMapViewController loaded");
@@ -65,9 +51,6 @@
 	[activeRequests release];
 	
 	// primary{Stop,Vehicle}Annotation and primaryVehicle* is taken care of in clearMap
-
-	[map removeAnnotation: overlayManager];
-	[overlayManager release];
 	
 	self.toolbarItems = nil;
 	
@@ -79,15 +62,6 @@
 {
 	// Start the vehicle update timer
 	refreshTimer = [NSTimer scheduledTimerWithTimeInterval: OSU_BUS_REFRESH_TIME target: self selector: @selector(updateVehicles:) userInfo: nil repeats: YES];
-	
-	// FIXME better solution to this
-	// this block is a HACK that prevents a draw bug on iOS3.1
-	// but it doesn't look *too* bad... I guess
-	if (!hasZoomedIn)
-	{
-		[map setRegion: finalRegion animated: YES];
-		hasZoomedIn = YES;
-	}
 }
 
 - (void) viewDidDisappear: (BOOL) animated
@@ -166,6 +140,18 @@
 
 - (IBAction) locateButtonPressed
 {
+	if ([CLLocationManager respondsToSelector: @selector(authorizationStatus)] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined)
+	{
+		CLLocationManager* manager = [[CLLocationManager alloc] init];
+		if ([manager respondsToSelector: @selector(requestWhenInUseAuthorization)])
+		{
+			[manager requestWhenInUseAuthorization];
+			[manager setDelegate: self];
+			return;
+		} else {
+			[manager release];
+		}
+	}
 	map.showsUserLocation = !map.showsUserLocation;
 	
 	if (map.showsUserLocation)
@@ -176,6 +162,15 @@
 	}
 }
 
+- (void) locationManager: (CLLocationManager*) manager didChangeAuthorizationStatus: (CLAuthorizationStatus)status
+{
+	if (status == kCLAuthorizationStatusNotDetermined)
+		return;
+	
+	[manager autorelease];
+	[self locateButtonPressed];
+}
+
 - (void) openMapAppAtStop: (NSDictionary*) stop
 {
 	// first, url-escape the name so we can have it show up on the map
@@ -183,7 +178,7 @@
 	encodedName = [encodedName stringByReplacingOccurrencesOfString: @")" withString: @"]"];
 	encodedName = (NSString*)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)encodedName, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
 	
-	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&q=%@,%@+(%@)&t=m&z=%i", map.centerCoordinate.latitude, map.centerCoordinate.longitude, [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName, map.zoomLevel];
+	NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&q=%@,%@+(%@)&t=m&z=%lu", map.centerCoordinate.latitude, map.centerCoordinate.longitude, [stop objectForKey: @"lat"], [stop objectForKey: @"lon"], encodedName, (unsigned long)(map.zoomLevel)];
 	[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 	
 	[url release];
@@ -200,7 +195,7 @@
 		[self openMapAppAtStop: primaryStopAnnotation.stop];
 	} else {
 		// fall back to just opening the map with the pin in the center
-		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&t=m&z=%i", map.region.center.latitude, map.region.center.longitude, map.zoomLevel];
+		NSString* url = [[NSString alloc] initWithFormat: @"http://maps.google.com/maps?ll=%f,%f&t=m&z=%lu", map.region.center.latitude, map.region.center.longitude, (unsigned long)(map.zoomLevel)];
 		[[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
 		[url release];
 	}
@@ -210,9 +205,8 @@
 
 - (IBAction) routesButtonPressed
 {
-	OBRoutesViewController* routesController = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewControllerModal" bundle: nil];
-	routesController.routesDelegate = self;
-	[self.navigationController presentModalViewController: routesController animated: YES];
+	OBRoutesViewController* routesController = [[OBRoutesViewController alloc] initWithNibName: @"OBRoutesViewController" bundle: nil];
+	[routesController presentModallyOn: self.navigationController withDelegate:self];
 	[routesController release];
 }
 
@@ -263,38 +257,15 @@
 		[instructiveView setHidden: YES];
 	} else {
 		// remove stops, overlays, request
-		
-		// FIXME better solution
-		// setup for iOS 3.1 retain bug fix (hack)
-		OBStopAnnotation* firstAnnotation = nil;
-		NSUInteger firstAnnotationRetainCount = 0;
-		NSUInteger nonFirstAnnotationRetainCount = 0;
-		
 		for (OBStopAnnotation* annotation in [stopAnnotations objectForKey: route])
 		{
-			if (firstAnnotation == nil)
-			{
-				// implement the iOS 3.1 fix hack
-				firstAnnotation = [annotation retain];
-				[map removeAnnotation: annotation];
-				firstAnnotationRetainCount = [annotation retainCount] - 1;
-			} else {
-				[map removeAnnotation: annotation];
-				nonFirstAnnotationRetainCount = [annotation retainCount];
-			}
+			[map removeAnnotation: annotation];
 		}
-		
-		// check if we didn't need the hack to begin with
-		if (firstAnnotationRetainCount == nonFirstAnnotationRetainCount && firstAnnotation)
-			[firstAnnotation release];
 		
 		// finally, release our array of annotations
 		[stopAnnotations removeObjectForKey: route];
 		
-		for (OBOverlay* overlay in [routeOverlays objectForKey: route])
-		{
-			[overlayManager removeOverlay: overlay];
-		}
+		[map removeOverlays: [routeOverlays objectForKey: route]];
 		[routeOverlays removeObjectForKey: route];
 		
 		for (OTRequest* req in [activeRequests allKeysForObject: route])
@@ -324,13 +295,6 @@
 		
 		// figure out if we should be animated
 		BOOL animated = self.navigationController.visibleViewController == self;
-		
-		if (!hasZoomedIn)
-		{
-			// modify zoom hack
-			finalRegion.center = primaryStopAnnotation.coordinate;
-			animated = NO;
-		}
 		
 		// set map region to be centered on new stop, and select it
 		[map setCenterCoordinate: primaryStopAnnotation.coordinate animated: animated];
@@ -439,23 +403,13 @@
 		
 		for (NSDictionary* pattern in patterns)
 		{
-			NSMutableArray* points = [[NSMutableArray alloc] initWithCapacity: [[pattern objectForKey: @"pt"] count]];
-			
-			for (NSDictionary* point in [pattern objectForKey: @"pt"])
-			{
-				CLLocation* loc = [[CLLocation alloc] initWithLatitude: [[point objectForKey: @"lat"] floatValue] longitude: [[point objectForKey: @"lon"] floatValue]];
-				[points addObject: loc];
-				[loc release];
-			}
-			
-			OBPolyline* polyline = [[OBPolyline alloc] initWithPoints: points];
-			[points release];
+			OBPatternOverlay* polyline = [[OBPatternOverlay alloc] initWithPattern: pattern];
 			
 			polyline.polylineColor = [[route objectForKey: @"color"] colorFromHex];
 			polyline.polylineAlpha = 1.0;
 			
 			[overlays addObject: polyline];
-			[overlayManager addOverlay: polyline];
+			[map addOverlay: polyline];
 			[polyline release];
 		}
 		
@@ -467,7 +421,7 @@
 		NSMutableArray* annotations = [stopAnnotations objectForKey: route];
 		NSMutableArray* annotations_filtered = [[NSMutableArray alloc] initWithCapacity: [annotations count]];
 		
-		for (NSObject* object in annotations)
+		for (NSObject<MKAnnotation>* object in annotations)
 		{
 			if ([object isKindOfClass: [OBVehicleAnnotation class]])
 			{
@@ -509,17 +463,9 @@
 		
 		if (zoomInOnAnnotation)
 		{
-			BOOL animated = YES;
-			if (!hasZoomedIn)
-			{
-				// modify zoom hack
-				finalRegion.center = primaryVehicleAnnotation.coordinate;
-				animated = NO;
-			}
-			
 			// set map region to be centered on new stop, and select it
-			[map setCenterCoordinate: primaryVehicleAnnotation.coordinate animated: animated];
-			[map selectAnnotation: primaryVehicleAnnotation animated: animated];
+			[map setCenterCoordinate: primaryVehicleAnnotation.coordinate animated: YES];
+			[map selectAnnotation: primaryVehicleAnnotation animated: YES];
 		}
 	}
 	
@@ -545,13 +491,15 @@
 
 - (MKAnnotationView*) mapView: (MKMapView*) mapView viewForAnnotation: (id <MKAnnotation>) annotation
 {
-	if (annotation == overlayManager)
-		return [overlayManager autorelease];
-	
 	if ([annotation conformsToProtocol: @protocol(OBMapViewAnnotation)])
 		return [(id<OBMapViewAnnotation>)annotation annotationViewForMap: map];
 	
 	return nil;
+}
+
+- (MKOverlayView*) mapView: (MKMapView*) mapView viewForOverlay: (id <MKOverlay>) overlay
+{
+	return (OBPatternOverlay*)overlay;
 }
 
 @end

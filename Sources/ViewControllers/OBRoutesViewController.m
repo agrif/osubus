@@ -95,7 +95,21 @@
 
 #pragma mark modal-style handling
 
-- (IBAction) dismissModal
+- (void) presentModallyOn: (UIViewController*) controller withDelegate: (id<OBRoutesViewDelegate>) delegate
+{
+	self.routesDelegate = delegate;
+
+	UINavigationController* navController = [[UINavigationController alloc] initWithRootViewController: self];
+
+	UIBarButtonItem* barButton = [[UIBarButtonItem alloc] initWithTitle: @"Done" style:UIBarButtonItemStyleDone target: self action: @selector(dismissModal)];
+	[self.navigationItem setRightBarButtonItem:barButton];
+	[barButton release];
+
+	[controller presentModalViewController: navController animated: YES];
+	[navController release];
+}
+
+- (void) dismissModal
 {
 	[self.presentingViewController dismissModalViewControllerAnimated: YES];
 }

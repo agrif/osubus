@@ -12,10 +12,18 @@
 	<string>Icon.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
+		<string>Icon7.png</string>
+		<string>Icon7@2x.png</string>
+		<string>Icon7@3x.png</string>
 		<string>Icon.png</string>
 		<string>Icon@2x.png</string>
+		<string>Icon@3x.png</string>
+		<string>Icon-Small7.png</string>
+		<string>Icon-Small7@2x.png</string>
+		<string>Icon-Small7@3x.png</string>
 		<string>Icon-Small.png</string>
 		<string>Icon-Small@2x.png</string>
+		<string>Icon-Small@3x.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.gamma-level.osubus</string>
@@ -28,13 +36,52 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.2.0</string>
+	<string>1.2.2</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.2.2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
 	<string>MainWindow</string>
 	<key>SBUsesNetwork</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>OSU Bus uses your location to find stops near you, and to show your location on the Bus Map.</string>
+	<key>UILaunchImages</key>
+	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default7</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 480}</string>
+		</dict>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default7-568h</string>
+			<key>UILaunchImageSize</key>
+			<string>{320, 568}</string>
+		</dict>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default7-667h</string>
+			<key>UILaunchImageSize</key>
+			<string>{375, 667}</string>
+		</dict>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>Default7-736h</string>
+			<key>UILaunchImageSize</key>
+			<string>{414, 736}</string>
+		</dict>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

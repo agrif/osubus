@@ -1,7 +1,7 @@
 Make sure to do all of this, each release! You could screw up, seriously!
 
 1. Make sure OT_DB_VERSION and OSU_BUS_VERSION is set appropriately.
-   (and make sure Info.plist agrees with OSU_BUS_VERSION!)
+   (and make sure Info.plist agrees with OSU_BUS_VERSION in the two places!)
 
 2. Make sure databases are properly regenerated.
 

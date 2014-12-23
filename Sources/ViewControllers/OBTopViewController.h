@@ -9,9 +9,6 @@
 
 #import "OBTableViewController.h"
 
-#define GPS_ACCURACY 100 /* meters */
-#define GPS_MAX_WAIT 10 /* seconds */
-
 @class OBBulletinsViewController;
 @class MBProgressHUD;
 @class OBAboutViewController;
@@ -80,6 +77,7 @@ enum OBTopSections
 - (void) updateBulletinCell: (NSTimer*) timer;
 - (void) saveFavorites;
 
+- (void) startNearMe;
 - (void) locationTimeout;
 
 - (IBAction) showAboutView: (id) sender;

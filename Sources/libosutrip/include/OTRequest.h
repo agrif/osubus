@@ -29,7 +29,7 @@
 	NSThread* thread;
 	NSThread* callingThread;
 
-	id<OTRequestDelegate> delegate;
+	NSObject<OTRequestDelegate>* delegate;
 	NSDictionary* result;
 	NSError* error;
 }
