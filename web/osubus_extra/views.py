@@ -161,6 +161,6 @@ def bulletins(request, api_version="v1"):
         VersionStats.increment(client_version, dbversion, dbdate)
     
     try:
-        return render_to_response('bulletins.%s.xml' % (api_version,), {'bulletins' : all_bulletins}, mimetype='text/xml', context_instance=RequestContext(request))
+        return render_to_response('bulletins.%s.xml' % (api_version,), {'bulletins' : all_bulletins}, content_type='text/xml', context_instance=RequestContext(request))
     except TemplateDoesNotExist:
         raise Http404
