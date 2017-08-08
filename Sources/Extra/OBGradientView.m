@@ -17,7 +17,7 @@
 {
     if (self = [super initWithFrame: frame])
 	{
-		[self init];
+		[self initCommon];
     }
     return self;
 }
@@ -26,12 +26,12 @@
 {
 	if (self = [super initWithCoder: decoder])
 	{
-		[self init];
+		[self initCommon];
 	}
 	return self;
 }
 
-- (id) init
+- (id) initCommon
 {
 	size_t num_locations = 2;
 	CGFloat locations[2] = { 0.0, 1.0 };

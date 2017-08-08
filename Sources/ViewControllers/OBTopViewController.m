@@ -574,7 +574,7 @@
 	{
 		[gpsStartDate release];
 		gpsStartDate = nil;
-		[self locationManager: locManager didFailWithError: nil];
+		[self locationManager: locManager didFailWithErrorOrNil: nil];
 	}
 }
 
@@ -642,22 +642,27 @@
 
 - (void) locationManager: (CLLocationManager*) manager didFailWithError: (NSError*) error
 {
-	[manager stopUpdatingLocation];
-	[hud hide: YES];
-	if (gpsStartDate)
-	{
-		[gpsStartDate release];
-		gpsStartDate = nil;
-	}
-	
-	if (error)
-	{
-		NSLog(@"GPS Error: %@", [error localizedDescription]);
-	}
-	
-	UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
-	[alertView show];
-	[alertView release];
+    [self locationManager: manager didFailWithErrorOrNil: error];
+}
+
+- (void) locationManager: (CLLocationManager*) manager didFailWithErrorOrNil: (NSError*) error
+{
+    [manager stopUpdatingLocation];
+    [hud hide: YES];
+    if (gpsStartDate)
+    {
+        [gpsStartDate release];
+        gpsStartDate = nil;
+    }
+    
+    if (error)
+    {
+        NSLog(@"GPS Error: %@", [error localizedDescription]);
+    }
+    
+    UIAlertView* alertView = [[UIAlertView alloc] initWithTitle: @"Error" message: @"Your location cannot be retreived." delegate: nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
+    [alertView show];
+    [alertView release];
 }
 
 # pragma mark Interface Builder Actions

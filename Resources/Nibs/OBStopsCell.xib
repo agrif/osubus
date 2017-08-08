@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OBTableViewController">
             <connections>
-                <outlet property="newCell" destination="3" id="4"/>
+                <outlet property="cellFromNib" destination="3" id="WoQ-Gu-4hQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

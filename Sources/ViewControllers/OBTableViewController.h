@@ -9,11 +9,11 @@
 @interface OBTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 {
 	UITableView* _tableView;
-	UITableViewCell* newCell;
+	UITableViewCell* cellFromNib;
 }
 
 @property (nonatomic, retain) IBOutlet UITableView* tableView;
-@property (nonatomic, retain) IBOutlet UITableViewCell* newCell;
+@property (nonatomic, retain) IBOutlet UITableViewCell* cellFromNib;
 
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withIdentifier: (NSString*) cellIdentifier;
 - (UITableViewCell*) cellForTable: (UITableView*) tableView withText: (NSString*) text;

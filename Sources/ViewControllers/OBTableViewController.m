@@ -14,7 +14,7 @@
 @implementation OBTableViewController
 
 @synthesize tableView = _tableView;
-@synthesize newCell;
+@synthesize cellFromNib;
 
 // globally allow table views to autorotate
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
@@ -47,8 +47,8 @@
 	}
 	
 	[[NSBundle mainBundle] loadNibNamed: cellIdentifier owner: self options: nil];
-	cell = newCell;
-	[self setNewCell: nil];
+	cell = cellFromNib;
+	[self setCellFromNib: nil];
 	
 	return cell;
 }
