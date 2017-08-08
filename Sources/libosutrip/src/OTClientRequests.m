@@ -133,12 +133,12 @@
 
 	for (NSString* key in arguments)
 	{
-		NSString* keyesc = [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-		NSString* valesc = [[arguments objectForKey: key] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+		NSString* keyesc = [key stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]];
+		NSString* valesc = [[arguments objectForKey: key] stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]];
 		[argstrings addObject: [NSString stringWithFormat: @"%@=%@", keyesc, valesc, nil]];
 	}
 	
-	NSString* APIKeyEsc = [APIKey stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+	NSString* APIKeyEsc = [APIKey stringByAddingPercentEncodingWithAllowedCharacters: [NSCharacterSet URLQueryAllowedCharacterSet]];
 	[argstrings addObject: [NSString stringWithFormat: @"key=%@", APIKeyEsc, nil]];
 	
 	if ([base isEqual: OTC_CUSTOMURL])

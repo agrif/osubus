@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 	}
 	
 	[[OTClient sharedClient] setAPIKey: @"HgejWEsJAycCRf8gzsSWVHMcy"];
-	[[OTClient sharedClient] setDatabasePath: [NSString stringWithCString: argv[1]]];
+	[[OTClient sharedClient] setDatabasePath: [NSString stringWithCString: argv[1] encoding: NSASCIIStringEncoding]];
 	
 	[[OTClient  sharedClient] updateDatabase];
 	
