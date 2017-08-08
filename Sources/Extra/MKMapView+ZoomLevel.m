@@ -39,10 +39,10 @@
 	CGSize ret;
 	
 	CLLocationDegrees minLng = region.center.longitude - (region.span.longitudeDelta / 2);
-	ret.width = fabsf([self longitudeToPixelSpaceX: minLng] - [self longitudeToPixelSpaceX: minLng + region.span.longitudeDelta]);
+	ret.width = fabs([self longitudeToPixelSpaceX: minLng] - [self longitudeToPixelSpaceX: minLng + region.span.longitudeDelta]);
 	
 	CLLocationDegrees minLat = region.center.latitude - (region.span.latitudeDelta / 2);
-	ret.height = fabsf([self latitudeToPixelSpaceY: minLat] - [self latitudeToPixelSpaceY: minLat + region.span.latitudeDelta]);
+	ret.height = fabs([self latitudeToPixelSpaceY: minLat] - [self latitudeToPixelSpaceY: minLat + region.span.latitudeDelta]);
 	
 	return ret;
 }

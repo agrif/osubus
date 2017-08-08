@@ -12,7 +12,7 @@
 static BOOL swizzle_intern(Class c, SEL orig, SEL new, BOOL class_method)
 {
 	if (class_method)
-		c = c->isa;
+		c = object_getClass(c);
 	
 	Method origMethod = class_getInstanceMethod(c, orig);
 	Method newMethod = class_getInstanceMethod(c, new);
