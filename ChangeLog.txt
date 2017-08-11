@@ -4,6 +4,18 @@ but they are *not* comprehensive. These are the lists that accompany
 any new releases.
 
 ##############
+### v1.2.3 ###
+##############
+
+Features:
+
+ * Support for iOS 11 and 64-bit iOS devices
+
+Fixes:
+
+ * Properly use App Transport Security on iOS 9 and later
+
+##############
 ### v1.2.2 ###
 ##############
 

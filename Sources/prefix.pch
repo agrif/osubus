@@ -9,7 +9,7 @@
 //
 
 // IMPORTANT: remember to also set in info.plist! (2 places)
-#define OSU_BUS_VERSION "1.2.2"
+#define OSU_BUS_VERSION "1.2.3"
 
 // Useful global defines for settings
 #define OSU_BUS_REFRESH_TIME 30.0
