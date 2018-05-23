@@ -4,19 +4,21 @@ from django.conf.urls import *
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = [
     # Example:
-    # (r'^osubus_web/', include('osubus_web.foo.urls')),
+    # url(r'^osubus_web/', include('osubus_web.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
-)
+    url(r'^admin/', include(admin.site.urls)),
+]
 
-urlpatterns += patterns('osubus_extra.views',
-    (r'^screenshots$', 'screenshots'),
-    (r'^statistics$', 'stats'),
-    (r'^api/(?P<api_version>v\d+)/getservicebulletins', 'bulletins'),
-)
+import osubus_extra.views
+
+urlpatterns += [
+    url(r'^screenshots$', osubus_extra.views.screenshots),
+    url(r'^statistics$', osubus_extra.views.stats),
+    url(r'^api/(?P<api_version>v\d+)/getservicebulletins', osubus_extra.views.bulletins),
+]

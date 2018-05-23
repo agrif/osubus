@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template import RequestContext, TemplateDoesNotExist
 from django.http import Http404
 from django.contrib.sites.models import Site
@@ -10,7 +10,7 @@ import datetime
 
 def screenshots(request):
     all_shots = Screenshot.objects.all()
-    return render_to_response('screenshots.html', {'screenshots' : all_shots}, context_instance=RequestContext(request))
+    return render(request, 'screenshots.html', {'screenshots' : all_shots})
 
 @login_required
 def stats(request):
@@ -96,7 +96,7 @@ def stats(request):
                 datei += (len(chart['dates']) - 1.0)/chart['date_count'];
             chart['dates'] = new_dates
     
-    return render_to_response('stats.html', {'chartlist' : charts}, context_instance=RequestContext(request))
+    return render(request, 'stats.html', {'chartlist' : charts})
 
 def bulletins(request, api_version="v1"):
     bulletins = Bulletin.objects.all()
@@ -161,6 +161,6 @@ def bulletins(request, api_version="v1"):
         VersionStats.increment(client_version, dbversion, dbdate)
     
     try:
-        return render_to_response('bulletins.%s.xml' % (api_version,), {'bulletins' : all_bulletins}, content_type='text/xml', context_instance=RequestContext(request))
+        return render(request, 'bulletins.%s.xml' % (api_version,), {'bulletins' : all_bulletins}, content_type='text/xml')
     except TemplateDoesNotExist:
         raise Http404

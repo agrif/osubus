@@ -1,4 +1,5 @@
 from django import template
+from django.utils.safestring import mark_safe
 from osubus_extra.models import ExternalLink, VersionBulletin, CacheDatabase
 import re
 
@@ -8,7 +9,7 @@ register = template.Library()
 def navlink(request, url, name):
     if request.path == url:
         return name
-    return '<a href="%s">%s</a>' % (url, name)
+    return mark_safe('<a href="%s">%s</a>' % (url, name))
 
 @register.simple_tag
 def ob_version(fmt="%s"):
